@@ -14,6 +14,13 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_PxRghF": {
+          "type": "announcement",
+          "settings": {
+            "text": "&nbsp;🎃 No Tricks, Just Treats! Enjoy 20% Off This Halloween.&nbsp;",
+            "link": "shopify://collections/weekly-sale"
+          }
+        },
         "announcement_promo": {
           "type": "announcement",
           "settings": {
@@ -23,6 +30,7 @@
         }
       },
       "block_order": [
+        "announcement_PxRghF",
         "announcement_promo"
       ],
       "settings": {
