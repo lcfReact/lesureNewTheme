@@ -221,12 +221,15 @@
 }
 
 .collections-list .collection-card__btn .button__label,
-.collections-list .collection-card__btn .button__label::after {
+.collections-list .collection-card__btn:hover .button__label,
+.collections-list .collection-card:hover .collection-card__btn .button__label {
   color: var(--scene-button-text, #171717);
   white-space: nowrap;
+  transform: none;
 }
 
 .collections-list .collection-card__btn .button__label::after {
+  content: none;
   display: none;
 }
 

@@ -98,9 +98,16 @@
   padding-left: 1rem;
   padding-right: 1rem;
 }
-.collection-card__btn .button__label {
+.collection-card__btn .button__label,
+.collection-card__btn:hover .button__label,
+.collection-card:hover .collection-card__btn .button__label {
   color: rgba(var(--color-button-text));
   white-space: nowrap;
+  transform: none;
+}
+.collection-card__btn .button__label::after {
+  content: none;
+  display: none;
 }
 @media screen and (hover: none) and (pointer: coarse) {
   .collection-card .collection-card__content {
