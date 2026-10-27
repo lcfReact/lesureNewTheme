@@ -31,24 +31,28 @@
       clearButton(next);
       return;
     }
-    const buttonSize = 36;
+    const buttonSize = 44;
     nav.style.transform = "none";
     nav.style.height = `${buttonSize}px`;
     nav.style.top = `${centerY - buttonSize / 2}px`;
     const slides = section.querySelectorAll(".popular-products-item");
+    const navRect = nav.getBoundingClientRect();
     const firstRect = slides[0].getBoundingClientRect();
+    const slideLeft = firstRect.left - navRect.left;
     const stride = slides[1]
       ? slides[1].getBoundingClientRect().left - firstRect.left
       : firstRect.width;
+    const gap = Math.max(stride - firstRect.width, 0);
     if (prev) {
       prev.style.position = "absolute";
-      prev.style.left = "0px";
+      prev.style.left = `${slideLeft - buttonSize * 0.28}px`;
       prev.style.top = "0px";
       prev.style.transform = "rotate(180deg)";
     }
     if (next) {
+      const gapCenter = slideLeft + stride * 2 - gap / 2;
       next.style.position = "absolute";
-      next.style.left = `${Math.max(stride * 2 - buttonSize, 0)}px`;
+      next.style.left = `${gapCenter - buttonSize / 2}px`;
       next.style.top = "0px";
       next.style.transform = "none";
     }

@@ -1,0 +1,90 @@
+{% doc %}
+  Renders one hero image slide with an optional full-slide link and a centered lower button.
+
+  @param {image} desktop_image - Desktop slide image
+  @param {image} mobile_image - Mobile slide image
+  @param {string} loading - Image loading attribute
+  @param {string} fetchpriority - Image fetch priority
+  @param {string} heading - Optional heading
+  @param {string} text - Optional text
+  @param {string} button_label - Button label
+  @param {string} link - Destination URL for the whole slide
+  @param {string} content_class - Position classes for the copy
+  @param {boolean} show_overlay - Whether to render the overlay
+  @param {boolean} carousel - Whether this slide is inside a carousel
+  @param {string} heading_id - Optional heading id
+  @param {string} shopify_attributes - Theme editor block attributes
+
+  @example
+  {% render 'hero-image-slide', desktop_image: section.settings.image, link: section.settings.link, button_label: section.settings.button_label %}
+{% enddoc %}
+
+<div class="hero-image__slide{% if carousel %} swiper-slide{% endif %}" {{ shopify_attributes }}>
+  <div class="hero-image__media">
+    {%- if desktop_image != blank -%}
+      <picture class="hero-image__picture">
+        {%- if mobile_image != blank and desktop_image != mobile_image -%}
+          <source
+            media="(max-width: 749px)"
+            srcset="{{ mobile_image | image_url: width: 400 }} 400w, {{ mobile_image | image_url: width: 600 }} 600w, {{ mobile_image | image_url: width: 800 }} 800w, {{ mobile_image | image_url: width: 1000 }} 1000w, {{ mobile_image | image_url: width: 1200 }} 1200w"
+            sizes="100vw"
+          >
+        {%- endif -%}
+        {{
+          desktop_image
+          | image_url: width: 2400
+          | image_tag:
+            widths: '600, 800, 1200, 1600, 1920, 2400',
+            sizes: '(min-width: 1360px) 1920px, 100vw',
+            loading: loading,
+            fetchpriority: fetchpriority,
+            class: 'hero-image__img',
+            alt: desktop_image.alt
+        }}
+      </picture>
+    {%- else -%}
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'hero-image__placeholder' }}
+    {%- endif -%}
+    {%- if show_overlay -%}
+      <div class="hero-image__overlay"></div>
+    {%- endif -%}
+  </div>
+
+  {%- if heading != blank or text != blank -%}
+    <div class="{{ content_class }}">
+      <div class="hero-image__copy">
+        {%- if heading != blank -%}
+          <h2 class="hero-image__heading"{% if heading_id != blank %} id="{{ heading_id }}"{% endif %}>
+            {{ heading | newline_to_br }}
+          </h2>
+        {%- endif -%}
+        {%- if text != blank -%}
+          <p class="hero-image__text">{{ text | newline_to_br }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- liquid
+    assign slide_label = button_label
+    if slide_label == blank
+      assign slide_label = heading
+    endif
+    if slide_label == blank and desktop_image != blank
+      assign slide_label = desktop_image.alt
+    endif
+  -%}
+  {%- if link != blank -%}
+    <a class="hero-image__hit" href="{{ link }}">
+      {%- if button_label != blank -%}
+        <span class="hero-image__button">{{ button_label | escape }}</span>
+      {%- elsif slide_label != blank -%}
+        <span class="visually-hidden">{{ slide_label | escape }}</span>
+      {%- endif -%}
+    </a>
+  {%- elsif button_label != blank -%}
+    <div class="hero-image__hit hero-image__hit--static" aria-hidden="true">
+      <span class="hero-image__button">{{ button_label | escape }}</span>
+    </div>
+  {%- endif -%}
+</div>
