@@ -614,91 +614,61 @@
           "type": "slide",
           "settings": {
             "show_product": true,
-            "product": ""
+            "product": "high-back-pet-sofa",
+            "image": "shopify://shop_images/IMG_0208.heic",
+            "video": "shopify://files/videos/LesurePetReelYoshiSnaps_ee2903e4-7d65-45e1-b10c-7e98943a4557.mov"
           }
         },
         "slide_UxRJnb": {
           "type": "slide",
           "settings": {
             "show_product": true,
-            "product": ""
+            "product": "lesure-cat-litter-box",
+            "image": "shopify://shop_images/4387.jpg",
+            "video": "shopify://files/videos/VID_20260330_094026_176.mp4"
           }
         },
-        "slide_miEWwk": {
+        "slide_qgbxPh": {
           "type": "slide",
           "settings": {
             "show_product": true,
-            "product": ""
+            "product": "lesure-waterproof-puppy-blanket-for-dog-cat",
+            "image": "shopify://shop_images/image00001.jpg",
+            "video": "shopify://files/videos/85EFA52F-E684-4D2F-9BF9-64DBAE33BDC6_65547906-37dd-41d6-bb3c-2664f2adaed2.mov"
           }
         },
         "slide_V4QWaG": {
           "type": "slide",
           "settings": {
             "show_product": true,
-            "product": ""
-          }
-        },
-        "slide_GM643g": {
-          "type": "slide",
-          "settings": {
-            "show_product": true,
-            "product": ""
-          }
-        },
-        "slide_dreaeY": {
-          "type": "slide",
-          "settings": {
-            "show_product": true,
-            "product": ""
-          }
-        },
-        "slide_cWf8Th": {
-          "type": "slide",
-          "settings": {
-            "show_product": true,
-            "product": ""
-          }
-        },
-        "slide_3pHwje": {
-          "type": "slide",
-          "settings": {
-            "show_product": true,
-            "product": ""
+            "product": "lesure-2-in-1-cat-tunnel-bed",
+            "image": "shopify://shop_images/IMG_1197.heic",
+            "video": "shopify://files/videos/Video for Lesure Pet Tunnel bed.mov"
           }
         },
         "slide_9yK4GF": {
           "type": "slide",
           "settings": {
             "show_product": true,
-            "product": ""
-          }
-        },
-        "slide_FXmR9J": {
-          "type": "slide",
-          "settings": {
-            "show_product": true,
-            "product": ""
+            "product": "lesure-2-in-1-cat-tunnel-bed",
+            "image": "shopify://shop_images/20250530-102847.jpg",
+            "video": "shopify://files/videos/4e1b8de820e34185b1e2af489ae9afbe.mp4"
           }
         }
       },
       "block_order": [
         "slide_AzaBr6",
         "slide_UxRJnb",
-        "slide_miEWwk",
+        "slide_qgbxPh",
         "slide_V4QWaG",
-        "slide_GM643g",
-        "slide_dreaeY",
-        "slide_cWf8Th",
-        "slide_3pHwje",
-        "slide_9yK4GF",
-        "slide_FXmR9J"
+        "slide_9yK4GF"
       ],
       "name": "t:sections.social-feed.presets.name",
       "settings": {
         "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "enable_border_top": false,
         "enable_border_bottom": false,
-        "animate_section_header_on_scroll": true,
+        "animate_section_header_on_scroll": false,
         "subheading": "",
         "heading": "Loved by Pets, Shared by You",
         "heading_size": "h2",
