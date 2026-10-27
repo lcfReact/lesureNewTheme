@@ -181,6 +181,13 @@
         </div>
       {%- endif -%}
     </div>
+    {%- if section.settings.desktop_layout == 'slider' or section.settings.mobile_layout == 'slider' -%}
+      <div class="popular-products-progress" hidden>
+        <span class="popular-products-progress__track" aria-hidden="true">
+          <span class="popular-products-progress__bar"></span>
+        </span>
+      </div>
+    {%- endif -%}
   </div>
 </div>
 

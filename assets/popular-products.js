@@ -1,61 +1,41 @@
 (function () {
+  const updateProgress = (section, swiper) => {
+    const wrap = section.querySelector(".popular-products-progress");
+    const bar = section.querySelector(".popular-products-progress__bar");
+    if (!wrap || !bar || !swiper) return;
+    const view = swiper.slidesPerViewDynamic ? swiper.slidesPerViewDynamic() : 1;
+    const locked = swiper.isLocked || swiper.slides.length <= view + 0.05;
+    section.classList.toggle("popular-products-section--locked", locked);
+    wrap.hidden = locked;
+    if (locked) return;
+    const ratio = Math.min(0.92, Math.max(0.12, view / swiper.slides.length));
+    const travel = (1 - ratio) / ratio;
+    bar.style.width = `${ratio * 100}%`;
+    bar.style.transform = `translateX(${(swiper.progress || 0) * travel * 100}%)`;
+  };
   const updateNavPosition = (section) => {
     const nav = section.querySelector(".popular-products-nav");
-    const stage = section.querySelector(".popular-products");
     const layout = section.querySelector(".popular-products-layout");
     const firstSlide = section.querySelector(".popular-products-item");
-    if (!nav || !stage || !layout || !firstSlide) return;
-    const prev = nav.querySelector(".popular-products-nav-button--prev");
-    const next = nav.querySelector(".popular-products-nav-button--next");
-    const mobile = layout.getBoundingClientRect().width < 750;
-    const target = mobile
-      ? firstSlide.querySelector(".card-media") || firstSlide.querySelector(".card")
-      : firstSlide.querySelector(".card");
-    if (!target) return;
-    const anchor = mobile ? layout : stage;
-    const anchorRect = anchor.getBoundingClientRect();
-    const targetRect = target.getBoundingClientRect();
-    const centerY = targetRect.top - anchorRect.top + targetRect.height / 2;
-    const clearButton = (button) => {
-      if (!button) return;
+    if (!nav || !layout || !firstSlide) return;
+    nav.querySelectorAll(".slider-button").forEach((button) => {
       button.style.position = "";
       button.style.left = "";
       button.style.top = "";
       button.style.transform = "";
-    };
-    if (!mobile) {
-      nav.style.top = `${centerY}px`;
+    });
+    if (window.matchMedia("(max-width: 749px)").matches) {
+      nav.style.top = "";
       nav.style.height = "";
       nav.style.transform = "";
-      clearButton(prev);
-      clearButton(next);
       return;
     }
-    const buttonSize = 44;
-    nav.style.transform = "none";
-    nav.style.height = `${buttonSize}px`;
-    nav.style.top = `${centerY - buttonSize / 2}px`;
-    const slides = section.querySelectorAll(".popular-products-item");
-    const navRect = nav.getBoundingClientRect();
-    const firstRect = slides[0].getBoundingClientRect();
-    const slideLeft = firstRect.left - navRect.left;
-    const stride = slides[1]
-      ? slides[1].getBoundingClientRect().left - firstRect.left
-      : firstRect.width;
-    const gap = Math.max(stride - firstRect.width, 0);
-    if (prev) {
-      prev.style.position = "absolute";
-      prev.style.left = `${slideLeft - buttonSize * 0.28}px`;
-      prev.style.top = "0px";
-      prev.style.transform = "rotate(180deg)";
-    }
-    if (next) {
-      const gapCenter = slideLeft + stride * 2 - gap / 2;
-      next.style.position = "absolute";
-      next.style.left = `${gapCenter - buttonSize / 2}px`;
-      next.style.top = "0px";
-      next.style.transform = "none";
-    }
+    const media = firstSlide.querySelector(".card-media") || firstSlide;
+    const layoutRect = layout.getBoundingClientRect();
+    const mediaRect = media.getBoundingClientRect();
+    nav.style.height = "";
+    nav.style.transform = "translateY(-50%)";
+    nav.style.top = `${mediaRect.top - layoutRect.top + mediaRect.height / 2}px`;
   };
   const initSlider = (section) => {
     if (!section || !section.classList.contains("popular-products-section")) return;
@@ -72,29 +52,23 @@
     slides.forEach((slide) => slide.classList.add("swiper-slide"));
     const prevBtn = section.querySelector(".popular-products-nav-button--prev");
     const nextBtn = section.querySelector(".popular-products-nav-button--next");
-    const columns = Number(swiperEl.dataset.columns) || 3;
     const isCenteredSlides = Boolean(swiperEl.dataset.centeredSlides);
     const isLoop = Boolean(swiperEl.dataset.loop);
-    const breakpointsConfig = {
-      576: { slidesPerView: Math.min(columns, 2), spaceBetween: 16 },
-      750: { slidesPerView: "auto", spaceBetween: 21 },
-    };
-    const centeredSlidesBreakpointsConfig = {
-      576: { slidesPerView: 1.5, spaceBetween: 20 },
-      990: { slidesPerView: 3, spaceBetween: 24 },
-    };
     section._popularSwiper = new Swiper(swiperEl, {
-      slidesPerView: 2.4,
+      slidesPerView: 2.15,
       spaceBetween: 12,
-      speed: 800,
+      speed: 550,
       allowTouchMove: true,
+      grabCursor: true,
       loop: isLoop,
       centeredSlides: isCenteredSlides,
       centeredSlidesBounds: isCenteredSlides,
       watchOverflow: true,
-      breakpoints: isCenteredSlides ? centeredSlidesBreakpointsConfig : breakpointsConfig,
-      mousewheel: {
-        forceToAxis: true,
+      roundLengths: true,
+      breakpoints: {
+        750: { slidesPerView: 2.4, spaceBetween: 16 },
+        990: { slidesPerView: 3.25, spaceBetween: 20 },
+        1200: { slidesPerView: 3.6, spaceBetween: 20 },
       },
       a11y: {
         scrollOnFocus: false,
@@ -108,8 +82,20 @@
               disabledClass: "swiper-button-disabled",
             }
           : false,
+      on: {
+        init(swiper) {
+          updateProgress(section, swiper);
+        },
+        setTranslate(swiper) {
+          updateProgress(section, swiper);
+        },
+        resize(swiper) {
+          updateProgress(section, swiper);
+        },
+      },
     });
     updateNavPosition(section);
+    updateProgress(section, section._popularSwiper);
     const nav = section.querySelector(".popular-products-nav");
     if (nav) nav.classList.add("popular-products-nav--visible");
   };
