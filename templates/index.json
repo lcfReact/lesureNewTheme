@@ -144,8 +144,45 @@
         "margin_bottom": "no-indent"
       }
     },
+    "rich_text_RVm8PC": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_pPnjbm": {
+          "type": "heading",
+          "settings": {
+            "heading": "Best Sellers",
+            "heading_tag": "h2",
+            "heading_size": "h3"
+          }
+        }
+      },
+      "block_order": [
+        "heading_pPnjbm"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "full_width": true,
+        "alignment": "center",
+        "padding_top": "l",
+        "padding_bottom": "no-indent",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
     "popular-products": {
       "type": "popular-products",
+      "blocks": {
+        "product_nAyiE4": {
+          "type": "product",
+          "settings": {
+            "product": "lesure-cat-litter-box"
+          }
+        }
+      },
+      "block_order": [
+        "product_nAyiE4"
+      ],
       "settings": {
         "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "enable_border_top": false,
@@ -1505,6 +1542,7 @@
   "order": [
     "hero_image_UnXfzN",
     "logo_list_fd4Fz6",
+    "rich_text_RVm8PC",
     "popular-products",
     "hero_4jQf4y",
     "product_markers_tWmkHa",
