@@ -42,6 +42,7 @@
         "logo_bNKqqi": {
           "type": "logo",
           "settings": {
+            "image": "shopify://shop_images/images-6_1.png",
             "image_width": 100,
             "placeholder": "Brand",
             "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
@@ -52,6 +53,7 @@
         "logo_jXFmnX": {
           "type": "logo",
           "settings": {
+            "image": "shopify://shop_images/usa-today.png",
             "image_width": 100,
             "placeholder": "Brand",
             "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
@@ -62,6 +64,7 @@
         "logo_t9EcCD": {
           "type": "logo",
           "settings": {
+            "image": "shopify://shop_images/images_1.png",
             "image_width": 100,
             "placeholder": "Brand",
             "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
@@ -72,6 +75,7 @@
         "logo_b8Nphe": {
           "type": "logo",
           "settings": {
+            "image": "shopify://shop_images/yahoo.png",
             "image_width": 100,
             "placeholder": "Brand",
             "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
@@ -82,6 +86,7 @@
         "logo_4cXpfM": {
           "type": "logo",
           "settings": {
+            "image": "shopify://shop_images/images-3_1.png",
             "image_width": 100,
             "placeholder": "Brand",
             "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
@@ -92,6 +97,7 @@
         "logo_BTqxcF": {
           "type": "logo",
           "settings": {
+            "image": "shopify://shop_images/images-1_1.png",
             "image_width": 100,
             "placeholder": "Brand",
             "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
@@ -102,86 +108,7 @@
         "logo_y3TRbK": {
           "type": "logo",
           "settings": {
-            "image_width": 100,
-            "placeholder": "Brand",
-            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
-            "text": "Additional text",
-            "logo_link": ""
-          }
-        },
-        "logo_W4NXip": {
-          "type": "logo",
-          "settings": {
-            "image_width": 100,
-            "placeholder": "Brand",
-            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
-            "text": "Additional text",
-            "logo_link": ""
-          }
-        },
-        "logo_eEXjLT": {
-          "type": "logo",
-          "settings": {
-            "image_width": 100,
-            "placeholder": "Brand",
-            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
-            "text": "Additional text",
-            "logo_link": ""
-          }
-        },
-        "logo_dkP8ft": {
-          "type": "logo",
-          "settings": {
-            "image_width": 100,
-            "placeholder": "Brand",
-            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
-            "text": "Additional text",
-            "logo_link": ""
-          }
-        },
-        "logo_Dd4E6a": {
-          "type": "logo",
-          "settings": {
-            "image_width": 100,
-            "placeholder": "Brand",
-            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
-            "text": "Additional text",
-            "logo_link": ""
-          }
-        },
-        "logo_gUt4V4": {
-          "type": "logo",
-          "settings": {
-            "image_width": 100,
-            "placeholder": "Brand",
-            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
-            "text": "Additional text",
-            "logo_link": ""
-          }
-        },
-        "logo_d7bUTA": {
-          "type": "logo",
-          "settings": {
-            "image_width": 100,
-            "placeholder": "Brand",
-            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
-            "text": "Additional text",
-            "logo_link": ""
-          }
-        },
-        "logo_DLF49M": {
-          "type": "logo",
-          "settings": {
-            "image_width": 100,
-            "placeholder": "Brand",
-            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
-            "text": "Additional text",
-            "logo_link": ""
-          }
-        },
-        "logo_TGkQFY": {
-          "type": "logo",
-          "settings": {
+            "image": "shopify://shop_images/images__1.png",
             "image_width": 100,
             "placeholder": "Brand",
             "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
@@ -197,15 +124,7 @@
         "logo_b8Nphe",
         "logo_4cXpfM",
         "logo_BTqxcF",
-        "logo_y3TRbK",
-        "logo_W4NXip",
-        "logo_eEXjLT",
-        "logo_dkP8ft",
-        "logo_Dd4E6a",
-        "logo_gUt4V4",
-        "logo_d7bUTA",
-        "logo_DLF49M",
-        "logo_TGkQFY"
+        "logo_y3TRbK"
       ],
       "name": "t:sections.logo-list.name",
       "settings": {
