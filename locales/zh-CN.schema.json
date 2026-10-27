@@ -6583,7 +6583,7 @@
         },
         "image": {
           "label": "电脑端图片",
-          "info": "宽度 750px 及以上显示。图片横向铺满，与导航栏同宽，两侧不留白。"
+          "info": "没有添加幻灯片时，在 750px 及以上的屏幕显示。添加两张或更多幻灯片后会变成轮播。"
         },
         "image_mobile": {
           "label": "手机端图片",
@@ -6719,6 +6719,46 @@
         },
         "mobile_horizontal": {
           "label": "手机端水平位置"
+        },
+        "header_button": {
+          "content": "按钮"
+        },
+        "button_label": {
+          "label": "按钮文字",
+          "info": "显示在图片水平居中、偏下的位置。"
+        },
+        "link": {
+          "label": "跳转链接",
+          "info": "点击图片任意区域都会跳转到这个链接。"
+        },
+        "button_background": {
+          "label": "按钮背景"
+        },
+        "button_text_color": {
+          "label": "按钮文字颜色"
+        },
+        "header_carousel": {
+          "content": "轮播"
+        },
+        "enable_autoplay": {
+          "label": "自动轮播",
+          "info": "至少添加两张幻灯片后才会轮播。"
+        },
+        "autoplay_speed": {
+          "label": "切换间隔"
+        }
+      },
+      "blocks": {
+        "slide": {
+          "name": "幻灯片",
+          "settings": {
+            "button_label": {
+              "info": "留空则使用区块的按钮文字。"
+            },
+            "link": {
+              "info": "留空则使用区块的跳转链接。整张幻灯片都可以点击。"
+            }
+          }
         }
       },
       "presets": {
