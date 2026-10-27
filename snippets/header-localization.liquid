@@ -1,0 +1,96 @@
+<div class="header__localization">
+  <noscript>
+    {%- form 'localization', id: 'HeaderCountryFormNoScript', class: 'localization-form' -%}
+      <div class="localization-form__select">
+        <h2
+          class="visually-hidden"
+          id="HeaderCountryLabelNoScript"
+        >
+          {{ 'localization.country_label' | t }}
+        </h2>
+        <select
+          class="localization-selector"
+          name="country_code"
+          aria-labelledby="HeaderCountryLabelNoScript"
+        >
+          {%- for country in localization.available_countries -%}
+            <option
+              value="{{ country.iso_code }}"
+              {%- if country.iso_code == localization.country.iso_code %}
+                selected
+              {% endif %}
+            >
+              {{ country.name }} ({{ country.currency.iso_code }}
+              {{ country.currency.symbol }})
+            </option>
+          {%- endfor -%}
+        </select>
+        {% render 'icon-caret' %}
+      </div>
+      <button class="button button--underline focus-inset">
+        {{- 'localization.update_country' | t -}}
+      </button>
+    {%- endform -%}
+  </noscript>
+  {% liquid
+    assign form_id = 'HeaderCountryForm'
+    assign list_id = 'HeaderCountryList'
+
+    if additional_id != blank
+      assign form_id = form_id | append: '-' | append: additional_id
+      assign list_id = list_id | append: '-' | append: additional_id
+    endif
+  %}
+  <localization-form data-header>
+    {%- form 'localization', id: form_id, class: 'localization-form' -%}
+      <div class="no-js-hidden">
+        <div class="disclosure">
+          <button
+            type="button"
+            class="header__localization-button disclosure__button localization-selector body-small focus-inset"
+            aria-expanded="false"
+            aria-controls="{{ list_id }}"
+          >
+            {%- if section.settings.show_country_flag -%}
+              <span class="currency-flag currency-country" aria-hidden="true">
+                {{- localization.country | image_url: width: 40 | image_tag: class: 'currency-flag-img' -}}
+              </span>
+            {%- endif -%}
+            <span class="currency-country">
+              {{- localization.country.currency.iso_code -}}
+              {{- localization.country.currency.symbol -}}
+            </span>
+            {% render 'icon-caret' %}
+          </button>
+          <div class="disclosure__list-wrapper color-background-1 background" hidden>
+            <ul
+              id="{{ list_id }}"
+              role="list"
+              class="disclosure__list list-unstyled"
+            >
+              {%- for country in localization.available_countries -%}
+                <li
+                  class="disclosure__item{% if country.iso_code == localization.country.iso_code %} disclosure__item--active{% endif %}"
+                  tabindex="-1"
+                >
+                  <a class="link link--text disclosure__link body-small caption-large{% if country.iso_code == localization.country.iso_code %} disclosure__link--active{% endif %} focus-inset" href="#"{% if country.iso_code == localization.country.iso_code %} aria-current="true"{% endif %} data-value="{{ country.iso_code }}">
+                      {%- if section.settings.show_country_flag -%}
+                        <span class="currency-flag" aria-hidden="true">
+                          {{- country | image_url: width: 40 | image_tag: class: 'currency-flag-img' -}}
+                        </span>
+                      {%- endif -%}
+                      <span class="disclosure__country-name">
+                        {{ country.name }}
+                      </span>
+                      <span class="localization-form__currency">({{ country.currency.iso_code }} {{ country.currency.symbol }})</span>
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </div>
+        <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
+      </div>
+    {%- endform -%}
+  </localization-form>
+</div>

@@ -1,0 +1,115 @@
+<div class="features-table-cell__inner">
+  {% if block.settings.type == 'text' %}
+    {% if block.settings.cell_text != blank %}
+      <span class="features-table-cell__text {{ block.settings.text_size }} features-table-cell__text--alignment-{{ block.settings.cell_content_alignment }}">
+        {{ block.settings.cell_text }}
+      </span>
+    {% endif %}
+  {% endif %}
+
+  {% if block.settings.type == 'icon' %}
+    <span class="features-table-cell__icon features-table-cell__icon--alignment-{{ block.settings.cell_content_alignment }}">
+      {% if block.settings.type_icon == 'cross' %}
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.5" y="0.5" width="33" height="33" rx="16.5" stroke="#6D2D09"/>
+          <path d="M23 11L11 23M23 23L11 11" stroke="#6D2D09" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      {% endif %}
+      {% if block.settings.type_icon == 'check' %}
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.5" y="0.5" width="33" height="33" rx="16.5" stroke="#6D2D09"/>
+          <path d="M9 17.2105L14.8621 23L26 12" stroke="#6D2D09" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      {% endif %}
+    </span>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.features-table.blocks.cell.name",
+  "class": "features-table-cell",
+  "tag": "td",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.features-table.blocks.cell.settings.heading.label"
+    },
+    {
+      "type": "select",
+      "id": "type",
+      "label": "t:sections.features-table.blocks.cell.settings.type.label",
+      "options": [
+        { "value": "icon", "label": "t:sections.features-table.blocks.cell.settings.type.options.icon.label" },
+        { "value": "text", "label": "t:sections.features-table.blocks.cell.settings.type.options.text.label" }
+      ],
+      "default": "text"
+    },
+    {
+      "type": "text",
+      "id": "cell_text",
+      "label": "t:sections.features-table.blocks.cell.settings.cell_text.label",
+      "visible_if": "{{ block.settings.type == 'text' }}"
+    },
+    {
+      "type": "select",
+      "id": "text_size",
+      "label": "t:sections.features-table.blocks.cell.settings.text_size.label",
+      "options": [
+        { "value": "h3", "label": "t:sections.features-table.blocks.cell.settings.text_size.options.large.label" },
+        { "value": "h4", "label": "t:sections.features-table.blocks.cell.settings.text_size.options.medium.label" },
+        { "value": "h5", "label": "t:sections.features-table.blocks.cell.settings.text_size.options.small.label" },
+        {
+          "value": "body-normal",
+          "label": "t:sections.features-table.blocks.cell.settings.text_size.options.body_regular.label"
+        },
+        {
+          "value": "body-small",
+          "label": "t:sections.features-table.blocks.cell.settings.text_size.options.body_small.label"
+        }
+      ],
+      "default": "body-normal",
+      "visible_if": "{{ block.settings.type == 'text' }}"
+    },
+    {
+      "type": "select",
+      "id": "type_icon",
+      "label": "t:sections.features-table.blocks.cell.settings.type_icon.label",
+      "options": [
+        { "value": "cross", "label": "t:sections.features-table.blocks.cell.settings.type_icon.options.cross.label" },
+        { "value": "check", "label": "t:sections.features-table.blocks.cell.settings.type_icon.options.check.label" }
+      ],
+      "default": "check",
+      "visible_if": "{{ block.settings.type == 'icon' }}"
+    },
+    {
+      "type": "select",
+      "id": "cell_content_alignment",
+      "label": "t:sections.features-table.blocks.cell.settings.cell_content_alignment.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.features-table.blocks.cell.settings.cell_content_alignment.options.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.features-table.blocks.cell.settings.cell_content_alignment.options.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.features-table.blocks.cell.settings.cell_content_alignment.options.right.label"
+        }
+      ],
+      "default": "left"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.features-table.blocks.cell.name",
+      "settings": {
+        "cell_text": "t:sections.features-table.blocks.cell.settings.cell_text.default"
+      }
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,527 @@
+{{ 'section-social-feed.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'social-feed-stage.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  {% render 'section-padding' %}
+  {% render 'section-margin' %}
+{%- endstyle -%}
+
+<div
+  class="social-feed ugc-stage color-{{ section.settings.color_scheme }} background section-{{ section.id }}-padding{% if section.settings.background_color != blank %} ugc-stage--custom-bg{% endif %}{% if section.settings.enable_border_top %} social-feed--border-top{% endif %}{% if section.settings.enable_border_bottom %} social-feed--border-bottom{% endif %}"
+  data-ugc-stage
+  style="
+    --ugc-title-size: {{ section.settings.heading_font_size }}px;
+    --ugc-text-size: {{ section.settings.text_font_size }}px;
+    --ugc-radius: {{ section.settings.card_radius }}px;
+    --ugc-title-color: {{ section.settings.heading_color }};
+    --ugc-text-color: {{ section.settings.text_color }};
+    {% if section.settings.background_color != blank %}--ugc-bg: {{ section.settings.background_color }};{% endif %}
+  "
+>
+  <div class="ugc-stage__head">
+    {%- if section.settings.subheading != blank -%}
+      <p class="ugc-stage__eyebrow">{{ section.settings.subheading | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <{{ section.settings.heading_level | default: 'h2' }} class="ugc-stage__title">
+        {{ section.settings.heading | escape | newline_to_br }}
+      </{{ section.settings.heading_level | default: 'h2' }}>
+    {%- endif -%}
+    {%- if section.settings.description != blank -%}
+      <div class="ugc-stage__text">{{ section.settings.description }}</div>
+    {%- endif -%}
+    {%- if section.settings.social_tiktok != blank
+      or section.settings.social_instagram != blank
+      or section.settings.social_facebook != blank
+    -%}
+      <div class="ugc-stage__social">
+        {%- if section.settings.social_tiktok != blank -%}
+          <a href="{{ section.settings.social_tiktok }}" aria-label="TikTok">
+            {% render 'icon-tiktok' %}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.social_instagram != blank -%}
+          <a href="{{ section.settings.social_instagram }}" aria-label="Instagram">
+            {% render 'icon-instagram' %}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.social_facebook != blank -%}
+          <a href="{{ section.settings.social_facebook }}" aria-label="Facebook">
+            {% render 'icon-facebook' %}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="ugc-stage__main">
+      <button type="button" class="ugc-stage__arrow ugc-stage__arrow--prev" aria-label="{{ 'general.slider.previous_slide' | t }}">
+        {% render 'icon-caret-left' %}
+      </button>
+      <div class="ugc-stage__slider swiper">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign card_product = block.settings.product
+              assign quick_buy_key = section.id | append: '-' | append: card_product.id | append: '-' | append: block.id
+            -%}
+            <div class="ugc-slide swiper-slide" {{ block.shopify_attributes }}>
+              <article class="ugc-card">
+                <div class="ugc-card__media">
+                  {%- if block.settings.video != blank -%}
+                    {{
+                      block.settings.video
+                      | video_tag:
+                        image_size: '800x',
+                        autoplay: false,
+                        loop: true,
+                        muted: true,
+                        controls: false,
+                        class: 'ugc-card__video'
+                    }}
+                  {%- endif -%}
+                  {%- if block.settings.image != blank -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 800
+                      | image_tag:
+                        class: 'ugc-card__cover',
+                        widths: '300, 500, 800',
+                        sizes: '(min-width: 750px) 491px, 68vw',
+                        alt: card_product.title | default: section.settings.heading | escape
+                    }}
+                  {%- elsif block.settings.video == blank -%}
+                    {{ 'image' | placeholder_svg_tag: 'ugc-card__cover ugc-card__cover--placeholder' }}
+                  {%- endif -%}
+                  {%- if block.settings.video != blank -%}
+                    <button type="button" class="ugc-card__play" aria-label="{{ 'general.video.play' | t }}">
+                      {% render 'icon-play' %}
+                    </button>
+                  {%- endif -%}
+                </div>
+                {%- if card_product != blank and block.settings.show_product -%}
+                  <div class="ugc-product">
+                    <a class="ugc-product__media" href="{{ card_product.url }}">
+                      {%- if card_product.featured_image -%}
+                        {{
+                          card_product.featured_image
+                          | image_url: width: 400
+                          | image_tag:
+                            widths: '160, 320, 400',
+                            sizes: '(min-width: 750px) 122px, 48px',
+                            alt: card_product.title
+                        }}
+                      {%- endif -%}
+                    </a>
+                    <a class="ugc-product__meta" href="{{ card_product.url }}">
+                      <span class="ugc-product__title">{{ card_product.title | escape }}</span>
+                      <span class="ugc-product__price">{{ card_product.price | money }}</span>
+                    </a>
+                    <button
+                      type="button"
+                      class="ugc-product__add quick-buy-open"
+                      aria-label="{{ 'products.product.add_to_cart' | t }} {{ card_product.title | escape }}"
+                      data-product-url="{{ card_product.url }}"
+                      data-swatch-id="QuickBuySwatches-{{ quick_buy_key }}"
+                    >
+                      {% render 'icon-plus' %}
+                    </button>
+                  </div>
+                  {% render 'quick-buy-swatches',
+                    product_card_product: card_product,
+                    section_id: section.id,
+                    add_id: block.id
+                  %}
+                {%- endif -%}
+              </article>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+      <button type="button" class="ugc-stage__arrow ugc-stage__arrow--next" aria-label="{{ 'general.slider.next_slide' | t }}">
+        {% render 'icon-caret-right' %}
+      </button>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.social-feed.name",
+  "tag": "section",
+  "class": "social-feed-section",
+  "disabled_on": {
+    "templates": ["password"],
+    "groups": ["*"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "background-1",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_border_top",
+      "default": false,
+      "label": "t:sections.social-feed.settings.enable_border_top.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_border_bottom",
+      "default": false,
+      "label": "t:sections.social-feed.settings.enable_border_bottom.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "animate_section_header_on_scroll",
+      "default": true,
+      "label": "t:sections.all.animate_section_header_on_scroll.label",
+      "info": "t:sections.all.animate_section_header_on_scroll.info"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:sections.all.subheading.label"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:sections.all.heading.label",
+      "default": "t:sections.social-feed.settings.heading.default"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__2.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_level",
+      "options": [
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_level.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_level.options__2.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_level.options__3.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_level.options__4.label"
+        },
+        {
+          "value": "h5",
+          "label": "t:sections.all.heading_level.options__5.label"
+        },
+        {
+          "value": "h6",
+          "label": "t:sections.all.heading_level.options__6.label"
+        },
+        {
+          "value": "div",
+          "label": "t:sections.all.heading_level.options__7.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.all.heading_level.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "t:sections.all.text.label"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 53,
+      "label": "t:sections.social-feed.settings.heading_font_size.label"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#171717",
+      "label": "t:sections.social-feed.settings.heading_color.label"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 21,
+      "label": "t:sections.social-feed.settings.text_font_size.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#3a3a3a",
+      "label": "t:sections.social-feed.settings.text_color.label"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:sections.social-feed.settings.background_color.label"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 43,
+      "step": 1,
+      "unit": "px",
+      "default": 4,
+      "label": "t:sections.social-feed.settings.card_radius.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.social-feed.settings.social_heading.content"
+    },
+    {
+      "type": "url",
+      "id": "social_tiktok",
+      "label": "t:sections.social-feed.settings.social_tiktok.label"
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "t:sections.social-feed.settings.social_instagram.label"
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "t:sections.social-feed.settings.social_facebook.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-padding.header.content"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-padding.padding_top.label"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-padding.padding_bottom.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "t:sections.social-feed.blocks.slide.name",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_product",
+          "label": "t:sections.social-feed.blocks.slide.settings.show_product.label",
+          "default": true
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:sections.social-feed.blocks.slide.settings.product.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.social-feed.blocks.slide.settings.header__media.content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.social-feed.blocks.slide.settings.cover.label"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "t:sections.all.video.video.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.social-feed.presets.name",
+      "category": "t:sections.categories.storytelling",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

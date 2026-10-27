@@ -1,0 +1,745 @@
+{{ 'section-social-media.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'social-media.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  {% render 'section-padding' %}
+  {% render 'section-margin' %}
+
+  {% if section.settings.show_text_underline -%}
+  .line {
+    --stroke-color: {{ section.settings.text_underline_color }};
+  }
+  {%- endif -%}
+{%- endstyle -%}
+
+{% liquid
+  assign anchor = section.settings.anchor_id | handleize
+  assign has_socials = false
+
+  if settings.social_twitter_link != blank or settings.social_facebook_link != blank or settings.social_pinterest_link != blank or settings.social_instagram_link != blank or settings.social_tiktok_link != blank or settings.social_tumblr_link != blank or settings.social_snapchat_link != blank or settings.social_youtube_link != blank or settings.social_vimeo_link != blank or settings.social_linkedin_link != blank
+    assign has_socials = true
+  endif
+%}
+
+<div
+  class="social-media{% if section.settings.show_border_top %} social-media--border-top{% endif %}{% if section.settings.show_border_bottom %} social-media--border-bottom{% endif %} color-{{ section.settings.color_scheme }} background section-{{ section.id }}-padding{% if section.settings.show_social_media and has_socials == false %} social-media--no-socials{% endif %}"
+  {% if anchor != blank %}
+    id="{{ anchor }}"
+    data-anchor="{{ anchor }}"
+  {% endif %}
+>
+  <div class="social-media-wrapper social-media-wrapper--{{ section.settings.layout }}">
+    <div class="social-media__content social-media__content--{{ section.settings.layout }}">
+      {% if section.settings.show_social_media %}
+        {% if has_socials %}
+          <ul
+            class="social-media-image-wrapper social-media-image-wrapper--{{section.settings.socials_img_align}}"
+            role="list"
+          >
+            {%- if settings.social_instagram_link != blank -%}
+              <li class="social-media-image">
+                <a
+                  href="{{ settings.social_instagram_link }}"
+                  class="social-media-image-link focus-visible button button--secondary button--social-media-icon focus-visible color-{{ section.settings.media_block_color_scheme }} background"
+                  aria-describedby="a11y-external-message"
+                  {%- if settings.links_blank -%}
+                    target="_blank"
+                  {%- endif -%}
+                >
+                  <div class="button__content">
+                    <span class="button__label visually-hidden">
+                      {{- 'general.social.links.instagram' | t -}}
+                    </span>
+                    <div class="button__icons">
+                      <span class="button__icon button__icon--1">{%- render 'icon-instagram' -%}</span>
+                      <span class="button__icon button__icon--2">{%- render 'icon-instagram' -%}</span>
+                    </div>
+                  </div>
+                  <div class="animated-button-circle"></div>
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.social_tiktok_link != blank -%}
+              <li class="social-media-image">
+                <a
+                  href="{{ settings.social_tiktok_link }}"
+                  class="social-media-image-link focus-visible button button--secondary button--social-media-icon focus-visible color-{{ section.settings.media_block_color_scheme }} background"
+                  aria-describedby="a11y-external-message"
+                  {%- if settings.links_blank -%}
+                    target="_blank"
+                  {%- endif -%}
+                >
+                  <div class="button__content">
+                    <span class="button__label visually-hidden">
+                      {{- 'general.social.links.tiktok' | t -}}
+                    </span>
+                    <div class="button__icons">
+                      <span class="button__icon button__icon--1">{%- render 'icon-tiktok' -%}</span>
+                      <span class="button__icon button__icon--2">{%- render 'icon-tiktok' -%}</span>
+                    </div>
+                  </div>
+                  <div class="animated-button-circle"></div>
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.social_twitter_link != blank -%}
+              <li class="social-media-image">
+                <a
+                  href="{{ settings.social_twitter_link }}"
+                  class="social-media-image-link focus-visible button button--secondary button--social-media-icon focus-visible color-{{ section.settings.media_block_color_scheme }} background"
+                  aria-describedby="a11y-external-message"
+                  {%- if settings.links_blank -%}
+                    target="_blank"
+                  {%- endif -%}
+                >
+                  <div class="button__content">
+                    <span class="button__label visually-hidden">
+                      {{- 'general.social.links.twitter' | t -}}
+                    </span>
+                    <div class="button__icons">
+                      <span class="button__icon button__icon--1">{%- render 'icon-twitter' -%}</span>
+                      <span class="button__icon button__icon--2">{%- render 'icon-twitter' -%}</span>
+                    </div>
+                  </div>
+                  <div class="animated-button-circle"></div>
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.social_facebook_link != blank -%}
+              <li class="social-media-image">
+                <a
+                  href="{{ settings.social_facebook_link }}"
+                  class="social-media-image-link focus-visible button button--secondary button--social-media-icon focus-visible color-{{ section.settings.media_block_color_scheme }} background"
+                  aria-describedby="a11y-external-message"
+                  {%- if settings.links_blank -%}
+                    target="_blank"
+                  {%- endif -%}
+                >
+                  <div class="button__content">
+                    <span class="button__label visually-hidden">
+                      {{- 'general.social.links.facebook' | t -}}
+                    </span>
+                    <div class="button__icons">
+                      <span class="button__icon button__icon--1">{%- render 'icon-facebook' -%}</span>
+                      <span class="button__icon button__icon--2">{%- render 'icon-facebook' -%}</span>
+                    </div>
+                  </div>
+                  <div class="animated-button-circle"></div>
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.social_pinterest_link != blank -%}
+              <li class="social-media-image">
+                <a
+                  href="{{ settings.social_pinterest_link }}"
+                  class="social-media-image-link focus-visible button button--secondary button--social-media-icon focus-visible color-{{ section.settings.media_block_color_scheme }} background"
+                  aria-describedby="a11y-external-message"
+                  {%- if settings.links_blank -%}
+                    target="_blank"
+                  {%- endif -%}
+                >
+                  <div class="button__content">
+                    <span class="button__label visually-hidden">
+                      {{- 'general.social.links.pinterest' | t -}}
+                    </span>
+                    <div class="button__icons">
+                      <span class="button__icon button__icon--1">{%- render 'icon-pinterest' -%}</span>
+                      <span class="button__icon button__icon--2">{%- render 'icon-pinterest' -%}</span>
+                    </div>
+                  </div>
+                  <div class="animated-button-circle"></div>
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.social_tumblr_link != blank -%}
+              <li class="social-media-image">
+                <a
+                  href="{{ settings.social_tumblr_link }}"
+                  class="social-media-image-link focus-visible button button--secondary button--social-media-icon focus-visible color-{{ section.settings.media_block_color_scheme }} background"
+                  aria-describedby="a11y-external-message"
+                  {%- if settings.links_blank -%}
+                    target="_blank"
+                  {%- endif -%}
+                >
+                  <div class="button__content">
+                    <span class="button__label visually-hidden">
+                      {{- 'general.social.links.tumblr' | t -}}
+                    </span>
+                    <div class="button__icons">
+                      <span class="button__icon button__icon--1">{%- render 'icon-tumblr' -%}</span>
+                      <span class="button__icon button__icon--2">{%- render 'icon-tumblr' -%}</span>
+                    </div>
+                  </div>
+                  <div class="animated-button-circle"></div>
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.social_snapchat_link != blank -%}
+              <li class="social-media-image">
+                <a
+                  href="{{ settings.social_snapchat_link }}"
+                  class="social-media-image-link focus-visible button button--secondary button--social-media-icon focus-visible color-{{ section.settings.media_block_color_scheme }} background"
+                  aria-describedby="a11y-external-message"
+                  {%- if settings.links_blank -%}
+                    target="_blank"
+                  {%- endif -%}
+                >
+                  <div class="button__content">
+                    <span class="button__label visually-hidden">
+                      {{- 'general.social.links.snapchat' | t -}}
+                    </span>
+                    <div class="button__icons">
+                      <span class="button__icon button__icon--1">{%- render 'icon-snapchat' -%}</span>
+                      <span class="button__icon button__icon--2">{%- render 'icon-snapchat' -%}</span>
+                    </div>
+                  </div>
+                  <div class="animated-button-circle"></div>
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.social_youtube_link != blank -%}
+              <li class="social-media-image">
+                <a
+                  href="{{ settings.social_youtube_link }}"
+                  class="social-media-image-link focus-visible button button--secondary button--social-media-icon focus-visible color-{{ section.settings.media_block_color_scheme }} background"
+                  aria-describedby="a11y-external-message"
+                  {%- if settings.links_blank -%}
+                    target="_blank"
+                  {%- endif -%}
+                >
+                  <div class="button__content">
+                    <span class="button__label visually-hidden">
+                      {{- 'general.social.links.youtube' | t -}}
+                    </span>
+                    <div class="button__icons">
+                      <span class="button__icon button__icon--1">{%- render 'icon-youtube' -%}</span>
+                      <span class="button__icon button__icon--2">{%- render 'icon-youtube' -%}</span>
+                    </div>
+                  </div>
+                  <div class="animated-button-circle"></div>
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.social_vimeo_link != blank -%}
+              <li class="social-media-image">
+                <a
+                  href="{{ settings.social_vimeo_link }}"
+                  class="social-media-image-link focus-visible button button--secondary button--social-media-icon focus-visible color-{{ section.settings.media_block_color_scheme }} background"
+                  aria-describedby="a11y-external-message"
+                  {%- if settings.links_blank -%}
+                    target="_blank"
+                  {%- endif -%}
+                >
+                  <div class="button__content">
+                    <span class="button__label visually-hidden">
+                      {{- 'general.social.links.vimeo' | t -}}
+                    </span>
+                    <div class="button__icons">
+                      <span class="button__icon button__icon--1">{%- render 'icon-vimeo' -%}</span>
+                      <span class="button__icon button__icon--2">{%- render 'icon-vimeo' -%}</span>
+                    </div>
+                  </div>
+                  <div class="animated-button-circle"></div>
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.social_linkedin_link != blank -%}
+              <li class="social-media-image">
+                <a
+                  href="{{ settings.social_linkedin_link }}"
+                  class="social-media-image-link focus-visible button button--secondary button--social-media-icon focus-visible color-{{ section.settings.media_block_color_scheme }} background"
+                  aria-describedby="a11y-external-message"
+                  {%- if settings.links_blank -%}
+                    target="_blank"
+                  {%- endif -%}
+                >
+                  <div class="button__content">
+                    <span class="button__label visually-hidden">
+                      {{- 'general.social.links.linkedin' | t -}}
+                    </span>
+                    <div class="button__icons">
+                      <span class="button__icon button__icon--1">{%- render 'icon-linkedin' -%}</span>
+                      <span class="button__icon button__icon--2">{%- render 'icon-linkedin' -%}</span>
+                    </div>
+                  </div>
+                  <div class="animated-button-circle"></div>
+                </a>
+              </li>
+            {%- endif -%}
+          </ul>
+        {% endif %}
+      {% else %}
+        {%- if section.blocks.size > 0 -%}
+          <div class="social-media-image-wrapper social-media-image-wrapper--{{section.settings.socials_img_align}}">
+            {%- for block in section.blocks -%}
+              {% if block.settings.image_link != blank %}
+                <a class="social-media-image-link" href="{{ block.settings.image_link }}">
+              {% endif %}
+              <div
+                class="social-media-image color-{{ section.settings.media_block_color_scheme }} background social-media-image--size-{{ section.settings.socials_img_size }} social-media-image--{{ section.settings.image_blocks_border_radius }}"
+                {{ block.shopify_attributes }}
+              >
+                {% if block.settings.image != blank %}
+                  {%- liquid
+                    assign image_class = 'social-media-image__img social-media-image__img--' | append: block.settings.image_border_radius
+                  -%}
+
+                  {{
+                    block.settings.image
+                    | image_url: width: 48
+                    | image_tag:
+                      width: block.settings.image.width,
+                      height: block.settings.image.height,
+                      widths: '48',
+                      loading: 'lazy',
+                      class: image_class
+                  }}
+                {%- else -%}
+                  {%- liquid
+                    assign placeholder_index = forloop.index | modulo: 3 | plus: 1
+                    assign image_class = 'placeholder-svg placeholder-svg--filled social-media-image__img social-media-image__img--' | append: block.settings.image_border_radius
+                  -%}
+                  {{ 'hero-apparel-' | append: placeholder_index | placeholder_svg_tag: image_class }}
+                {%- endif -%}
+              </div>
+              {% if block.settings.image_link != blank %}
+                </a>
+              {% endif %}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      {% endif %}
+
+      {%- if section.settings.main_text != blank -%}
+        <div class="social-media__main-text-wrapper social-media__main-text-wrapper--{{ section.settings.text_align }}">
+          <p
+            class="social-media__main-text social-media__main-text--font-{{ section.settings.main_text_font }} {{ section.settings.main_text_size }}"
+            {% if section.settings.show_text_underline and section.settings.enable_text_animation %}
+              data-text-animation="true"
+            {% endif %}
+          >
+            {{- section.settings.main_text | truncate: 40, '' -}}
+
+            {%- if section.settings.show_text_underline -%}
+              <span class="underline-wrapper" data-enable-animation="{{ section.settings.enable_text_animation }}">
+                <svg
+                  class="underline-svg line"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path class="line-path"
+                        stroke-width="4"
+                        stroke-linecap="round"/>
+                </svg>
+              </span>
+            {%- endif -%}
+          </p>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.social-media.name",
+  "tag": "section",
+  "class": "social-media-section spaced-section",
+  "max_blocks": 20,
+  "enabled_on": {
+    "templates": ["*"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.social-media.settings.header__1.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border_top",
+      "default": true,
+      "label": "t:sections.social-media.settings.show_border_top.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border_bottom",
+      "default": true,
+      "label": "t:sections.social-media.settings.show_border_bottom.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "background-1",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "socials-top",
+          "label": "t:sections.social-media.settings.layout.option__1.label"
+        },
+        {
+          "value": "socials-bottom",
+          "label": "t:sections.social-media.settings.layout.option__2.label"
+        },
+        {
+          "value": "socials-left",
+          "label": "t:sections.social-media.settings.layout.option__3.label"
+        },
+        {
+          "value": "socials-right",
+          "label": "t:sections.social-media.settings.layout.option__4.label"
+        }
+      ],
+      "default": "socials-right",
+      "label": "t:sections.social-media.settings.layout.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.social-media.settings.header__3.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "media_block_color_scheme",
+      "default": "background-3",
+      "label": "t:sections.social-media.settings.media_block_color_scheme.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_media",
+      "default": false,
+      "label": "t:sections.social-media.settings.show_social_media.label",
+      "info": "t:sections.social-media.settings.show_social_media.info"
+    },
+    {
+      "type": "select",
+      "id": "socials_img_size",
+      "options": [
+        {
+          "value": "small",
+          "label": "t:sections.social-media.settings.socials_img_size.options_1.label"
+        },
+        {
+          "value": "medium",
+          "label": "t:sections.social-media.settings.socials_img_size.options_2.label"
+        },
+        {
+          "value": "big",
+          "label": "t:sections.social-media.settings.socials_img_size.options_3.label"
+        }
+      ],
+      "default": "small",
+      "label": "t:sections.social-media.settings.socials_img_size.label",
+      "visible_if": "{{ section.settings.show_social_media == false }}"
+    },
+    {
+      "type": "select",
+      "id": "image_blocks_border_radius",
+      "options": [
+        {
+          "value": "pill",
+          "label": "t:sections.social-media.settings.image_blocks_border_radius.options_1.label"
+        },
+        {
+          "value": "round",
+          "label": "t:sections.social-media.settings.image_blocks_border_radius.options_2.label"
+        },
+        {
+          "value": "sharp",
+          "label": "t:sections.social-media.settings.image_blocks_border_radius.options_3.label"
+        }
+      ],
+      "default": "pill",
+      "label": "t:sections.social-media.settings.image_blocks_border_radius.label",
+      "visible_if": "{{ section.settings.show_social_media == false }}"
+    },
+    {
+      "type": "text_alignment",
+      "id": "socials_img_align",
+      "label": "t:sections.social-media.settings.socials_img_align.label",
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.social-media.settings.header__4.content"
+    },
+    {
+      "type": "text",
+      "id": "main_text",
+      "label": "t:sections.social-media.settings.main_text.label",
+      "default": "t:sections.social-media.settings.main_text.default",
+      "info": "t:sections.social-media.settings.main_text.info"
+    },
+    {
+      "type": "select",
+      "id": "main_text_font",
+      "options": [
+        {
+          "value": "heading",
+          "label": "t:sections.social-media.settings.main_text_font.option__1.label"
+        },
+        {
+          "value": "body",
+          "label": "t:sections.social-media.settings.main_text_font.option__2.label"
+        }
+      ],
+      "default": "heading",
+      "label": "t:sections.social-media.settings.main_text_font.label"
+    },
+    {
+      "type": "select",
+      "id": "main_text_size",
+      "options": [
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__2.label"
+        }
+      ],
+      "default": "h3",
+      "label": "t:sections.social-media.settings.main_text_size.label"
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_align",
+      "label": "t:sections.all.text_align.label",
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_underline",
+      "label": "t:sections.social-media.settings.show_text_underline.label",
+      "info": "t:sections.social-media.settings.show_text_underline.info",
+      "default": true,
+      "visible_if": "{{ section.settings.main_text != blank }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_text_animation",
+      "label": "t:sections.social-media.settings.enable_text_animation.label",
+      "default": true,
+      "visible_if": "{{ section.settings.show_text_underline and section.settings.main_text != blank }}"
+    },
+    {
+      "type": "color",
+      "id": "text_underline_color",
+      "label": "t:sections.social-media.settings.text_underline_color.label",
+      "default": "#000000",
+      "visible_if": "{{ section.settings.show_text_underline }}"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-padding.header.content"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-padding.padding_top.label"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-padding.padding_bottom.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.product-image-with-text.settings.header_anchor.content"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "t:sections.product-image-with-text.settings.anchor_id.label",
+      "info": "t:sections.product-image-with-text.settings.anchor_id.info"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "t:sections.social-media.blocks.image.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.all.image.label"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "t:sections.social-media.blocks.image.settings.image_link.label"
+        },
+        {
+          "type": "select",
+          "id": "image_border_radius",
+          "options": [
+            {
+              "value": "pill",
+              "label": "t:sections.social-media.settings.image_blocks_border_radius.options_1.label"
+            },
+            {
+              "value": "round",
+              "label": "t:sections.social-media.settings.image_blocks_border_radius.options_2.label"
+            },
+            {
+              "value": "sharp",
+              "label": "t:sections.social-media.settings.image_blocks_border_radius.options_3.label"
+            }
+          ],
+          "default": "pill",
+          "label": "t:sections.social-media.blocks.image.settings.image_border_radius.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.social-media.presets.name",
+      "category": "t:sections.categories.storytelling",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

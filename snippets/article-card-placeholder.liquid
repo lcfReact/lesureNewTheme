@@ -1,0 +1,222 @@
+{% comment %}
+  Renders a blog post card for a given blog.
+
+  Accepts:
+  - article_index: {Number} Article index
+  - article_type: {String} primary / secondary. Default: Primary.
+  - article_heading_font_family: {String} Post heading font family. Default = heading
+  -	article_heading_font_size: {String} Post heading font size. Default = h3
+  - aspect_ratio: {String} Aspect ratio of the image. Default = square
+  - show_image: {Boolean} Show the post image or not. Default = false
+  - show_date: {Boolean} Show the post date or not. Default = false
+  - show_author: {Boolean} Show the post author or not. Default = false
+  - show_tags: {Boolean} Show the post tags or not. Default = false
+  - show_excerpt: {Boolean} Show the post excerpt or not. Default = false
+  - columns_count: {Number} Sizes of the card per row for calculate image width. Default image width = 100vw
+  - show_comments_count: {Boolean} Show the comments count or not. Default = false
+  - content_alignment: {String} Vertical content alignment. top / center / bottom. Default: center.
+
+  Usage:
+  {% render 'article-card-placeholder',
+    article_index: forloop.index,
+    article_type: 'primary',
+    article_heading_font_family: section.settings.article_heading_font_family,
+    article_heading_font_size: section.settings.article_heading_font_size,
+    aspect_ratio: section.settings.aspect_ratio,
+    show_image: section.settings.show_image,
+    show_date: section.settings.show_date,
+    show_author: section.settings.show_author,
+    show_tags: section.settings.show_tags,
+    show_excerpt: section.settings.show_excerpt,
+    show_comments_count: section.settings.show_comments_count,
+    columns_count: section.settings.posts_per_row,
+    placeholder_number: placeholder_number
+  %}
+{% endcomment %}
+
+{% liquid
+  assign show_meta = false
+
+  if show_comments_count == true or show_author == true or show_date == true
+    assign show_meta = true
+  endif
+
+  if placeholder_number == blank
+    assign placeholder_number = '1'
+  endif
+%}
+
+{% assign total_length = 0 %}
+{% assign text = 'label' | strip %}
+{% assign total_length = total_length | plus: text.size %}
+{% assign ticker_elements_count = 128 | divided_by: total_length | at_least: 1 | plus: 1 %}
+
+{% if article_type == 'primary' %}
+  <article class="article-card article-card--primary">
+    <div class="article-card-label-wrapper-outer{% if show_image != true %} article-card-label-wrapper-outer--without-img{% endif %}">
+      <div class="article-card-label-wrapper">
+        <div class="article-card-label">
+          {% for index in (1..2) %}
+            <span class="article-card-label-text-wrapper">
+              {% for i in (1..ticker_elements_count) %}
+                <span class="article-card-label-text"> {{ 'general.blog.post_card_label' | t }} </span>
+              {% endfor %}
+            </span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    {%- if show_image == true -%}
+      <div
+        class="article-card-image-wrapper article-card-image-wrapper--{% if aspect_ratio %}{{ aspect_ratio }}{% else %}square{% endif %}"
+      >
+        {{
+          'blog-apparel-'
+          | append: placeholder_number
+          | placeholder_svg_tag: 'placeholder-svg article-card-image motion-reduce placeholder-svg--filled'
+        }}
+      </div>
+    {%- endif -%}
+    <div class="article-card-content">
+      {%- if show_tags -%}
+        <ul class="article-card-tags">
+          {%- for i in (1..2) -%}
+            <li class="article-card-tag">
+              <span class="article-card-tag__link body-xs">
+                {{ 'general.blog.tag_placeholder' | t }}
+              </span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      <h3
+        class="article-card-title article-card-title--font-{% if article_heading_font_family != blank %}{{ article_heading_font_family }}{% else %}heading{% endif %}{% if article_heading_font_size != blank %} {{ article_heading_font_size }}{% else %} h4{% endif %}"
+        id="Article-placeholder-{{ section.id }}-{{ article_index }}"
+      >
+        {{ 'general.blog.title_placeholder' | t }}
+      </h3>
+
+      {%- if show_excerpt -%}
+        <div class="article-card-excerpt body-normal">
+          {{ 'general.blog.excerpt_placeholder' | t }}
+        </div>
+      {%- endif -%}
+
+      {%- if show_meta -%}
+        <div class="article-card-meta">
+          {%- if show_author == true -%}
+            <span class="article-card-author body-xs">
+              {{ 'general.blog.author' | t }}
+              {{ 'general.blog.author_placeholder' | t }}
+            </span>
+          {%- endif -%}
+          {%- if show_date == true -%}
+            <span class="article-card-date body-xs">
+              {{ 'now' | time_tag: '%d.%m.%Y' }}
+            </span>
+          {%- endif -%}
+          {%- if show_comments_count == true -%}
+            <div class="article-card-comments">
+              {% render 'icon-comments' %}
+              <span class="article-card-comments__count body-xs"> 2 {{ 'general.blog.comments' | t }} </span>
+            </div>
+          {%- endif -%}
+        </div>
+      {% endif %}
+    </div>
+  </article>
+{% else %}
+  <article class="article-card article-card--secondary article-card--{{ content_alignment }}">
+    {%- if show_image == true -%}
+      <div
+        class="article-card-image-wrapper article-card-image-wrapper--{% if aspect_ratio %}{{ aspect_ratio }}{% else %}square{% endif %}"
+      >
+        <div class="article-card-label-wrapper-outer">
+          <div class="article-card-label-wrapper">
+            <div class="article-card-label">
+              {% for index in (1..2) %}
+                <span class="article-card-label-text-wrapper">
+                  {% for i in (1..ticker_elements_count) %}
+                    <span class="article-card-label-text"> {{ 'general.blog.post_card_label' | t }} </span>
+                  {% endfor %}
+                </span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {{
+          'blog-apparel-'
+          | append: placeholder_number
+          | placeholder_svg_tag: 'placeholder-svg article-card-image motion-reduce placeholder-svg--filled'
+        }}
+      </div>
+    {%- endif -%}
+    <div class="article-card-content">
+      {%- if show_image != true -%}
+        <div class="article-card-label-wrapper-outer">
+          <div class="article-card-label-wrapper">
+            <div class="article-card-label">
+              {% for index in (1..2) %}
+                <span class="article-card-label-text-wrapper">
+                  {% for i in (1..ticker_elements_count) %}
+                    <span class="article-card-label-text"> {{ 'general.blog.post_card_label' | t }} </span>
+                  {% endfor %}
+                </span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if show_tags -%}
+        <ul class="article-card-tags">
+          {%- for i in (1..2) -%}
+            <li class="article-card-tag">
+              <span class="article-card-tag__link body-xs">
+                {{ 'general.blog.tag_placeholder' | t }}
+              </span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      <h3
+        class="article-card-title article-card-title--font-{% if article_heading_font_family != blank %}{{ article_heading_font_family }}{% else %}heading{% endif %}{% if article_heading_font_size != blank %} {{ article_heading_font_size }}{% else %} h4{% endif %}"
+        id="Article-placeholder-{{ section.id }}-{{ article_index }}"
+      >
+        {{ 'general.blog.title_placeholder' | t }}
+      </h3>
+
+      {%- if show_excerpt -%}
+        <div class="article-card-excerpt body-normal">
+          {{ 'general.blog.excerpt_placeholder' | t }}
+        </div>
+      {%- endif -%}
+
+      {%- if show_meta -%}
+        <div class="article-card-meta">
+          {%- if show_author == true -%}
+            <span class="article-card-author body-xs">
+              {{ 'general.blog.author' | t }}
+              {{ 'general.blog.author_placeholder' | t }}
+            </span>
+          {%- endif -%}
+          {%- if show_date == true -%}
+            <span class="article-card-date body-xs">
+              {{ 'now' | time_tag: '%d.%m.%Y' }}
+            </span>
+          {%- endif -%}
+
+          {%- if show_comments_count == true -%}
+            <div class="article-card-comments">
+              {% render 'icon-comments' %}
+              <span class="article-card-comments__count body-xs"> 2 {{ 'general.blog.comments' | t }} </span>
+            </div>
+          {%- endif -%}
+        </div>
+      {% endif %}
+    </div>
+  </article>
+{% endif %}

@@ -1,0 +1,118 @@
+{% assign class = class | default: 'header__submenu' %}
+{% assign class_item = 'header__menu-item' %}
+{% if class == 'burger-menu__submenu' %}
+  {% assign class_item = 'burger-menu__menu-item' %}
+{% endif %}
+
+<ul
+  class="{{ class }} {% if class != 'burger-menu__submenu' %} list-menu list-menu--disclosure color-background-1{% endif %}{% if simple_mega_menu %} header__submenu--simple{% endif %} motion-reduce"
+  role="list"
+>
+  {%- for childlink in link.links -%}
+    <li class="header__submenu-li{% if forloop.index <= 4 %} active{% endif %}">
+      {%- if childlink.links == blank -%}
+        <a
+          href="{{ childlink.url }}"
+          {% if settings.links_blank and childlink.type == 'http_link' %}
+            target="_blank"
+          {% endif %}
+          class=" {{ class_item }} {% if class == 'burger-menu__submenu' %} {{ link_size_2 }} {% endif %} list-menu__item focus-inset {% if childlink.current and childlink.url != '/' %} {{ class_item }}--active{% endif %}"
+          {% if childlink.current and childlink.url != '/' %}
+            aria-current="page"
+          {% endif %}
+        >
+          <span
+            {% if class == 'burger-menu__submenu' %}
+              class="burger-menu__menu-item-title"
+            {% endif %}
+          >
+            {%- if class == 'burger-menu__submenu' -%}
+              <span>
+                {{- childlink.title | escape -}}
+              </span>
+            {%- else -%}
+              {{- childlink.title | escape -}}
+            {%- endif -%}
+          </span>
+        </a>
+      {%- else -%}
+        <a
+          href="{{ childlink.url }}"
+          {% if settings.links_blank and childlink.type == 'http_link' %}
+            target="_blank"
+          {% endif %}
+          class="{{ class_item }} {% if class == 'burger-menu__submenu' %} {{ link_size_2 }} {% endif %} list-menu__item focus-inset {% if childlink.current and childlink.url != '/' %} {{ class_item }}--active{% endif %}"
+          {% if childlink.current and childlink.url != '/' %}
+            aria-current="page"
+          {% endif %}
+        >
+          <span
+            {% if class == 'burger-menu__submenu' %}
+              class="burger-menu__menu-item-title"
+            {% endif %}
+          >
+            {%- if class == 'burger-menu__submenu' -%}
+              <span>
+                {{- childlink.title | escape -}}
+              </span>
+            {%- else -%}
+              {{- childlink.title | escape -}}
+            {%- endif -%}
+
+            {%- if class != 'burger-menu__submenu' -%}
+              {% render 'icon-arrow-down' %}
+            {%- endif -%}
+          </span>
+          {%- if class == 'burger-menu__submenu' -%}
+            {% render 'icon-arrow-down' %}
+          {%- endif %}
+        </a>
+        <ul
+          class="{{ class }} {% if class != 'burger-menu__submenu' %} list-menu list-menu--disclosure color-background-1 {% endif %} motion-reduce"
+        >
+          {% if class == 'burger-menu__submenu' %}
+            {% assign class_item = 'burger-menu__menu-item' %}
+          {% endif %}
+          {%- for grandchildlink in childlink.links -%}
+            <li>
+              <a
+                href="{{ grandchildlink.url }}"
+                {% if settings.links_blank and grandchildlink.type == 'http_link' %}
+                  target="_blank"
+                {% endif %}
+                class="{{ class_item }} list-menu__item focus-inset{% if class == 'burger-menu__submenu' %} {{ link_size_3 }}{% endif %} {% if grandchildlink.current and grandchildlink.url != '/' %} {{ class_item }}--active{% endif %}"
+                {% if grandchildlink.current and grandchildlink.url != '/' %}
+                  aria-current="page"
+                {% endif %}
+              >
+                <span
+                  {% if class == 'burger-menu__submenu' %}
+                    class="burger-menu__menu-item-title"
+                  {% endif %}
+                >
+                  {%- if class == 'burger-menu__submenu' -%}
+                    <span>
+                      {{- grandchildlink.title | escape -}}
+                    </span>
+                  {%- else -%}
+                    {{- grandchildlink.title | escape -}}
+                  {%- endif -%}
+                </span>
+              </a>
+            </li>
+          {%- endfor -%}
+          {% if class == 'burger-menu__submenu' %}
+            {% assign class_item = 'burger-menu__menu-item' %}
+          {% endif %}
+        </ul>
+      {%- endif -%}
+    </li>
+  {%- endfor -%}
+  {% if link.links.size > 4 and section.settings.layout == 'full' %}
+    <li class="header__submenu-button">
+      <button class="button--underline body-xs js-open-list-menu-item">
+        <span>{{- 'sections.header.view_all' | t -}}</span>
+      </button>
+    </li>
+  {% endif %}
+</ul>

@@ -1,0 +1,33 @@
+
+{% capture children %}
+  {% content_for 'blocks' %}
+{% endcapture %}
+
+<ul
+  class="
+    burger-menu__submenu
+  "
+  {{ block.shopify_attributes }}
+>
+  {{- children -}}
+</ul>
+
+{% schema %}
+{
+  "name": "t:blocks.header-group-links.name",
+  "tag": null,
+  "blocks": [
+    { 
+      "type": "_header-link" 
+    }
+  ],
+  "settings": [
+
+  ],
+  "presets": [
+    {
+      "name": "t:blocks.header-group-links.name"
+    }
+  ]
+}
+{% endschema %}

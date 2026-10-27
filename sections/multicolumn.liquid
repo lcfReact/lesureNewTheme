@@ -1,0 +1,912 @@
+{%- liquid
+  assign awards_ratio = '470 / 410'
+  if section.settings.image_ratio == 'square'
+    assign awards_ratio = '1 / 1'
+  elsif section.settings.image_ratio == 'portrait'
+    assign awards_ratio = '3 / 4'
+  elsif section.settings.image_ratio == 'landscape'
+    assign awards_ratio = '4 / 3'
+  elsif section.settings.image_ratio == 'adapt'
+    for block in section.blocks
+      if block.settings.image != blank
+        assign awards_ratio = block.settings.image.aspect_ratio
+        break
+      endif
+    endfor
+  endif
+
+  assign heading_align = section.settings.heading_alignment
+  if heading_align == blank
+    assign heading_align = section.settings.text_align
+  endif
+  if heading_align == blank
+    assign heading_align = 'center'
+  endif
+
+  assign heading_text = section.settings.title
+  if heading_text == blank
+    assign heading_text = section.settings.heading
+  endif
+
+  assign subtitle_text = section.settings.subtitle
+  if subtitle_text == blank
+    assign subtitle_text = section.settings.description | replace: '&nbsp;', ' ' | strip
+  endif
+
+  assign columns = section.settings.columns_desktop
+  if columns == blank
+    assign columns = section.settings.multicolumn_to_show
+  endif
+  if columns == blank
+    assign columns = 5
+  endif
+
+  assign gap = section.settings.column_gap
+  if gap == '2.4'
+    assign gap = 24
+  elsif gap == '4'
+    assign gap = 40
+  elsif gap == '1.2'
+    assign gap = 12
+  endif
+
+  assign gap_mobile = section.settings.column_gap_mobile
+  if gap_mobile == blank
+    assign gap_mobile = 12
+  endif
+
+  assign pad_top = section.settings.padding_top
+  assign pad_bottom = section.settings.padding_bottom
+  if pad_top == 'no-indent' or pad_top == blank
+    assign pad_top = 0
+  elsif pad_top == 's'
+    assign pad_top = 32
+  elsif pad_top == 'm'
+    assign pad_top = 48
+  elsif pad_top == 'l'
+    assign pad_top = 72
+  elsif pad_top == 'xl'
+    assign pad_top = 100
+  endif
+  if pad_bottom == 'no-indent' or pad_bottom == blank
+    assign pad_bottom = 0
+  elsif pad_bottom == 's'
+    assign pad_bottom = 32
+  elsif pad_bottom == 'm'
+    assign pad_bottom = 48
+  elsif pad_bottom == 'l'
+    assign pad_bottom = 72
+  elsif pad_bottom == 'xl'
+    assign pad_bottom = 100
+  endif
+-%}
+
+{%- style -%}
+  #Awards-{{ section.id }} {
+    --awards-cols: {{ columns }};
+    --awards-gap: {{ gap }}px;
+    --awards-gap-mobile: {{ gap_mobile }}px;
+    --awards-ratio: {{ awards_ratio }};
+    --awards-heading-color: {{ section.settings.heading_color }};
+    --awards-heading-size: {{ section.settings.heading_font_size }}rem;
+    --awards-heading-size-mobile: {{ section.settings.heading_font_size_mobile }}rem;
+    --awards-subtitle-color: {{ section.settings.subtitle_color }};
+    --awards-subtitle-size: {{ section.settings.subtitle_size }}rem;
+    --awards-subtitle-size-mobile: {{ section.settings.subtitle_size_mobile }}rem;
+    --awards-heading-gap: {{ section.settings.heading_gap }}px;
+    --awards-heading-gap-mobile: {{ section.settings.heading_gap_mobile }}px;
+    --awards-header-gap: {{ section.settings.header_gap }}px;
+    --awards-header-gap-mobile: {{ section.settings.header_gap_mobile }}px;
+    --awards-caption-color: {{ section.settings.caption_color }};
+    --awards-caption-size: {{ section.settings.caption_size }}rem;
+    --awards-caption-size-mobile: {{ section.settings.caption_size_mobile }}rem;
+    --awards-caption-gap: {{ section.settings.caption_gap }}px;
+    --awards-caption-gap-mobile: {{ section.settings.caption_gap_mobile }}px;
+    --awards-arrow: {{ section.settings.arrow_color }};
+    background: {{ section.settings.background_color }};
+    padding-top: {{ pad_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ pad_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #Awards-{{ section.id }} {
+      padding-top: {{ pad_top }}px;
+      padding-bottom: {{ pad_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  id="Awards-{{ section.id }}"
+  class="awards"
+  data-awards
+  data-columns="{{ columns }}"
+>
+  <div class="awards__inner{% if section.settings.section_width != 'full' %} container{% endif %}">
+    {%- if heading_text != blank or subtitle_text != blank -%}
+      <div class="awards__header awards__header--{{ heading_align }}">
+        {%- if heading_text != blank -%}
+          <h2 class="awards__heading">{{ heading_text }}</h2>
+        {%- endif -%}
+        {%- if subtitle_text != blank -%}
+          <div class="awards__subtitle">{{ subtitle_text | newline_to_br }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="awards__slider" data-awards-slider>
+        <button
+          type="button"
+          class="awards__arrow awards__arrow--prev"
+          data-awards-prev
+          hidden
+          aria-label="{{ 'general.slider.previous_slide' | t }}"
+        >
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <ul class="awards__track" data-awards-track tabindex="0" role="list">
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign caption = block.settings.title
+              if caption == blank
+                assign caption = block.settings.heading
+              endif
+              assign card_link = block.settings.link
+              if card_link == blank
+                assign card_link = block.settings.column_link
+              endif
+            -%}
+            <li class="awards__card" data-awards-card {{ block.shopify_attributes }}>
+              {%- if card_link != blank -%}
+                <a class="awards__link" href="{{ card_link }}">
+              {%- else -%}
+                <div class="awards__link">
+              {%- endif -%}
+                <div class="awards__media">
+                  {%- if block.settings.image != blank -%}
+                    {%- liquid
+                      assign image_alt = block.settings.image.alt | default: caption | strip_html
+                    -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 1200
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '240, 360, 480, 640, 800, 1000, 1200',
+                        sizes: '(min-width: 750px) 20vw, 80vw',
+                        alt: image_alt,
+                        class: 'awards__image'
+                    }}
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'awards__placeholder' }}
+                  {%- endif -%}
+                </div>
+                {%- if caption != blank -%}
+                  <p class="awards__caption">{{ caption }}</p>
+                {%- endif -%}
+              {%- if card_link != blank -%}
+                </a>
+              {%- else -%}
+                </div>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        <button
+          type="button"
+          class="awards__arrow awards__arrow--next"
+          data-awards-next
+          aria-label="{{ 'general.slider.next_slide' | t }}"
+        >
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path d="M7.5 4.5 13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .awards {
+    width: 100%;
+  }
+
+  .awards,
+  .awards__inner,
+  .awards__track,
+  .awards__card {
+    box-sizing: border-box;
+  }
+
+  .awards__inner:not(.container) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .awards__header {
+    margin: 0 0 var(--awards-header-gap-mobile);
+  }
+
+  .awards__header--left { text-align: left; }
+  .awards__header--center { text-align: center; }
+  .awards__header--right { text-align: right; }
+
+  .awards__heading {
+    margin: 0;
+    color: var(--awards-heading-color);
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    font-size: var(--awards-heading-size-mobile);
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .awards__subtitle {
+    max-width: 64rem;
+    margin: var(--awards-heading-gap-mobile) 0 0;
+    color: var(--awards-subtitle-color);
+    font-size: var(--awards-subtitle-size-mobile);
+    line-height: 1.5;
+  }
+
+  .awards__header--center .awards__subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .awards__header--right .awards__subtitle {
+    margin-left: auto;
+  }
+
+  .awards__slider {
+    position: relative;
+  }
+
+  .awards__track {
+    display: flex;
+    gap: var(--awards-gap-mobile);
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    list-style: none;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .awards__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .awards__track:focus-visible {
+    outline: 0.2rem solid rgba(18, 18, 18, 0.4);
+    outline-offset: 0.4rem;
+  }
+
+  .awards__card {
+    flex: 0 0 calc(100% - 4.8rem);
+    min-width: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .awards__link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .awards__media {
+    position: relative;
+    aspect-ratio: var(--awards-ratio);
+    overflow: hidden;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .awards__image,
+  .awards__placeholder {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+
+  .awards__caption {
+    margin: var(--awards-caption-gap-mobile) 0 0;
+    color: var(--awards-caption-color);
+    font-size: var(--awards-caption-size-mobile);
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .awards__arrow {
+    position: absolute;
+    top: var(--awards-arrow-top, 38%);
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 4rem;
+    height: 4rem;
+    padding: 0;
+    color: #121212;
+    background: var(--awards-arrow);
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+
+  .awards:not(.awards--ready) .awards__arrow {
+    visibility: hidden;
+  }
+
+  .awards__arrow[hidden] {
+    display: none !important;
+  }
+
+  .awards__arrow svg {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  .awards__arrow--prev { left: 0.6rem; }
+  .awards__arrow--next { right: 0.6rem; }
+
+  .awards__arrow:focus-visible {
+    outline: 0.2rem solid #121212;
+    outline-offset: 0.2rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .awards__slider {
+      margin-right: -2rem;
+    }
+
+    .awards__track {
+      padding-right: 2rem;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .awards__header {
+      margin-bottom: var(--awards-header-gap);
+    }
+
+    .awards__heading {
+      font-size: var(--awards-heading-size);
+    }
+
+    .awards__subtitle {
+      margin-top: var(--awards-heading-gap);
+      font-size: var(--awards-subtitle-size);
+    }
+
+    .awards__card {
+      flex-basis: calc((100% - (var(--awards-cols) - 1) * var(--awards-gap)) / var(--awards-cols));
+    }
+
+    .awards__track {
+      gap: var(--awards-gap);
+    }
+
+    .awards__caption {
+      margin-top: var(--awards-caption-gap);
+      font-size: var(--awards-caption-size);
+    }
+
+    .awards__arrow {
+      width: 4.4rem;
+      height: 4.4rem;
+    }
+
+    .awards__inner:not(.container) {
+      padding-left: 3.2rem;
+      padding-right: 3.2rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .awards__track {
+      scroll-behavior: auto;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    function initAwards(root) {
+      if (!root || root.dataset.awardsReady === 'true') return;
+      var track = root.querySelector('[data-awards-track]');
+      var prev = root.querySelector('[data-awards-prev]');
+      var next = root.querySelector('[data-awards-next]');
+      var slider = root.querySelector('[data-awards-slider]');
+      if (!track || !prev || !next || !slider) return;
+      root.dataset.awardsReady = 'true';
+
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function cards() {
+        return track.querySelectorAll('[data-awards-card]');
+      }
+
+      function perView() {
+        if (window.matchMedia('(max-width: 749px)').matches) return 1;
+        var cols = parseInt(root.getAttribute('data-columns'), 10);
+        if (!cols || cols < 1) cols = 1;
+        return cols;
+      }
+
+      function maxIndex() {
+        return Math.max(0, cards().length - perView());
+      }
+
+      function cardLeft(item) {
+        return item.offsetLeft - track.offsetLeft;
+      }
+
+      function nearestIndex() {
+        var items = cards();
+        var limit = maxIndex();
+        var left = track.scrollLeft;
+        var index = 0;
+        var best = Infinity;
+        var last = Math.min(items.length - 1, limit);
+        for (var i = 0; i <= last; i++) {
+          var distance = Math.abs(cardLeft(items[i]) - left);
+          if (distance < best) {
+            best = distance;
+            index = i;
+          }
+        }
+        var maxScroll = track.scrollWidth - track.clientWidth;
+        if (maxScroll > 2 && left >= maxScroll - 2) index = limit;
+        return index;
+      }
+
+      var target = 0;
+      var moving = false;
+
+      function scrollToIndex(index) {
+        var items = cards();
+        var limit = maxIndex();
+        if (index < 0) index = 0;
+        if (index > limit) index = limit;
+        target = index;
+        var left = 0;
+        if (limit > 0 && index >= limit) {
+          left = Math.max(0, track.scrollWidth - track.clientWidth);
+        } else if (items[index]) {
+          left = cardLeft(items[index]);
+        }
+        moving = true;
+        track.scrollTo({
+          left: left,
+          behavior: reduce ? 'auto' : 'smooth'
+        });
+      }
+
+      function placeArrows() {
+        var media = track.querySelector('.awards__media');
+        if (!media) return;
+        var sliderRect = slider.getBoundingClientRect();
+        var mediaRect = media.getBoundingClientRect();
+        var top = mediaRect.top - sliderRect.top + mediaRect.height / 2;
+        slider.style.setProperty('--awards-arrow-top', top + 'px');
+      }
+
+      function updateArrows() {
+        var max = track.scrollWidth - track.clientWidth;
+        var atStart = track.scrollLeft <= 2;
+        var atEnd = track.scrollLeft >= max - 2;
+        prev.hidden = atStart;
+        next.hidden = atEnd || max <= 2;
+        placeArrows();
+      }
+
+      function move(direction) {
+        if (!moving) target = nearestIndex();
+        scrollToIndex(target + direction);
+      }
+
+      function settle() {
+        moving = false;
+        target = nearestIndex();
+        updateArrows();
+      }
+
+      prev.addEventListener('click', function () { move(-1); });
+      next.addEventListener('click', function () { move(1); });
+      track.addEventListener('scroll', updateArrows, { passive: true });
+      track.addEventListener('scrollend', settle);
+      track.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          move(1);
+        }
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          move(-1);
+        }
+      });
+
+      var observer = new ResizeObserver(updateArrows);
+      observer.observe(track);
+      root._awardsCleanup = function () { observer.disconnect(); };
+      updateArrows();
+      root.classList.add('awards--ready');
+    }
+
+    function boot(scope) {
+      var context = scope || document;
+      context.querySelectorAll('[data-awards]').forEach(initAwards);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { boot(document); });
+    } else {
+      boot(document);
+    }
+
+    document.addEventListener('shopify:section:load', function (event) {
+      boot(event.target);
+    });
+
+    document.addEventListener('shopify:section:unload', function (event) {
+      var root = event.target.querySelector('[data-awards]');
+      if (root && root._awardsCleanup) root._awardsCleanup();
+    });
+
+    document.addEventListener('shopify:block:select', function (event) {
+      var card = event.target.closest('[data-awards-card]');
+      if (!card) return;
+      var sliderRoot = card.closest('[data-awards]');
+      var sliderTrack = sliderRoot && sliderRoot.querySelector('[data-awards-track]');
+      if (!sliderTrack) return;
+      sliderTrack.scrollTo({
+        left: card.offsetLeft - sliderTrack.offsetLeft,
+        behavior: 'smooth'
+      });
+    });
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:sections.multicolumn.name",
+  "class": "section",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.multicolumn.settings.header_heading.content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Recognized for Better Pet Living",
+      "label": "t:sections.multicolumn.settings.title.label"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "t:sections.multicolumn.settings.subtitle.label",
+      "info": "t:sections.multicolumn.settings.subtitle.info"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "t:sections.multicolumn.settings.heading_alignment.label",
+      "options": [
+        { "value": "left", "label": "t:sections.multicolumn.settings.heading_alignment.options__1.label" },
+        { "value": "center", "label": "t:sections.multicolumn.settings.heading_alignment.options__2.label" },
+        { "value": "right", "label": "t:sections.multicolumn.settings.heading_alignment.options__3.label" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:sections.multicolumn.settings.heading_color.label",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "t:sections.multicolumn.settings.subtitle_color.label",
+      "default": "#8A8A8A"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 1.6,
+      "max": 6,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "t:sections.multicolumn.settings.heading_font_size.label",
+      "default": 3.2
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "min": 1.6,
+      "max": 4.8,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "t:sections.multicolumn.settings.heading_font_size_mobile.label",
+      "default": 2.4
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 1,
+      "max": 2.8,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "t:sections.multicolumn.settings.subtitle_size.label",
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_mobile",
+      "min": 1,
+      "max": 2.4,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "t:sections.multicolumn.settings.subtitle_size_mobile.label",
+      "default": 1.3
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.multicolumn.settings.heading_gap.label",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "heading_gap_mobile",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.multicolumn.settings.heading_gap_mobile.label",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "header_gap",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.multicolumn.settings.header_gap.label",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "header_gap_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.multicolumn.settings.header_gap_mobile.label",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "t:sections.multicolumn.settings.header_cards.content"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 5,
+      "label": "t:sections.multicolumn.settings.columns_desktop.label",
+      "info": "t:sections.multicolumn.settings.columns_desktop.info"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "t:sections.multicolumn.settings.image_ratio.label",
+      "info": "t:sections.multicolumn.settings.image_ratio.info",
+      "options": [
+        { "value": "award", "label": "t:sections.multicolumn.settings.image_ratio.options__5.label" },
+        { "value": "square", "label": "t:sections.multicolumn.settings.image_ratio.options__3.label" },
+        { "value": "portrait", "label": "t:sections.multicolumn.settings.image_ratio.options__2.label" },
+        { "value": "landscape", "label": "t:sections.multicolumn.settings.image_ratio.options__4.label" },
+        { "value": "adapt", "label": "t:sections.multicolumn.settings.image_ratio.options__1.label" }
+      ],
+      "default": "award"
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.multicolumn.settings.column_gap.label",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "column_gap_mobile",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.multicolumn.settings.column_gap_mobile.label",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "t:sections.multicolumn.settings.caption_color.label",
+      "default": "#6E6E6E"
+    },
+    {
+      "type": "range",
+      "id": "caption_size",
+      "min": 1,
+      "max": 2.4,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "t:sections.multicolumn.settings.caption_size.label",
+      "default": 1.4
+    },
+    {
+      "type": "range",
+      "id": "caption_size_mobile",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "t:sections.multicolumn.settings.caption_size_mobile.label",
+      "default": 1.2
+    },
+    {
+      "type": "range",
+      "id": "caption_gap",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.multicolumn.settings.caption_gap.label",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "caption_gap_mobile",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.multicolumn.settings.caption_gap_mobile.label",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "t:sections.multicolumn.settings.arrow_color.label",
+      "default": "#F5C518"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.multicolumn.settings.header_layout.content"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:sections.multicolumn.settings.background_color.label",
+      "default": "#F4F4F4"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:sections.multicolumn.settings.section_width.label",
+      "options": [
+        { "value": "page", "label": "t:sections.multicolumn.settings.section_width.options__1.label" },
+        { "value": "full", "label": "t:sections.multicolumn.settings.section_width.options__2.label" }
+      ],
+      "default": "page"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "t:sections.multicolumn.blocks.column.name",
+      "settings": [
+        {
+          "type": "header",
+          "content": "t:sections.multicolumn.blocks.column.settings.header_image.content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.multicolumn.blocks.column.settings.image.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.multicolumn.blocks.column.settings.link.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.multicolumn.blocks.column.settings.header_text.content"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "t:sections.multicolumn.blocks.column.settings.title.label"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 16,
+  "presets": [
+    {
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Recognized for Better Pet Living",
+        "subtitle": "Thoughtful details make a difference in everyday life with pets — and they haven't gone unnoticed.",
+        "columns_desktop": 5,
+        "heading_alignment": "center",
+        "background_color": "#F4F4F4"
+      },
+      "blocks": [
+        { "type": "column", "settings": { "title": "2026 Pet Innovation Awards" } },
+        { "type": "column", "settings": { "title": "2026 WIRED Recommends" } },
+        { "type": "column", "settings": { "title": "2026 Parade Pets Best in Show Awards" } },
+        { "type": "column", "settings": { "title": "2026 Good Housekeeping Travel Awards" } },
+        { "type": "column", "settings": { "title": "2026 Apartment Therapy Best in Home Awards" } },
+        { "type": "column", "settings": { "title": "2026 Best Pet Bed" } },
+        { "type": "column", "settings": { "title": "2026 Design Award" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,233 @@
+.collapsible-content {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+.collapsible-content--border-bottom {
+  border-bottom: 1px solid rgb(var(--color-border));
+}
+.collapsible-content--border-top {
+  border-top: 1px solid rgb(var(--color-border));
+}
+.collapsible-content__heading {
+  width: 100%;
+  white-space: pre-line;
+}
+.collapsible-content__header {
+  max-width: 67.6rem;
+  width: 100%;
+}
+.collapsible-content__header--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.collapsible-content__header--center .collapsible-content__heading,
+.collapsible-content__header--center .collapsible-content__description {
+  text-align: center;
+}
+.collapsible-content__header--left {
+  margin-right: auto;
+}
+.collapsible-content__header--left .collapsible-content__heading,
+.collapsible-content__header--left .collapsible-content__description {
+  text-align: left;
+}
+.collapsible-content__header--right {
+  margin-left: auto;
+}
+.collapsible-content__header--right .collapsible-content__heading,
+.collapsible-content__header--right .collapsible-content__description {
+  text-align: right;
+}
+.collapsible-content__description {
+  margin-top: 2.4rem;
+}
+.collapsible-content__description a {
+  color: rgba(var(--color-foreground));
+  display: inline;
+  transition: background-size var(--duration-default) ease-in-out, opacity var(--duration-default) ease-in-out;
+  background-position: left 90%;
+  background-size: 100% 5%;
+  background-image: linear-gradient(to right, rgba(var(--color-foreground)) 0%, rgba(var(--color-foreground)) 100%);
+  background-repeat: no-repeat;
+  text-decoration: none;
+}
+@media screen and (pointer: fine) {
+  .collapsible-content__description a:hover {
+    background-size: 0% 5%;
+    background-position: right 90%;
+    opacity: 0.8;
+  }
+}
+.collapsible-content__content {
+  margin-top: 4rem;
+  max-width: 91rem;
+  width: 100%;
+}
+.collapsible-content__content--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.collapsible-content__content--left {
+  margin-right: auto;
+}
+.collapsible-content__content--right {
+  margin-left: auto;
+}
+.collapsible-content__item {
+  overflow: hidden;
+  background-color: rgb(var(--color-background));
+  padding: 2.2rem 0;
+  cursor: pointer;
+  border-bottom: 1px solid rgb(var(--color-foreground));
+  border-top: 1px solid rgb(var(--color-foreground));
+}
+.collapsible-content__item + .collapsible-content__item {
+  border-top: unset;
+}
+.collapsible-content__item.active .collapsible-content__icon::after {
+  transform: rotate(-90deg);
+}
+.collapsible-content__item.active .collapsible-content__toggle {
+  padding-bottom: 2.2rem;
+}
+.collapsible-content__item.active .collapsible-content__answer p {
+  opacity: 1;
+}
+.collapsible-content__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 1.6rem;
+  width: 100%;
+  cursor: pointer;
+}
+.collapsible-content__toggle-group {
+  display: flex;
+  align-items: center;
+}
+.collapsible-content__question {
+  margin: 0;
+  text-align: left;
+  word-break: break-word;
+  transition: opacity var(--duration-default);
+  max-width: 74.4rem;
+  width: 100%;
+}
+.collapsible-content__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background-color: rgb(var(--color-foreground));
+  position: relative;
+}
+.collapsible-content__icon::before, .collapsible-content__icon::after {
+  content: "";
+  display: block;
+  position: absolute;
+  transition: all 0.4s ease;
+  border-radius: 3px;
+  background-color: rgb(var(--color-background));
+}
+.collapsible-content__icon::before {
+  width: 1rem;
+  height: 0.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.collapsible-content__icon::after {
+  width: 0.2rem;
+  height: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.collapsible-content__answer {
+  margin: 0;
+  max-width: 67.6rem;
+  width: 100%;
+  transition: all 0.4s ease;
+}
+.collapsible-content__answer p {
+  height: auto;
+  opacity: 0;
+  color: rgb(var(--color-foreground-secondary));
+  transition: height 0.4s ease, opacity 0.4s ease;
+  word-break: break-word;
+}
+.collapsible-content__answer p a {
+  color: rgba(var(--color-foreground));
+  display: inline;
+  transition: background-size var(--duration-default) ease-in-out, opacity var(--duration-default) ease-in-out;
+  background-position: left 90%;
+  background-size: 100% 5%;
+  background-image: linear-gradient(to right, rgba(var(--color-foreground)) 0%, rgba(var(--color-foreground)) 100%);
+  background-repeat: no-repeat;
+  text-decoration: none;
+}
+@media screen and (pointer: fine) {
+  .collapsible-content__answer p a:hover {
+    background-size: 0% 5%;
+    background-position: right 90%;
+    opacity: 0.8;
+  }
+}
+.collapsible-content__answer.rte * {
+  margin-left: unset !important;
+  margin-right: unset !important;
+  color: rgb(var(--color-foreground-secondary)) !important;
+}
+.collapsible-content__answer.rte ol,
+.collapsible-content__answer.rte ul {
+  list-style-position: inside;
+}
+.collapsible-content__answer.rte ul {
+  list-style-type: disc;
+}
+.collapsible-content__answer.rte ul li {
+  list-style: inherit;
+}
+.collapsible-content__answer.rte ol {
+  list-style-type: decimal;
+}
+.collapsible-content__items {
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (hover: hover) and (pointer: fine) {
+  .collapsible-content__item:hover:not(.active) .collapsible-content__question {
+    opacity: var(--hover-opacity);
+  }
+}
+.collapsible-content__toggle {
+  transition: all 0.4s ease;
+  padding-bottom: 0;
+}
+[dir=rtl] .collapsible-content__header {
+  margin-right: unset;
+  margin-left: auto;
+}
+[dir=rtl] .collapsible-content__header--left .collapsible-content__heading,
+[dir=rtl] .collapsible-content__header--left .collapsible-content__description {
+  text-align: right;
+}
+[dir=rtl] .collapsible-content__header--right {
+  margin-right: auto;
+  margin-left: unset;
+}
+[dir=rtl] .collapsible-content__header--right .collapsible-content__heading,
+[dir=rtl] .collapsible-content__header--right .collapsible-content__description {
+  text-align: left;
+}
+[dir=rtl] .collapsible-content__content--left {
+  margin-right: unset;
+  margin-left: auto;
+}
+[dir=rtl] .collapsible-content__content--right {
+  margin-left: unset;
+  margin-right: auto;
+}

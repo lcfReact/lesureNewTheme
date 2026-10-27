@@ -1,0 +1,106 @@
+{% comment %}
+  Recommended products inside the cart drawer.
+
+  Accepts:
+  - heading: {String}
+{% endcomment %}
+
+{% liquid
+  assign upsell_products = settings.cart_upsell_products
+  assign upsell_button = settings.cart_upsell_button
+  if upsell_button == blank
+    assign upsell_button = 'products.product.add_to_cart' | t
+  endif
+%}
+
+{%- if upsell_products != blank and upsell_products.size > 0 -%}
+  <div class="cart-upsell" data-cart-upsell>
+    {%- if heading != blank -%}
+      <p class="cart-upsell__heading">{{ heading }}</p>
+    {%- endif -%}
+    <div class="cart-upsell__card">
+      {%- if upsell_products.size > 1 -%}
+        <button
+          type="button"
+          class="cart-upsell__arrow cart-upsell__arrow--prev"
+          data-cart-upsell-prev
+          aria-label="{{ 'general.slider.previous_slide' | t }}"
+        >
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {%- endif -%}
+      <div class="cart-upsell__slides">
+        {%- for product in upsell_products -%}
+          {%- if product != blank -%}
+            <div class="cart-upsell__slide{% if forloop.first %} is-active{% endif %}" data-cart-upsell-slide>
+              <div class="cart-upsell__media">
+                {%- if product.featured_image -%}
+                  {{
+                    product.featured_image
+                    | image_url: width: 240
+                    | image_tag: loading: 'lazy', class: 'cart-upsell__image', alt: product.title, widths: '120, 180, 240'
+                  }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'cart-upsell__image' }}
+                {%- endif -%}
+              </div>
+              <div class="cart-upsell__body">
+                <div class="cart-upsell__top">
+                  <p class="cart-upsell__title">{{ product.title }}</p>
+                  <p class="cart-upsell__price">
+                    {% if settings.currency_code_enabled %}
+                      {{ product.price | money_with_currency }}
+                    {% else %}
+                      {{ product.price | money }}
+                    {% endif %}
+                  </p>
+                </div>
+                {%- unless product.has_only_default_variant -%}
+                  <p class="cart-upsell__variant">{{ product.selected_or_first_available_variant.title }}</p>
+                {%- endunless -%}
+                {%- if product.available == false -%}
+                  <button type="button" class="cart-upsell__add" disabled>
+                    {{ 'products.product.sold_out' | t }}
+                  </button>
+                {%- elsif product.has_only_default_variant -%}
+                  <button
+                    type="button"
+                    class="cart-upsell__add"
+                    data-cart-upsell-add
+                    data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                  >
+                    {{ upsell_button }}
+                  </button>
+                {%- elsif settings.add_to_cart_enabled -%}
+                  <button
+                    type="button"
+                    class="cart-upsell__add quick-buy-open"
+                    data-product-url="{{ product.url }}"
+                  >
+                    {{ upsell_button }}
+                  </button>
+                {%- else -%}
+                  <a class="cart-upsell__add" href="{{ product.url }}">{{ upsell_button }}</a>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- if upsell_products.size > 1 -%}
+        <button
+          type="button"
+          class="cart-upsell__arrow cart-upsell__arrow--next"
+          data-cart-upsell-next
+          aria-label="{{ 'general.slider.next_slide' | t }}"
+        >
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path d="M7.5 4.5 13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}

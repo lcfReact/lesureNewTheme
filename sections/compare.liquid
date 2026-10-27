@@ -1,0 +1,1061 @@
+{{ 'section-compare.css' | asset_url | stylesheet_tag }}
+
+{% comment %} {%- if section.settings.image_before != blank and section.settings.image_after != blank -%} {% endcomment %}
+<script src="{{ 'img-comparison.js' | asset_url }}" defer="defer"></script>
+{% comment %} {%- endif -%} {% endcomment %}
+
+{% style %}
+  {% render 'section-padding' %}
+  {% render 'section-margin' %}
+{% endstyle %}
+
+{% comment %} calculate aspect ratio for compare-slider container {% endcomment %}
+{% liquid
+  assign only_one_section_image = blank
+  assign only_one_section_title = blank
+  assign only_one_section_label = blank
+  assign only_color_scheme = blank
+  assign only_one_alignment = blank
+  assign only_one_header_size = blank
+  assign heading_tag_dynamic = section.settings.heading_tag
+  if section.settings.image_before != blank and section.settings.image_after != blank
+    assign adapt_aspect_ratio = section.settings.image_before.aspect_ratio
+    if section.settings.image_after.aspect_ratio < adapt_aspect_ratio
+      assign adapt_aspect_ratio = section.settings.image_after.aspect_ratio
+    endif
+  elsif section.settings.image_before != blank and section.settings.image_after == blank
+    assign only_one_section_image = section.settings.image_before
+    assign only_one_section_title = section.settings.heading_before | truncate: 75
+    assign heading_tag_dynamic = section.settings.heading_tag
+    assign only_one_section_label = section.settings.label_before
+    assign only_color_scheme = 'color-' | append: section.settings.color_scheme_before
+    assign only_one_alignment = section.settings.vertical_alignment_before
+    assign only_one_header_size = section.settings.heading_size_before
+  elsif section.settings.image_before == blank and section.settings.image_after != blank
+    assign only_one_section_image = section.settings.image_after
+    assign only_one_section_title = section.settings.heading_after | truncate: 75
+    assign heading_tag_dynamic = section.settings.heading_tag_second
+    assign only_one_section_label = section.settings.label_after
+    assign only_color_scheme = 'color-' | append: section.settings.color_scheme_after
+    assign only_one_alignment = section.settings.vertical_alignment_after
+    assign only_one_header_size = section.settings.heading_size_after
+  else
+    assign only_one_section_image = blank
+    assign only_one_section_title = blank
+    assign only_one_section_label = blank
+    assign only_color_scheme = blank
+    assign only_one_alignment = blank
+    assign only_one_header_size = blank
+  endif
+
+  if section.settings.mobile_aspect_ratio != 'adapt'
+    assign aspect_ratio_mobile = section.settings.mobile_aspect_ratio | split: '/'
+    assign temp = aspect_ratio_mobile[0] | append: '.0'
+    assign padding_bottom_mobile = aspect_ratio_mobile[1] | divided_by: temp | times: 100 | round: 2
+  elsif section.settings.mobile_aspect_ratio == 'adapt'
+    if section.settings.image_before != blank and section.settings.image_after != blank
+      assign padding_bottom_mobile = 1 | divided_by: adapt_aspect_ratio | times: 100 | round: 2
+    elsif only_one_section_image != blank
+      assign padding_bottom_mobile = 1 | divided_by: only_one_section_image.aspect_ratio | times: 100 | round: 2
+    else
+      assign padding_bottom_mobile = 75
+    endif
+  else
+    assign padding_bottom_mobile = 0
+  endif
+
+  if section.settings.desktop_aspect_ratio != 'adapt' and section.settings.desktop_aspect_ratio != 'adapt_to_content'
+    assign aspect_ratio_desktop = section.settings.desktop_aspect_ratio | split: '/'
+    assign temp_desktop = aspect_ratio_desktop[0] | append: '.0'
+    assign padding_bottom_desktop = aspect_ratio_desktop[1] | divided_by: temp_desktop | times: 100 | round: 2
+  elsif section.settings.desktop_aspect_ratio == 'adapt'
+    if section.settings.image_before != blank and section.settings.image_after != blank
+      assign padding_bottom_desktop = 1 | divided_by: adapt_aspect_ratio | times: 100 | round: 2
+    elsif only_one_section_image != blank
+      assign padding_bottom_desktop = 1 | divided_by: only_one_section_image.aspect_ratio | times: 100 | round: 2
+    else
+      assign padding_bottom_desktop = 56.25
+    endif
+  else
+    assign padding_bottom_desktop = 0
+  endif
+%}
+
+{% comment %} get common values for images {% endcomment %}
+{% liquid
+  assign image_loading = 'lazy'
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign image_loading = 'eager'
+    assign fetch_priority = 'high'
+  endif
+
+  assign widths = '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946, 2200, 2400, 2600, 2800, 3000, 3200, 3400, 3600'
+
+  # get settings ratio for calculate mobile calc ratio for each image
+  if section.settings.mobile_aspect_ratio != 'adapt'
+    assign settings_mobile_aspect_ratio = temp | divided_by: aspect_ratio_mobile[1] | round: 2
+  else
+    if section.settings.image_before != blank and section.settings.image_after != blank
+      assign settings_mobile_aspect_ratio = adapt_aspect_ratio
+    elsif only_one_section_image != blank
+      assign settings_mobile_aspect_ratio = only_one_section_image.aspect_ratio
+    endif
+  endif
+
+  # get settings ratio for calculate desktop calc ratio for each image
+  if section.settings.desktop_aspect_ratio != 'adapt'
+    assign settings_desktop_aspect_ratio = temp_desktop | divided_by: aspect_ratio_desktop[1] | round: 2
+  else
+    if section.settings.image_before != blank and section.settings.image_after != blank
+      assign settings_desktop_aspect_ratio = adapt_aspect_ratio
+    elsif only_one_section_image != blank
+      assign settings_desktop_aspect_ratio = only_one_section_image.aspect_ratio
+    endif
+  endif
+%}
+
+{% assign overlay_opacity = section.settings.overlay_opacity | default: 0 %}
+
+{% if overlay_opacity > 0 %}
+  {%- capture overlay_styles -%}
+    background: rgba(var(--color-overlay)); opacity: {{ overlay_opacity | divided_by: 100.0 }};
+  {%- endcapture -%}
+{% endif %}
+
+<section class="compare section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} background">
+  <div class="compare-wrapper compare-wrapper--{{ section.settings.layout_type }} container">
+    <div class="compare__info">
+      {%- if section.settings.heading != blank -%}
+        <{{ section.settings.heading_level }} class="compare__title {{ section.settings.heading_size }}">
+          {{ section.settings.heading }}
+        </{{ section.settings.heading_level }}>
+      {%- endif -%}
+
+      {%- if section.settings.description != blank -%}
+        <p class="compare__description body-normal">
+          {{ section.settings.description }}
+        </p>
+      {%- endif -%}
+
+      {%- if section.settings.show_button -%}
+        {% render 'button',
+          btn_label: section.settings.button_label,
+          btn_style: section.settings.button_style,
+          btn_link: section.settings.button_link,
+          class: 'compare__button'
+        %}
+      {%- endif -%}
+    </div>
+
+    <div
+      class="compare__images{% if only_one_section_image != blank %} {{ only_color_scheme }} background{% endif %}"
+      style="--padding-bottom-mobile: {{ padding_bottom_mobile }}%; --padding-bottom-desktop: {{ padding_bottom_desktop }}%;"
+    >
+      {%- if section.settings.image_before != blank and section.settings.image_after != blank -%}
+        {% liquid
+          # get calc ratio image before mobile
+          assign calc_ratio_mobile_before = 1
+          if section.settings.image_before.aspect_ratio > settings_mobile_aspect_ratio
+            assign calc_ratio_mobile_before = section.settings.image_before.aspect_ratio | divided_by: settings_mobile_aspect_ratio | round: 2
+          endif
+
+          # get calc ratio image before desktop
+          assign calc_ratio_desktop_before = 1
+          if section.settings.image_before.aspect_ratio > settings_desktop_aspect_ratio
+            assign calc_ratio_desktop_before = section.settings.image_before.aspect_ratio | divided_by: settings_desktop_aspect_ratio | round: 2
+          endif
+
+          # get calc ratio image after mobile
+          assign calc_ratio_mobile_after = 1
+          if section.settings.image_after.aspect_ratio > settings_mobile_aspect_ratio
+            assign calc_ratio_mobile_after = section.settings.image_after.aspect_ratio | divided_by: settings_mobile_aspect_ratio | round: 2
+          endif
+
+          # get calc ratio image after desktop
+          assign calc_ratio_desktop_after = 1
+          if section.settings.image_after.aspect_ratio > settings_desktop_aspect_ratio
+            assign calc_ratio_desktop_after = section.settings.image_after.aspect_ratio | divided_by: settings_desktop_aspect_ratio | round: 2
+          endif
+        %}
+
+        {%- capture sizes_before_img -%}
+          (min-width: 1440px) calc({{ calc_ratio_desktop_before }} * 1280px), (min-width: 990px) calc({{ calc_ratio_desktop_before }} * 100vw), calc({{ calc_ratio_mobile_before }} * 100vw)
+        {%- endcapture -%}
+
+        {%- capture sizes_after_img -%}
+          (min-width: 1440px) calc({{ calc_ratio_desktop_after }} * 1280px), (min-width: 990px) calc({{ calc_ratio_desktop_after }} * 100vw), calc({{ calc_ratio_mobile_after }} * 100vw)
+        {%- endcapture -%}
+
+        <img-comparison-slider>
+          <div
+            class="compare__figure compare__figure-before color-{{ section.settings.color_scheme_before }} background"
+            slot="first"
+          >
+            <div class="compare__figure-image">
+              {{
+                section.settings.image_before
+                | image_url: width: 1840
+                | image_tag:
+                  loading: image_loading,
+                  fetchpriority: fetch_priority,
+                  sizes: sizes_before_img,
+                  widths: widths
+              }}
+              <div
+                class="compare__overlay"
+                style="{{ overlay_styles }}"
+              ></div>
+            </div>
+
+            {%- liquid
+              assign has_content = false
+              if section.settings.label_before != blank or section.settings.heading_before != blank
+                assign has_content = true
+              endif
+            -%}
+            {%- if has_content -%}
+              <div
+                class="compare__content compare__content--vertical-align-{{ section.settings.vertical_alignment_before }}"
+              >
+                {%- if section.settings.label_before != blank -%}
+                  <div class="compare__label compare__label--left body-normal">
+                    {{- section.settings.label_before -}}
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.heading_before != blank -%}
+                  <div class="compare__text">
+                    {%- if section.settings.heading_before != blank -%}
+                      <{{ section.settings.heading_tag }} class="compare__heading {{ section.settings.heading_size_before }}">
+                        {{ section.settings.heading_before | truncate: 75 }}
+                      </{{ section.settings.heading_tag }}>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+
+          <div
+            class="compare__figure compare__figure-after color-{{ section.settings.color_scheme_after }} background"
+            slot="second"
+          >
+            <div class="compare__figure-image">
+              {{
+                section.settings.image_after
+                | image_url: width: 1280
+                | image_tag:
+                  loading: image_loading,
+                  fetchpriority: fetch_priority,
+                  sizes: sizes_after_img,
+                  widths: widths
+              }}
+
+              <div
+                class="compare__overlay"
+                style="{{ overlay_styles }}"
+              ></div>
+            </div>
+            {%- liquid
+              assign has_content = false
+              if section.settings.label_after != blank or section.settings.heading_after != blank
+                assign has_content = true
+              endif
+            -%}
+            {%- if has_content -%}
+              <div
+                class="compare__content compare__content--vertical-align-{{ section.settings.vertical_alignment_after }}"
+              >
+                {%- if section.settings.label_after != blank -%}
+                  <div class="compare__label compare__label--left body-normal">
+                    {{- section.settings.label_after -}}
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.heading_after != blank -%}
+                  <div class="compare__text">
+                    {%- if section.settings.heading_after != blank -%}
+                      <{{ section.settings.heading_tag_second }} class="compare__heading {{ section.settings.heading_size_after }}">
+                        {{ section.settings.heading_after | truncate: 75 }}
+                      </{{ section.settings.heading_tag_second }}>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+
+          <div class="compare__handle" slot="handle" tabindex="0">
+            {% render 'icon-compare' %}
+            {% render 'icon-compare' %}
+          </div>
+        </img-comparison-slider>
+      {%- elsif only_one_section_image != blank -%}
+        {% liquid
+          # get calc ratio image mobile
+          assign calc_ratio_mobile = 1
+          if only_one_section_image.aspect_ratio > settings_mobile_aspect_ratio
+            assign calc_ratio_mobile = only_one_section_image.aspect_ratio | divided_by: settings_mobile_aspect_ratio | round: 2
+          endif
+
+          # get calc ratio image desktop
+          assign calc_ratio_desktop = 1
+          if only_one_section_image.aspect_ratio > settings_desktop_aspect_ratio
+            assign calc_ratio_desktop = only_one_section_image.aspect_ratio | divided_by: settings_desktop_aspect_ratio | round: 2
+          endif
+        %}
+
+        {%- capture sizes -%}
+          (min-width: 1440px) calc({{ calc_ratio_desktop }} * 1280px), (min-width: 990px) calc({{ calc_ratio_desktop }} * 100vw), calc({{ calc_ratio_mobile }} * 100vw)
+        {%- endcapture -%}
+        {%- liquid
+          assign has_content = false
+          if only_one_section_title != blank or only_one_section_label != blank
+            assign has_content = true
+          endif
+        -%}
+        {%- if has_content -%}
+          <div
+            class="compare__content only-one-image compare__content--vertical-align-{{ only_one_alignment }}"
+          >
+            {%- if only_one_section_label != blank -%}
+              <div class="compare__label compare__label--left body-normal">
+                {{- only_one_section_label -}}
+              </div>
+            {%- endif -%}
+            {%- if only_one_section_title != blank -%}
+              <div class="compare__text">
+                <{{ heading_tag_dynamic }} class="compare__heading {{ only_one_header_size }}">
+                  {{- only_one_section_title -}}
+                </{{ heading_tag_dynamic }}>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+        <div class="compare__figure-image">
+          {{
+            only_one_section_image
+            | image_url: width: 1280
+            | image_tag:
+              loading: image_loading,
+              class: 'compare__image',
+              fetchpriority: fetch_priority,
+              sizes: sizes,
+              widths: widths
+          }}
+          <div
+            class="compare__overlay"
+            style="{{ overlay_styles }}"
+          ></div>
+        </div>
+      {%- else -%}
+        <img-comparison-slider>
+          <div
+            class="compare__figure compare__figure-before color-{{ section.settings.color_scheme_before | default: section.settings.color_scheme }} background"
+            slot="first"
+          >
+            <div class="compare__figure-image">
+              {{ 'collection-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder placeholder-svg--filled' }}
+              <div
+                class="compare__overlay"
+                style="{{ overlay_styles }}"
+              ></div>
+            </div>
+
+            {%- liquid
+              assign has_content = false
+              if section.settings.label_before != blank or section.settings.heading_before != blank
+                assign has_content = true
+              endif
+            -%}
+            {%- if has_content -%}
+              <div
+                class="compare__content compare__content--vertical-align-{{ section.settings.vertical_alignment_before | default: 'middle' }}"
+              >
+                {%- if section.settings.label_before != blank -%}
+                  <div class="compare__label compare__label--left body-normal">
+                    {{- section.settings.label_before -}}
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.heading_before != blank -%}
+                  <div class="compare__text">
+                    {%- if section.settings.heading_before != blank -%}
+                      <{{ section.settings.heading_tag }} class="compare__heading {{ section.settings.heading_size_before | default: 'h3' }}">
+                        {{ section.settings.heading_before | truncate: 75 }}
+                      </{{ section.settings.heading_tag }}>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+
+          <div
+            class="compare__figure compare__figure-after color-{{ section.settings.color_scheme_after | default: section.settings.color_scheme }} background"
+            slot="second"
+          >
+            <div class="compare__figure-image">
+              {{ 'collection-apparel-4' | placeholder_svg_tag: 'placeholder-svg placeholder placeholder-svg--filled' }}
+              <div
+                class="compare__overlay"
+                style="{{ overlay_styles }}"
+              ></div>
+            </div>
+
+            {%- liquid
+              assign has_content = false
+              if section.settings.label_after != blank or section.settings.heading_after != blank
+                assign has_content = true
+              endif
+            -%}
+            {%- if has_content -%}
+              <div
+                class="compare__content compare__content--vertical-align-{{ section.settings.vertical_alignment_after | default: 'middle' }}"
+              >
+                {%- if section.settings.label_after != blank -%}
+                  <div class="compare__label compare__label--left body-normal">
+                    {{- section.settings.label_after -}}
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.heading_after != blank -%}
+                  <div class="compare__text">
+                    {%- if section.settings.heading_after != blank -%}
+                      <{{ section.settings.heading_tag_second }} class="compare__heading {{ section.settings.heading_size_after | default: 'h3' }}">
+                        {{ section.settings.heading_after | truncate: 75 }}
+                      </{{ section.settings.heading_tag_second }}>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+
+          <div class="compare__handle" slot="handle" tabindex="0">
+            {% render 'icon-compare' %}
+            {% render 'icon-compare' %}
+          </div>
+        </img-comparison-slider>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.compare.name",
+  "tag": "section",
+  "class": "section-compare",
+  "enabled_on": {
+    "templates": ["*"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.compare.settings.header__main.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "background-1",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:sections.all.heading.label",
+      "default": "t:sections.compare.settings.heading.default"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h5",
+          "label": "t:sections.all.heading_size.options__4.label"
+        }
+      ],
+      "default": "h4",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_level",
+      "options": [
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_level.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_level.options__2.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_level.options__3.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_level.options__4.label"
+        },
+        {
+          "value": "h5",
+          "label": "t:sections.all.heading_level.options__5.label"
+        },
+        {
+          "value": "h6",
+          "label": "t:sections.all.heading_level.options__6.label"
+        },
+        {
+          "value": "div",
+          "label": "t:sections.all.heading_level.options__7.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.all.heading_level.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "t:sections.all.text.label",
+      "default": "t:sections.compare.settings.description.default"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "default": true,
+      "label": "t:sections.all.button.button_show.label"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:sections.all.button.button_label.label",
+      "default": "t:sections.compare.settings.button_label.default",
+      "visible_if": "{{ section.settings.show_button == true }}"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:sections.all.button.button_style.options__1.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:sections.all.button.button_style.options__2.label"
+        },
+        {
+          "value": "tertiary",
+          "label": "t:sections.all.button.button_style.options__3.label"
+        }
+      ],
+      "default": "primary",
+      "label": "t:sections.all.button.button_style.label",
+      "visible_if": "{{ section.settings.show_button == true }}"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.all.button.button_link.label",
+      "visible_if": "{{ section.settings.show_button == true }}"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.compare.settings.header__image.content"
+    },
+    {
+      "type": "select",
+      "id": "layout_type",
+      "options": [
+        {
+          "value": "image-on-the-left",
+          "label": "t:sections.compare.settings.layout_type.image_on_the_left.label"
+        },
+        {
+          "value": "image-on-the-right",
+          "label": "t:sections.compare.settings.layout_type.image_on_the_right.label"
+        },
+        {
+          "value": "image-on-the-top",
+          "label": "t:sections.compare.settings.layout_type.image_on_the_top.label"
+        },
+        {
+          "value": "image-on-the-bottom",
+          "label": "t:sections.compare.settings.layout_type.image_on_the_bottom.label"
+        }
+      ],
+      "default": "image-on-the-right",
+      "label": "t:sections.compare.settings.layout_type.label",
+      "info": "t:sections.compare.settings.layout_type.info"
+    },
+    {
+      "type": "select",
+      "id": "desktop_aspect_ratio",
+      "options": [
+        {
+          "value": "1/1",
+          "label": "t:sections.all.aspect_ratio.options__1.label"
+        },
+        {
+          "value": "3/2",
+          "label": "t:sections.all.aspect_ratio.options__2.label"
+        },
+        {
+          "value": "4/3",
+          "label": "t:sections.all.aspect_ratio.options__3.label"
+        },
+        {
+          "value": "16/9",
+          "label": "t:sections.all.aspect_ratio.options__4.label"
+        },
+        {
+          "value": "21/9",
+          "label": "t:sections.all.aspect_ratio.options__5.label"
+        },
+        {
+          "value": "4/5",
+          "label": "t:sections.all.aspect_ratio.options__7.label"
+        },
+        {
+          "value": "3/4",
+          "label": "t:sections.all.aspect_ratio.options__8.label"
+        },
+        {
+          "value": "adapt",
+          "label": "t:sections.all.aspect_ratio.options__6.label"
+        }
+      ],
+      "default": "16/9",
+      "label": "t:sections.all.aspect_ratio.label"
+    },
+    {
+      "type": "select",
+      "id": "mobile_aspect_ratio",
+      "options": [
+        {
+          "value": "1/1",
+          "label": "t:sections.all.aspect_ratio.options__1.label"
+        },
+        {
+          "value": "3/2",
+          "label": "t:sections.all.aspect_ratio.options__2.label"
+        },
+        {
+          "value": "4/3",
+          "label": "t:sections.all.aspect_ratio.options__3.label"
+        },
+        {
+          "value": "16/9",
+          "label": "t:sections.all.aspect_ratio.options__4.label"
+        },
+        {
+          "value": "21/9",
+          "label": "t:sections.all.aspect_ratio.options__5.label"
+        },
+        {
+          "value": "4/5",
+          "label": "t:sections.all.aspect_ratio.options__7.label"
+        },
+        {
+          "value": "3/4",
+          "label": "t:sections.all.aspect_ratio.options__8.label"
+        },
+        {
+          "value": "adapt",
+          "label": "t:sections.all.aspect_ratio.options__6.label"
+        }
+      ],
+      "default": "16/9",
+      "label": "t:sections.compare.settings.mobile_aspect_ratio.label"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "%",
+      "label": "t:sections.all.overlay_opacity.label",
+      "info": "t:sections.compare.settings.overlay_opacity.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.compare.settings.header__before.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme_before",
+      "default": "background-1",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_before",
+      "label": "t:sections.compare.settings.image_before.label"
+    },
+    {
+      "type": "text",
+      "id": "label_before",
+      "label": "t:sections.compare.settings.label_before.label",
+      "default": "t:sections.compare.settings.label_before.default"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading_before",
+      "label": "t:sections.all.heading.label",
+      "info": "t:sections.compare.settings.heading_before.info"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_tag.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_tag.options__2.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_tag.options__3.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_tag.options__4.label"
+        },
+        {
+          "value": "h5",
+          "label": "t:sections.all.heading_tag.options__5.label"
+        },
+        {
+          "value": "h6",
+          "label": "t:sections.all.heading_tag.options__6.label"
+        },
+        {
+          "value": "div",
+          "label": "t:sections.all.heading_tag.options__7.label"
+        },
+        {
+          "value": "p",
+          "label": "t:sections.all.heading_tag.options__8.label"
+        }
+      ],
+      "default": "h3",
+      "label": "t:sections.all.heading_tag.label",
+      "info": "t:sections.all.heading_tag.info"
+    },
+    {
+      "type": "select",
+      "id": "heading_size_before",
+      "options": [
+        {
+          "value": "h5",
+          "label": "t:sections.all.heading_size.options__5.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_size.options__1.label"
+        }
+      ],
+      "default": "h4",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment_before",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.compare.settings.vertical_alignment.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.compare.settings.vertical_alignment.options__2.label"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.compare.settings.vertical_alignment.options__3.label"
+        },
+        {
+          "value": "space_between",
+          "label": "t:sections.compare.settings.vertical_alignment.options__4.label"
+        }
+      ],
+      "default": "top",
+      "label": "t:sections.compare.settings.vertical_alignment.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.compare.settings.header__after.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme_after",
+      "default": "background-1",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_after",
+      "label": "t:sections.compare.settings.image_after.label"
+    },
+    {
+      "type": "text",
+      "id": "label_after",
+      "label": "t:sections.compare.settings.label_after.label",
+      "default": "t:sections.compare.settings.label_after.default"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading_after",
+      "label": "t:sections.all.heading.label",
+      "info": "t:sections.compare.settings.heading_after.info"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag_second",
+      "options": [
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_tag.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_tag.options__2.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_tag.options__3.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_tag.options__4.label"
+        },
+        {
+          "value": "h5",
+          "label": "t:sections.all.heading_tag.options__5.label"
+        },
+        {
+          "value": "h6",
+          "label": "t:sections.all.heading_tag.options__6.label"
+        },
+        {
+          "value": "div",
+          "label": "t:sections.all.heading_tag.options__7.label"
+        },
+        {
+          "value": "p",
+          "label": "t:sections.all.heading_tag.options__8.label"
+        }
+      ],
+      "default": "h3",
+      "label": "t:sections.all.heading_tag.label",
+      "info": "t:sections.all.heading_tag.info"
+    },
+    {
+      "type": "select",
+      "id": "heading_size_after",
+      "options": [
+        {
+          "value": "h5",
+          "label": "t:sections.all.heading_size.options__5.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_size.options__1.label"
+        }
+      ],
+      "default": "h4",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment_after",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.compare.settings.vertical_alignment.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.compare.settings.vertical_alignment.options__2.label"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.compare.settings.vertical_alignment.options__3.label"
+        },
+        {
+          "value": "space_between",
+          "label": "t:sections.compare.settings.vertical_alignment.options__4.label"
+        }
+      ],
+      "default": "top",
+      "label": "t:sections.compare.settings.vertical_alignment.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-padding.header.content"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-padding.padding_top.label"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-padding.padding_bottom.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.compare.presets.name",
+      "category": "t:sections.categories.banners"
+    }
+  ]
+}
+{% endschema %}

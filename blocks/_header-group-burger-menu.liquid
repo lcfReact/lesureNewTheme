@@ -1,0 +1,39 @@
+
+{% capture children %}
+  {% content_for 'blocks' %}
+{% endcapture %}
+
+<ul
+  class="
+    group-block
+    burger-menu__menu-list
+    burger-menu__menu-list--{{ section.settings.burger_menu_link_size }}
+  "
+  role="list"
+  {{ block.shopify_attributes }}
+>
+  {{- children -}}
+</ul>
+
+{% schema %}
+{
+  "name": "t:blocks.header-group-menu.name",
+  "tag": null,
+  "blocks": [
+    { 
+      "type": "_header-link" 
+    }
+  ],
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:blocks.header-group-menu.paragraph.content"
+    },
+  ],
+  "presets": [
+    {
+      "name": "t:blocks.header-group-menu.name"
+    }
+  ]
+}
+{% endschema %}

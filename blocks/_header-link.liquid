@@ -1,0 +1,104 @@
+{% capture blocks %}
+  {% content_for 'blocks' %}
+{% endcapture %}
+
+{% capture style %}
+  aspect-ratio: {{ section.settings.burger_image_ratio }};
+{% endcapture %}
+
+{% case section.settings.burger_menu_link_size %}
+  {% when 'large' %}
+    {% assign link_size_1 = 'h2' %}
+  {% when 'medium' %}
+    {% assign link_size_1 = 'h3' %}
+  {% when 'small' %}
+    {% assign link_size_1 = 'h4' %}
+{% endcase %}
+
+<li
+  class="burger-menu__menu-list-item{% if blocks != blank %} burger-menu__menu-list--submenu{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  <a
+    {% if block.settings.link %}
+      href="{{ block.settings.link }}"
+    {% else %}
+      disabled
+    {% endif %}
+    {% if settings.links_blank and link.type == 'http_link' %}
+      target="_blank"
+    {% endif %}
+    class="burger-menu__menu-item {{ link_size_1 }} list-menu__item focus-inset"
+  >
+    <span class="burger-menu__menu-item-span">
+      {{- block.settings.text -}}
+    </span>
+    {% if blocks != blank %}
+      {% render 'icon-arrow-down' %}
+    {% endif %}
+
+    {% if block.settings.image != blank %}
+      <div class="burger-menu__image-wrapper burger-menu__image-wrapper--link">
+        {% liquid
+          assign settings_aspect_ratio_numbers = section.settings.burger_image_ratio | split: '/'
+          assign settings_aspect_ratio = settings_aspect_ratio_numbers[0] | append: '.0' | divided_by: settings_aspect_ratio_numbers[1]
+
+          assign calc_ratio = 1.1
+
+          if block.settings.image.aspect_ratio > settings_aspect_ratio
+            assign calc_ratio = block.settings.image.aspect_ratio | divided_by: settings_aspect_ratio | round: 2
+          endif
+        %}
+        {%- capture sizes -%}
+          calc({{ calc_ratio }} * 400px)
+        {%- endcapture -%}
+        {{
+          block.settings.image
+          | image_url: width: block.settings.image.width
+          | image_tag:
+            widths: '400, 800, 1200, 1600, 2000, 2400',
+            sizes: sizes,
+            class: 'burger-menu__image burger-menu__image--block',
+            style: style
+        }}
+      </div>
+    {% endif %}
+  </a>
+
+  {{ blocks }}
+</li>
+
+{% schema %}
+{
+  "name": "t:blocks.header-link.name",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "_header-group-links"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "t:blocks.header-link.settings.text.label",
+      "default": "t:blocks.header-link.settings.text.default"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:blocks.header-link.settings.link.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.all.image.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:blocks.header-link.name"
+    }
+  ]
+}
+{% endschema %}

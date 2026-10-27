@@ -1,0 +1,245 @@
+{% comment %}
+  Renders a small product card
+  Accepts:
+  - product_card_product: {Object} Product Liquid object (optional)
+  - media_ratio: {String} The aspect ratio to use for the card's image. Default: 'portrait' (optional)
+  - media_fit: {String} The object-fit to use for the card's image. Default: 'cover'
+  - show_vendor: {Boolean} Show the product vendor. Default: true
+  - section_id: {String} The ID of the section that contains this card.
+  - add_id: {Integer} The index of this card.
+  - custom_sizes: {Integer} Custom sizes.
+  - color_scheme: {String} Color scheme.
+  Usage:
+  {% render 'product-card-small', show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+
+{% liquid
+  case media_ratio
+    when 'landscape'
+      # 4 / 3
+      assign padding_bottom = '75%'
+      assign media_ratio_for_calc = 1.33
+    when 'portrait'
+      # 574 / 751
+      assign padding_bottom = '130.8%'
+      assign media_ratio_for_calc = 0.76
+    when 'square'
+      # 1 / 1
+      assign padding_bottom = '100%'
+      assign media_ratio_for_calc = 1
+    else
+      # 574 / 751
+      assign padding_bottom = '130.8%'
+      assign media_ratio_for_calc = 1
+  endcase
+
+  assign has_color_swatches = false
+
+  unless product_card_product.has_only_default_variant
+    for option in product_card_product.options_with_values
+      assign is_color_option = false
+      assign color_trigger = settings.trigger_swatch | strip | newline_to_br | split: '<br />'
+      assign name_option = option.name | handle | strip
+
+      for item in color_trigger
+        assign item_temp = item | handle | strip
+        if settings.enable_color_swatch and name_option == item_temp
+          assign is_color_option = true
+        endif
+      endfor
+
+      if is_color_option and option.values.size > 1
+        assign has_color_swatches = true
+      endif
+    endfor
+  endunless
+%}
+
+{%- if settings.quickview_show or settings.add_to_cart_enabled -%}
+  {%- assign first_3d_model = product_card_product.media | where: 'media_type', 'model' | first -%}
+  {%- if first_3d_model -%}
+    {{ 'component-product-model.css' | asset_url | stylesheet_tag }}
+    <link
+      id="ModelViewerStyle"
+      rel="stylesheet"
+      href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css"
+      media="print"
+      onload="this.media='all'"
+    >
+    <link
+      id="ModelViewerOverride"
+      rel="stylesheet"
+      href="{{ 'component-model-viewer-ui.css' | asset_url }}"
+      media="print"
+      onload="this.media='all'"
+    >
+  {%- endif -%}
+
+  {%- if first_3d_model -%}
+    <script type="application/json" id="ProductJSON-{{ product.id }}">
+      {{ product_card_product.media | where: 'media_type', 'model' | json }}
+    </script>
+  {%- endif -%}
+{%- endif -%}
+
+{% capture media_style %}
+  {%- if media_fit == 'contain' -%}
+    object-fit: contain;
+  {%- elsif media_fit == 'cover' -%}
+    object-fit: cover;
+  {%- else -%}
+    object-fit: cover;
+  {%- endif -%}
+{% endcapture %}
+
+<product-card-small
+  class="card-small js-color-swatches-wrapper{% if color_scheme != blank %} color-{{ color_scheme }}{% else %} color-{{ settings.card_color_scheme }}{% endif %}"
+  data-product="{{ product_card_product.handle }}"
+  data-product-title="{{ product_card_product.title }}"
+  data-product-columns="{{ columns }}"
+  data-product-img-ratio="{{ media_ratio_for_calc }}"
+  data-product-img-fit="{{ media_fit }}"
+  {% if has_color_swatches %}
+    data-card-color-swatches="true"
+    data-swatch-initialized="false"
+  {% endif %}
+>
+  <div
+    class="card-small-image-link-wrapper card-small-image-link-wrapper--hover-{{ settings.product_card_hover }}"
+    tabindex="-1"
+  >
+    {% comment %} ------ CARD MEDIA ------ {% endcomment %}
+    <div
+      class="card-small-media"
+      style="padding-bottom: {{ padding_bottom }};"
+    >
+      {%- if product_card_product.featured_media -%}
+        {% liquid
+          if media_ratio == 'landscape'
+            assign settings_aspect_ratio = 1.33
+          elsif media_ratio == 'portrait'
+            assign settings_aspect_ratio = 0.76
+          else
+            assign settings_aspect_ratio = 1
+          endif
+
+          assign calc_ratio = 1
+
+          if media_fit == 'cover' and product_card_product.featured_media.aspect_ratio > settings_aspect_ratio
+            assign calc_ratio = product_card_product.featured_media.aspect_ratio | divided_by: settings_aspect_ratio | round: 2
+          endif
+        %}
+
+        {%- capture sizes -%}
+						{%- if media_ratio == 'landscape' or media_ratio == 'square' -%}
+							(min-width: 1440px) calc({{ calc_ratio }} * 444px), (min-width: 1200px) calc({{ calc_ratio }} * 302px), (min-width: 990px) calc({{ calc_ratio }} * 444px), (min-width: 576px) 90vw, 100vw
+						{%- else -%}
+							(min-width: 576px) calc({{ calc_ratio }} * 30.2rem), 100vw
+						{%- endif -%}
+					{%- endcapture -%}
+
+        {{
+          product_card_product.featured_media
+          | image_url: width: product_card_product.featured_media.width
+          | image_tag:
+            loading: 'lazy',
+            class: 'motion-reduce media--first',
+            widths: '360, 535, 720, 940, 1066, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600',
+            sizes: sizes,
+            style: media_style
+        }}
+
+        {%- if product_card_product.media[1] != null and settings.product_card_hover == 'secondary_image' -%}
+          {{
+            product_card_product.media[1]
+            | image_url: width: product_card_product.media[1].width
+            | image_tag:
+              loading: 'lazy',
+              class: 'motion-reduce media--second',
+              widths: '360, 535, 720, 940, 1066, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 3800',
+              sizes: sizes,
+              style: media_style
+          }}
+        {%- endif -%}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+
+    {% comment %} ------ PRODUCT LINK ------ {% endcomment %}
+    <a
+      href="{{ product_card_product.url | default: '#' }}"
+      class="link card-small-link-overlay js-color-swatches-link"
+      aria-label="{{ 'accessibility.product_link' | t }}"
+    ></a>
+  </div>
+
+  {% comment %} ----- CARD INFORMATION ----- {% endcomment %}
+  <div class="card-small-information">
+    <div class="card-small-information__wrapper">
+      <div class="card-small-information__group">
+        {%- if show_vendor -%}
+          <div class="card-small__vendor body-xs">
+            <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+            {% if settings.enable_vendor_link %}
+              {{ product_card_product.vendor | link_to_vendor: class: 'focus-inset' }}
+            {% else %}
+              {{ product_card_product.vendor }}
+            {% endif %}
+          </div>
+        {%- endif -%}
+
+        <div class="card-small__title-price-wrapper">
+          <h3 class="card-small__title">
+            <a class="full-unstyled-link" href="{{ product_card_product.url | default: '#' }}">
+              {{- product_card_product.title | escape -}}
+            </a>
+          </h3>
+
+          {% render 'price', product: product_card_product, price_class: '', display_mode_variant_prices: settings.display_mode_variant_prices %}
+        </div>
+      </div>
+
+      {% comment %} ----- PRODUCT PARAMETERS ----- {% endcomment %}
+      <div class="product-parameters">
+        {%- unless product_card_product.has_only_default_variant -%}
+          {%- for option in product_card_product.options_with_values -%}
+            {%- liquid
+              assign is_color_option = false
+              assign color_trigger = settings.trigger_swatch | strip | newline_to_br | split: '<br />'
+              assign name_option = option.name | handle | strip
+
+              for item in color_trigger
+                assign item_temp = item | handle | strip
+                if settings.enable_color_swatch and name_option == item_temp
+                  assign is_color_option = true
+                endif
+              endfor
+            -%}
+            {%- if is_color_option and option.values.size > 1 -%}
+              <div class="product-form__controls js-color-swatches">
+                <div class="product-form__controls-group">
+                  {% render 'product-variant-options',
+                    product: product_card_product,
+                    section_id: section_id,
+                    option: option,
+                    is_product_card: true,
+                    has_color_swatch: true
+                  %}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endunless -%}
+      </div>
+    </div>
+  </div>
+  {%- if has_color_swatches -%}
+    <script type="application/json" data-product-card-variants>
+      {{ product_card_product.variants | json }}
+    </script>
+    <script type="application/json" data-product-card-feat-media>
+      {{ product_card_product.featured_media | json }}
+    </script>
+  {%- endif -%}
+</product-card-small>

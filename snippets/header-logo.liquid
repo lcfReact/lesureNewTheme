@@ -1,0 +1,122 @@
+{% comment %}
+  Example: {% render 'header-logo', tag: 'h1' %}
+{% endcomment %}
+
+{% liquid
+  if tag == blank
+    assign tag = 'h1'
+  endif
+
+  assign logo_desktop = section.settings.logo
+  assign logo_mobile = section.settings.logo_mobile
+  assign logo_overlay = section.settings.logo_2
+  assign logo_width = section.settings.logo_width
+  assign logo_width_mobile = section.settings.logo_width_mobile | default: logo_width
+
+  if logo_image != blank
+    assign logo_desktop = logo_image
+    assign logo_mobile = logo_image
+  endif
+
+  if logo_desktop == blank
+    assign logo_desktop = logo_mobile
+  endif
+  if logo_mobile == blank
+    assign logo_mobile = logo_desktop
+  endif
+
+  assign same_logo = false
+  if logo_desktop != blank and logo_mobile != blank and logo_desktop.id == logo_mobile.id
+    assign same_logo = true
+  endif
+%}
+
+{%- if request.page_type == 'index' -%}
+  <{{ tag }} class="header__heading">
+{%- endif -%}
+{% liquid
+  assign padding_bottom = 0
+  assign padding_bottom_mobile = 0
+  if logo_desktop != blank and logo_overlay == blank
+    assign padding_bottom = 1 | divided_by: logo_desktop.aspect_ratio | times: 100
+  elsif logo_desktop == blank and logo_overlay != blank
+    assign padding_bottom = 1 | divided_by: logo_overlay.aspect_ratio | times: 100
+  elsif logo_desktop != blank and logo_overlay != blank
+    assign logo_aspect = logo_desktop.aspect_ratio | at_most: logo_overlay.aspect_ratio
+    assign padding_bottom = 1 | divided_by: logo_aspect | times: 100
+  endif
+  if logo_mobile != blank
+    assign padding_bottom_mobile = 1 | divided_by: logo_mobile.aspect_ratio | times: 100
+  else
+    assign padding_bottom_mobile = padding_bottom
+  endif
+%}
+<a
+  href="{{ routes.root_url }}" class="header__heading-link focus-inset{% if position != blank %} header__heading-link--{{position}}{% endif %}"
+  {% if logo_desktop != blank or logo_mobile != blank or logo_overlay != blank and section.settings.overlay_mode %}
+  style="--logo-width: {{ logo_width }}px; --logo-width-mobile: {{ logo_width_mobile }}px; --padding_bottom: {{ padding_bottom }}%; --padding_bottom_mobile: {{ padding_bottom_mobile }}%;"
+  {% endif %}
+>
+  {%- if logo_desktop != blank or logo_mobile != blank -%}
+    {%- if same_logo -%}
+      {%- assign image_size_2x = logo_width | times: 2 | at_most: 5760 -%}
+      <img
+        srcset="{{ logo_desktop | image_url: width: logo_width }} 1x, {{ logo_desktop | image_url: width: image_size_2x }} 2x"
+        src="{{ logo_desktop | image_url: width: logo_width }}"
+        class="header__heading-logo"
+        width="{{ logo_width }}"
+        height="auto"
+        alt="{{ logo_desktop.alt | default: shop.name | escape }}"
+      >
+    {%- else -%}
+      {%- if logo_desktop != blank -%}
+        {%- assign image_size_2x = logo_width | times: 2 | at_most: 5760 -%}
+        <img
+          srcset="{{ logo_desktop | image_url: width: logo_width }} 1x, {{ logo_desktop | image_url: width: image_size_2x }} 2x"
+          src="{{ logo_desktop | image_url: width: logo_width }}"
+          class="header__heading-logo header__heading-logo--desktop"
+          width="{{ logo_width }}"
+          height="auto"
+          alt="{{ logo_desktop.alt | default: shop.name | escape }}"
+        >
+      {%- endif -%}
+      {%- if logo_mobile != blank -%}
+        {%- assign image_size_mobile_2x = logo_width_mobile | times: 2 | at_most: 5760 -%}
+        <img
+          srcset="{{ logo_mobile | image_url: width: logo_width_mobile }} 1x, {{ logo_mobile | image_url: width: image_size_mobile_2x }} 2x"
+          src="{{ logo_mobile | image_url: width: logo_width_mobile }}"
+          class="header__heading-logo header__heading-logo--mobile"
+          width="{{ logo_width_mobile }}"
+          height="auto"
+          alt="{{ logo_mobile.alt | default: shop.name | escape }}"
+        >
+      {%- endif -%}
+    {%- endif -%}
+    {%- if logo_overlay != blank -%}
+      {%- assign image_size_2x = logo_width | times: 2 | at_most: 5760 -%}
+      <img
+        srcset="{{ logo_overlay | image_url: width: logo_width }} 1x, {{ logo_overlay | image_url: width: image_size_2x }} 2x"
+        src="{{ logo_overlay | image_url: width: logo_width }}"
+        class="header__heading-logo header__heading-logo--overlay"
+        width="{{ logo_width }}"
+        height="auto"
+        alt="{{ logo_overlay.alt | default: shop.name | escape }}"
+      >
+    {%- endif -%}
+  {%- elsif logo_overlay != blank and section.settings.overlay_mode -%}
+    {%- assign image_size_2x = logo_width | times: 2 | at_most: 5760 -%}
+    <img
+      srcset="{{ logo_overlay | image_url: width: logo_width }} 1x, {{ logo_overlay | image_url: width: image_size_2x }} 2x"
+      src="{{ logo_overlay | image_url: width: logo_width }}"
+      class="header__heading-logo header__heading-logo--overlay"
+      width="{{ logo_width }}"
+      height="auto"
+      alt="{{ logo_overlay.alt | default: shop.name | escape }}"
+    >
+  {%- else -%}
+    <span>{{ shop.name }}</span>
+  {%- endif -%}
+</a>
+{%- if request.page_type == 'index' -%}
+  </{{ tag }}>
+{%- endif -%}

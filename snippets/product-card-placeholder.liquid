@@ -1,0 +1,184 @@
+{% comment %}
+  	Renders a product card placeholder
+    Accepts:
+    - media_ratio: {String} The aspect ratio of the image,
+    - show_vendor: {Boolean} Show the product vendor. Default: false,
+    - product_number: {Integer} The number of the product,
+    - color_scheme: {String} The color scheme of the card.
+  	Usage:
+  {% render 'product-card-placeholder', show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+
+{% liquid
+  case media_ratio
+    when 'landscape'
+      # 4 / 3
+      assign padding_bottom = '75%'
+    when 'portrait'
+      # 574 / 751
+      assign padding_bottom = '130.8%'
+    when 'square'
+      # 1 / 1
+      assign padding_bottom = '100%'
+    else
+      # 574 / 751
+      assign padding_bottom = '130.8%'
+  endcase
+
+  assign product_card_index = 1
+
+  if product_number != blank
+    assign product_card_index = product_number
+  endif
+%}
+
+<div class="card-wrapper{% if color_scheme != blank %} color-{{ color_scheme }}{% else %} color-{{ settings.card_color_scheme }}{% endif %}">
+  <div class="card card--hover-{{ settings.product_card_hover }}" tabindex="-1">
+    <div class="card__inner">
+      {% comment %} ------ CARD MEDIA ------ {% endcomment %}
+      <div
+        class="card-media"
+        style="padding-bottom: {{ padding_bottom }};"
+      >
+        {% liquid
+          assign placeholder_index = product_card_index | modulo: 6 | plus: 1
+        %}
+
+        {{ 'product-' | append: placeholder_index | placeholder_svg_tag: 'placeholder-svg' }}
+
+        {%- if settings.product_card_hover == 'secondary_image' -%}
+          {{ 'collection-' | append: placeholder_index | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+      {% comment %} ------ CARD BADGES ------ {% endcomment %}
+      <div class="card__badges-wrapper">
+        {% comment %} ------ SALE BADGE ------ {% endcomment %}
+        {%- if product_card_index == 1 or product_card_index == 5 -%}
+          {%- if settings.badge_sale_show -%}
+            <span class="badge badge--sale body-small" aria-hidden="true">
+              {% if settings.badge_sale_type == 'sale' %}
+                {{- 'products.product.on_sale' | t -}}
+              {% else %}
+                <span class="badge__discount-amount body-small">
+                  {{ 'products.product.percentage_discount' | t: discount: 20 }}
+                </span>
+                <span class="badge__discount-label body-small">
+                  {{ 'products.product.percentage_discount_2' | t }}
+                </span>
+              {% endif %}
+            </span>
+          {%- endif -%}
+        {%- endif -%}
+
+        {% comment %} ------ OTHER BADGES ------ {% endcomment %}
+        {%- if settings.badge_new_show or settings.badge_soldout_show -%}
+          <div class="card__badges">
+            {% comment %} ------ NEW BADGE ------ {% endcomment %}
+            {% if product_card_index == 2 or product_card_index == 4 %}
+              {%- if settings.badge_new_show -%}
+                <span class="badge badge--new body-small">
+                  {{- 'products.product.new' | t -}}
+                </span>
+              {%- endif -%}
+            {% endif %}
+
+            {% comment %} ------ SOLD OUT BADGE ------ {% endcomment %}
+            {%- if product_card_index == 3 and settings.badge_soldout_show -%}
+              <span class="badge badge--sold-out" aria-hidden="true">
+                {{- 'products.product.sold_out' | t -}}
+              </span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {% comment %} ------ CARD BUTTONS ------ {% endcomment %}
+    <div
+      class="card__links card__links--{{ settings.buttons_layout }}{% if settings.show_on_mobile %} card__links--show-on-mobile{% endif %}"
+    >
+      {%- if settings.add_to_cart_enabled and product_card_index != 3 -%}
+        <div class="card__add-to-cart card__button">
+          <div class="form">
+            <button
+              class="card__link button button--{{ settings.quickview_button_style }} button--quick-add card-focused"
+              disabled
+              aria-label="{{ settings.add_to_cart }}"
+            >
+              <div class="button__content">
+                <span class="button__label visually-hidden" data-label="{{- settings.add_to_cart -}}" data-add-to-cart-label>
+                  {{- settings.add_to_cart -}}
+                </span>
+                <div class="button__icons">
+                  <span class="button__icon button__icon--1">{% render 'icon-plus' %}</span>
+                  <span class="button__icon button__icon--2">{% render 'icon-plus' %}</span>
+                </div>
+              </div>
+              <div class="animated-button-circle"></div>
+              <div class="loading-overlay__spinner hidden">
+                {% render 'icon-loading' %}
+              </div>
+            </button>
+          </div>
+        </div>
+      {%- endif -%}
+      {%- if settings.quickview_show -%}
+        <div class="quick-add no-js-hidden">
+          <button
+            class="card__link button button--{{ settings.quickview_button_style }} button--quick-view card-focused"
+            disabled
+          >
+            <div class="button__content">
+              <span class="button__label visually-hidden">
+                {{ 'general.card.quick__view' | t }}
+                {{ product_card_product.title | escape }}
+              </span>
+              <div class="button__icons">
+                <span class="button__icon button__icon--1">{% render 'icon-quick-view' %}</span>
+                <span class="button__icon button__icon--2">{% render 'icon-quick-view' %}</span>
+              </div>
+            </div>
+            <div class="animated-button-circle"></div>
+            <div class="loading-overlay__spinner hidden">
+              {% render 'icon-loading' %}
+            </div>
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="card-information">
+    <div class="card-information__wrapper">
+      <div class="card-information__group">
+        {%- if show_vendor -%}
+          <div class="card__vendor body-xs">
+            <span class="visually-hidden">{{- 'accessibility.vendor' | t -}}</span>
+            {{- 'products.product.vendor' | t -}}
+          </div>
+        {%- endif -%}
+
+        <div class="card__title-price-wrapper">
+          <h3 class="card__title">
+            {{- 'products.product.product_heading' | t -}}
+          </h3>
+          {% liquid
+            assign is_placeholder_sale_price = false
+
+            if product_card_index == 1 or product_card_index == 5
+              assign is_placeholder_sale_price = true
+            endif
+          %}
+          {% render 'price', is_placeholder_sale_price: is_placeholder_sale_price, is_placeholder: true, display_mode_variant_prices: settings.display_mode_variant_prices %}
+        </div>
+
+        {%- if show_desc -%}
+          <div class="card__description">
+            {{- 'products.product.description_placeholder' | t -}}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+{% liquid
+  assign has_shipping_slider = false
+  if settings.show_shipping
+    assign has_shipping_slider = true
+  endif
+%}
+
+{%- if has_shipping_slider -%}
+  <div class="cart-improvements{% if cart == empty %} is-empty{% endif %}">
+    <div
+      class="cart-shipping{% if cart == empty %} is-empty{% endif %}"
+      data-min-spend="{{ settings.min_spend | times: 100.0 }}"
+      data-total="{{ cart.total_price }}"
+      data-message=" {{ settings.message_shipping }}"
+      data-cart-is-empty="{{ cart.empty? }}"
+      data-show-in-empty-drawer="{{ settings.enable_shipping_in_empty_drawer }}"
+      data-show-in-empty-cart="{{ settings.enable_shipping_in_empty_cart }}"
+    >
+      <p class="cart-shipping__message cart-shipping__message_default body-xs active"></p>
+      <p class="cart-shipping__message cart-shipping__message_success body-xs">
+        {{- settings.message_shipping_free -}}
+      </p>
+      <span class="cart-shipping__progress">
+        <span class="cart-shipping__progress-current"></span>
+      </span>
+    </div>
+  </div>
+{%- endif -%}

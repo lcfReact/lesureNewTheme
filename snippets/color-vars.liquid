@@ -1,0 +1,66 @@
+{% style %}
+  {% for scheme in settings.color_schemes -%}
+    {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
+    {% if forloop.index == 1 -%}
+      :root,
+    {%- endif %}
+    .color-{{ scheme.id }} {
+      --color-background: {{ scheme.settings.colors_background_1.red }},{{ scheme.settings.colors_background_1.green }},{{ scheme.settings.colors_background_1.blue }};
+      --color-background-secondary: {{ scheme.settings.colors_background_2.red }},{{ scheme.settings.colors_background_2.green }},{{ scheme.settings.colors_background_2.blue }};
+      --color-foreground: {{ scheme.settings.colors_text.red }}, {{ scheme.settings.colors_text.green }}, {{ scheme.settings.colors_text.blue }};
+      {% if scheme.settings.background_gradient != empty %}
+        --overwrite-background: {{ scheme.settings.background_gradient }};
+      {% else %}
+        --overwrite-background: {{ scheme.settings.colors_background_1 }};
+      {% endif %}
+      --color-foreground-secondary: {{ scheme.settings.colors_secondary_text.red }}, {{ scheme.settings.colors_secondary_text.green }}, {{ scheme.settings.colors_secondary_text.blue }};
+   		--color-overlay: {{ scheme.settings.colors_background_overlay.red }},{{ scheme.settings.colors_background_overlay.green }},{{ scheme.settings.colors_background_overlay.blue }};
+      --color-button-text: {{ scheme.settings.colors_solid_button_labels.red }}, {{ scheme.settings.colors_solid_button_labels.green }}, {{ scheme.settings.colors_solid_button_labels.blue }};
+      --color-button-text-hover: {{ scheme.settings.colors_solid_button_labels_hover.red }}, {{ scheme.settings.colors_solid_button_labels_hover.green }}, {{ scheme.settings.colors_solid_button_labels_hover.blue }};
+      --color-button: {{ scheme.settings.colors_solid_button_background.red }}, {{ scheme.settings.colors_solid_button_background.green }}, {{ scheme.settings.colors_solid_button_background.blue }};
+      --color-button-hover: {{ scheme.settings.colors_solid_button_background_hover.red }}, {{ scheme.settings.colors_solid_button_background_hover.green }}, {{ scheme.settings.colors_solid_button_background_hover.blue }};
+      --color-button-secondary: {{ scheme.settings.colors_secondary_button_background.red }}, {{ scheme.settings.colors_secondary_button_background.green }}, {{ scheme.settings.colors_secondary_button_background.blue }};
+      --color-button-secondary-hover: {{ scheme.settings.colors_secondary_button_background_hover.red }}, {{ scheme.settings.colors_secondary_button_background_hover.green }}, {{ scheme.settings.colors_secondary_button_background_hover.blue }};
+      --color-button-secondary-text: {{ scheme.settings.colors_secondary_button_labels.red }}, {{ scheme.settings.colors_secondary_button_labels.green }}, {{ scheme.settings.colors_secondary_button_labels.blue }};
+      --color-button-secondary-text-hover: {{ scheme.settings.colors_secondary_button_labels_hover.red }}, {{ scheme.settings.colors_secondary_button_labels_hover.green }}, {{ scheme.settings.colors_secondary_button_labels_hover.blue }};
+      --color-button-tertiary-text: {{ scheme.settings.colors_tertiary_button_labels.red }}, {{ scheme.settings.colors_tertiary_button_labels.green }}, {{ scheme.settings.colors_tertiary_button_labels.blue }};
+
+      --color-background-input: {{ scheme.settings.colors_input_background.red }}, {{ scheme.settings.colors_input_background.green }}, {{ scheme.settings.colors_input_background.blue }};
+      --color-foreground-input: {{ scheme.settings.colors_input_text.red }}, {{ scheme.settings.colors_input_text.green }}, {{ scheme.settings.colors_input_text.blue }};
+      --color-border-input: {{ scheme.settings.colors_input_border.red }}, {{ scheme.settings.colors_input_border.green }}, {{ scheme.settings.colors_input_border.blue }};
+      --color-border-input-focus: {{ scheme.settings.colors_input_border_focus.red }}, {{ scheme.settings.colors_input_border_focus.green }}, {{ scheme.settings.colors_input_border_focus.blue }};
+
+      --color-border: {{ scheme.settings.color_border.red }}, {{ scheme.settings.color_border.green }}, {{ scheme.settings.color_border.blue }};
+
+      --color-background-card-small: {{ scheme.settings.colors_background_card_small.red }}, {{ scheme.settings.colors_background_card_small.green }}, {{ scheme.settings.colors_background_card_small.blue }};
+      --color-background-card-small-hover: {{ scheme.settings.colors_background_card_small_hover.red }}, {{ scheme.settings.colors_background_card_small_hover.green }}, {{ scheme.settings.colors_background_card_small_hover.blue }};
+
+      --sold-out-badge-bg: {{ scheme.settings.sold_out_badge_bg.red }},{{ scheme.settings.sold_out_badge_bg.green }},{{ scheme.settings.sold_out_badge_bg.blue }};
+      --sold-out-badge-color: {{ scheme.settings.sold_out_badge_color.red }},{{ scheme.settings.sold_out_badge_color.green }},{{ scheme.settings.sold_out_badge_color.blue }};
+      --sale-badge-bg: {{ scheme.settings.sale_badge_bg.red }},{{ scheme.settings.sale_badge_bg.green }},{{ scheme.settings.sale_badge_bg.blue }};
+      --sale-badge-color: {{ scheme.settings.sale_badge_color.red }},{{ scheme.settings.sale_badge_color.green }},{{ scheme.settings.sale_badge_color.blue }};
+      --custom-badge-bg: {{ scheme.settings.custom_badge_bg.red }},{{ scheme.settings.custom_badge_bg.green }},{{ scheme.settings.custom_badge_bg.blue }};
+    	--custom-badge-color: {{ scheme.settings.custom_badge_color.red }},{{ scheme.settings.custom_badge_color.green }},{{ scheme.settings.custom_badge_color.blue }};
+      --new-badge-bg: {{ scheme.settings.new_badge_bg.red }},{{ scheme.settings.new_badge_bg.green }},{{ scheme.settings.new_badge_bg.blue }};
+    	--new-badge-color: {{ scheme.settings.new_badge_color.red }},{{ scheme.settings.new_badge_color.green }},{{ scheme.settings.new_badge_color.blue }};
+
+      --color-card-price-regular: {{ scheme.settings.card_regular_price_color.red }}, {{ scheme.settings.card_regular_price_color.green }}, {{ scheme.settings.card_regular_price_color.blue }};
+      --color-card-price-sale: {{ scheme.settings.card_sale_price_color.red }}, {{ scheme.settings.card_sale_price_color.green }}, {{ scheme.settings.card_sale_price_color.blue }};
+
+      --color-success: {{ scheme.settings.color_success.red }}, {{ scheme.settings.color_success.green }}, {{ scheme.settings.color_success.blue }};
+      --color-error: {{ scheme.settings.color_error.red }}, {{ scheme.settings.color_error.green }}, {{ scheme.settings.color_error.blue }};
+    }
+  {% endfor %}
+
+  {{ scheme_classes | prepend: 'body' }} {
+    color: rgba(var(--color-foreground));
+    background: rgb(var(--color-background));
+    background-attachment: fixed;
+  }
+
+  :root {
+    --color-shadow: var(--color-foreground);
+    --payment-terms-background-color: {{ settings.colors_background_1 }};
+    --color-modal-overlay: {{ settings.color_modal_overlay.red }},{{ settings.color_modal_overlay.green }},{{ settings.color_modal_overlay.blue }};
+  }
+{% endstyle %}

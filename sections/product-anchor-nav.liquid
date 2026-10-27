@@ -1,0 +1,447 @@
+{% liquid
+  assign custom_nav = product.metafields.custom.anchor_navigation
+  assign use_custom = false
+  if custom_nav != blank and custom_nav.value != blank
+    assign use_custom = true
+  endif
+%}
+
+{%- capture nav_items -%}
+  {%- if use_custom -%}
+    {%- if custom_nav.type == 'list.single_line_text_field' -%}
+      {%- for line in custom_nav.value limit: 12 -%}
+        {%- liquid
+          assign clean = line | strip
+          assign parts = clean | split: '|'
+          assign label = parts | first | strip
+          assign raw_anchor = parts | last | strip | remove: '#'
+          assign anchor = raw_anchor | handleize
+        -%}
+        {%- if parts.size > 1 and label != blank and anchor != blank -%}
+          <li class="product-anchor__item">
+            <a class="product-anchor__link" href="#{{ anchor }}" data-anchor-link="{{ anchor }}">{{ label | escape }}</a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- assign nav_lines = custom_nav.value | newline_to_br | replace: '<br />', '|||' | replace: '<br>', '|||' | split: '|||' -%}
+      {%- for line in nav_lines limit: 12 -%}
+        {%- liquid
+          assign clean = line | strip
+          assign parts = clean | split: '|'
+          assign label = parts | first | strip
+          assign raw_anchor = parts | last | strip | remove: '#'
+          assign anchor = raw_anchor | handleize
+        -%}
+        {%- if parts.size > 1 and label != blank and anchor != blank -%}
+          <li class="product-anchor__item">
+            <a class="product-anchor__link" href="#{{ anchor }}" data-anchor-link="{{ anchor }}">{{ label | escape }}</a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign label = block.settings.label | strip
+        assign anchor = block.settings.anchor_id | handleize
+      -%}
+      {%- if label != blank and anchor != blank -%}
+        <li class="product-anchor__item" {{ block.shopify_attributes }}>
+          <a class="product-anchor__link" href="#{{ anchor }}" data-anchor-link="{{ anchor }}">{{ label | escape }}</a>
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- assign nav_items_stripped = nav_items | strip -%}
+{%- if nav_items_stripped != blank -%}
+  <nav
+    class="product-anchor color-{{ section.settings.color_scheme }} background"
+    aria-label="{{ 'products.anchor_nav.label' | t }}"
+    data-product-anchor
+  >
+    <div class="product-anchor__scroller">
+      <ul class="product-anchor__list">
+        {{ nav_items }}
+      </ul>
+    </div>
+  </nav>
+{%- elsif request.design_mode -%}
+  <div class="product-anchor product-anchor--empty color-{{ section.settings.color_scheme }} background">
+    {{ 'products.anchor_nav.empty' | t }}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .product-anchor-section {
+    position: sticky;
+    top: calc(var(--header-height, 0px) + var(--announcement-height, 0px));
+    z-index: 11;
+    transition: top 0.85s cubic-bezier(0.602, 0.007, 0.374, 0.995);
+  }
+
+  .shopify-section-header-sticky:not(.shopify-section-header-hidden) ~ main .product-anchor-section {
+    top: calc(var(--header-height, 0px) + var(--announcement-height, 0px));
+  }
+
+  .product-anchor {
+    background-color: rgb(var(--color-background));
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  }
+
+  .product-anchor__scroller {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .product-anchor__scroller::-webkit-scrollbar {
+    display: none;
+  }
+
+  .product-anchor__list {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: safe center;
+    gap: 2.4rem;
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    padding: 0 2rem;
+    list-style: none;
+  }
+
+  .product-anchor__item {
+    display: flex;
+    flex: 0 0 auto;
+  }
+
+  .product-anchor__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 4.8rem;
+    padding: 0;
+    color: rgb(var(--color-foreground));
+    font-size: 1.4rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-decoration: none;
+    opacity: 0.5;
+    border-bottom: 0.2rem solid transparent;
+  }
+
+  .product-anchor__item[hidden],
+  .product-anchor__link[hidden] {
+    display: none !important;
+  }
+
+  .product-anchor__link.is-active {
+    opacity: 1;
+    font-weight: 600;
+    border-bottom-color: rgb(var(--color-foreground));
+  }
+
+  .product-anchor__link.is-missing {
+    opacity: 0.35;
+  }
+
+  .product-anchor__link:focus-visible {
+    outline: 0.2rem solid rgb(var(--color-foreground));
+    outline-offset: 0.2rem;
+  }
+
+  .product-anchor--empty {
+    padding: 1.6rem 2rem;
+    font-size: 1.4rem;
+  }
+
+  @media screen and (min-width: 1200px) {
+    .product-anchor__list {
+      padding-right: 3.2rem;
+      padding-left: 3.2rem;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    if (window.productAnchorBound) return;
+    window.productAnchorBound = true;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function navs() {
+      return document.querySelectorAll('[data-product-anchor]');
+    }
+
+    function headerState() {
+      const header = document.querySelector('.shopify-section-header');
+      const sticky = document.querySelector('sticky-header');
+      const type = sticky ? sticky.getAttribute('data-sticky-type') : 'none';
+      const headerHeight = header ? header.getBoundingClientRect().height : 0;
+      return { header, type, headerHeight };
+    }
+
+    function visibleOffset(nav) {
+      const { header } = headerState();
+      let headerBottom = 0;
+      if (header) {
+        const bottom = header.getBoundingClientRect().bottom;
+        if (bottom > 0) headerBottom = bottom;
+      }
+      return headerBottom + nav.getBoundingClientRect().height;
+    }
+
+    function scrollOffset(nav, target) {
+      const { type, headerHeight } = headerState();
+      const navHeight = nav.getBoundingClientRect().height;
+      const gap = 12;
+      const announcement = document.querySelector('.section-announcement');
+      const announcementHeight = announcement ? announcement.getBoundingClientRect().height : 0;
+      if (type === 'always') return headerHeight + announcementHeight + navHeight + gap;
+      if (type === 'none') return navHeight + gap;
+      const scrollingDown = target.getBoundingClientRect().top > visibleOffset(nav);
+      if (scrollingDown) return navHeight + gap;
+      return headerHeight + navHeight + gap;
+    }
+
+    function sectionHasContent(target) {
+      const section = target.closest('.shopify-section') || target;
+      const media = section.querySelector('img, video, iframe, model-viewer, svg');
+      if (media) return true;
+      const text = (section.innerText || '').replace(/\s+/g, '');
+      return text.length > 0;
+    }
+
+    function syncLinks(nav) {
+      const designMode = Boolean(window.Shopify && window.Shopify.designMode);
+      let visible = 0;
+      nav.querySelectorAll('[data-anchor-link]').forEach((link) => {
+        const target = document.getElementById(link.dataset.anchorLink);
+        const ready = Boolean(target) && sectionHasContent(target);
+        const item = link.closest('.product-anchor__item');
+        link.classList.toggle('is-missing', !ready);
+        if (!ready && !designMode) {
+          link.hidden = true;
+          if (item) item.hidden = true;
+          return;
+        }
+        link.hidden = false;
+        if (item) item.hidden = false;
+        visible += 1;
+      });
+      nav.hidden = visible === 0;
+    }
+
+    function reveal(link, scroller) {
+      const linkRect = link.getBoundingClientRect();
+      const box = scroller.getBoundingClientRect();
+      if (linkRect.left >= box.left + 8 && linkRect.right <= box.right - 8) return;
+      const delta = linkRect.left - box.left - (box.width - linkRect.width) / 2;
+      scroller.scrollTo({
+        left: scroller.scrollLeft + delta,
+        behavior: reducedMotion.matches ? 'auto' : 'smooth'
+      });
+    }
+
+    function setActive(nav, link) {
+      nav.querySelectorAll('[data-anchor-link]').forEach((item) => {
+        const active = item === link;
+        item.classList.toggle('is-active', active);
+        if (active) item.setAttribute('aria-current', 'true');
+        else item.removeAttribute('aria-current');
+      });
+      if (!link || nav.dataset.activeId === link.dataset.anchorLink) return;
+      nav.dataset.activeId = link.dataset.anchorLink;
+      const scroller = nav.querySelector('.product-anchor__scroller');
+      if (scroller) reveal(link, scroller);
+    }
+
+    function updateActive(nav) {
+      const links = Array.from(nav.querySelectorAll('[data-anchor-link]')).filter((link) => !link.hidden);
+      if (!links.length) return;
+      const line = visibleOffset(nav) + 24;
+      const items = links
+        .map((link) => {
+          const target = document.getElementById(link.dataset.anchorLink);
+          if (!target) return null;
+          const rect = target.getBoundingClientRect();
+          return { link, top: rect.top, bottom: rect.bottom };
+        })
+        .filter(Boolean);
+      let current = null;
+      items.forEach((item) => {
+        if (item.top <= line) current = item;
+      });
+      const next = items.find((item) => item.top > line);
+      if (current && current.bottom < line && next) current = next;
+      if (!current && next) current = next;
+      if (!current && items.length) current = items[items.length - 1];
+      setActive(nav, current ? current.link : links[0]);
+    }
+
+    function refresh() {
+      navs().forEach((nav) => {
+        syncLinks(nav);
+        updateActive(nav);
+      });
+    }
+
+    function scrollToTarget(nav, target) {
+      const top = target.getBoundingClientRect().top + window.scrollY - scrollOffset(nav, target);
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: reducedMotion.matches ? 'auto' : 'smooth'
+      });
+    }
+
+    let pinUntil = 0;
+    let pinToken = 0;
+
+    document.addEventListener(
+      'click',
+      (event) => {
+        const link = event.target.closest('[data-anchor-link]');
+        if (!link) return;
+        event.preventDefault();
+        const nav = link.closest('[data-product-anchor]');
+        const target = document.getElementById(link.dataset.anchorLink);
+        if (!nav || !target) return;
+        setActive(nav, link);
+        pinToken += 1;
+        const token = pinToken;
+        pinUntil = performance.now() + 900;
+        scrollToTarget(nav, target);
+        window.setTimeout(() => {
+          if (token !== pinToken) return;
+          pinUntil = 0;
+          navs().forEach(updateActive);
+        }, 950);
+      },
+      true
+    );
+
+    let frame = 0;
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (performance.now() < pinUntil) return;
+        if (frame) return;
+        frame = window.requestAnimationFrame(() => {
+          frame = 0;
+          navs().forEach(updateActive);
+        });
+      },
+      { passive: true }
+    );
+
+    window.addEventListener('scrollend', () => {
+      pinUntil = 0;
+      navs().forEach(updateActive);
+    });
+
+    window.addEventListener('resize', refresh);
+
+    const header = document.querySelector('.shopify-section-header');
+    if (header && window.MutationObserver) {
+      const observer = new MutationObserver(() => {
+        navs().forEach(updateActive);
+      });
+      observer.observe(header, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    document.addEventListener('shopify:section:load', refresh);
+    document.addEventListener('shopify:section:unload', refresh);
+    document.addEventListener('shopify:section:reorder', refresh);
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', refresh);
+    } else {
+      refresh();
+    }
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:sections.product-anchor-nav.name",
+  "tag": "section",
+  "class": "product-anchor-section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.product-anchor-nav.settings.paragraph.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.color_scheme.label",
+      "default": "background-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "t:sections.product-anchor-nav.blocks.link.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:sections.product-anchor-nav.blocks.link.settings.label.label",
+          "default": "Overview"
+        },
+        {
+          "type": "text",
+          "id": "anchor_id",
+          "label": "t:sections.product-image-with-text.settings.anchor_id.label",
+          "info": "t:sections.product-anchor-nav.blocks.link.settings.anchor_id.info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.product-anchor-nav.presets.name",
+      "category": "t:sections.categories.products",
+      "blocks": [
+        {
+          "type": "link",
+          "settings": {
+            "label": "Overview",
+            "anchor_id": "overview"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "Specs",
+            "anchor_id": "specs"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "FAQ",
+            "anchor_id": "faq"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "Reviews",
+            "anchor_id": "reviews"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

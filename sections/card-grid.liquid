@@ -1,0 +1,589 @@
+{{ 'section-card-grid.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign enable_animation = false
+
+  if section.settings.animate_section_header_on_scroll
+    if section.settings.heading != blank or section.settings.description != blank
+      assign enable_animation = true
+    endif
+  endif
+%}
+
+{%- if enable_animation -%}
+  <script src="{{ 'card-grid.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% style %}
+  {% render 'section-margin' %}
+  {% render 'section-padding' %}
+{% endstyle %}
+
+{% liquid
+  assign image_styles = 'object-fit: cover;'
+
+  if section.settings.object_fit == 'contain'
+    assign image_styles = 'object-fit: contain;'
+  endif
+
+  assign heading_delay = 0
+
+  assign heading_words = section.settings.heading | split: ' '
+  assign words_delay = 0.1 | times: heading_words.size
+
+  assign description_delay = heading_delay | plus: words_delay
+%}
+
+{%- if section.blocks.size > 0 -%}
+  {%- if section.settings.grid_count == 1 -%}
+    {% style %}
+      #shopify-section-{{ section.id }} .card-grid__grid--1{
+        max-width: 44.3rem;
+      }
+    {% endstyle %}
+  {%- endif -%}
+
+  {%- if section.settings.grid_count == 2 -%}
+    {% style %}
+      #shopify-section-{{ section.id }} .card-grid__grid--2{
+        max-width: 91rem;
+      }
+    {% endstyle %}
+  {%- endif -%}
+
+  {%- if section.settings.grid_count == 3 -%}
+    {% style %}
+      #shopify-section-{{ section.id }} .card-grid__grid--3{
+        max-width: 137.7rem;
+      }
+    {% endstyle %}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if enable_animation -%}
+  {% style %}
+    #shopify-section-{{ section.id }} [data-enable-header-animation] .card-grid__heading .word {
+      opacity: 0;
+      transform: translateY(20px);
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    #shopify-section-{{ section.id }} [data-enable-header-animation] .card-grid__description {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    #shopify-section-{{ section.id }}.anim-active [data-enable-header-animation] .card-grid__heading .word {
+      animation: fadeInWord 0.4s cubic-bezier(0.5, 0, 0, 1) forwards;
+      animation-delay: calc(var(--heading-delay) + (var(--word-index) * 0.1s));
+    }
+
+    #shopify-section-{{ section.id }}.anim-active [data-enable-header-animation] .card-grid__description {
+      animation: fadeInUp 0.4s cubic-bezier(0.5, 0, 0, 1) forwards;
+      animation-delay: var(--description-delay);
+    }
+  {% endstyle %}
+{%- endif -%}
+
+<div
+  class="card-grid card-grid-{{ section.id }} color-{{ section.settings.main_color_scheme }} background section-{{ section.id }}-padding{% if section.settings.enable_border_top %} card-grid--border-top{% endif %}{% if section.settings.enable_border_bottom %} card-grid--border-bottom{% endif %}"
+  {% if enable_animation %}
+    data-enable-header-animation="true"
+    style="--heading-delay: {{ heading_delay }}s; --description-delay: {{ description_delay }}s;"
+  {% endif %}
+>
+  <div class="container">
+    {%- if section.settings.heading != blank or section.settings.description != blank -%}
+      <div class="card-grid__header card-grid__header--{{ section.settings.text_align }}">
+        {%- if section.settings.heading != blank -%}
+          <{{ section.settings.heading_level }} class="card-grid__heading {{ section.settings.heading_size }}">
+            {%- if enable_animation == true -%}
+              {%- assign lines = section.settings.heading | newline_to_br | split: '<br />' -%}
+              {%- assign word_idx = 0 -%}
+              {%- for line in lines -%}
+                {%- assign words = line | split: ' ' -%}
+                {%- for word in words -%}
+                  {%- if word != '' -%}
+                    <span class="word" style="--word-index: {{ word_idx }}">{{ word }}</span>
+                    {%- unless forloop.last %}&#32;{% endunless -%}
+                    {%- assign word_idx = word_idx | plus: 1 -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                {%- unless forloop.last %}<br>{% endunless -%}
+              {%- endfor -%}
+            {%- else -%}
+              {{- section.settings.heading -}}
+            {%- endif -%}
+          </{{ section.settings.heading_level }}>
+        {%- endif -%}
+
+        {%- if section.settings.description != blank -%}
+          <p class="card-grid__description body-normal">
+            {{- section.settings.description -}}
+          </p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {% if section.blocks.size > 0 %}
+      <div class="card-grid__grid card-grid__grid--{{ section.settings.grid_count }}">
+        {%- for block in section.blocks -%}
+          <div
+            class="card-grid__card card-grid__card--{{ section.settings.card_border_radius }} color-{{ block.settings.card_color_scheme }} background"
+            {{ block.shopify_attributes }}
+          >
+            <div class="card-grid__card-image-wrapper card-grid__card-image-wrapper--{{ section.settings.aspect_ratio }}">
+              {% liquid
+                if section.settings.aspect_ratio == 'landscape'
+                  assign settings_aspect_ratio = 1.77
+                elsif section.settings.aspect_ratio == 'portrait'
+                  assign settings_aspect_ratio = 0.8
+                else
+                  assign settings_aspect_ratio = 1
+                endif
+
+                assign calc_ratio = 1
+                if block.settings.image.aspect_ratio > settings_aspect_ratio
+                  assign calc_ratio = block.settings.image.aspect_ratio | divided_by: settings_aspect_ratio | round: 2
+                endif
+              %}
+
+              {%- capture img_sizes -%}
+                {%- if section.settings.grid_count == 1 -%}
+                  (min-width: 1440px) calc(1280px * {{ calc_ratio }}), (min-width: 1200px) calc(88vw * {{ calc_ratio }}), (min-width: 750px) calc(97vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+                {%- elsif section.settings.grid_count == 2 -%}
+                  (min-width: 1440px) calc(632px * {{ calc_ratio }}), (min-width: 1200px) calc(44vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+                {%- elsif section.settings.grid_count == 3 -%}
+                  (min-width: 1440px) calc(416px * {{ calc_ratio }}), (min-width: 1200px) calc(29vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+                {%- else -%}
+                  100vw
+                {%- endif -%}
+              {%- endcapture -%}
+
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: block.settings.image.width
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '308, 416, 632, 700, 800, 900, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2560',
+                    sizes: img_sizes,
+                    class: 'card-grid__card-img',
+                    style: image_styles
+                }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'card-grid__card-img placeholder-svg motion-reduce' }}
+              {%- endif -%}
+            </div>
+
+            {%- if block.settings.heading != blank
+              or block.settings.subheading != blank
+              or block.settings.description != blank
+            -%}
+              <div class="card-grid__card-content card-grid__card-content--{{ block.settings.text_align }}">
+                {%- if block.settings.heading != blank -%}
+                  <span class="card-grid__card-heading h4">
+                    {{ block.settings.heading }}
+                  </span>
+                {%- endif -%}
+                {%- if block.settings.subheading != blank -%}
+                  <span class="card-grid__card-subheading body-small">
+                    {{ block.settings.subheading }}
+                  </span>
+                {%- endif -%}
+                {%- if block.settings.description != blank -%}
+                  <p class="card-grid__card-description body-small">
+                    {{ block.settings.description | truncate: 500 }}
+                  </p>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.card-grid.name",
+  "tag": "section",
+  "class": "spaced-section section-card-grid",
+  "enabled_on": {
+    "templates": ["*"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.card-grid.settings.header_main.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "main_color_scheme",
+      "default": "background-1",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_border_top",
+      "default": false,
+      "label": "t:sections.all.enable_border_top.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_border_bottom",
+      "default": false,
+      "label": "t:sections.all.enable_border_bottom.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "animate_section_header_on_scroll",
+      "default": true,
+      "label": "t:sections.all.animate_section_header_on_scroll.label",
+      "info": "t:sections.all.animate_section_header_on_scroll.info"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:sections.all.heading.label",
+      "default": "t:sections.card-grid.settings.section_heading.default"
+    },
+    {
+      "type": "select",
+      "id": "heading_level",
+      "options": [
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_level.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_level.options__2.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_level.options__3.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_level.options__4.label"
+        },
+        {
+          "value": "h5",
+          "label": "t:sections.all.heading_level.options__5.label"
+        },
+        {
+          "value": "h6",
+          "label": "t:sections.all.heading_level.options__6.label"
+        },
+        {
+          "value": "div",
+          "label": "t:sections.all.heading_level.options__7.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.all.heading_level.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h5",
+          "label": "t:sections.all.heading_size.options__4.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "t:sections.all.text.label"
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_align",
+      "label": "t:sections.all.text_align.label",
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "grid_count",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "t:sections.card-grid.settings.grid_count.label",
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "options": [
+        {
+          "value": "landscape",
+          "label": "t:sections.all.card.image_ratio_2.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.all.card.image_ratio_2.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.all.card.image_ratio_2.options__3.label"
+        },
+        {
+          "value": "adapt",
+          "label": "t:sections.all.card.image_ratio_2.options__4.label"
+        }
+      ],
+      "default": "portrait",
+      "label": "t:sections.card-grid.settings.aspect_ratio.label"
+    },
+    {
+      "type": "select",
+      "id": "object_fit",
+      "options": [
+        {
+          "value": "contain",
+          "label": "t:sections.all.card.image_fit.options__1.label"
+        },
+        {
+          "value": "cover",
+          "label": "t:sections.all.card.image_fit.options__2.label"
+        }
+      ],
+      "default": "cover",
+      "label": "t:sections.card-grid.settings.object_fit.label"
+    },
+    {
+      "type": "select",
+      "id": "card_border_radius",
+      "options": [
+        {
+          "value": "round",
+          "label": "t:sections.card-grid.settings.card_border_radius.options_1.label"
+        },
+        {
+          "value": "sharp",
+          "label": "t:sections.card-grid.settings.card_border_radius.options_2.label"
+        }
+      ],
+      "default": "round",
+      "label": "t:sections.card-grid.settings.card_border_radius.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-padding.header.content"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-padding.padding_top.label"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-padding.padding_bottom.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "t:sections.card-grid.blocks.card.name",
+      "settings": [
+        {
+          "type": "color_scheme",
+          "id": "card_color_scheme",
+          "default": "background-4",
+          "label": "t:sections.all.color_scheme.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.card-grid.settings.header_main.content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.all.image.label"
+        },
+        {
+          "type": "textarea",
+          "id": "heading",
+          "label": "t:sections.all.heading.label",
+          "default": "t:sections.card-grid.blocks.card.settings.heading.default"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "t:sections.all.subheading.label",
+          "default": "t:sections.card-grid.blocks.card.settings.subheading.default"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "description",
+          "label": "t:sections.all.text.label",
+          "default": "t:sections.card-grid.blocks.card.settings.description.default",
+          "info": "t:sections.card-grid.blocks.card.settings.description.info"
+        },
+        {
+          "type": "text_alignment",
+          "id": "text_align",
+          "label": "t:sections.all.text_align.label",
+          "default": "left"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.card-grid.name",
+      "category": "t:sections.categories.storytelling",
+      "blocks": [
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

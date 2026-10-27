@@ -1,0 +1,135 @@
+{% comment %}
+  Renders a product card
+  Accepts:
+  - product_card_product: {Object} Product Liquid object (optional)
+  - media_fit: {String} The media fit to use for the card. Default: 'cover'
+  - show_vendor: {Boolean} Show the product vendor. Default: true
+  - section_id: {String} The ID of the section that contains this card.
+  - class: {String} Additional classes to add to the card.
+  Usage:
+  {% render 'product-card-complementary', show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+
+{% liquid
+  case media_ratio
+    when 'landscape'
+      assign media_aspect_ratio = '4/3'
+    when 'portrait'
+      assign media_aspect_ratio = '574/751'
+    when 'square'
+      assign media_aspect_ratio = '1/1'
+    else
+      assign media_aspect_ratio = '1/1'
+  endcase
+%}
+
+<div class="card-complementary {% if color_scheme != blank%}color-{{ color_scheme }}{% else %}color-{{ settings.card_color_scheme }}{% endif %}">
+  <product-form class="product-form" data-hide-errors="{{ gift_card_recipient_feature_active }}">
+    {%- form 'product',
+      product_card_product,
+      id: product_form_id,
+      class: 'form',
+      novalidate: 'novalidate',
+      data-type: 'add-to-cart-form'
+    -%}
+      <input
+        type="hidden"
+        name="id"
+        value="{{ product_card_product.selected_or_first_available_variant.id }}"
+        {% if product_card_product.selected_or_first_available_variant.available == false %}
+          disabled
+        {% endif %}
+      >
+      <button
+        type="submit"
+        name="add"
+        class="card-complementary__submit"
+        {% if product_card_product.selected_or_first_available_variant.available == false %}
+          disabled
+        {% endif %}
+      >
+        <div
+          class="card-horizontal {% if color_scheme != blank%}color-{{ color_scheme }}{% else %}color-{{ settings.card_color_scheme }}{% endif %}"
+          data-product="{{ product_card_product.handle }}"
+        >
+          <div
+            class="card-horizontal-media"
+            style="aspect-ratio: {{ media_aspect_ratio }}; object-fit: {{ media_fit | default: 'cover' }};"
+          >
+            {%- if product_card_product.featured_media -%}
+              {% liquid
+                if media_ratio == 'landscape'
+                  assign settings_aspect_ratio = 1.33
+                elsif media_ratio == 'portrait'
+                  assign settings_aspect_ratio = 0.77
+                else
+                  assign settings_aspect_ratio = 1
+                endif
+
+                assign calc_ratio = 1
+
+                if product_card_product.featured_media.aspect_ratio > settings_aspect_ratio
+                  assign calc_ratio = product_card_product.featured_media.aspect_ratio | divided_by: settings_aspect_ratio | round: 2
+                endif
+              %}
+              {%- capture sizes -%}
+                calc(78px * {{ calc_ratio }})
+              {%- endcapture -%}
+              {{
+                product_card_product.featured_media
+                | image_url: width: product_card_product.featured_media.width
+                | image_tag:
+                  loading: 'lazy',
+                  sizes: sizes,
+                  widths: '100, 160, 240, 320',
+                  class: 'motion-reduce media--first'
+              }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+
+          <div class="card-horizontal-information">
+            <div class="card-horizontal-information__top">
+              {%- if show_vendor -%}
+                <div class="card-horizontal-vendor body-xs">
+                  <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+                  {{ product_card_product.vendor }}
+                </div>
+              {%- endif -%}
+
+              <h3 class="card-horizontal-title">
+                {%- if product_card_product.title -%}
+                  {{- product_card_product.title | escape -}}
+                {% else %}
+                  {{- 'products.product.product_heading' | t -}}
+                {% endif %}
+              </h3>
+
+              {% render 'price', product: product_card_product, display_mode_variant_prices: settings.display_mode_variant_prices %}
+            </div>
+
+            {%- if show_button and button_label != blank -%}
+              <div class="card-horizontal-button-wrapper">
+                <span class="card-horizontal-button">
+                  {{- button_label -}}
+                </span>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+        <div class="loading-overlay__spinner hidden">
+          {%- render 'icon-loading' -%}
+        </div>
+        <div class="card-complementary__plus-icon">
+          {% render 'icon-plus' %}
+        </div>
+      </button>
+    {%- endform -%}
+
+    <div class="product-form__error-message-wrapper" role="alert" hidden>
+      {% render 'icon-error' %}
+      <span class="product-form__error-message body-xs"></span>
+    </div>
+  </product-form>
+</div>

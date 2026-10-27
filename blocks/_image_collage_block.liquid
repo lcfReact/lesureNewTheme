@@ -1,0 +1,178 @@
+<div
+  class="
+    image-collage-image-wrapper image-collage-image-wrapper--{{ block.settings.aspect_ratio }}
+    {% if block.settings.border_top_left_radius%} image-collage-image-wrapper--border-top-left-radius {% endif %}
+    {% if block.settings.border_bottom_left_radius %} image-collage-image-wrapper--border-bottom-left-radius {% endif %}
+    {% if block.settings.border_top_right_radius %} image-collage-image-wrapper--border-top-right-radius {% endif %}
+    {% if block.settings.border_bottom_right_radius %} image-collage-image-wrapper--border-bottom-right-radius {% endif %}
+  "
+  style="padding-left: {{ block.settings.image_padding_left }}%; padding-right: {{ block.settings.image_padding_right }}%;"
+>
+  {% liquid
+    if block.settings.object_fit == 'cover'
+      assign image_styles = 'object-fit: cover;'
+    endif
+
+    if block.settings.object_fit == 'contain'
+      assign image_styles = 'object-fit: contain;'
+    endif
+
+    if block.settings.aspect_ratio == 'landscape'
+      assign settings_aspect_ratio = 1.77
+    elsif block.settings.aspect_ratio == 'portrait'
+      assign settings_aspect_ratio = 0.8
+    else
+      assign settings_aspect_ratio = 1
+    endif
+
+    assign calc_ratio = 1
+    if block.settings.collage_image.aspect_ratio > settings_aspect_ratio
+      assign calc_ratio = block.settings.collage_image.aspect_ratio | divided_by: settings_aspect_ratio | round: 2
+    endif
+  %}
+
+  {%- capture img_sizes -%}
+      {%- if section.blocks.size != blank -%}
+          {%- if section.blocks.size == 1 -%}
+            (min-width: 1440px) calc(1280px * {{ calc_ratio }}), (min-width: 1200px) calc(88vw * {{ calc_ratio }}), (min-width: 750px) calc(97vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+          {%- elsif section.blocks.size == 2 -%}
+            (min-width: 1440px) calc(632px * {{ calc_ratio }}), (min-width: 1200px) calc(44vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+          {%- elsif section.blocks.size == 3 -%}
+            (min-width: 1440px) calc(416px * {{ calc_ratio }}), (min-width: 1200px) calc(29vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+          {%- else -%}
+            100vw
+          {%- endif -%}
+      {%- else -%}
+          100vw
+      {%- endif -%}
+    {%- endcapture -%}
+
+  {%- if block.settings.collage_image != blank -%}
+    {{
+      block.settings.collage_image
+      | image_url: width: block.settings.collage_image.width
+      | image_tag:
+        loading: 'lazy',
+        widths: '308, 416, 632, 700, 800, 900, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2560',
+        sizes: img_sizes,
+        style: image_styles,
+        class: 'image-collage-image'
+    }}
+  {%- else -%}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg image-collage-image' }}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.image-collage.blocks.image.name",
+  "tag": "div",
+  "class": "image-collage-block",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.image-collage.blocks.image.settings.heading.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "collage_image",
+      "label": "t:sections.image-collage.blocks.image.settings.collage_image.label"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "options": [
+        {
+          "value": "landscape",
+          "label": "t:sections.all.card.image_ratio_2.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.all.card.image_ratio_2.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.all.card.image_ratio_2.options__3.label"
+        },
+        {
+          "value": "adapt",
+          "label": "t:sections.all.card.image_ratio_2.options__4.label"
+        }
+      ],
+      "default": "square",
+      "label": "t:sections.all.card.image_ratio_2.label"
+    },
+    {
+      "type": "select",
+      "id": "object_fit",
+      "options": [
+        {
+          "value": "contain",
+          "label": "t:sections.all.card.image_fit.options__1.label"
+        },
+        {
+          "value": "cover",
+          "label": "t:sections.all.card.image_fit.options__2.label"
+        }
+      ],
+      "default": "cover",
+      "label": "t:sections.all.card.image_fit.label"
+    },
+    {
+      "type": "range",
+      "id": "image_padding_left",
+      "min": 0,
+      "max": 35,
+      "step": 1,
+      "unit": "%",
+      "label": "t:sections.image-collage.blocks.image.settings.image_padding_left.label",
+      "default": 0,
+      "info": "t:sections.image-collage.blocks.image.settings.info.label"
+    },
+    {
+      "type": "range",
+      "id": "image_padding_right",
+      "min": 0,
+      "max": 35,
+      "step": 1,
+      "unit": "%",
+      "label": "t:sections.image-collage.blocks.image.settings.image_padding_right.label",
+      "default": 0,
+      "info": "t:sections.image-collage.blocks.image.settings.info.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "border_top_left_radius",
+      "label": "t:sections.image-collage.blocks.image.settings.border_top_left_radius.label",
+      "default": true,
+      "info": "t:sections.image-collage.blocks.image.settings.info.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "border_bottom_left_radius",
+      "label": "t:sections.image-collage.blocks.image.settings.border_bottom_left_radius.label",
+      "default": true,
+      "info": "t:sections.image-collage.blocks.image.settings.info.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "border_top_right_radius",
+      "label": "t:sections.image-collage.blocks.image.settings.border_top_right_radius.label",
+      "default": true,
+      "info": "t:sections.image-collage.blocks.image.settings.info.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "border_bottom_right_radius",
+      "label": "t:sections.image-collage.blocks.image.settings.border_bottom_right_radius.label",
+      "default": true,
+      "info": "t:sections.image-collage.blocks.image.settings.info.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.image-collage.blocks.image.name"
+    }
+  ]
+}
+{% endschema %}

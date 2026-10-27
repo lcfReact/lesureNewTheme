@@ -1,0 +1,77 @@
+{% comment %}
+  Small color-swatch map for the shared quick buy modal.
+  Accepts:
+  - product_card_product: {Object}
+  - section_id: {String}
+  - add_id: {String}
+{% endcomment %}
+{%- liquid
+  assign quick_buy_suffix = add_id | default: product_card_product.id
+  assign quick_buy_key = section_id | append: '-' | append: product_card_product.id | append: '-' | append: quick_buy_suffix
+-%}
+<script type="application/json" id="QuickBuySwatches-{{ quick_buy_key }}">
+  {
+    "options": [
+      {%- for option in product_card_product.options_with_values -%}
+        {%- liquid
+          assign is_color = false
+          assign name_option = option.name | handle | strip
+          assign color_trigger = settings.trigger_swatch | default: 'Color' | strip | newline_to_br | split: '<br />'
+          if settings.enable_color_swatch
+            for item in color_trigger
+              assign item_temp = item | handle | strip
+              if name_option == item_temp
+                assign is_color = true
+              endif
+            endfor
+          endif
+          unless is_color
+            for value in option.values
+              if value.swatch.color != blank or value.swatch.image != blank
+                assign is_color = true
+                break
+              endif
+            endfor
+          endunless
+        -%}
+        {
+          "name": {{ option.name | json }},
+          "isColor": {{ is_color | json }},
+          "values": [
+            {%- for value in option.values -%}
+              {%- liquid
+                assign swatch = ''
+                assign value_name = value.name | default: value
+                if is_color
+                  if value.swatch.image != blank
+                    assign swatch_image = value.swatch.image | image_url: width: 80
+                    assign swatch = 'url(' | append: swatch_image | append: ')'
+                  elsif value.swatch.color != blank
+                    assign swatch = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                  else
+                    assign swatch = value_name | handle | replace: '-', ''
+                  endif
+                  if settings.custom_colors != blank
+                    assign custom_colors_obj = settings.custom_colors | strip | newline_to_br | split: '<br />'
+                    assign init_color_value = value_name | handle | strip
+                    for obj in custom_colors_obj
+                      assign obj_strip = obj | strip
+                      assign obj_key = obj_strip | split: ':' | first
+                      assign obj_value = obj_strip | split: ':' | last
+                      assign obj_color_name = obj_key | handle | strip
+                      if init_color_value == obj_color_name
+                        assign swatch = obj_value | strip
+                        break
+                      endif
+                    endfor
+                  endif
+                endif
+              -%}
+              {"name": {{ value_name | json }}, "swatch": {{ swatch | json }}}{%- unless forloop.last -%},{%- endunless -%}
+            {%- endfor -%}
+          ]
+        }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+  }
+</script>

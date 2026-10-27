@@ -1,0 +1,37 @@
+{% comment %}
+  Renders a slider button
+
+  Accepts:
+  - direction: {String} Direction of the button ('prev', 'next')
+  - classnames: {String} Classnames ('popular-products-nav-button popular-products-nav-button--prev')
+
+  Usage:
+  {% render 'slider-button', direction: 'prev', classnames: 'custom-classname' %}
+{% endcomment %}
+
+{% capture aria_label %}
+	{{ 'general.slider.previous_slide' | t }}
+{% endcapture %}
+
+{% if direction == 'next' %}
+  {% capture aria_label %}
+		{{ 'general.slider.next_slide' | t }}
+	{% endcapture %}
+{% endif %}
+
+<button
+  class="slider-button slider-button--{{ direction }}{% if classnames %} {{ classnames }}{% endif %}"
+  aria-label="{{ aria_label | strip }}"
+>
+  <div class="slider-button__content">
+    <div class="slider-button__icons">
+      <span class="slider-button__icon slider-button__icon--1">
+        {% render 'icon-btn-arrow' %}
+      </span>
+      <span class="slider-button__icon slider-button__icon--2">
+        {% render 'icon-btn-arrow' %}
+      </span>
+    </div>
+  </div>
+  <span class="animated-slider-button-circle"></span>
+</button>

@@ -1,0 +1,87 @@
+.card-complementary {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  background-color: transparent;
+}
+.card-complementary .card-horizontal {
+  transition: background-color var(--duration-default) ease, opacity var(--duration-default) ease;
+}
+.card-complementary__plus-icon {
+  color: rgb(var(--color-button-text));
+  background-color: rgb(var(--color-button));
+  width: 3.2rem;
+  height: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-default) ease;
+  border-radius: 4px;
+}
+.card-complementary__plus-icon svg {
+  width: 2rem;
+  height: 2rem;
+}
+.card-complementary__submit {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+@media screen and (pointer: fine) {
+  .card-complementary__submit:hover .card-horizontal {
+    opacity: 0.5;
+    background-color: rgb(var(--color-background-card-small));
+  }
+  .card-complementary__submit:hover .card-complementary__plus-icon {
+    opacity: 1;
+  }
+}
+.card-complementary__submit + .shopify-payment-button {
+  display: none;
+}
+.card-complementary__submit[disabled], .card-complementary__submit.loading {
+  opacity: 1;
+  pointer-events: none;
+}
+.card-complementary__submit .loading-overlay__spinner {
+  width: 3.2rem;
+  height: 3.2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.card-complementary__submit .loading-overlay__spinner svg {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+.card-complementary__submit .loading-overlay__spinner svg .path {
+  stroke: currentColor;
+  stroke-width: 3;
+}
+.card-complementary__submit.loading .card-horizontal {
+  opacity: 0.5;
+}
+.card-complementary__submit.loading .loading-overlay__spinner {
+  z-index: 1;
+  color: currentColor;
+}
+.card-complementary__submit.loading .loading-overlay__spinner .path {
+  stroke: currentColor !important;
+}
+.card-complementary .loading-overlay__spinner .spinner {
+  color: rgb(var(--color-foreground));
+}
+.card-complementary .product-form__error-message-wrapper {
+  margin: 0.8rem 0 0;
+  color: rgb(var(--color-foreground));
+  background-color: rgb(var(--color-background-card-small));
+  padding: 1rem;
+  border-radius: var(--border-radius-product);
+}

@@ -1,0 +1,228 @@
+{% comment %}
+  Renders a collection card
+  Accepts:
+  - card_type: {String} primary / secondary. Default: Primary.
+  - card_color_scheme: {String} Color scheme.
+  - card_collection: {Object} Collection Liquid object.
+  - card_title: {String} To override the default collection name.
+  - card_title_size: {String} h3 / h4 / h5 / h6. Default: h4.
+  - card_link: {String} To override the default collection link.
+  - card_button_label: {String} Available only for card_type == primary
+  - image_ratio: {String} landscape / portrait / square. Default: portrait.
+  - image_fit: {String} contain / cover. Default: cover.
+  - overwrite_image: {Image} To override the collection featured image.
+  - columns_count: {Number} Sizes of the card per row for calculate image width. Default image width = 100vw
+  - block_shopify_attributes: {String} Additional Shopify block attributes
+  Usage:
+  {% render 'collection-card',
+    card_type: section.settings.card_type,
+    card_collection: block.settings.collection,
+    card_color_scheme: section.settings.card_color_scheme,
+    card_title: block.settings.title,
+    card_title_size: section.settings.collections_titles_size,
+    card_link: block.settings.card_url,
+    card_button_label: block.settings.button_label,
+    image_ratio: section.settings.aspect_ratio,
+    image_fit: section.settings.object_fit,
+    overwrite_image: block.settings.image,
+    columns_count: section.settings.collections_column_count
+  %}
+{% endcomment %}
+
+{% liquid
+  assign card_image_ratio = 'portrait'
+  if image_ratio != blank
+    assign card_image_ratio = image_ratio
+  endif
+
+  assign card_image_fit = 'cover'
+  if image_fit != blank
+    assign card_image_fit = image_fit
+  endif
+
+  assign collection_product_image = card_collection.featured_image
+  if overwrite_image != blank
+    assign collection_product_image = overwrite_image
+  endif
+
+  assign card_image_position = image_position | default: 'center center'
+
+  assign collection_name = card_collection.title
+  assign collection_link = card_collection.url
+
+  assign heading_level = 'h4'
+
+  if card_title_size != blank
+    assign heading_level = card_title_size
+  endif
+
+  if card_title != blank
+    assign collection_name = card_title
+  endif
+
+  if card_link != blank
+    assign collection_link = card_link
+  endif
+%}
+
+{% if card_type == 'primary' %}
+  {% if card_collection != blank or overwrite_image != blank or card_link != blank %}
+    <div
+      class="collection-card collection-card--primary collection-card--{{ card_image_ratio }}"
+      {% if block_shopify_attributes != blank %}
+        {{ block_shopify_attributes }}
+      {% endif %}
+    >
+      <div class="collection-card-wrapper color-{{ card_color_scheme }}">
+        <div class="collection-card__img-wrapper">
+          {%- if collection_product_image != blank -%}
+            {% liquid
+              if card_image_ratio == 'landscape'
+                assign settings_aspect_ratio = 1.77
+              elsif card_image_ratio == 'portrait'
+                assign settings_aspect_ratio = 0.8
+              else
+                assign settings_aspect_ratio = 1
+              endif
+
+              assign calc_ratio = 1
+              if card_image_fit == 'cover' and collection_product_image.aspect_ratio > settings_aspect_ratio
+                assign calc_ratio = collection_product_image.aspect_ratio | divided_by: settings_aspect_ratio | round: 2
+              endif
+
+              assign image_loading = 'lazy'
+
+              if section.index == 1
+                assign image_loading = 'eager'
+              endif
+            %}
+            {%- capture sizes -%}
+              {%- if columns_count != blank -%}
+                {%- if columns_count == 2 -%}
+                  (min-width: 1440px) calc(676px * {{ calc_ratio }}), (min-width: 1200px) calc(44vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+                {%- elsif columns_count == 3 -%}
+                  (min-width: 1440px) calc(603px * {{ calc_ratio }}), (min-width: 1200px) calc(29vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+                {%- elsif columns_count == 4 -%}
+                  (min-width: 1440px) calc(326px * {{ calc_ratio }}), (min-width: 1200px) calc(22vw * {{ calc_ratio }}), (min-width: 990px) calc(31vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+                {%- elsif columns_count == 5 -%}
+                  (min-width: 1440px) calc(247px * {{ calc_ratio }}), (min-width: 1200px) calc(22vw * {{ calc_ratio }}), (min-width: 990px) calc(31vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+                {%- else -%}
+                  100vw
+                {%- endif -%}
+              {%- else -%}
+                100vw
+              {%- endif -%}
+            {%- endcapture -%}
+            {%- capture style -%}
+              object-fit: {{ image_fit }}; object-position: {{ card_image_position }};
+            {%- endcapture -%}
+            {{
+              collection_product_image
+              | image_url: width: collection_product_image.width
+              | image_tag:
+                sizes: sizes,
+                widths: '360, 550, 750, 900, 1100, 1420, 1700, 1920, 2200, 2400, 2600',
+                style: style,
+                class: 'collection-card__img',
+                loading: image_loading
+            }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg collection-card__img' }}
+          {% endif %}
+        </div>
+
+        <div class="collection-card__content{% if card_button_label == blank %} collection-card__content--without-btn{% endif %}">
+          <{{ heading_level }} class="collection-card__title">
+            {{ collection_name }}
+          </{{ heading_level }}>
+
+          {% if collection_link != blank and card_button_label != blank %}
+            {% render 'button',
+              btn_label: card_button_label,
+              btn_link: collection_link,
+              btn_style: 'tertiary',
+              class: 'collection-card__btn focus-inset'
+            %}
+          {% endif %}
+        </div>
+      </div>
+      {% if collection_link != blank %}
+        <a class="collection-card__link focus-inset" href="{{ collection_link }}"></a>
+      {% endif %}
+    </div>
+  {% endif %}
+{% else %}
+  <div
+    class="collection-card collection-card--secondary {% if collection_link != blank %} collection-card--with-link{% endif %} color-{{ card_color_scheme }}"
+    {% if block_shopify_attributes != blank %}
+      {{ block_shopify_attributes }}
+    {% endif %}
+  >
+    <div class="collection-card__img-wrapper collection-card__img-wrapper--{{ card_image_ratio }}">
+      {%- if collection_product_image != blank -%}
+        {% liquid
+          if card_image_ratio == 'landscape'
+            assign settings_aspect_ratio = 1.77
+          elsif card_image_ratio == 'portrait'
+            assign settings_aspect_ratio = 0.8
+          else
+            assign settings_aspect_ratio = 1
+          endif
+
+          assign calc_ratio = 1
+          if card_image_fit == 'cover' and collection_product_image.aspect_ratio > settings_aspect_ratio
+            assign calc_ratio = collection_product_image.aspect_ratio | divided_by: settings_aspect_ratio | round: 2
+          endif
+
+          assign image_loading = 'lazy'
+
+          if section.index == 1
+            assign image_loading = 'eager'
+          endif
+        %}
+        {%- capture sizes -%}
+          {%- if columns_count != blank -%}
+            {%- if columns_count == 2 -%}
+              (min-width: 1440px) calc(676px * {{ calc_ratio }}), (min-width: 1200px) calc(44vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+            {%- elsif columns_count == 3 -%}
+              (min-width: 1440px) calc(603px * {{ calc_ratio }}), (min-width: 1200px) calc(29vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+            {%- elsif columns_count == 4 -%}
+              (min-width: 1440px) calc(326px * {{ calc_ratio }}), (min-width: 1200px) calc(22vw * {{ calc_ratio }}), (min-width: 990px) calc(31vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+            {%- elsif columns_count == 5 -%}
+              (min-width: 1440px) calc(247px * {{ calc_ratio }}), (min-width: 1200px) calc(22vw * {{ calc_ratio }}), (min-width: 990px) calc(31vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+            {%- else -%}
+              100vw
+            {%- endif -%}
+          {%- else -%}
+            100vw
+          {%- endif -%}
+        {%- endcapture -%}
+        {%- capture style -%}
+          object-fit: {{ image_fit }};
+        {%- endcapture -%}
+        {{
+          collection_product_image
+          | image_url: width: collection_product_image.width
+          | image_tag:
+            sizes: sizes,
+            widths: '360, 550, 750, 900, 1100, 1420, 1700, 1920, 2200, 2400, 2600',
+            style: style,
+            class: 'collection-card__img',
+            loading: image_loading
+        }}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg collection-card__img' }}
+      {% endif %}
+    </div>
+
+    <div class="collection-card__content">
+      <{{ heading_level }} class="collection-card__title">
+        {{ collection_name }}
+      </{{ heading_level }}>
+    </div>
+
+    {% if collection_link != blank %}
+      <a class="collection-card__link" href="{{ collection_link }}"></a>
+    {% endif %}
+  </div>
+{% endif %}

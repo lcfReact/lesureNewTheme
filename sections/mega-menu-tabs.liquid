@@ -1,0 +1,246 @@
+{% liquid
+  assign is_show_menu = false
+
+  for block in section.blocks
+    if block.settings.title != blank and block.settings.menu != blank and block.settings.menu.links != blank
+      assign is_show_menu = true
+    endif
+  endfor
+%}
+
+<template
+  class="mega-menu-template"
+  data-trigger="{{ section.settings.mega_menu_trigger | handle | strip }}"
+  data-layout="mega-menu-tabs"
+>
+  {%- if is_show_menu -%}
+    <mega-menu-tabs
+      class="mega-menu-tabs color-{{ section.settings.color_scheme }} background"
+      id="mega-menu-tabs-{{ section.id }}"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="mega-menu-tabs-content">
+        <div class="mega-menu-tabs-layout">
+          <nav class="mega-menu-tabs-nav">
+            <ul class="mega-menu-tabs-nav-list list-unstyled">
+              {%- for block in section.blocks -%}
+                {%- if block.settings.title != blank -%}
+                  <li
+                    class="mega-menu-tabs-nav-list__item"
+                    {{ block.shopify_attributes }}
+                  >
+                    {%- if block.settings.link != blank -%}
+                      <a
+                        class="mega-menu-tabs-nav-list__tab{% if forloop.first %} active{% endif %} focus-inset body-small"
+                        href="{{ block.settings.link }}"
+                        aria-label="{{ block.settings.title | strip }}"
+                        data-tab-id="mega-menu-tab-{{ block.id }}"
+                      >
+                        {{- block.settings.title | strip -}}
+                      </a>
+                    {%- else -%}
+                      <button
+                        class="mega-menu-tabs-nav-list__tab{% if forloop.first %} active{% endif %} focus-inset body-small"
+                        aria-label="{{ block.settings.title | strip }}"
+                        data-tab-id="mega-menu-tab-{{ block.id }}"
+                      >
+                        {{- block.settings.title | strip -}}
+                      </button>
+                    {%- endif -%}
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </nav>
+
+          <div class="mega-menu-tabs-main">
+            <div class="mega-menu-tabs-container">
+              {%- for block in section.blocks -%}
+                {%- if block.settings.menu != blank -%}
+                  <div
+                    class="mega-menu-tab{% if forloop.first %} active{% endif %}"
+                    id="mega-menu-tab-{{ block.id }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <nav class="mega-menu-tab-nav">
+                      <ul class="mega-menu-tab-nav__list list-unstyled">
+                        {%- for link in block.settings.menu.links -%}
+                          <li class="mega-menu-tab-nav__list-item">
+                            <a
+                              href="{{ link.url }}"
+                              class="mega-menu-tab-nav__list-link{% if link.current and link.url != '/' %} mega-menu-tab-nav__list-link--active{% endif %} focus-inset body-small"
+                              aria-label="{{ link.title | strip }}"
+                              {% if link.current and link.url != '/' %}
+                                aria-current="page"
+                              {% endif %}
+                            >
+                              <span class="mega-menu-tab-nav__list-link-title body-small">
+                                {{- link.title | strip -}}
+                              </span>
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </nav>
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </mega-menu-tabs>
+  {%- endif -%}
+</template>
+
+<template
+  class="mobile-mega-menu-template"
+  data-trigger="{{ section.settings.mega_menu_trigger | handle | strip }}"
+  data-layout="mega-menu-normal"
+>
+  {% if is_show_menu %}
+    <details>
+      <summary class="menu-drawer__menu-summary menu-drawer__menu-summary--mobile-mega-menu focus-inset">
+        <a
+          href="#"
+          class="menu-drawer__menu-link menu-drawer__menu-link--mobile-mega-menu focus-inset"
+          tabindex="0"
+        >
+          {{- 'accessibility.link' | t -}}
+        </a>
+        {% render 'icon-caret-mobile-menu' %}
+      </summary>
+
+      <div class="mobile-mega-menu color-{{ section.settings.color_scheme }} background">
+        <div class="mobile-mega-menu-top container">
+          <button class="mobile-mega-menu-back-button" aria-label="{{ 'accessibility.back' | t }}">
+            {% render 'icon-arrow' %}
+          </button>
+        </div>
+        <div class="mobile-mega-menu-main">
+          <div class="mobile-mega-menu-tabs">
+            <ul class="mobile-mega-menu-tabs-list list-unstyled">
+              {%- for block in section.blocks -%}
+                {%- if block.settings.title != blank and block.settings.menu != blank -%}
+                  <details {{ block.shopify_attributes }}>
+                    <summary class="menu-drawer__menu-summary focus-inset">
+                      {%- if block.settings.link != blank -%}
+                        <a
+                          href="{{ block.settings.link }}"
+                          class="menu-drawer__menu-link focus-inset{% if block.settings.link.current %} menu-drawer__menu-link--active{% endif %}"
+                          {% if block.settings.link.current %}
+                            aria-current="page"
+                          {% endif %}
+                          {% if settings.links_blank and block.settings.link.type == 'http_link' %}
+                            target="_blank"
+                          {% endif %}
+                          tabindex="0"
+                        >
+                          {{- block.settings.title | escape -}}
+                        </a>
+                      {%- else -%}
+                        <span class="menu-drawer__menu-link focus-inset" tabindex="0">
+                          {{- block.settings.title | escape -}}
+                        </span>
+                      {%- endif -%}
+                      {% render 'icon-caret-mobile-menu' %}
+                    </summary>
+                    <div
+                      class="menu-drawer__submenu motion-reduce"
+                      tabindex="-1"
+                    >
+                      <div class="menu-drawer__inner-submenu">
+                        <ul
+                          class="menu-drawer__menu list-menu"
+                          role="list"
+                          tabindex="-1"
+                        >
+                          {%- for link in block.settings.menu.links -%}
+                            <li class="menu-drawer__menu-item">
+                              <a
+                                href="{{ link.url }}"
+                                class="menu-drawer__menu-link focus-inset{% if link.current %} menu-drawer__menu-link--active{% endif %} childlink"
+                                {% if link.current %}
+                                  aria-current="page"
+                                {% endif %}
+                                {% if settings.links_blank and link.type == 'http_link' %}
+                                  target="_blank"
+                                {% endif %}
+                                tabindex="0"
+                              >
+                                {{- link.title | escape -}}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </div>
+                    </div>
+                  </details>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </details>
+  {% endif %}
+</template>
+
+{% schema %}
+{
+  "name": "t:sections.mega-menu-tabs.name",
+  "class": "mega-menu-tabs-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.mega-menu-tabs.settings.paragraph__header.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "background-1",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "text",
+      "id": "mega_menu_trigger",
+      "label": "t:sections.mega-menu-tabs.settings.mega_menu_trigger.label",
+      "info": "t:sections.mega-menu-tabs.settings.mega_menu_trigger.info"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mega_menu_tab",
+      "name": "t:sections.mega-menu-tabs.blocks.mega_menu_tab.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.mega-menu-tabs.blocks.mega_menu_tab.settings.title.label",
+          "default": "t:sections.mega-menu-tabs.blocks.mega_menu_tab.settings.title.default"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.mega-menu-tabs.blocks.mega_menu_tab.settings.link.label"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "t:sections.mega-menu.settings.blocks.mega_menu_item.settings.menu.label",
+          "default": "main-menu"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.mega-menu-tabs.name"
+    }
+  ]
+}
+{% endschema %}

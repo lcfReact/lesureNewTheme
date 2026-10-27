@@ -1,0 +1,12 @@
+.featured-product .product__media-toggle, .featured-product .product__media-icon {
+  display: none;
+}
+.featured-product .product-title a {
+  text-decoration: none;
+  transition: opacity var(--duration-default) ease;
+}
+@media screen and (hover: hover) and (pointer: fine) {
+  .featured-product .product-title a:hover {
+    opacity: 0.7;
+  }
+}

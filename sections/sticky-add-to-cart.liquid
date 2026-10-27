@@ -1,0 +1,1158 @@
+{%- if section.settings.enabled and product != blank -%}
+  {%- liquid
+    assign sticky_variant = product.selected_or_first_available_variant
+    assign sticky_image = sticky_variant.featured_image | default: product.featured_image
+    assign sticky_can_add = false
+    if sticky_variant.available
+      if sticky_variant.inventory_management == blank or sticky_variant.inventory_quantity > 0
+        assign sticky_can_add = true
+      endif
+    endif
+    if settings.currency_code_enabled
+      assign sticky_price = sticky_variant.price | money_with_currency
+      assign sticky_money_format = shop.money_with_currency_format
+    else
+      assign sticky_price = sticky_variant.price | money
+      assign sticky_money_format = shop.money_format
+    endif
+    assign sticky_form_id = 'sticky-atc-' | append: section.id
+  -%}
+  {%- capture sticky_stock -%}
+    {%- assign sticky_stock_first = true -%}
+    {%- for variant in product.variants limit: 50 -%}
+      {%- unless sticky_stock_first -%},{%- endunless -%}
+      {%- liquid
+        assign sticky_purchasable = false
+        if variant.available
+          if variant.inventory_management == blank or variant.inventory_quantity > 0
+            assign sticky_purchasable = true
+          endif
+        endif
+      -%}
+      "{{ variant.id }}":{%- if sticky_purchasable -%}true{%- else -%}false{%- endif -%}
+      {%- assign sticky_stock_first = false -%}
+    {%- endfor -%}
+    {%- for variant in product.variants limit: 50 offset: 50 -%}
+      {%- unless sticky_stock_first -%},{%- endunless -%}
+      {%- liquid
+        assign sticky_purchasable = false
+        if variant.available
+          if variant.inventory_management == blank or variant.inventory_quantity > 0
+            assign sticky_purchasable = true
+          endif
+        endif
+      -%}
+      "{{ variant.id }}":{%- if sticky_purchasable -%}true{%- else -%}false{%- endif -%}
+      {%- assign sticky_stock_first = false -%}
+    {%- endfor -%}
+    {%- for variant in product.variants limit: 50 offset: 100 -%}
+      {%- unless sticky_stock_first -%},{%- endunless -%}
+      {%- liquid
+        assign sticky_purchasable = false
+        if variant.available
+          if variant.inventory_management == blank or variant.inventory_quantity > 0
+            assign sticky_purchasable = true
+          endif
+        endif
+      -%}
+      "{{ variant.id }}":{%- if sticky_purchasable -%}true{%- else -%}false{%- endif -%}
+      {%- assign sticky_stock_first = false -%}
+    {%- endfor -%}
+    {%- for variant in product.variants limit: 50 offset: 150 -%}
+      {%- unless sticky_stock_first -%},{%- endunless -%}
+      {%- liquid
+        assign sticky_purchasable = false
+        if variant.available
+          if variant.inventory_management == blank or variant.inventory_quantity > 0
+            assign sticky_purchasable = true
+          endif
+        endif
+      -%}
+      "{{ variant.id }}":{%- if sticky_purchasable -%}true{%- else -%}false{%- endif -%}
+      {%- assign sticky_stock_first = false -%}
+    {%- endfor -%}
+    {%- for variant in product.variants limit: 50 offset: 200 -%}
+      {%- unless sticky_stock_first -%},{%- endunless -%}
+      {%- liquid
+        assign sticky_purchasable = false
+        if variant.available
+          if variant.inventory_management == blank or variant.inventory_quantity > 0
+            assign sticky_purchasable = true
+          endif
+        endif
+      -%}
+      "{{ variant.id }}":{%- if sticky_purchasable -%}true{%- else -%}false{%- endif -%}
+      {%- assign sticky_stock_first = false -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {% style %}
+    #StickyAtc-{{ section.id }} {
+      --sticky-bg: {{ section.settings.card_background }};
+      --sticky-text: {{ section.settings.card_text }};
+      --sticky-button-bg: {{ section.settings.button_background }};
+      --sticky-button-text: {{ section.settings.button_text }};
+      --sticky-radius: {{ section.settings.card_radius }}px;
+      --sticky-bottom: {{ section.settings.desktop_bottom }}px;
+      --sticky-right: {{ section.settings.desktop_right }}px;
+      --sticky-mobile-bottom: {{ section.settings.mobile_bottom }}px;
+    }
+  {% endstyle %}
+
+  <div
+    id="StickyAtc-{{ section.id }}"
+    class="sticky-atc"
+    data-bottom="{{ section.settings.desktop_bottom }}"
+    data-right="{{ section.settings.desktop_right }}"
+    data-money-format="{{ sticky_money_format | escape }}"
+    data-label-add="{{ 'products.product.add_to_cart' | t | escape }}"
+    data-label-sold="{{ 'products.product.sold_out' | t | escape }}"
+    data-label-unavailable="{{ 'products.product.unavailable' | t | escape }}"
+    data-label-added="{{ 'products.sticky_atc.added' | t | escape }}"
+    data-label-show="{{ 'products.sticky_atc.show_options' | t | escape }}"
+    data-label-hide="{{ 'products.sticky_atc.hide_options' | t | escape }}"
+    data-fallback="{% if product.featured_image %}{{ product.featured_image | image_url: width: 800 }}{% endif %}"
+    data-product-title="{{ product.title | escape }}"
+    aria-hidden="true"
+    inert
+  >
+    <div class="sticky-atc__card" role="region" aria-label="{{ 'products.sticky_atc.region' | t | escape }}">
+      <div class="sticky-atc__media">
+        {%- if sticky_image -%}
+          {{
+            sticky_image
+            | image_url: width: 800
+            | image_tag:
+              class: 'sticky-atc__image',
+              widths: '120, 240, 480, 800',
+              sizes: '(max-width: 749px) 108px, 149px',
+              alt: product.title,
+              loading: 'lazy'
+          }}
+        {%- endif -%}
+      </div>
+
+      <div class="sticky-atc__meta">
+        <p class="sticky-atc__title">{{ product.title | escape }}</p>
+      </div>
+      <p class="sticky-atc__price" data-sticky-price>{{ sticky_price }}</p>
+
+      {%- unless product.has_only_default_variant -%}
+        <div class="sticky-atc__options" id="StickyAtcOptions-{{ section.id }}">
+          {%- for option in product.options_with_values -%}
+            {%- liquid
+              assign sticky_selected_swatch = ''
+              assign sticky_selected_swatch_image = ''
+              for value in option.values
+                if value == option.selected_value
+                  if value.swatch.color != blank
+                    assign sticky_selected_swatch = value.swatch.color | color_to_hex
+                  endif
+                  if value.swatch.image != blank
+                    assign sticky_selected_swatch_image = value.swatch.image | image_url: width: 40
+                  endif
+                endif
+              endfor
+            -%}
+            <div class="sticky-atc__field{% if sticky_selected_swatch != blank or sticky_selected_swatch_image != blank %} has-swatch{% endif %}">
+              <span
+                class="sticky-atc__swatch"
+                {% if sticky_selected_swatch_image != blank %}
+                  style="background: center / cover no-repeat url('{{ sticky_selected_swatch_image }}');"
+                {% elsif sticky_selected_swatch != blank %}
+                  style="background: {{ sticky_selected_swatch }};"
+                {% endif %}
+              ></span>
+              <label class="visually-hidden" for="StickyAtcOption-{{ section.id }}-{{ forloop.index0 }}">
+                {{- option.name -}}
+              </label>
+              <select
+                id="StickyAtcOption-{{ section.id }}-{{ forloop.index0 }}"
+                class="sticky-atc__select"
+                data-option-index="{{ forloop.index0 }}"
+                autocomplete="off"
+              >
+                {%- for value in option.values -%}
+                  <option
+                    value="{{ value | escape }}"
+                    {% if value == option.selected_value %}
+                      selected
+                    {% endif %}
+                    {% if value.swatch.image != blank %}
+                      data-swatch-image="{{ value.swatch.image | image_url: width: 40 }}"
+                    {% elsif value.swatch.color != blank %}
+                      data-swatch="{{ value.swatch.color | color_to_hex }}"
+                    {% endif %}
+                  >
+                    {{- value -}}
+                  </option>
+                {%- endfor -%}
+              </select>
+              <span class="sticky-atc__caret" aria-hidden="true">{% render 'icon-caret' %}</span>
+            </div>
+          {%- endfor -%}
+        </div>
+        <button
+          type="button"
+          class="sticky-atc__expand"
+          aria-expanded="false"
+          aria-controls="StickyAtcOptions-{{ section.id }}"
+        >
+          <span data-sticky-summary>{{ sticky_variant.title | escape }}</span>
+          <span class="visually-hidden" data-sticky-expand-label>{{ 'products.sticky_atc.show_options' | t }}</span>
+          <span class="sticky-atc__chevron" aria-hidden="true">{% render 'icon-caret' %}</span>
+        </button>
+      {%- else -%}
+        <p class="sticky-atc__summary" data-sticky-summary>{{ product.title | escape }}</p>
+      {%- endunless -%}
+
+      <product-form class="product-form sticky-atc__form">
+        <div class="product-form__error-message-wrapper" role="alert" hidden>
+          {% render 'icon-error' %}
+          <span class="product-form__error-message"></span>
+        </div>
+        {%- form 'product',
+          product,
+          id: sticky_form_id,
+          class: 'sticky-atc__product-form',
+          novalidate: 'novalidate',
+          data-type: 'add-to-cart-form'
+        -%}
+          <input type="hidden" name="id" value="{{ sticky_variant.id }}">
+          <input type="hidden" name="quantity" value="1" data-sticky-qty>
+          <button
+            type="submit"
+            name="add"
+            class="sticky-atc__submit"
+            {% unless sticky_can_add %}
+              disabled
+              aria-disabled="true"
+            {% endunless %}
+          >
+            <span class="sticky-atc__plus" aria-hidden="true">{% render 'icon-plus' %}</span>
+            <span class="sticky-atc__submit-text">
+              <span data-sticky-label>
+                {%- if sticky_can_add -%}
+                  {{ 'products.product.add_to_cart' | t }}
+                {%- else -%}
+                  {{ 'products.product.sold_out' | t }}
+                {%- endif -%}
+              </span>
+              <span class="sticky-atc__dash" aria-hidden="true" {% unless sticky_can_add %}hidden{% endunless %}>–</span>
+              <span data-sticky-price {% unless sticky_can_add %}hidden{% endunless %}>{{ sticky_price }}</span>
+            </span>
+            <span class="loading-overlay__spinner hidden">
+              {%- render 'icon-loading' -%}
+            </span>
+          </button>
+        {%- endform -%}
+      </product-form>
+      <span class="visually-hidden" data-sticky-status aria-live="polite"></span>
+    </div>
+    <script type="application/json" data-sticky-atc-variants>
+      {{ product.variants | json }}
+    </script>
+    <script type="application/json" data-sticky-atc-stock>
+      { {{ sticky_stock }} }
+    </script>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .sticky-atc-section {
+    height: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    pointer-events: none;
+    background: transparent;
+  }
+
+  .sticky-atc {
+    position: fixed;
+    right: var(--sticky-right, 35px);
+    bottom: var(--sticky-bottom, 35px);
+    z-index: 30;
+    width: min(510px, calc(100vw - var(--sticky-right, 35px) - 16px));
+    color: var(--sticky-text, #1d2433);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  }
+
+  .sticky-atc.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .sticky-atc__card {
+    display: grid;
+    grid-template-columns: 147px minmax(0, 1fr) auto;
+    grid-template-rows: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 14px;
+    row-gap: 8px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 185px;
+    padding: 16px;
+    background: var(--sticky-bg, #fff);
+    border-radius: var(--sticky-radius, 4px);
+    box-shadow: 0 10px 28px rgba(16, 24, 40, 0.12);
+    border: 1px solid color-mix(in srgb, var(--sticky-text, #1d2433) 8%, transparent);
+    overflow: hidden;
+  }
+
+  .sticky-atc__media {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    width: 147px;
+    height: 147px;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: var(--sticky-radius, 4px);
+    background: #f4f4f5;
+  }
+
+  .sticky-atc__media .sticky-atc__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .sticky-atc__meta {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    min-width: 0;
+  }
+
+  .sticky-atc__title,
+  .sticky-atc__price {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .sticky-atc__title {
+    min-width: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    white-space: normal;
+  }
+
+  .sticky-atc__price {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: start;
+    justify-self: end;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .sticky-atc__options {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: end;
+    display: grid;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .sticky-atc__field {
+    position: relative;
+  }
+
+  .sticky-atc__select {
+    width: 100%;
+    height: 40px;
+    min-height: 40px;
+    margin: 0;
+    padding: 0 32px 0 12px;
+    border: 1px solid color-mix(in srgb, var(--sticky-text, #1d2433) 14%, transparent);
+    border-radius: var(--sticky-radius, 4px);
+    background: #fff;
+    color: inherit;
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.2;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+
+  .sticky-atc__field.has-swatch .sticky-atc__select {
+    padding-left: 40px;
+  }
+
+  .sticky-atc__swatch {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+    pointer-events: none;
+  }
+
+  .sticky-atc__field.has-swatch .sticky-atc__swatch {
+    display: block;
+  }
+
+  .sticky-atc__caret,
+  .sticky-atc__chevron {
+    display: flex;
+    pointer-events: none;
+  }
+
+  .sticky-atc__caret {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+
+  .sticky-atc__caret svg,
+  .sticky-atc__chevron svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .sticky-atc__expand,
+  .sticky-atc__summary {
+    display: none;
+  }
+
+  .sticky-atc .sticky-atc__form {
+    grid-column: 3;
+    grid-row: 2;
+    align-self: end;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: auto;
+    max-width: none;
+  }
+
+  .sticky-atc__card:not(:has(.sticky-atc__options)) .sticky-atc__form {
+    grid-row: 1 / -1;
+  }
+
+  .sticky-atc__product-form {
+    margin: 0;
+  }
+
+  .sticky-atc__submit {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #f6c445;
+    color: #1a1a1a;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.1;
+    cursor: pointer;
+  }
+
+  .sticky-atc__plus {
+    display: flex;
+  }
+
+  .sticky-atc__plus svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+  }
+
+  .sticky-atc__submit-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .sticky-atc__submit[disabled],
+  .sticky-atc.is-added .sticky-atc__submit {
+    width: auto;
+    min-width: 48px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 4px;
+  }
+
+  .sticky-atc__submit[disabled] .sticky-atc__plus,
+  .sticky-atc.is-added .sticky-atc__plus {
+    display: none;
+  }
+
+  .sticky-atc__submit[disabled] .sticky-atc__submit-text,
+  .sticky-atc.is-added .sticky-atc__submit-text {
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: nowrap;
+  }
+
+  .sticky-atc__submit[disabled] {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .sticky-atc__submit.loading {
+    pointer-events: none;
+  }
+
+  .sticky-atc__submit.loading .sticky-atc__submit-text,
+  .sticky-atc__submit.loading .sticky-atc__plus {
+    visibility: hidden;
+  }
+
+  .sticky-atc__submit .loading-overlay__spinner,
+  .sticky-atc__submit .loading-overlay__spinner svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .sticky-atc__submit [hidden] {
+    display: none !important;
+  }
+
+  .sticky-atc .product-form__error-message-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 8px;
+    color: #b42318;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .sticky-atc .product-form__error-message-wrapper[hidden] {
+    display: none !important;
+  }
+
+  .sticky-atc .product-form__error-message-wrapper svg {
+    flex: none;
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 749px) {
+    .sticky-atc {
+      left: 8px;
+      right: 8px;
+      bottom: calc(8px + var(--sticky-mobile-bottom, 0px) + env(safe-area-inset-bottom));
+      width: auto;
+    }
+
+    .sticky-atc__card {
+      grid-template-columns: 108px minmax(0, 1fr) auto;
+      height: auto;
+      padding: 10px;
+      column-gap: 10px;
+      row-gap: 6px;
+    }
+
+    .sticky-atc__media {
+      width: 108px;
+      height: 108px;
+    }
+
+    .sticky-atc__title,
+    .sticky-atc__price {
+      font-size: 14px;
+    }
+
+    .sticky-atc__options {
+      gap: 6px;
+    }
+
+    .sticky-atc__select {
+      height: 36px;
+      min-height: 36px;
+      padding-right: 28px;
+      font-size: 13px;
+    }
+
+    .sticky-atc__field.has-swatch .sticky-atc__select {
+      padding-left: 32px;
+    }
+
+    .sticky-atc__swatch {
+      left: 10px;
+      width: 14px;
+      height: 14px;
+    }
+
+    .sticky-atc__caret svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .sticky-atc__submit {
+      width: 36px;
+      height: 36px;
+      min-height: 36px;
+    }
+
+    .sticky-atc__plus svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .sticky-atc__submit[disabled],
+    .sticky-atc.is-added .sticky-atc__submit {
+      height: 36px;
+      padding: 0 10px;
+      font-size: 12px;
+    }
+
+    html.sticky-atc-visible body {
+      padding-bottom: calc(var(--sticky-atc-clearance, 140px) + 8px + env(safe-area-inset-bottom));
+    }
+
+    html.sticky-atc-visible .scroll-top,
+    html.sticky-atc-visible #shopify-chat,
+    html.sticky-atc-visible #ShopifyChat,
+    html.sticky-atc-visible inbox-online-store-chat,
+    html.sticky-atc-visible #dummy-chat-button-iframe,
+    html.sticky-atc-visible #gorgias-chat-container,
+    html.sticky-atc-visible #tidio-chat,
+    html.sticky-atc-visible .intercom-lightweight-app {
+      bottom: calc(var(--sticky-atc-clearance, 140px) + 16px + env(safe-area-inset-bottom)) !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sticky-atc,
+    .sticky-atc__chevron {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    if (window.stickyAtcBoot) return;
+    window.stickyAtcBoot = true;
+    const cleanups = new Map();
+
+    const readJson = (node) => {
+      if (!node) return null;
+      try {
+        return JSON.parse(node.textContent);
+      } catch (error) {
+        return null;
+      }
+    };
+
+    const mainPicker = () => {
+      return [...document.querySelectorAll("#MainContent variant-radios, #MainContent variant-selects")].find(
+        (picker) => !picker.closest("quick-add-modal")
+      );
+    };
+
+    const buyArea = () => {
+      return (
+        document.querySelector("#MainContent .product-info-container .product-buy-buttons") ||
+        document.querySelector("#MainContent .product-buy-buttons") ||
+        document.querySelector("#MainContent .product-form__buttons")
+      );
+    };
+
+    const setup = (card) => {
+      if (!(card instanceof HTMLElement) || card.dataset.ready === "true") return;
+      card.dataset.ready = "true";
+      const variants = readJson(card.querySelector("[data-sticky-atc-variants]")) || [];
+      const stock = readJson(card.querySelector("[data-sticky-atc-stock]")) || {};
+      const idInput = card.querySelector('input[name="id"]');
+      const qtyInput = card.querySelector("[data-sticky-qty]");
+      const button = card.querySelector(".sticky-atc__submit");
+      const label = card.querySelector("[data-sticky-label]");
+      const priceNodes = card.querySelectorAll("[data-sticky-price]");
+      const inlinePrice = button ? button.querySelector("[data-sticky-price]") : null;
+      const dash = card.querySelector(".sticky-atc__dash");
+      const image = card.querySelector(".sticky-atc__image");
+      const summary = card.querySelector("[data-sticky-summary]");
+      const status = card.querySelector("[data-sticky-status]");
+      const expand = card.querySelector(".sticky-atc__expand");
+      const expandLabel = card.querySelector("[data-sticky-expand-label]");
+      const form = card.querySelector("form");
+      let current = variants.find((variant) => String(variant.id) === String(idInput?.value)) || null;
+      let addedTimer = 0;
+      let frame = 0;
+      let selecting = false;
+
+      const canAdd = (variant) => {
+        if (!variant) return false;
+        const flagged = stock[String(variant.id)];
+        if (typeof flagged === "boolean") return flagged;
+        if (!variant.available) return false;
+        if (!variant.inventory_management) return true;
+        if (typeof variant.inventory_quantity === "number") return variant.inventory_quantity > 0;
+        return true;
+      };
+
+      const money = (cents) => {
+        if (typeof formatMoney !== "function") return "";
+        return formatMoney(cents, card.dataset.moneyFormat || "");
+      };
+
+      const imageSource = (variant) => {
+        const featured = variant && (variant.featured_image || variant.featured_media?.preview_image);
+        const src = featured && featured.src;
+        if (!src) return card.dataset.fallback || "";
+        const absolute = src.startsWith("//") ? `https:${src}` : src;
+        if (absolute.includes("width=")) return absolute;
+        return `${absolute}${absolute.includes("?") ? "&" : "?"}width=800`;
+      };
+
+      const selectedOptions = () => {
+        return [...card.querySelectorAll("[data-option-index]")]
+          .sort((a, b) => Number(a.dataset.optionIndex) - Number(b.dataset.optionIndex))
+          .map((select) => select.value);
+      };
+
+      const findVariant = (options) => {
+        if (!options || !options.length) return variants[0] || null;
+        return (
+          variants.find((variant) => variant.options.every((option, index) => option === options[index])) || null
+        );
+      };
+
+      const updateSwatches = () => {
+        card.querySelectorAll(".sticky-atc__field").forEach((field) => {
+          const selected = field.querySelector("select")?.selectedOptions?.[0];
+          const swatch = field.querySelector(".sticky-atc__swatch");
+          if (!selected || !swatch) return;
+          const imageUrl = selected.dataset.swatchImage;
+          const color = selected.dataset.swatch;
+          if (imageUrl) {
+            field.classList.add("has-swatch");
+            swatch.style.background = `center / cover no-repeat url("${imageUrl}")`;
+          } else if (color) {
+            field.classList.add("has-swatch");
+            swatch.style.background = color;
+          } else {
+            field.classList.remove("has-swatch");
+            swatch.style.background = "";
+          }
+        });
+      };
+
+      const setSelects = (options) => {
+        if (!options) return;
+        selecting = true;
+        options.forEach((value, index) => {
+          const select = card.querySelector(`[data-option-index="${index}"]`);
+          if (select && select.value !== value) select.value = value;
+        });
+        selecting = false;
+        updateSwatches();
+      };
+
+      const present = (variant, options) => {
+        window.clearTimeout(addedTimer);
+        card.classList.remove("is-added");
+        current = variant;
+        if (options) setSelects(options);
+        else if (variant?.options) setSelects(variant.options);
+        const purchasable = canAdd(variant);
+        if (idInput && variant) idInput.value = variant.id;
+        if (image) {
+          const next = imageSource(variant);
+          if (next && image.getAttribute("src") !== next) {
+            image.removeAttribute("srcset");
+            image.src = next;
+          }
+        }
+        if (summary) {
+          const optionText = (variant?.options || options || [])
+            .filter((option) => option && option !== "Default Title")
+            .join(" / ");
+          summary.textContent = optionText || card.dataset.productTitle || "";
+        }
+        if (label) {
+          label.textContent = variant
+            ? purchasable
+              ? card.dataset.labelAdd
+              : card.dataset.labelSold
+            : card.dataset.labelUnavailable;
+        }
+        const formatted = variant ? money(variant.price) : "";
+        priceNodes.forEach((node) => {
+          if (formatted) node.textContent = formatted;
+        });
+        if (inlinePrice) inlinePrice.toggleAttribute("hidden", !purchasable);
+        if (dash) dash.toggleAttribute("hidden", !purchasable);
+        if (button) {
+          button.disabled = !purchasable;
+          button.setAttribute("aria-disabled", purchasable ? "false" : "true");
+        }
+        if (status) status.textContent = label ? label.textContent : "";
+        updateSwatches();
+      };
+
+      const applyToPicker = (options) => {
+        const picker = mainPicker();
+        if (!picker || !options) return false;
+        const groups = [...picker.children].filter((element) => element.tagName === "FIELDSET");
+        if (!groups.length) return false;
+        let target = null;
+        let changed = false;
+        options.forEach((value, index) => {
+          const group = groups[index];
+          if (!group) return;
+          const select = group.querySelector("select");
+          if (select) {
+            if (select.value !== value) {
+              select.value = value;
+              changed = true;
+            }
+            target = select;
+            return;
+          }
+          const input = [...group.querySelectorAll('input[type="radio"]')].find((item) => item.value === value);
+          if (!input) return;
+          if (!input.checked) {
+            input.checked = true;
+            changed = true;
+          }
+          target = input;
+        });
+        if (changed && target) {
+          if (target.disabled) target.disabled = false;
+          target.dispatchEvent(new Event("change", { bubbles: true }));
+        }
+        return true;
+      };
+
+      const onSelect = (event) => {
+        if (selecting || !card.contains(event.target)) return;
+        if (!event.target.matches?.("[data-option-index]")) return;
+        const options = selectedOptions();
+        const variant = findVariant(options);
+        present(variant, options);
+        applyToPicker(variant?.options || options);
+      };
+
+      const onMainInput = (event) => {
+        const input = event.target;
+        if (!(input instanceof HTMLInputElement) || input.name !== "id") return;
+        const host = input.closest("form[data-type='add-to-cart-form']");
+        if (!host || host.closest(".sticky-atc") || !host.closest("#MainContent")) return;
+        const variant = variants.find((item) => String(item.id) === String(input.value));
+        if (variant) present(variant, variant.options);
+      };
+
+      const onSubmit = (event) => {
+        if (!form || event.target !== form) return;
+        const mainQty = document.querySelector(
+          "#MainContent .product-info-container input[name='quantity']"
+        );
+        if (qtyInput) {
+          const next = mainQty && Number(mainQty.value) > 0 ? mainQty.value : "1";
+          qtyInput.value = next;
+        }
+      };
+
+      const showAdded = (event) => {
+        if (event?.source !== "product-form") return;
+        if (!idInput || String(event.productVariantId) !== String(idInput.value)) return;
+        card.classList.add("is-added");
+        if (label) label.textContent = card.dataset.labelAdded || card.dataset.labelAdd;
+        if (inlinePrice) inlinePrice.setAttribute("hidden", "");
+        if (dash) dash.setAttribute("hidden", "");
+        if (status) status.textContent = card.dataset.labelAdded || "";
+        window.clearTimeout(addedTimer);
+        addedTimer = window.setTimeout(() => {
+          if (current) present(current, current.options);
+        }, 1600);
+      };
+
+      const setVisible = (show) => {
+        card.classList.toggle("is-visible", show);
+        card.setAttribute("aria-hidden", show ? "false" : "true");
+        if ("inert" in card) card.inert = !show;
+        const anyVisible = !!document.querySelector(".sticky-atc.is-visible");
+        document.documentElement.classList.toggle("sticky-atc-visible", anyVisible);
+        if (show) place();
+      };
+
+      const updateVisibility = () => {
+        const target = buyArea();
+        if (!target) {
+          setVisible(false);
+          return;
+        }
+        const rect = target.getBoundingClientRect();
+        setVisible(rect.bottom <= 0);
+      };
+
+      const onViewport = () => {
+        if (frame) return;
+        frame = window.requestAnimationFrame(() => {
+          frame = 0;
+          updateVisibility();
+        });
+      };
+
+      const obstacleVisible = (element) => {
+        const style = window.getComputedStyle(element);
+        if (style.display === "none" || style.visibility === "hidden" || Number(style.opacity) === 0) return false;
+        const rect = element.getBoundingClientRect();
+        return rect.width > 8 && rect.height > 8;
+      };
+
+      const place = () => {
+        const mobile = window.matchMedia("(max-width: 749px)").matches;
+        if (mobile) {
+          card.style.bottom = "";
+          return;
+        }
+        const configured = Number(card.dataset.bottom) || 0;
+        const right = Number(card.dataset.right) || 0;
+        const rect = card.getBoundingClientRect();
+        const cardWidth = rect.width || card.offsetWidth;
+        const cardLeft = window.innerWidth - right - cardWidth;
+        const cardRight = window.innerWidth - right;
+        let bottom = configured;
+        document
+          .querySelectorAll(
+            ".scroll-top.show, #shopify-chat, #ShopifyChat, inbox-online-store-chat, #dummy-chat-button-iframe, #gorgias-chat-container, #tidio-chat, .intercom-lightweight-app"
+          )
+          .forEach((element) => {
+            if (!obstacleVisible(element)) return;
+            const box = element.getBoundingClientRect();
+            const overlaps = box.right > cardLeft + 8 && box.left < cardRight - 8;
+            if (!overlaps) return;
+            const needed = window.innerHeight - box.top + 12;
+            if (needed > bottom) bottom = needed;
+          });
+        const header = document.querySelector(".shopify-section-header");
+        const headerClearance =
+          header && !header.classList.contains("shopify-section-header-hidden")
+            ? header.getBoundingClientRect().bottom + 8
+            : 12;
+        const limit = Math.max(8, window.innerHeight - card.offsetHeight - headerClearance);
+        card.style.bottom = `${Math.min(bottom, limit)}px`;
+      };
+
+      const onExpand = () => {
+        const open = card.classList.toggle("is-open");
+        expand.setAttribute("aria-expanded", open ? "true" : "false");
+        if (expandLabel) {
+          expandLabel.textContent = open ? card.dataset.labelHide : card.dataset.labelShow;
+        }
+      };
+
+      const onKeydown = (event) => {
+        if (event.key === "Escape" && card.classList.contains("is-open")) {
+          card.classList.remove("is-open");
+          expand?.setAttribute("aria-expanded", "false");
+          if (expandLabel) expandLabel.textContent = card.dataset.labelShow;
+        }
+      };
+
+      const unsubscribeVariant = subscribe(PUB_SUB_EVENTS.variantChange, (event) => {
+        const variant = event?.data?.variant;
+        if (!variant) return;
+        const picker = mainPicker();
+        if (picker && String(event.data.sectionId) !== String(picker.dataset.section)) return;
+        const known = variants.find((item) => String(item.id) === String(variant.id)) || variant;
+        present(known, known.options);
+      });
+      const unsubscribeCart = subscribe(PUB_SUB_EVENTS.cartUpdate, showAdded);
+      const resizeObserver = new ResizeObserver(() => {
+        document.documentElement.style.setProperty("--sticky-atc-clearance", `${card.offsetHeight}px`);
+        if (card.classList.contains("is-visible")) place();
+      });
+      resizeObserver.observe(card);
+
+      card.addEventListener("change", onSelect);
+      document.addEventListener("change", onMainInput, true);
+      form?.addEventListener("submit", onSubmit, true);
+      expand?.addEventListener("click", onExpand);
+      document.addEventListener("keydown", onKeydown);
+      window.addEventListener("scroll", onViewport, { passive: true });
+      window.addEventListener("resize", onViewport);
+      updateSwatches();
+      present(current, current?.options);
+      updateVisibility();
+      place();
+
+      cleanups.set(card, () => {
+        unsubscribeVariant();
+        unsubscribeCart();
+        resizeObserver.disconnect();
+        card.removeEventListener("change", onSelect);
+        document.removeEventListener("change", onMainInput, true);
+        form?.removeEventListener("submit", onSubmit, true);
+        expand?.removeEventListener("click", onExpand);
+        document.removeEventListener("keydown", onKeydown);
+        window.removeEventListener("scroll", onViewport);
+        window.removeEventListener("resize", onViewport);
+        window.clearTimeout(addedTimer);
+        if (!document.querySelector(".sticky-atc.is-visible")) {
+          document.documentElement.classList.remove("sticky-atc-visible");
+        }
+      });
+    };
+
+    const boot = () => {
+      document.querySelectorAll(".sticky-atc").forEach(setup);
+    };
+
+    const schedule = () => window.setTimeout(boot, 0);
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", schedule);
+    } else {
+      schedule();
+    }
+    document.addEventListener("shopify:section:load", schedule);
+    document.addEventListener("shopify:section:unload", (event) => {
+      const card = event.target?.querySelector?.(".sticky-atc");
+      if (!card) return;
+      cleanups.get(card)?.();
+      cleanups.delete(card);
+    });
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:sections.sticky-add-to-cart.name",
+  "tag": "div",
+  "class": "sticky-atc-section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "t:sections.sticky-add-to-cart.settings.enabled.label",
+      "default": true
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.sticky-add-to-cart.settings.paragraph.content"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.sticky-add-to-cart.settings.header_color.content"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "t:sections.sticky-add-to-cart.settings.card_background.label",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_text",
+      "label": "t:sections.sticky-add-to-cart.settings.card_text.label",
+      "default": "#1d2433"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "t:sections.sticky-add-to-cart.settings.button_background.label",
+      "default": "#101828"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "t:sections.sticky-add-to-cart.settings.button_text.label",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.sticky-add-to-cart.settings.header_spacing.content"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.sticky-add-to-cart.settings.card_radius.label",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "desktop_bottom",
+      "min": 0,
+      "max": 240,
+      "step": 5,
+      "unit": "px",
+      "label": "t:sections.sticky-add-to-cart.settings.desktop_bottom.label",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "desktop_right",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "t:sections.sticky-add-to-cart.settings.desktop_right.label",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "mobile_bottom",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.sticky-add-to-cart.settings.mobile_bottom.label",
+      "default": 0
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.sticky-add-to-cart.settings.spacing_info.content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.sticky-add-to-cart.presets.name"
+    }
+  ]
+}
+{% endschema %}

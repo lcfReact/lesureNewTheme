@@ -1,0 +1,49 @@
+<div
+  id="shopify-block-{{block.id}}"
+  style="padding-top: {{ block.settings.column_padding_top }}%"
+>
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.image-collage.blocks.column.name",
+  "tag": "div",
+  "class": "image-collage-column",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.image-collage.blocks.column.settings.heading.label"
+    },
+    {
+      "type": "range",
+      "id": "column_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "t:sections.image-collage.blocks.column.settings.column_padding_top.label",
+      "default": 0,
+      "info": "t:sections.image-collage.blocks.column.settings.info.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_image_collage_block"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.image-collage.blocks.column.name",
+      "blocks": [
+        {
+          "type": "_image_collage_block"
+        },
+        {
+          "type": "_image_collage_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

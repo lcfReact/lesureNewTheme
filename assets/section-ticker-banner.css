@@ -1,0 +1,192 @@
+.ticker-banner {
+  display: block;
+  width: 100%;
+}
+.ticker-banner--border-top {
+  border-top: 0.1rem solid rgba(var(--color-border));
+}
+.ticker-banner--border-bottom {
+  border-bottom: 0.1rem solid rgba(var(--color-border));
+}
+.ticker-banner > .container + .content {
+  margin-top: 2.4rem;
+}
+@media screen and (min-width: 750px) {
+  .ticker-banner > .container + .content {
+    margin-top: 3.2rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .ticker-banner > .container + .content {
+    margin-top: 4rem;
+  }
+}
+.ticker-banner__main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+.ticker-banner__main:not(:first-child) {
+  margin-top: 2.4rem;
+}
+@media screen and (min-width: 576px) {
+  .ticker-banner__main:not(:first-child) {
+    margin-top: 3.2rem;
+  }
+}
+@media screen and (min-width: 990px) {
+  .ticker-banner__main:not(:first-child) {
+    margin-top: 4rem;
+  }
+}
+.ticker-banner__ticker-image {
+  display: inline-block;
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-right: 1.8rem;
+}
+@media screen and (min-width: 750px) {
+  .ticker-banner__ticker-image {
+    width: 7rem;
+    height: 7rem;
+    margin-right: 2rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .ticker-banner__ticker-image {
+    width: 8.2rem;
+    height: 8.2rem;
+    margin-right: 2.4rem;
+  }
+}
+@media screen and (min-width: 1360px) {
+  .ticker-banner__ticker-image {
+    margin-right: 2.8rem;
+  }
+}
+.container.ticker-banner-text__container:not(:first-child) {
+  margin-top: 2.4rem;
+}
+@media screen and (min-width: 576px) {
+  .container.ticker-banner-text__container:not(:first-child) {
+    margin-top: 3.2rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .container.ticker-banner-text__container:not(:first-child) {
+    margin-top: 4rem;
+  }
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes swap {
+  0%, 50% {
+    left: 0%;
+  }
+  50.01%, 100% {
+    left: 100%;
+  }
+}
+@keyframes marquee-rtl {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes swap-rtl {
+  0%, 50% {
+    right: 0%;
+  }
+  50.01%, 100% {
+    right: 100%;
+  }
+}
+.ticker-banner__ticker {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+.ticker-banner__ticker-wrapper {
+  display: inline-flex;
+  padding: 1.6rem 0;
+  animation: marquee calc(var(--ticker-banner-ticker-speed) + 10s) linear infinite;
+}
+@media screen and (min-width: 750px) {
+  .ticker-banner__ticker-wrapper {
+    padding: 2rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .ticker-banner__ticker-wrapper {
+    padding: 2.4rem;
+  }
+}
+.ticker-banner__ticker-collection {
+  display: inline-flex;
+  align-items: stretch;
+}
+.ticker-banner__ticker-collection--1 {
+  position: relative;
+  left: 0%;
+  animation: swap calc(var(--ticker-banner-ticker-speed) + 10s) linear infinite;
+}
+.ticker-banner__ticker-item {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  margin-right: 4rem;
+}
+@media screen and (min-width: 750px) {
+  .ticker-banner__ticker-item {
+    margin-right: 4.8rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .ticker-banner__ticker-item {
+    margin-right: 5.6rem;
+  }
+}
+@media screen and (min-width: 1360px) {
+  .ticker-banner__ticker-item {
+    margin-right: 7rem;
+  }
+}
+.ticker-banner__ticker-item--small-margin {
+  margin-right: 1.6rem;
+}
+@media screen and (min-width: 750px) {
+  .ticker-banner__ticker-item--small-margin {
+    margin-right: 2rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .ticker-banner__ticker-item--small-margin {
+    margin-right: 2.4rem;
+  }
+}
+@media screen and (min-width: 1360px) {
+  .ticker-banner__ticker-item--small-margin {
+    margin-right: 2.8rem;
+  }
+}
+[dir=rtl] .ticker-banner__ticker-collection--1 {
+  animation: swap-rtl calc(var(--ticker-banner-ticker-speed) + 10s) linear infinite;
+}
+[dir=rtl] .ticker-banner__ticker-wrapper {
+  animation: marquee-rtl calc(var(--ticker-banner-ticker-speed) + 10s) linear infinite;
+}

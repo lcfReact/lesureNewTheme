@@ -1,0 +1,62 @@
+{% comment %}
+  Featured blog list item.
+  title, excerpt, image, url, open, placeholder_svg, shopify_attributes
+{% endcomment %}
+
+<article
+  class="fb-item{% if open %} is-open{% endif %}"
+  data-fb-item
+  {% if shopify_attributes != blank %}
+    {{ shopify_attributes }}
+  {% endif %}
+>
+  <div class="fb-item__text">
+    <h3 class="fb-item__title">
+      {% if url != blank %}
+        <a href="{{ url }}">{{ title }}</a>
+      {% else %}
+        <span>{{ title }}</span>
+      {% endif %}
+    </h3>
+    <p class="fb-item__excerpt">{{ excerpt }}</p>
+  </div>
+
+  <div class="fb-item__panel">
+    <div class="fb-item__panel-inner">
+      {% if url != blank %}
+        <a class="fb-item__cover" href="{{ url }}" tabindex="-1" aria-hidden="true">
+      {% else %}
+        <div class="fb-item__cover">
+      {% endif %}
+        {% if image != blank %}
+          {{
+            image
+            | image_url: width: 1200
+            | image_tag:
+              widths: '400, 700, 1000, 1200',
+              sizes: '(min-width: 750px) 42vw, 92vw',
+              alt: image.alt | default: title,
+              class: 'fb-item__img',
+              loading: 'lazy'
+          }}
+        {% elsif placeholder_svg != blank %}
+          {{ placeholder_svg | placeholder_svg_tag: 'fb-item__img' }}
+        {% endif %}
+      {% if url != blank %}
+        </a>
+      {% else %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if url != blank %}
+    <a class="fb-item__arrow" href="{{ url }}" aria-label="{{ 'sections.blog-posts.view_article' | t: title: title | escape }}">
+      {% render 'icon-caret-right' %}
+    </a>
+  {% else %}
+    <span class="fb-item__arrow" aria-hidden="true">
+      {% render 'icon-caret-right' %}
+    </span>
+  {% endif %}
+</article>

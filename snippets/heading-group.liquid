@@ -1,0 +1,48 @@
+{% comment %}
+  Renders section text
+  Accepts:
+  section: {Object} Section
+  class: {String} Class (optional)
+  text_align: {String} Text align (optional)
+  enable_animation: {Boolean} Enable heading animation (optional)
+  Usage:
+  {% render 'heading-group', section: section, class: '' %}
+{% endcomment %}
+
+{%- if section.settings.subheading != blank or section.settings.heading != blank -%}
+  <div class="{% if class %}{{ class }}__titles{% endif %} titles{% if section.settings.heading == blank and section.settings.description == blank %} titles_margin-medium{% endif %}{% if text_align %} titles--{{ text_align }}{% endif %}">
+    {%- if section.settings.subheading != blank -%}
+      <div class="{% if class %}{{ class }}__subtitle{% endif %} subtitle">
+        {{- section.settings.subheading -}}
+      </div>
+    {% endif %}
+    {%- if section.settings.heading != blank -%}
+      <{{ section.settings.heading_level | default: "h2" }}
+        class="{% if class %}{{ class }}__title{% endif %} title {{ section.settings.heading_size }} size--{{- section.settings.heading_size -}}"
+      >
+        {%- if enable_animation == true -%}
+          {%- assign lines = section.settings.heading | split: "\n" -%}
+          {%- assign word_idx = 0 -%}
+          {%- for line in lines -%}
+            {%- assign words = line | split: ' ' -%}
+            {%- for word in words -%}
+              {%- if word != '' -%}
+                <span class="word" style="--word-index: {{ word_idx }}">{{ word }}</span>
+                {%- unless forloop.last %}&#32;{% endunless -%}
+                {%- assign word_idx = word_idx | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- unless forloop.last %}<br>{% endunless -%}
+          {%- endfor -%}
+        {%- else -%}
+          {{- section.settings.heading | newline_to_br -}}
+        {%- endif -%}
+      </{{ section.settings.heading_level | default: "h2" }}>
+    {% endif %}
+  </div>
+{%- endif -%}
+{%- if section.settings.description != blank -%}
+  <div class="{% if class %}{{ class }}__description{% endif %} description {% if text_align %} description--{{ text_align }} {% endif %}">
+    {{- section.settings.description -}}
+  </div>
+{% endif %}

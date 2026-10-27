@@ -1,0 +1,418 @@
+{{ 'component-collection-hero.css' | asset_url | stylesheet_tag: preload: true }}
+
+{%- style -%}
+  {% render 'section-margin' %}
+{%- endstyle -%}
+
+{% liquid
+  assign collection_image = collection.image
+
+  if section.settings.image != blank and collection.id != blank
+    assign collection_image = section.settings.image
+  endif
+
+  if collection_image == blank and collection.id == blank
+    assign collection_image = section.settings.image_products
+  endif
+
+  if section.settings.image_ratio != 'adapt' and section.settings.image_ratio != 'adapt_content'
+    assign aspect_ratio = section.settings.image_ratio | split: '/'
+    assign temp = aspect_ratio[0] | append: '.0'
+    assign padding_bottom = aspect_ratio[1] | divided_by: temp | times: 100 | round: 2
+  elsif section.settings.image_ratio == 'adapt' and collection_image != blank
+    assign padding_bottom = 1 | divided_by: collection_image.aspect_ratio | times: 100 | round: 2
+  else
+    assign padding_bottom = 0
+  endif
+-%}
+
+<section class="collection-banner-section-hero {% if section.settings.change_banner_background %} color-{{ section.settings.color_scheme }}{% endif %}">
+  <div class="collection-hero">
+    <div class="container">
+      <div
+        class="collection-hero__wrapper{% if section.settings.show_collection_image and collection_image != blank %} color-{{ section.settings.color_scheme }} background collection-hero__wrapper--with-image {% else %} color-background-1{% endif %}"
+        style="--padding-bottom: {{ padding_bottom }}%"
+      >
+        <div class="collection-hero__text-wrapper">
+          <div class="page-header">
+            <div class="page-header__inner">
+              <h1 class="collection-hero__title title--page h2">
+                <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
+                {{- collection.title | escape -}}
+              </h1>
+            </div>
+          </div>
+
+          {%- if section.settings.show_collection_description and collection.description != blank -%}
+            <div class="collection-hero__description rte">
+              {{ collection.description }}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.enable_collection_list and section.settings.collection_list != blank -%}
+            <div class="collection-hero__featured-collections{% if section.settings.show_collections_image %} collection-hero__featured-collections--with-images{% endif %}">
+              {%- if section.settings.add_all_products -%}
+                {%- if section.settings.show_collections_image -%}
+                  <a
+                    class="collection-hero-featured-collection collection-hero-featured-collection--with-image{% if collection.handle == "all" %} collection-hero-featured-collection--active{% endif %}"
+                    href="{{ routes.all_products_collection_url }}"
+                    aria-label="{{- 'sections.collection_template.all_products' | t -}}"
+                  >
+                    <div class="collection-hero-featured-collection__image-wrapper">
+                      {%- if section.settings.all_products_image != blank -%}
+                        {% liquid
+                          assign calc_ratio = 1.1
+
+                          if section.settings.all_products_image.aspect_ratio > 1.1
+                            assign calc_ratio = section.settings.all_products_image.aspect_ratio | divided_by: 1 | round: 2
+                          endif
+                        %}
+                        {%- capture sizes -%}
+                        (min-width: 990px) calc({{ calc_ratio }} * 106px), (min-width: 750px) calc({{ calc_ratio }} * 40px), calc({{ calc_ratio }} * 32px)
+                      {%- endcapture -%}
+                        {%- capture all_products_image_style -%}
+                        {%- if section.settings.all_products_image.presentation.focal_point -%}
+                          object-position: {{ section.settings.all_products_image.presentation.focal_point }};
+                        {%- endif -%}
+                      {%- endcapture -%}
+                        {{
+                          section.settings.all_products_image
+                          | image_url: width: section.settings.all_products_image.width
+                          | image_tag:
+                            widths: '32, 64, 106, 128, 160, 212, 256, 318, 535, 720, 940, 1100, 1200, 1440',
+                            sizes: sizes,
+                            class: 'collection-hero-featured-collection__image',
+                            style: all_products_image_style,
+                            alt: section.settings.all_products_image.alt
+                        }}
+                      {%- else -%}
+                        {{
+                          'collection-apparel-1'
+                          | placeholder_svg_tag: 'placeholder-svg placeholder-svg--filled collection-hero-featured-collection__image'
+                        }}
+                      {%- endif -%}
+                    </div>
+                    <span class="collection-hero-featured-collection__title body-xs">
+                      {{- 'sections.collection_template.all_products' | t -}}
+                    </span>
+                  </a>
+                {%- else -%}
+                  <a
+                    class="collection-hero-featured-collection collection-hero-featured-collection--no-image button button--transparent{% if collection.handle == "all" %} collection-hero-featured-collection--active{% endif %}"
+                    href="{{ routes.all_products_collection_url }}"
+                    aria-label="{{- 'sections.collection_template.all_products' | t -}}"
+                  >
+                    <div class="button__content">
+                      <span class="button__label" data-label="{{- 'sections.collection_template.all_products' | t -}}">
+                        {{- 'sections.collection_template.all_products' | t -}}
+                      </span>
+                    </div>
+                    <span class="animated-button-circle"></span>
+                  </a>
+                {%- endif -%}
+              {%- endif -%}
+              {% for item in section.settings.collection_list %}
+                {%- if section.settings.show_collections_image -%}
+                  <a
+                    class="collection-hero-featured-collection collection-hero-featured-collection--with-image{% if item.title == collection.title %} collection-hero-featured-collection--active{% endif %}"
+                    href="{{ item.url | default: '#' }}"
+                    aria-label="{{ item.title | escape }}"
+                  >
+                    <div class="collection-hero-featured-collection__image-wrapper">
+                      {%- if item.image != blank -%}
+                        {% liquid
+                          assign calc_ratio = 1.1
+
+                          if item.image.aspect_ratio > 1.1
+                            assign calc_ratio = item.image.aspect_ratio | divided_by: 1 | round: 2
+                          endif
+                        %}
+                        {%- capture sizes -%}
+                        (min-width: 990px) calc({{ calc_ratio }} * 106px), (min-width: 750px) calc({{ calc_ratio }} * 40px), calc({{ calc_ratio }} * 32px)
+                      {%- endcapture -%}
+                        {%- capture image_style -%}
+                        {%- if item.image.presentation.focal_point -%}
+                          object-position: {{ item.image.presentation.focal_point }};
+                        {%- endif -%}
+                      {%- endcapture -%}
+                        {{
+                          item.image
+                          | image_url: width: item.image.width
+                          | image_tag:
+                            widths: '32, 64, 106, 128, 160, 212, 256, 318, 535, 720, 940, 1100, 1200, 1440',
+                            sizes: sizes,
+                            class: 'collection-hero-featured-collection__image',
+                            style: image_style,
+                            alt: item.image.alt
+                        }}
+                      {%- else -%}
+                        {% liquid
+                          assign placeholder_index = forloop.index | modulo: 3 | plus: 2
+                        %}
+                        {{
+                          'collection-apparel-'
+                          | append: placeholder_index
+                          | placeholder_svg_tag: 'placeholder-svg placeholder-svg--filled collection-hero-featured-collection__image'
+                        }}
+                      {%- endif -%}
+                    </div>
+                    <span class="collection-hero-featured-collection__title body-xs">
+                      {{- item.title | escape -}}
+                    </span>
+                  </a>
+                {%- else -%}
+                  <a
+                    class="collection-hero-featured-collection collection-hero-featured-collection--no-image button button--transparent{% if item.title == collection.title %} collection-hero-featured-collection--active{% endif %}"
+                    href="{{ item.url | default: '#' }}"
+                    aria-label="{{ item.title | escape }}"
+                  >
+                    <div class="button__content">
+                      <span class="button__label" data-label="{{- item.title | escape -}}">
+                        {{- item.title | escape -}}
+                      </span>
+                    </div>
+                    <span class="animated-button-circle"></span>
+                  </a>
+                {%- endif -%}
+              {% endfor %}
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.show_collection_image and collection_image != blank -%}
+          {%- capture sizes -%}
+            (min-width: 1200px) calc(100vw - 160px), calc(100vw - 40px)
+          {%- endcapture -%}
+          {%- capture style -%}
+            {%- if collection_image.presentation.focal_point -%}
+              object-position: {{ collection_image.presentation.focal_point }};
+            {%- endif -%}
+          {%- endcapture -%}
+          <div class="collection-hero__image-wrapper">
+            <div class="media">
+              {{
+                collection_image
+                | image_url: width: collection_image.width
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '360, 535, 720, 940, 1100, 1200, 1440, 1600, 1800, 2000, 2100, 2200, 2880, 3200, 3600, 4000, 4200, 4400',
+                  sizes: sizes,
+                  style: style,
+                  alt: collection_image.alt
+              }}
+            </div>
+          </div>
+          <div
+            class="collection-hero__overlay"
+            style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}"
+          ></div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-banner.name",
+  "class": "collection-banner-section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-collection-banner.settings.paragraph.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "background-3",
+      "label": "t:sections.main-collection-banner.settings.color_scheme.label",
+      "info": "t:sections.main-collection-banner.settings.color_scheme.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "change_banner_background",
+      "default": false,
+      "label": "t:sections.main-collection-banner.settings.banner_background.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "default": false,
+      "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-banner.settings.header_image.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "default": false,
+      "label": "t:sections.main-collection-banner.settings.show_collection_image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.main-collection-banner.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_products",
+      "label": "t:sections.main-collection-banner.settings.image_products.label",
+      "info": "t:sections.main-collection-banner.settings.image_products.info"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "1/1",
+          "label": "t:sections.main-collection-banner.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "2/1",
+          "label": "t:sections.main-collection-banner.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "3/2",
+          "label": "t:sections.main-collection-banner.settings.image_ratio.options__3.label"
+        },
+        {
+          "value": "4/5",
+          "label": "t:sections.main-collection-banner.settings.image_ratio.options__4.label"
+        },
+        {
+          "value": "16/9",
+          "label": "t:sections.main-collection-banner.settings.image_ratio.options__5.label"
+        },
+        {
+          "value": "21/9",
+          "label": "t:sections.main-collection-banner.settings.image_ratio.options__6.label"
+        },
+        {
+          "value": "adapt",
+          "label": "t:sections.main-collection-banner.settings.image_ratio.options__7.label"
+        },
+        {
+          "value": "adapt_content",
+          "label": "t:sections.main-collection-banner.settings.image_ratio.options__8.label"
+        }
+      ],
+      "default": "adapt_content",
+      "label": "t:sections.main-collection-banner.settings.image_ratio.label"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "t:sections.all.overlay_opacity.label",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-banner.settings.header_collections.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_collection_list",
+      "default": true,
+      "label": "t:sections.main-collection-banner.settings.enable_collection_list.label"
+    },
+    {
+      "type": "collection_list",
+      "id": "collection_list",
+      "label": "t:sections.main-collection-banner.settings.collection_list.label",
+      "limit": 7
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collections_image",
+      "default": true,
+      "label": "t:sections.main-collection-banner.settings.show_collections_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "add_all_products",
+      "default": true,
+      "label": "t:sections.main-collection-banner.settings.add_all_products.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "all_products_image",
+      "label": "t:sections.main-collection-banner.settings.all_products_image.label",
+      "visible_if": "{{ section.settings.add_all_products and section.settings.show_collections_image }}"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "xs",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ]
+}
+{% endschema %}

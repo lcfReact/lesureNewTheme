@@ -1,0 +1,80 @@
+{% comment %}
+  Renders a collection card
+  Accepts:
+  - card_type: {String} primary / secondary. Default: Primary.
+  - card_color_scheme: {String} Color scheme.
+  - card_title_size: {String} h3 / h4 / h5 / h6. Default: h4.
+  - image_ratio: {String} landscape / portrait / square. Default: portrait.
+  - card_index: {Integer} Card index
+  - block_shopify_attributes: {String} Additional Shopify block attributes
+  Usage:
+  {% render 'collection-card-placeholder',
+    card_type: section.settings.card_type,
+    card_color_scheme: section.settings.card_color_scheme,
+    card_title_size: section.settings.collections_titles_size,
+    image_ratio: section.settings.aspect_ratio,
+    card_index: placeholder_index
+  %}
+{% endcomment %}
+
+{% liquid
+  assign card_image_ratio = 'portrait'
+  if image_ratio != blank
+    assign card_image_ratio = image_ratio
+  endif
+%}
+
+{% if card_type == 'primary' %}
+  <div
+    class="collection-card collection-card--primary collection-card--{{ card_image_ratio }}"
+    {% if block_shopify_attributes != blank %}
+      {{ block_shopify_attributes }}
+    {% endif %}
+  >
+    <div class="collection-card-wrapper color-{{ card_color_scheme }}">
+      <div class="collection-card__img-wrapper">
+        {{ 'collection-' | append: card_index | placeholder_svg_tag: 'placeholder-svg collection-card__img' }}
+      </div>
+
+      <div class="collection-card__content">
+        {% liquid
+          assign placeholder_name = 'sections.collections_list.collection_name' | t | append: ' ' | append: card_index
+          assign button_label = 'sections.collections_list.button_label' | t
+          assign heading_level = card_title_size
+        %}
+
+        <{{ heading_level }} class="collection-card__title">
+          {{ placeholder_name }}
+        </{{ heading_level }}>
+
+        {% render 'button',
+          btn_label: button_label,
+          btn_style: 'tertiary',
+          class: 'collection-card__btn collection-card__btn--without-link focus-inset'
+        %}
+      </div>
+    </div>
+  </div>
+{% else %}
+  <div
+    class="collection-card collection-card--secondary color-{{ card_color_scheme }}"
+    {% if block_shopify_attributes != blank %}
+      {{ block_shopify_attributes }}
+    {% endif %}
+  >
+    <div class="collection-card__img-wrapper collection-card__img-wrapper--{{ card_image_ratio }}">
+      {{ 'collection-' | append: card_index | placeholder_svg_tag: 'placeholder-svg collection-card__img' }}
+    </div>
+
+    <div class="collection-card__content">
+      {% liquid
+        assign placeholder_name = 'sections.collections_list.collection_name' | t | append: ' ' | append: card_index
+        assign heading_level = card_title_size
+      %}
+
+      <{{ heading_level }} class="collection-card__title">
+        {{ placeholder_name }}
+      </{{ heading_level }}>
+    </div>
+  </div>
+{% endif %}

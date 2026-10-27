@@ -1,0 +1,78 @@
+{% comment %}
+  	Renders a horizontal product card
+  	Accepts:
+  	- media_ratio: {String} The aspect ratio to use for the card's image. Default: 'portrait' (optional)
+    - media_fit: {String} The object-fit to use for the card's image. Default: 'cover'
+  	- show_vendor: {Boolean} Show the product vendor.
+    - show_button: {Boolean} Show the product button.
+    - button_label: {String} The label of the button.
+    - color_scheme: {String} Color scheme.
+  	Usage:
+  {% render 'product-card-horizontal-placeholder',
+  	show_vendor: section.settings.show_vendor,
+    color_scheme: section.settings.card_color_scheme,
+    media_ratio: section.settings.media_ratio,
+    media_fit: section.settings.media_fit
+  %}
+{% endcomment %}
+
+{% liquid
+  case media_ratio
+    when 'landscape'
+      assign media_aspect_ratio = '4/3'
+    when 'portrait'
+      assign media_aspect_ratio = '78/102'
+    when 'square'
+      assign media_aspect_ratio = '1/1'
+    else
+      assign media_aspect_ratio = '1/1'
+  endcase
+%}
+
+<div
+  class="card-horizontal {% if color_scheme != blank%}color-{{ color_scheme }}{% else %}color-{{ settings.card_color_scheme }}{% endif %}"
+>
+  <div
+    class="card-horizontal-media"
+    style="aspect-ratio: {{ media_aspect_ratio }}; object-fit: {{ media_fit | default: 'cover' }};"
+  >
+    {% liquid
+      assign placeholder_index = product_card_index | modulo: 6 | plus: 1
+    %}
+
+    {{ 'product-' | append: placeholder_index | placeholder_svg_tag: 'placeholder-svg' }}
+  </div>
+
+  <div class="card-horizontal-information">
+    <div class="card-horizontal-information__top">
+      {%- if show_vendor -%}
+        <div class="card-horizontal-vendor body-xs">
+          <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+          {{- 'products.product.vendor' | t -}}
+        </div>
+      {%- endif -%}
+
+      <h3 class="card-horizontal-title">
+        {{- 'products.product.product_heading' | t -}}
+      </h3>
+
+      {% liquid
+        assign is_placeholder_sale_price = false
+
+        if product_card_index == 2 or product_card_index == 4
+          assign is_placeholder_sale_price = true
+        endif
+      %}
+
+      {% render 'price', is_placeholder_sale_price: is_placeholder_sale_price, is_placeholder: true, display_mode_variant_prices: settings.display_mode_variant_prices %}
+    </div>
+
+    {%- if show_button and button_label != blank -%}
+      <div class="card-horizontal-button-wrapper">
+        <span class="card-horizontal-button">
+          {{- button_label -}}
+        </span>
+      </div>
+    {%- endif -%}
+  </div>
+</div>

@@ -1,0 +1,71 @@
+{
+  "sections": {
+    "cart-items": {
+      "type": "main-cart-items",
+      "blocks": {
+        "cart_note": {
+          "type": "cart_note",
+          "settings": {}
+        },
+        "discount_code_field": {
+          "type": "discount_code_field",
+          "settings": {}
+        },
+        "subtotal": {
+          "type": "subtotal",
+          "settings": {
+            "enable_tax_info": true
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {}
+        }
+      },
+      "block_order": ["cart_note", "discount_code_field", "subtotal", "buttons"],
+      "settings": {
+        "cart_show_shopping_button": true,
+        "cart_shopping_button_label": "",
+        "cart_shopping_button_link": "",
+        "enable_empty_cart_button": false,
+        "button_label_empty_cart": "",
+        "button_link_empty_cart": "",
+        "margin_top": "l",
+        "margin_bottom": "l"
+      }
+    },
+    "popular_products_dx9XpD": {
+      "type": "popular-products",
+      "name": "t:sections.popular-products.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "enable_border_top": true,
+        "enable_border_bottom": false,
+        "subheading": "",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "description": "",
+        "text_align": "center",
+        "desktop_layout": "slider",
+        "show_nav_buttons_desktop": true,
+        "mobile_layout": "slider",
+        "show_nav_buttons_mobile": false,
+        "enable_loop": false,
+        "centered_slides": false,
+        "products_to_show": 3,
+        "image_ratio": "portrait",
+        "image_fit": "cover",
+        "show_vendor": false,
+        "show_desc": true,
+        "button_show": false,
+        "button_style": "primary",
+        "button_link": "",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    }
+  },
+  "order": ["cart-items", "popular_products_dx9XpD"]
+}

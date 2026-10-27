@@ -1,0 +1,160 @@
+{%- liquid
+  assign header_selector = '.shopify-section-header'
+  assign header_burger_selector = '.shopify-section-header:has(.header-burger)'
+  assign header_not_sticky_selector = '.shopify-section-header:not(.shopify-section-header-sticky)'
+
+  assign overlay_section_selector = '.overlay-section:first-child'
+
+  assign scheme = section.settings.color_scheme_overlay
+  assign original_scheme = section.settings.color_scheme
+-%}
+
+<style>
+  body:has(main > {{ overlay_section_selector }}) {{ header_not_sticky_selector }} .header-wrapper,
+  body:has(main > {{ overlay_section_selector }}) {{ header_not_sticky_selector }} .header-compact__wrapper,
+  body:has(main > {{ overlay_section_selector }}) {{ header_not_sticky_selector }} .header-burger__burger,
+  body:has(main > {{ overlay_section_selector }}) {{ header_not_sticky_selector }} .header-burger__cart {
+   	--color-background: {{ scheme.settings.colors_background_1.red }},{{ scheme.settings.colors_background_1.green }},{{ scheme.settings.colors_background_1.blue }};
+   	--color-background-secondary: {{ scheme.settings.colors_background_2.red }},{{ scheme.settings.colors_background_2.green }},{{ scheme.settings.colors_background_2.blue }};
+   	--color-foreground: {{ scheme.settings.colors_text.red }},{{ scheme.settings.colors_text.green }},{{ scheme.settings.colors_text.blue }};
+   	--color-foreground-secondary: {{ scheme.settings.colors_secondary_text.red }}, {{ scheme.settings.colors_secondary_text.green }}, {{ scheme.settings.colors_secondary_text.blue }};
+   	--color-border: {{ scheme.settings.colors_text.red }},{{ scheme.settings.colors_text.green }},{{ scheme.settings.colors_text.blue }};
+   }
+
+   body:has(main > {{ overlay_section_selector }}) {{ header_not_sticky_selector }} .header-wrapper.header-wrapper--full {
+    	--color-background: {{ scheme.settings.colors_background_1.red }},{{ scheme.settings.colors_background_1.green }},{{ scheme.settings.colors_background_1.blue }};
+    	--color-foreground: {{ scheme.settings.colors_text.red }},{{ scheme.settings.colors_text.green }},{{ scheme.settings.colors_text.blue }};
+    	--overwrite-background: transparent;
+    	background: transparent;
+    	color: rgb(var(--color-foreground));
+   }
+
+      {% comment %} change logo on overlay {% endcomment %}
+      {%- if section.settings.logo_2 != blank -%}
+        body:has(main > {{ overlay_section_selector }}) {{ header_not_sticky_selector }} .header-wrapper .header__heading .header__heading-logo {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        body:has(main > {{ overlay_section_selector }}) {{ header_not_sticky_selector }} .header-wrapper .header__heading .header__heading-logo:only-child {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        body:has(main > {{ overlay_section_selector }}) {{ header_not_sticky_selector }} .header-wrapper .header__heading .header__heading-logo--overlay {
+          opacity: 1;
+          visibility: visible;
+        }
+      {%- endif -%}
+
+      {% comment %} revert to original color scheme on hover {% endcomment %}
+      @media screen and (hover: hover) and (pointer: fine) {
+        body:has(main > {{ overlay_section_selector }}) {{ header_not_sticky_selector }}:hover .header-wrapper.header-wrapper--full {
+          --color-background: {{ original_scheme.settings.colors_background_1.red }},{{ original_scheme.settings.colors_background_1.green }},{{ original_scheme.settings.colors_background_1.blue }};
+          --color-background-secondary: {{ original_scheme.settings.colors_background_2.red }},{{ original_scheme.settings.colors_background_2.green }},{{ original_scheme.settings.colors_background_2.blue }};
+          --color-foreground: {{ original_scheme.settings.colors_text.red }},{{ original_scheme.settings.colors_text.green }},{{ original_scheme.settings.colors_text.blue }};
+          --color-foreground-secondary: {{ original_scheme.settings.colors_secondary_text.red }}, {{ original_scheme.settings.colors_secondary_text.green }}, {{ original_scheme.settings.colors_secondary_text.blue }};
+          --color-border: {{ original_scheme.settings.colors_text.red }},{{ original_scheme.settings.colors_text.green }},{{ original_scheme.settings.colors_text.blue }};
+          --overwrite-background: rgb({{ original_scheme.settings.colors_background_1.red }},{{ original_scheme.settings.colors_background_1.green }},{{ original_scheme.settings.colors_background_1.blue }});
+          background: rgb(var(--color-background));
+          color: rgb(var(--color-foreground));
+        }
+
+        {%- if section.settings.logo_2 != blank -%}
+          body:has(main > {{ overlay_section_selector }}) {{ header_not_sticky_selector }}:hover .header-wrapper .header__heading .header__heading-logo {
+            opacity: 1;
+            visibility: visible;
+          }
+
+          body:has(main > {{ overlay_section_selector }}) {{ header_not_sticky_selector }}:hover .header-wrapper .header__heading .header__heading-logo--overlay {
+            opacity: 0;
+            visibility: hidden;
+          }
+        {%- endif -%}
+      }
+
+      {% comment %} styles for first section in main {% endcomment %}
+      {{ header_selector }} ~ main > {{ overlay_section_selector }} {
+        margin-top: calc(-1 * var(--header-height)) !important;
+      }
+
+      {{ header_selector }} ~ main > {{ overlay_section_selector }} .image-parallax-with-text-container {
+        padding-top: var(--header-height) !important;
+      }
+
+      {{ header_selector }} ~ main > {{ overlay_section_selector }} .slideshow-type-1 {
+        padding-top: var(--header-height) !important;
+      }
+
+      {{ header_selector }} ~ main > {{ overlay_section_selector }} .hero-main {
+        padding-top: var(--header-height) !important;
+      }
+
+      {{ header_burger_selector }} ~ main > {{ overlay_section_selector }} .hero-main {
+        padding-top: 0 !important;
+      }
+
+      @media screen and (max-width: 989.99px) {
+        {{ header_burger_selector }} ~ main > {{ overlay_section_selector }} .hero-content {
+          padding-top: var(--header-height) !important;
+        }
+      }
+
+      @media screen and (min-width: 990px) {
+        {{ header_burger_selector }} ~ main > {{ overlay_section_selector }} .hero-content {
+          padding-top: 1.6rem !important;
+        }
+      }
+
+      @media screen and (max-width: 749.99px) {
+        {{ header_selector }} ~ main > {{ overlay_section_selector }} .slideshow--mobile-full-height::before {
+          padding-bottom: calc((var(--vh, 1vh) * 100) - var(--announcement-height)) !important;
+          padding-bottom: calc(100svh - var(--announcement-height)) !important;
+        }
+
+        {{ header_selector }} ~ main > {{ overlay_section_selector }} .slideshow-type-2.slideshow--mobile-full-height {
+          height: calc((var(--vh, 1vh) * 100) - var(--announcement-height)) !important;
+          height: calc(100svh - var(--announcement-height)) !important;
+        }
+      }
+
+      @media screen and (min-width: 750px) {
+        {{ header_selector }} ~ main > {{ overlay_section_selector }} .slideshow--desktop-full-height::before {
+          padding-bottom: calc((var(--vh, 1vh) * 100) - var(--announcement-height)) !important;
+          padding-bottom: calc(100svh - var(--announcement-height)) !important;
+        }
+
+        {{ header_selector }} ~ main > {{ overlay_section_selector }} .slideshow-type-2.slideshow--desktop-full-height {
+          height: calc((var(--vh, 1vh) * 100) - var(--announcement-height)) !important;
+          height: calc(100svh - var(--announcement-height)) !important;
+        }
+      }
+
+      @media screen and (max-width: 749.99px) {
+        {{ header_selector }} ~ main > {{ overlay_section_selector }} .slideshow-type-1.slideshow--mobile-full-height::before {
+          padding-bottom: calc((var(--vh, 1vh) * 100) - var(--announcement-height) - var(--header-height)) !important;
+          padding-bottom: calc(100svh - var(--announcement-height) - var(--header-height)) !important;
+        }
+      }
+
+      @media screen and (min-width: 750px) {
+        {{ header_selector }} ~ main > {{ overlay_section_selector }} .slideshow-type-1.slideshow--desktop-full-height::before {
+          padding-bottom: calc((var(--vh, 1vh) * 100) - var(--announcement-height) - var(--header-height)) !important;
+          padding-bottom: calc(100svh - var(--announcement-height) - var(--header-height)) !important;
+        }
+      }
+
+      @media screen and (max-width: 575.99px) {
+        {{ header_selector }} ~ main > {{ overlay_section_selector }} .hero--mobile-full-height::before {
+          padding-bottom: calc((var(--vh, 1vh) * 100) - var(--announcement-height)) !important;
+          padding-bottom: calc(100svh - var(--announcement-height)) !important;
+        }
+      }
+
+      @media screen and (min-width: 576px) {
+        {{ header_selector }} ~ main > {{ overlay_section_selector }} .hero--desktop-full-height::before {
+          padding-bottom: calc((var(--vh, 1vh) * 100) - var(--announcement-height)) !important;
+          padding-bottom: calc(100svh - var(--announcement-height)) !important;
+        }
+      }
+</style>

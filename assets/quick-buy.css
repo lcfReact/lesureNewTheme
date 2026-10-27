@@ -1,0 +1,488 @@
+quick-buy-modal.quick-buy {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+quick-buy-modal.quick-buy[hidden] {
+  display: none !important;
+}
+
+.quick-buy__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(22, 16, 48, 0.46);
+}
+
+.quick-buy__dialog {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 487px) minmax(220px, 1fr);
+  align-items: stretch;
+  gap: 27px;
+  width: min(1053px, calc(100vw - 48px));
+  height: min(580px, calc(100dvh - 48px));
+  max-height: calc(100dvh - 48px);
+  padding: 46px;
+  overflow: hidden;
+  background: #f7f3e8;
+  border-radius: 4px;
+  color: #171717;
+}
+
+.quick-buy__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 37px;
+  height: 37px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #171717;
+  cursor: pointer;
+}
+
+.quick-buy__close .icon {
+  width: 29px;
+  height: 29px;
+}
+
+.quick-buy__media {
+  position: relative;
+  width: min(487px, 100%);
+  height: 487px;
+  max-height: 100%;
+  justify-self: center;
+  align-self: center;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #efe8d8;
+}
+
+.quick-buy__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.quick-buy__nav {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #f5d400;
+  color: #171717;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.quick-buy__nav[hidden] {
+  display: none !important;
+}
+
+.quick-buy__nav--prev {
+  left: 13px;
+}
+
+.quick-buy__nav--next {
+  right: 13px;
+}
+
+.quick-buy__nav .icon {
+  width: 19px;
+  height: 19px;
+}
+
+.quick-buy__info {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding: 5px 37px 0 5px;
+  overflow: auto;
+  font-size: 19px;
+  line-height: 1.35;
+}
+
+.quick-buy__title {
+  margin: 0;
+  font-family: var(--font-heading-family);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.quick-buy__price {
+  margin: -5px 0 0;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.quick-buy__price s {
+  margin-left: 8px;
+  color: #8a8478;
+  font-weight: 500;
+}
+
+.quick-buy__desc {
+  position: relative;
+  margin: 4px 0 0;
+  max-height: calc(1.35em * 3);
+  overflow: hidden;
+  color: #171717;
+  line-height: 1.35;
+}
+
+.quick-buy__desc-spacer {
+  float: right;
+  width: 0;
+  height: calc(1.35em * 2);
+}
+
+.quick-buy__details {
+  float: right;
+  clear: right;
+  margin-left: 6px;
+  color: #2456d6;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.quick-buy__desc.is-empty {
+  max-height: none;
+}
+
+.quick-buy__desc.is-empty .quick-buy__desc-spacer {
+  display: none;
+}
+
+.quick-buy__desc.is-empty .quick-buy__details {
+  float: none;
+}
+
+.quick-buy__options {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  min-height: 0;
+  margin-top: 5px;
+}
+
+.quick-buy__options fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.quick-buy__options legend {
+  margin-bottom: 8px;
+  padding: 0;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.quick-buy__swatches,
+.quick-buy__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+}
+
+.quick-buy__swatch,
+.quick-buy__pill {
+  cursor: pointer;
+}
+
+.quick-buy__swatch {
+  width: 37px;
+  height: 37px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: var(--swatch, #ddd) center / cover no-repeat;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+.quick-buy__swatch.is-selected {
+  box-shadow: 0 0 0 2px #f7f3e8, 0 0 0 4px #6b4cff;
+}
+
+.quick-buy__pill {
+  min-width: 48px;
+  height: 43px;
+  padding: 0 13px;
+  border: 0;
+  border-radius: 4px;
+  background: #ececec;
+  color: #171717;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.quick-buy__pill.is-selected {
+  background: #6b4cff;
+  color: #fff;
+}
+
+.quick-buy__swatch:disabled,
+.quick-buy__pill:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.quick-buy__notice {
+  margin: 0;
+  color: #6c4dff;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.quick-buy__notice.is-error {
+  color: #b42318;
+}
+
+.quick-buy__buy {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin-top: auto;
+  padding-top: 5px;
+}
+
+.quick-buy__actions {
+  display: grid;
+  grid-template-columns: 176px minmax(0, 1fr);
+  gap: 11px;
+}
+
+.quick-buy__qty {
+  display: flex;
+  align-items: center;
+  height: 53px;
+  border: 1px solid #171717;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.quick-buy__qty button,
+.quick-buy__qty-input {
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: #171717;
+  font-size: 21px;
+}
+
+.quick-buy__qty button {
+  width: 48px;
+  cursor: pointer;
+}
+
+.quick-buy__qty-input {
+  width: 48px;
+  padding: 0;
+  text-align: center;
+  font-weight: 600;
+  -moz-appearance: textfield;
+}
+
+.quick-buy__qty-input::-webkit-outer-spin-button,
+.quick-buy__qty-input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.quick-buy__atc,
+.quick-buy__checkout {
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.quick-buy__atc {
+  height: 53px;
+  border: 1px solid #171717;
+  background: #fff;
+  color: #171717;
+}
+
+.quick-buy__checkout {
+  width: 100%;
+  height: 53px;
+  border: 0;
+  background: #f5d400;
+  color: #171717;
+}
+
+.quick-buy__atc:disabled,
+.quick-buy__checkout:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+@media screen and (max-width: 749px) {
+  quick-buy-modal.quick-buy {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .quick-buy__dialog {
+    display: block;
+    width: 100%;
+    height: 343px;
+    max-height: min(343px, 100dvh);
+    padding: 14px 12px 12px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .quick-buy__close {
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .quick-buy__close .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .quick-buy__media {
+    position: absolute;
+    top: 36px;
+    left: 12px;
+    width: 104px;
+    height: 104px;
+  }
+
+  .quick-buy__nav {
+    display: none !important;
+  }
+
+  .quick-buy__info {
+    height: auto;
+    padding: 22px 22px 0 116px;
+    gap: 2px;
+    overflow: visible;
+    font-size: 12px;
+  }
+
+  .quick-buy__title {
+    font-size: 16px;
+  }
+
+  .quick-buy__price {
+    margin: 0;
+    font-size: 15px;
+  }
+
+  .quick-buy__desc {
+    max-height: calc(1.35em * 3);
+    font-size: 12px;
+  }
+
+  .quick-buy__options,
+  .quick-buy__buy,
+  .quick-buy__notice {
+    width: calc(100% + 116px);
+    margin-left: -116px;
+  }
+
+  .quick-buy__options {
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .quick-buy__options legend {
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+
+  .quick-buy__swatches,
+  .quick-buy__pills {
+    gap: 6px;
+  }
+
+  .quick-buy__swatch {
+    width: 28px;
+    height: 28px;
+  }
+
+  .quick-buy__pill {
+    min-width: 36px;
+    height: 32px;
+    padding: 0 8px;
+    font-size: 13px;
+  }
+
+  .quick-buy__buy {
+    gap: 8px;
+    padding-top: 0;
+  }
+
+  .quick-buy__actions {
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .quick-buy__atc,
+  .quick-buy__checkout,
+  .quick-buy__qty,
+  .quick-buy__qty button {
+    height: 40px;
+    min-height: 40px;
+  }
+
+  .quick-buy__qty button,
+  .quick-buy__qty-input {
+    font-size: 16px;
+  }
+
+  .quick-buy__qty button {
+    width: 32px;
+  }
+
+  .quick-buy__atc,
+  .quick-buy__checkout {
+    font-size: 13px;
+  }
+
+  .card__links:has(.quick-buy-open) {
+    display: flex;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.quick-buy-open {
+  position: relative;
+  z-index: 5;
+}

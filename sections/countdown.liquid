@@ -1,0 +1,1062 @@
+{{ 'section-countdown.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'countdown.js' | asset_url }}" defer="defer"></script>
+
+{% liquid
+  assign timezone = 'now' | date: '%Z' | plus: 0 | append: ''
+
+  if timezone.size > 1
+    assign timezone = 'now' | date: '%Z' | divided_by: 100 | times: 3600.0 | plus: 1800
+  else
+    assign timezone = 'now' | date: '%Z' | minus: 1 | times: 3600.0
+  endif
+
+  if section.settings.enable_mock_timer
+    assign days = section.settings.mock_timer_days | append: ''
+    assign hours = section.settings.mock_timer_hours | append: ''
+    assign minutes = '00'
+    assign seconds = '00'
+  else
+    assign date_merge = section.settings.date_picker | append: 'T' | append: section.settings.time_picker | append: ':00'
+    assign date_now = 'now' | date: '%s' | minus: 0
+    assign date_settings = date_merge | date: '%s' | minus: 0
+
+    if date_now < date_settings
+      assign distance = date_settings | minus: date_now
+      assign days = distance | divided_by: 3600 | divided_by: 24 | floor | append: ''
+      assign hours = distance | modulo: 86400 | divided_by: 3600 | floor | append: ''
+      assign minutes = distance | modulo: 3600 | divided_by: 60 | floor | append: ''
+      assign seconds = distance | modulo: 60 | floor | append: ''
+    else
+      assign days = '00'
+      assign hours = '00'
+      assign minutes = '00'
+      assign seconds = '00'
+    endif
+  endif
+%}
+
+{% liquid
+  assign ticker_coeff = 128
+
+  if section.settings.layout == 'compact'
+    assign ticker_coeff = 256
+  endif
+%}
+
+{% liquid
+  if section.settings.layout == 'compact'
+    assign has_timer = false
+    assign has_text_content = false
+    assign has_button = false
+    assign el_count_layout = '3'
+
+    if section.settings.date_picker != blank and section.settings.time_picker != blank or section.settings.enable_mock_timer
+      assign has_timer = true
+    endif
+
+    if section.settings.heading != blank or section.settings.description != blank
+      assign has_text_content = true
+    endif
+
+    if section.settings.show_link
+      assign has_button = true
+    endif
+
+    if has_timer and has_text_content and has_button
+      assign el_count_layout = '3'
+    elsif has_timer and has_text_content
+      assign el_count_layout = '2'
+    elsif has_timer and has_button
+      assign el_count_layout = '2'
+    elsif has_text_content and has_button
+      assign el_count_layout = '2'
+    else
+      assign el_count_layout = '1'
+    endif
+  endif
+%}
+
+{%- style -%}
+  {% render 'section-padding' %}
+  {% render 'section-margin' %}
+{%- endstyle -%}
+
+<div class="countdown__outer section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} background{% if section.settings.enable_border_top %} countdown__outer--border-top{% endif %}{% if section.settings.enable_border_bottom %} countdown__outer--border-bottom{% endif %}">
+  <countdown-timer
+    class="countdown countdown--{{ section.settings.layout }} js-countdown js-countdown-{{ section.id }}"
+    data-date="{{ section.settings.date_picker }}"
+    data-time="{{ section.settings.time_picker }}"
+    data-completed="{{ section.settings.completed_countdown }}"
+    data-mock-timer="{{ section.settings.enable_mock_timer }}"
+    data-mock-days="{{ section.settings.mock_timer_days }}"
+    data-mock-hours="{{ section.settings.mock_timer_hours }}"
+  >
+    <div class="countdown__container countdown__container--image-desktop-{{ section.settings.image_position_desktop }} countdown__container--image-mobile-{{ section.settings.image_position_mobile }}{% if section.settings.layout == 'with_image' %} container{% endif %}">
+      <div class="countdown__timer color-{{ section.settings.content_color_scheme }}{% if section.settings.enable_image == false %} only-timer{% endif %}">
+        {%- if section.settings.enable_upper_ticker -%}
+          {% liquid
+            assign upper_ticker_text = section.settings.upper_ticker_text
+
+            if upper_ticker_text == blank
+              assign upper_ticker_text = 'sections.countdown.ticker_text' | t
+            endif
+
+            assign ticker_elements_count = ticker_coeff | divided_by: upper_ticker_text.size | at_least: 1 | plus: 1
+          %}
+          <div
+            class="countdown-ticker countdown-ticker--upper"
+            dir="ltr"
+          >
+            <div class="countdown-ticker-wrapper">
+              <span class="countdown-ticker-collection countdown-ticker-collection--1">
+                {%- for i in (1..ticker_elements_count) -%}
+                  <span class="countdown-ticker-item body-xl">
+                    {{- upper_ticker_text -}}
+                  </span>
+                {%- endfor -%}
+              </span>
+              <span class="countdown-ticker-collection countdown-ticker-collection--2">
+                {%- for i in (1..ticker_elements_count) -%}
+                  <span class="countdown-ticker-item body-xl">
+                    {{- upper_ticker_text -}}
+                  </span>
+                {%- endfor -%}
+              </span>
+            </div>
+          </div>
+        {%- endif -%}
+        <div
+          class="countdown__wrapper countdown__wrapper--align-{{ section.settings.content_alignment }}{% if section.settings.layout == 'compact' %} countdown__wrapper--compact countdown__wrapper--compact-{{ el_count_layout }} container{% endif %}"
+        >
+          {%- if section.settings.layout == 'with_image' -%}
+            {% comment %} ----- WITH IMAGE LAYOUT ----- {% endcomment %}
+
+            {%- if section.settings.date_picker != blank
+              and section.settings.time_picker != blank
+              or section.settings.enable_mock_timer
+            -%}
+              <div class="countdown__main countdown__main--block-size-{{ section.settings.countdown_block_size }}">
+                <div class="countdown__block">
+                  <div class="countdown__block_num">
+                    <span
+                      class="countdown_block_days h2"
+                    >
+                      {% if days.size > 1 %}
+                        {{ days }}
+                      {% else %}
+                        {{ 0 | append: days }}
+                      {% endif %}
+                    </span>
+                    <span class="countdown_block_mark">{{- 'general.countdown.days' | t }}</span>
+                  </div>
+                </div>
+                <div class="countdown__colon h2">:</div>
+                <div class="countdown__block">
+                  <div class="countdown__block_num">
+                    <span
+                      class="countdown_block_hours h2"
+                    >
+                      {% if hours.size > 1 %}
+                        {{ hours }}
+                      {% else %}
+                        {{ 0 | append: hours }}
+                      {% endif %}
+                    </span>
+                    <span class="countdown_block_mark">{{- 'general.countdown.hours' | t -}}</span>
+                  </div>
+                </div>
+                <div class="countdown__colon h2">:</div>
+                <div class="countdown__block">
+                  <div class="countdown__block_num">
+                    <span
+                      class="countdown_block_minutes h2"
+                    >
+                      {% if minutes.size > 1 %}
+                        {{ minutes }}
+                      {% else %}
+                        {{ 0 | append: minutes }}
+                      {% endif %}
+                    </span>
+                    <span class="countdown_block_mark">{{- 'general.countdown.minutes' | t -}}</span>
+                  </div>
+                </div>
+                <div class="countdown__colon h2">:</div>
+                <div class="countdown__block">
+                  <div class="countdown__block_num">
+                    <span
+                      class="countdown_block_seconds h2"
+                    >
+                      {% if seconds.size > 1 %}
+                        {{ seconds }}
+                      {% else %}
+                        {{ 0 | append: seconds }}
+                      {% endif %}
+                    </span>
+                    <span class="countdown_block_mark">{{- 'general.countdown.seconds' | t -}}</span>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.countdown_heading != blank -%}
+              <div class="countdown__end-info align--{{ section.settings.content_alignment }}">
+                <{{ section.settings.heading_tag }} class="h3 countdown__end-info-text ">
+                  {{ section.settings.countdown_heading }}
+                </{{ section.settings.heading_tag }}>
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.heading != blank
+              or section.settings.description != blank
+              or section.settings.show_link
+            -%}
+              <div class="countdown__content align--{{ section.settings.content_alignment }}">
+                {%- if section.settings.heading != blank -%}
+                  {% assign heading_level = section.settings.heading_level %}
+                  <{{ heading_level }} class="countdown__heading {{ section.settings.heading_size }}">
+                    {{- section.settings.heading -}}
+                  </{{ heading_level }}>
+                {%- endif -%}
+                {%- if section.settings.description != blank -%}
+                  <div class="countdown__text">
+                    {{ section.settings.description }}
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.show_link -%}
+                  {% render 'button',
+                    btn_label: section.settings.button_label,
+                    btn_style: section.settings.button_style,
+                    btn_link: section.settings.button_link,
+                    class: 'countdown__button'
+                  %}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- elsif section.settings.layout == 'compact' -%}
+            {% comment %} ----- COMPACT LAYOUT ----- {% endcomment %}
+
+            {%- if section.settings.heading != blank or section.settings.description != blank -%}
+              <div class="countdown__content">
+                {%- if section.settings.heading != blank -%}
+                  {% assign heading_level = section.settings.heading_level %}
+                  <{{ heading_level }} class="countdown__heading {{ section.settings.heading_size }}">
+                    {{- section.settings.heading -}}
+                  </{{ heading_level }}>
+                {%- endif -%}
+                {%- if section.settings.description != blank -%}
+                  <div class="countdown__text">
+                    {{ section.settings.description }}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.date_picker != blank
+              and section.settings.time_picker != blank
+              or section.settings.enable_mock_timer
+            -%}
+              <div class="countdown__main-wrapper">
+                <div class="countdown__main countdown__main--block-size-{{ section.settings.countdown_block_size }}">
+                  <div class="countdown__block">
+                    <div class="countdown__block_num">
+                      <span
+                        class="countdown_block_days h2"
+                      >
+                        {% if days.size > 1 %}
+                          {{ days }}
+                        {% else %}
+                          {{ 0 | append: days }}
+                        {% endif %}
+                      </span>
+                      <span class="countdown_block_mark">{{- 'general.countdown.days' | t }}</span>
+                    </div>
+                  </div>
+                  <div class="countdown__colon h2">:</div>
+                  <div class="countdown__block">
+                    <div class="countdown__block_num">
+                      <span
+                        class="countdown_block_hours h2"
+                      >
+                        {% if hours.size > 1 %}
+                          {{ hours }}
+                        {% else %}
+                          {{ 0 | append: hours }}
+                        {% endif %}
+                      </span>
+                      <span class="countdown_block_mark">{{- 'general.countdown.hours' | t -}}</span>
+                    </div>
+                  </div>
+                  <div class="countdown__colon h2">:</div>
+                  <div class="countdown__block">
+                    <div class="countdown__block_num">
+                      <span
+                        class="countdown_block_minutes h2"
+                      >
+                        {% if minutes.size > 1 %}
+                          {{ minutes }}
+                        {% else %}
+                          {{ 0 | append: minutes }}
+                        {% endif %}
+                      </span>
+                      <span class="countdown_block_mark">{{- 'general.countdown.minutes' | t -}}</span>
+                    </div>
+                  </div>
+                  <div class="countdown__colon h2">:</div>
+                  <div class="countdown__block">
+                    <div class="countdown__block_num">
+                      <span
+                        class="countdown_block_seconds h2"
+                      >
+                        {% if seconds.size > 1 %}
+                          {{ seconds }}
+                        {% else %}
+                          {{ 0 | append: seconds }}
+                        {% endif %}
+                      </span>
+                      <span class="countdown_block_mark">{{- 'general.countdown.seconds' | t -}}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {%- if section.settings.countdown_heading != blank -%}
+                  <div class="countdown__end-info">
+                    <{{ section.settings.heading_tag }} class="h3 countdown__end-info-text ">
+                      {{ section.settings.countdown_heading }}
+                    </{{ section.settings.heading_tag }}>
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.show_link -%}
+              <div class="countdown__button-wrapper">
+                {% render 'button',
+                  btn_label: section.settings.button_label,
+                  btn_style: section.settings.button_style,
+                  btn_link: section.settings.button_link,
+                  class: 'countdown__button'
+                %}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+        {%- if section.settings.enable_lower_ticker -%}
+          {% liquid
+            assign lower_ticker_text = section.settings.lower_ticker_text
+
+            if lower_ticker_text == blank
+              assign lower_ticker_text = 'sections.countdown.ticker_text' | t
+            endif
+
+            assign ticker_elements_count = ticker_coeff | divided_by: lower_ticker_text.size | at_least: 1 | plus: 1
+          %}
+          <div
+            class="countdown-ticker countdown-ticker--lower"
+            dir="ltr"
+          >
+            <div class="countdown-ticker-wrapper">
+              <span class="countdown-ticker-collection countdown-ticker-collection--1">
+                {%- for i in (1..ticker_elements_count) -%}
+                  <span class="countdown-ticker-item body-xl">
+                    {{- lower_ticker_text -}}
+                  </span>
+                {%- endfor -%}
+              </span>
+              <span class="countdown-ticker-collection countdown-ticker-collection--2">
+                {%- for i in (1..ticker_elements_count) -%}
+                  <span class="countdown-ticker-item body-xl">
+                    {{- lower_ticker_text -}}
+                  </span>
+                {%- endfor -%}
+              </span>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.layout == 'with_image' and section.settings.enable_image == true -%}
+        {% liquid
+          assign widths = '360, 533, 720, 940, 1066, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800, 3000, 3264, 3400, 3584, 3800, 4000, 4200, 4400, 4600, 4800, 5000, 5200, 5400, 5600'
+
+          assign widths_arr = widths | split: ', '
+
+          assign fetch_priority = 'auto'
+          assign img_loading = 'lazy'
+
+          if section.index == 1
+            assign fetch_priority = 'high'
+            assign img_loading = 'eager'
+          endif
+
+          assign desktop_image = section.settings.desktop_image
+          assign mobile_image = section.settings.mobile_image
+
+          if desktop_image == blank and mobile_image != blank
+            assign desktop_image = mobile_image
+          endif
+
+          if mobile_image == blank and desktop_image != blank
+            assign mobile_image = desktop_image
+          endif
+
+          assign padding_bottom_desktop = '100%'
+
+          if section.settings.desktop_image_aspect_ratio == 'adapt'
+            if desktop_image != blank
+              assign padding_bottom_desktop = 1 | divided_by: desktop_image.aspect_ratio | times: 100 | round: 2 | append: '%'
+            endif
+          elsif section.settings.desktop_image_aspect_ratio == 'portrait'
+            assign padding_bottom_desktop = '125%'
+          elsif section.settings.desktop_image_aspect_ratio == 'landscape'
+            assign padding_bottom_desktop = '56.25%'
+          else
+            assign padding_bottom_desktop = '100%'
+          endif
+
+          assign padding_bottom_mobile = '100%'
+
+          if section.settings.mobile_image_aspect_ratio == 'adapt'
+            assign padding_bottom_mobile = 1 | divided_by: mobile_image.aspect_ratio | times: 100 | round: 2 | append: '%'
+          elsif section.settings.mobile_image_aspect_ratio == 'portrait'
+            assign padding_bottom_mobile = '125%'
+          elsif section.settings.mobile_image_aspect_ratio == 'landscape'
+            assign padding_bottom_mobile = '56.25%'
+          else
+            assign padding_bottom_mobile = '100%'
+          endif
+
+          assign settings_aspect_ratio_desktop = 1
+
+          if section.settings.desktop_image_aspect_ratio == 'landscape'
+            assign settings_aspect_ratio_desktop = 1.77
+          elsif section.settings.desktop_image_aspect_ratio == 'portrait'
+            assign settings_aspect_ratio_desktop = 0.8
+          endif
+
+          assign calc_ratio_desktop = 1.1
+
+          if desktop_image.aspect_ratio > settings_aspect_ratio_desktop
+            assign calc_ratio_desktop = desktop_image.aspect_ratio | divided_by: settings_aspect_ratio_desktop
+          endif
+
+          assign settings_aspect_ratio_mobile = 1
+
+          if section.settings.mobile_image_aspect_ratio == 'landscape'
+            assign settings_aspect_ratio_mobile = 1.77
+          elsif section.settings.mobile_image_aspect_ratio == 'portrait'
+            assign settings_aspect_ratio_mobile = 0.8
+          endif
+
+          assign calc_ratio_mobile = 1.1
+
+          if mobile_image.aspect_ratio > settings_aspect_ratio_mobile
+            assign calc_ratio_mobile = mobile_image.aspect_ratio | divided_by: settings_aspect_ratio_mobile
+          endif
+        %}
+
+        {% capture image_sizes -%}
+          (min-width: 1920px) calc(916px * {{ calc_ratio_desktop }}), (min-width: 1440px) calc(47vw * {{ calc_ratio_desktop }}), (min-width: 1200px) calc(46vw * {{ calc_ratio_desktop }}), (min-width: 990px) calc(47vw * {{ calc_ratio_desktop }}), (min-width: 576px) calc(93vw * {{ calc_ratio_mobile }}), calc(92vw * {{ calc_ratio_mobile }})
+        {%- endcapture %}
+
+        <div
+          class="countdown__image color-{{ section.settings.content_color_scheme }}"
+          style="--padding-bottom-desktop: {{ padding_bottom_desktop }}; --padding-bottom-mobile: {{ padding_bottom_mobile }}"
+        >
+          {%- if section.settings.desktop_image != blank or section.settings.mobile_image != blank -%}
+            <picture class="countdown__image-picture">
+              <source
+                srcset="{% for width in widths_arr %}{{ mobile_image | image_url: width: width }} {{ width }}w{% if forloop.last == false %}, {% endif %}{% endfor %}"
+                media="(max-width: 989px)"
+                sizes="{{ image_sizes }}"
+              >
+              <source
+                srcset="{% for width in widths_arr %}{{ desktop_image | image_url: width: width }} {{ width }}w{% if forloop.last == false %}, {% endif %}{% endfor %}"
+                media="(min-width: 990px)"
+                sizes="{{ image_sizes }}"
+              >
+              <img
+                src="{{ desktop_image | image_url: width: desktop_image.width }}"
+                alt="{{ desktop_image.alt }}"
+                width="{{ desktop_image.width }}"
+                height="{{ desktop_image.height }}"
+                class="countdown__image-image"
+                sizes="{{ image_sizes }}"
+                loading="{{ img_loading }}"
+                fetchpriority="{{ fetch_priority }}"
+                style="--focal_point_desktop: {{ desktop_image.presentation.focal_point }}; --focal_point_mobile: {{ mobile_image.presentation.focal_point }};"
+              >
+            </picture>
+          {%- else -%}
+            {{
+              'hero-apparel-1'
+              | placeholder_svg_tag: 'placeholder-svg placeholder-svg--filled countdown__image-image'
+            }}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </countdown-timer>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.countdown.name",
+  "tag": "section",
+  "class": "countdown-section spaced-section",
+  "enabled_on": {
+    "templates": ["*"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "background-1",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "content_color_scheme",
+      "default": "background-3",
+      "label": "t:sections.countdown.settings.content_color_scheme.label"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "with_image",
+          "label": "t:sections.countdown.settings.layout.options__with_image.label"
+        },
+        {
+          "value": "compact",
+          "label": "t:sections.countdown.settings.layout.options__compact.label"
+        }
+      ],
+      "default": "with_image",
+      "label": "t:sections.countdown.settings.layout.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_border_top",
+      "default": false,
+      "label": "t:sections.all.enable_border_top.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_border_bottom",
+      "default": false,
+      "label": "t:sections.all.enable_border_bottom.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.countdown.settings.header__1.content"
+    },
+    {
+      "type": "text_alignment",
+      "id": "content_alignment",
+      "label": "t:sections.countdown.settings.content_alignment.label",
+      "default": "center",
+      "visible_if": "{{ section.settings.layout == 'with_image' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mock_timer",
+      "default": true,
+      "label": "t:sections.countdown.settings.enable_mock_timer.label",
+      "info": "t:sections.countdown.settings.enable_mock_timer.info"
+    },
+    {
+      "type": "range",
+      "id": "mock_timer_days",
+      "min": 1,
+      "max": 31,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.countdown.settings.mock_timer_days.label",
+      "visible_if": "{{ section.settings.enable_mock_timer == true }}"
+    },
+    {
+      "type": "range",
+      "id": "mock_timer_hours",
+      "min": 0,
+      "max": 23,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.countdown.settings.mock_timer_hours.label",
+      "visible_if": "{{ section.settings.enable_mock_timer == true }}"
+    },
+    {
+      "type": "text",
+      "id": "date_picker",
+      "default": "2026-12-01",
+      "info": "YYYY-MM-DD",
+      "label": "t:sections.countdown.settings.date_picker.label",
+      "visible_if": "{{ section.settings.enable_mock_timer == false }}"
+    },
+    {
+      "type": "text",
+      "id": "time_picker",
+      "default": "00:00",
+      "info": "hh:mm",
+      "label": "t:sections.countdown.settings.time_picker.label",
+      "visible_if": "{{ section.settings.enable_mock_timer == false }}"
+    },
+    {
+      "type": "select",
+      "id": "completed_countdown",
+      "options": [
+        {
+          "value": "hide_section",
+          "label": "t:sections.countdown.settings.completed_countdown.options_1.label"
+        },
+        {
+          "value": "show_text",
+          "label": "t:sections.countdown.settings.completed_countdown.options_2.label"
+        }
+      ],
+      "default": "show_text",
+      "label": "t:sections.countdown.settings.completed_countdown.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "countdown_heading",
+      "label": "t:sections.countdown.settings.countdown_heading.label",
+      "default": "t:sections.countdown.settings.countdown_heading.default"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_tag.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_tag.options__2.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_tag.options__3.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_tag.options__4.label"
+        },
+        {
+          "value": "h5",
+          "label": "t:sections.all.heading_tag.options__5.label"
+        },
+        {
+          "value": "h6",
+          "label": "t:sections.all.heading_tag.options__6.label"
+        },
+        {
+          "value": "div",
+          "label": "t:sections.all.heading_tag.options__7.label"
+        },
+        {
+          "value": "p",
+          "label": "t:sections.all.heading_tag.options__8.label"
+        }
+      ],
+      "default": "h3",
+      "label": "t:sections.all.heading_tag.label",
+      "info": "t:sections.all.heading_tag.info"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.all.heading.label",
+      "default": "t:sections.countdown.settings.heading.default"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h5",
+          "label": "t:sections.all.heading_size.options__4.label"
+        }
+      ],
+      "default": "h4",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_level",
+      "options": [
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_level.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_level.options__2.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_level.options__3.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_level.options__4.label"
+        },
+        {
+          "value": "h5",
+          "label": "t:sections.all.heading_level.options__5.label"
+        },
+        {
+          "value": "h6",
+          "label": "t:sections.all.heading_level.options__6.label"
+        },
+        {
+          "value": "div",
+          "label": "t:sections.all.heading_level.options__7.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.all.heading_level.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "t:sections.all.text.label",
+      "default": "t:sections.countdown.settings.description.default"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_link",
+      "default": true,
+      "label": "t:sections.all.button.button_show.label"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:sections.all.button.button_label.label",
+      "default": "t:sections.countdown.settings.button_label.default"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "t:sections.all.button.button_style.options__1.label"
+        },
+        {
+          "value": "secondary",
+          "label": "t:sections.all.button.button_style.options__2.label"
+        },
+        {
+          "value": "tertiary",
+          "label": "t:sections.all.button.button_style.options__3.label"
+        }
+      ],
+      "default": "primary",
+      "label": "t:sections.all.button.button_style.label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.all.button.button_link.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.countdown.settings.header__upper-ticker.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_upper_ticker",
+      "default": true,
+      "label": "t:sections.countdown.settings.enable_upper_ticker.label"
+    },
+    {
+      "type": "text",
+      "id": "upper_ticker_text",
+      "label": "t:sections.countdown.settings.upper_ticker_text.label",
+      "default": "t:sections.countdown.settings.upper_ticker_text.default",
+      "visible_if": "{{ section.settings.enable_upper_ticker }}"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.countdown.settings.header__lower-ticker.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_lower_ticker",
+      "default": true,
+      "label": "t:sections.countdown.settings.enable_lower_ticker.label"
+    },
+    {
+      "type": "text",
+      "id": "lower_ticker_text",
+      "label": "t:sections.countdown.settings.lower_ticker_text.label",
+      "default": "t:sections.countdown.settings.lower_ticker_text.default",
+      "visible_if": "{{ section.settings.enable_lower_ticker }}"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.countdown.settings.header__2.content",
+      "visible_if": "{{ section.settings.layout == 'with_image' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_image",
+      "default": true,
+      "label": "t:sections.countdown.settings.enable_image.label",
+      "visible_if": "{{ section.settings.layout == 'with_image' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "t:sections.countdown.settings.desktop_image.label",
+      "visible_if": "{{ section.settings.layout == 'with_image' and section.settings.enable_image == true }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "t:sections.countdown.settings.mobile_image.label",
+      "visible_if": "{{ section.settings.layout == 'with_image' and section.settings.enable_image == true }}"
+    },
+    {
+      "type": "select",
+      "id": "desktop_image_aspect_ratio",
+      "options": [
+        {
+          "value": "landscape",
+          "label": "t:sections.all.card.image_ratio_2.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.all.card.image_ratio_2.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.all.card.image_ratio_2.options__3.label"
+        },
+        {
+          "value": "adapt",
+          "label": "t:sections.all.card.image_ratio_2.options__4.label"
+        }
+      ],
+      "default": "square",
+      "label": "t:sections.countdown.settings.desktop_image_aspect_ratio.label",
+      "visible_if": "{{ section.settings.layout == 'with_image' and section.settings.enable_image == true }}"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_aspect_ratio",
+      "options": [
+        {
+          "value": "landscape",
+          "label": "t:sections.all.card.image_ratio_2.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.all.card.image_ratio_2.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.all.card.image_ratio_2.options__3.label"
+        },
+        {
+          "value": "adapt",
+          "label": "t:sections.all.card.image_ratio_2.options__4.label"
+        }
+      ],
+      "default": "square",
+      "label": "t:sections.countdown.settings.mobile_image_aspect_ratio.label",
+      "visible_if": "{{ section.settings.layout == 'with_image' and section.settings.enable_image == true }}"
+    },
+    {
+      "type": "select",
+      "id": "image_position_desktop",
+      "label": "t:sections.countdown.settings.image_position_desktop.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.countdown.settings.image_position_desktop.options__left.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.countdown.settings.image_position_desktop.options__right.label"
+        }
+      ],
+      "default": "right",
+      "visible_if": "{{ section.settings.layout == 'with_image' and section.settings.enable_image == true }}"
+    },
+    {
+      "type": "select",
+      "id": "image_position_mobile",
+      "label": "t:sections.countdown.settings.image_position_mobile.label",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.countdown.settings.image_position_mobile.options__top.label"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.countdown.settings.image_position_mobile.options__bottom.label"
+        }
+      ],
+      "default": "bottom",
+      "visible_if": "{{ section.settings.layout == 'with_image' and section.settings.enable_image == true }}"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-padding.header.content"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-padding.padding_top.label"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-padding.padding_bottom.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.countdown.presets.name",
+      "category": "t:sections.categories.banners"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,181 @@
+<header-search class="header__search header__search--{{ section.settings.search_button_type }}">
+  <a
+    href="{{ routes.search_url }}"
+    class="header__icon header__icon--search focus-inset modal__toggle"
+    aria-haspopup="dialog"
+    role="button"
+    aria-label="{{- 'general.search.search' | t -}}"
+  >
+    {% if section.settings.search_button_type == 'icon' or section.settings.search_button_type == 'icon_and_text' %}
+      {% render 'icon-search' %}
+    {% endif %}
+    {% if section.settings.search_button_type == 'text' or section.settings.search_button_type == 'icon_and_text' %}
+      <span class="header__search-text header__icon-text">
+        {{ 'general.search.search' | t }}
+      </span>
+    {% endif %}
+  </a>
+  <div class="header__search-overlay"></div>
+  <div
+    class="header__search-inner search color-background-1"
+    role="dialog"
+    aria-modal="true"
+    aria-label="{{- 'general.search.search' | t -}}"
+  >
+    <div class="header__search-content">
+      <div class="header__search-container">
+        <div class="container">
+          <div class="header__search-heading">
+            <button
+              class="header__search-close focus-inset body-normal"
+              aria-label="{{- 'accessibility.close' | t -}}"
+            >
+              {% render 'icon-close' %}
+            </button>
+          </div>
+        </div>
+      {%- if settings.predictive_search_header_enabled -%}
+        <predictive-search class="search-modal__form" data-loading-text="{{- 'accessibility.loading' | t -}}">
+      {%- else -%}
+        <search-form class="search-modal__form">
+      {%- endif -%}
+          <form action="{{ routes.search_url }}" method="get" role="search" class="search search__form">
+            <div class="search__form-inner">
+              <div class="container">
+                <div class="field">
+                  {% liquid
+                    assign input_id = 'Search-In-Modal'
+
+                    if additional_id != blank
+                      assign input_id = input_id | append: '-' | append: additional_id
+                    endif
+                  %}
+                  <input
+                    class="search__input h2"
+                    id="{{ input_id }}"
+                    type="search"
+                    dir="ltr"
+                    name="q"
+                    value="{{ search.terms | escape }}"
+                    placeholder="{{ 'general.search.placeholder' | t }}"
+                    {%- if settings.predictive_search_header_enabled -%}
+                      role="combobox"
+                      aria-expanded="false"
+                      aria-owns="predictive-search-results-list"
+                      aria-controls="predictive-search-results-list"
+                      aria-haspopup="listbox"
+                      aria-autocomplete="list"
+                      autocorrect="off"
+                      autocomplete="off"
+                      autocapitalize="off"
+                      spellcheck="false"
+                    {%- endif -%}
+                  >
+                  <label class="visually-hidden" for="{{ input_id }}">
+                    {{- 'general.search.search' | t -}}
+                  </label>
+                  <input type="hidden" name="options[prefix]" value="last">
+                  <button
+                    class="search__button field__button focus-inset"
+                    aria-label="{{- 'general.search.search' | t -}}"
+                  >
+                    {% render 'icon-search-input' %}
+                  </button>
+                  <button
+                    class="search__button search__button--reset field__button focus-inset hidden"
+                    aria-label="{{- 'general.search.reset_search' | t -}}"
+                    {%- if search.terms != blank -%}
+                      style="display: flex;"
+                    {%- endif -%}
+                  >
+                    {% render 'icon-close' %}
+                  </button>
+                </div>
+              </div>
+            </div>
+            {%- if settings.predictive_search_header_enabled -%}
+              <div class="predictive-search predictive-search--header container" tabindex="-1" data-predictive-search>
+                <div class="predictive-search__loading-state">
+                  {% render 'icon-loading' %}
+                </div>
+              </div>
+
+              <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+            {%- endif -%}
+          </form>
+      {%- if settings.predictive_search_header_enabled -%}
+        </predictive-search>
+      {%- else -%}
+        </search-form>
+      {%- endif -%}
+        {%- if section.settings.search_menu != blank or section.settings.enable_search_products -%}
+          <div class="container" data-header-popular>
+            <div class="header__search-wrapper{% if section.settings.search_menu != blank and section.settings.enable_search_products %} header__search-wrapper--2-menus{% endif %}">
+              {%- if section.settings.search_menu != blank -%}
+                <div class="header__search-popular">
+                  {% if section.settings.heading_search_menu != blank %}
+                    <div class="header__search-subtitle">
+                      {{ section.settings.heading_search_menu }}
+                    </div>
+                  {% endif %}
+                  <div class="header__search-popular-links body-small">
+                    {%- for link in section.settings.search_menu.links -%}
+                      <a
+                        href="{{ link.url }}"
+                        {% if settings.links_blank and link.type == 'http_link' %}
+                          target="_blank"
+                        {% endif %}
+                        class="header__search-popular-link"
+                        aria-label="{{- link.title -}}"
+                      >
+                        <span>{{- link.title -}}</span>
+                      </a>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endif -%}
+
+              {%- if section.settings.enable_search_products -%}
+                <div class="header__search-products-wrapper">
+                  {%- if section.settings.heading_search_products != blank -%}
+                    <div class="header__search-subtitle">
+                      {{ section.settings.heading_search_products }}
+                    </div>
+                  {%- endif -%}
+                  <div class="header__search-products">
+                    {%- if section.settings.search_products != blank -%}
+                      {%- for item in section.settings.search_products -%}
+                        {% liquid
+                          assign card_section_id = section.id | append: '-' | append: additional_id
+                        %}
+                        {% render 'product-card-small',
+                          product_card_product: item,
+                          media_ratio: section.settings.popular_product_image_ratio,
+                          media_fit: section.settings.popular_product_image_fit,
+                          show_vendor: section.settings.popular_product_show_vendor,
+                          section_id: card_section_id,
+                          add_id: forloop.index,
+                          color_scheme: settings.card_color_scheme
+                        %}
+                      {%- endfor -%}
+                    {%- else -%}
+                      {%- for i in (1..3) -%}
+                        {% render 'product-card-small-placeholder',
+                          show_vendor: section.settings.popular_product_show_vendor,
+                          media_ratio: section.settings.popular_product_image_ratio,
+                          media_fit: section.settings.popular_product_image_fit,
+                          product_number: forloop.index,
+                          color_scheme: settings.card_color_scheme,
+                        %}
+                      {%- endfor -%}
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</header-search>

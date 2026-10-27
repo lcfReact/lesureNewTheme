@@ -1,0 +1,354 @@
+{% if section.settings.products != blank %}
+  <link rel="stylesheet" href="{{ 'component-card-small.css' | asset_url }}" media="print" onload="this.media='all'">
+{% endif %}
+
+{% liquid
+  assign show_menus = false
+
+  for block in section.blocks
+    if block.settings.menu != blank and block.settings.menu.links != blank
+      assign show_menus = true
+    endif
+  endfor
+
+  assign show_products = false
+
+  if section.settings.products.count >= 1
+    assign show_products = true
+  endif
+
+  assign is_show_mega_menu = false
+
+  if show_menus or show_products
+    assign is_show_mega_menu = true
+  endif
+
+  assign is_mono_menu = false
+
+  if show_menus == true and show_products == false
+    assign is_mono_menu = true
+  endif
+
+  if show_menus == false and show_products == true
+    assign is_mono_menu = true
+  endif
+
+  assign products_per_view = section.settings.products_per_view
+
+  case products_per_view
+    when 4
+      assign slides_lg = 3
+      assign slides_xl = 4
+      assign slides_xxl = 4
+    when 5
+      assign slides_lg = 3
+      assign slides_xl = 4
+      assign slides_xxl = 5
+    when 6
+      assign slides_lg = 4
+      assign slides_xl = 5
+      assign slides_xxl = 6
+    else
+      assign slides_lg = 3
+      assign slides_xl = 4
+      assign slides_xxl = 5
+  endcase
+%}
+
+<template
+  class="mega-menu-template"
+  data-trigger="{{ section.settings.mega_menu_trigger | handle | strip }}"
+  data-layout="mega-menu-normal"
+>
+  {%- if is_show_mega_menu -%}
+    <mega-menu
+      class="mega-menu"
+      id="mega-menu-{{ section.id }}"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="mega-menu-btn"
+    >
+      <div class="mega-menu-overlay"></div>
+      <div class="mega-menu-content container">
+        <div class="mega-menu-content-main color-{{ section.settings.color_scheme }} background">
+          <div class="mega-menu-content-main__container{% if is_mono_menu %} mega-menu-content-main__container--mono{% endif %}">
+            {%- if show_menus -%}
+              <div class="mega-menu-menus{% if section.blocks.size >= 2 %} mega-menu-menus--multi{% endif %}">
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.menu != blank and block.settings.menu.links != blank -%}
+                    <div class="mega-menu-menu" {{ block.shopify_attributes }}>
+                      <div class="mega-menu-menu__heading">
+                        {{ block.settings.heading }}
+                      </div>
+                      <ul class="mega-menu-menu-list list-unstyled" role="list">
+                        {% for link in block.settings.menu.links %}
+                          <li class="mega-menu-menu-list__list-item body-small">
+                            <a
+                              href="{{ link.url }}"
+                              class="mega-menu-menu-list__list-link focus-inset"
+                              aria-label="{{ link.title | escape }}"
+                            >
+                              <span>{{ link.title | escape }}</span>
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+            {%- if show_products -%}
+              <div class="mega-menu-products">
+                <div
+                  class="mega-menu-products-slider swiper"
+                  data-spv-lg="{{ slides_lg }}"
+                  data-spv-xl="{{ slides_xl }}"
+                  data-spv-xxl="{{ slides_xxl }}"
+                >
+                  <div class="mega-menu-products-slider-wrapper swiper-wrapper">
+                    {% for product in section.settings.products %}
+                      <div class="mega-menu-products-slide swiper-slide">
+                        {% render 'product-card-small',
+                          product_card_product: product,
+                          media_ratio: section.settings.product_image_ratio,
+                          media_fit: section.settings.product_image_fit,
+                          show_vendor: section.settings.show_vendor,
+                          section_id: section.id,
+                          add_id: forloop.index,
+                          color_scheme: section.settings.color_scheme
+                        -%}
+                      </div>
+                    {% endfor %}
+                  </div>
+                  {% if section.settings.products.count > 1 %}
+                    <div class="mega-menu-products-nav no-js-hidden">
+                      {% render 'slider-button',
+                        direction: 'prev',
+                        classnames: 'mega-menu-products-nav-button mega-menu-products-nav-button--prev'
+                      %}
+                      {% render 'slider-button',
+                        direction: 'next',
+                        classnames: 'mega-menu-products-nav-button mega-menu-products-nav-button--next'
+                      %}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </mega-menu>
+  {%- endif -%}
+</template>
+
+<template
+  class="mobile-mega-menu-template"
+  data-trigger="{{ section.settings.mega_menu_trigger | handle | strip }}"
+  data-layout="mega-menu-normal"
+>
+  {% if is_show_mega_menu %}
+    <details>
+      <summary class="menu-drawer__menu-summary menu-drawer__menu-summary--mobile-mega-menu focus-inset">
+        <a
+          href="#"
+          class="menu-drawer__menu-link menu-drawer__menu-link--mobile-mega-menu focus-inset"
+          tabindex="0"
+        >
+          {{- 'accessibility.link' | t -}}
+        </a>
+        {% render 'icon-caret-mobile-menu' %}
+      </summary>
+
+      <div class="mobile-mega-menu color-{{ section.settings.color_scheme }} background">
+        <div class="mobile-mega-menu-top container">
+          <button class="mobile-mega-menu-back-button" aria-label="{{ 'accessibility.back' | t }}">
+            {% render 'icon-arrow' %}
+          </button>
+        </div>
+        <div class="mobile-mega-menu-main">
+          <div class="mobile-mega-menu-main__container">
+            {%- if show_menus -%}
+              <div class="mobile-mega-menu-menus">
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.menu != blank and block.settings.menu.links != blank -%}
+                    <div class="mobile-mega-menu-menu" {{ block.shopify_attributes }}>
+                      <div class="mobile-mega-menu-menu__heading">
+                        {{ block.settings.heading }}
+                      </div>
+                      <ul class="mobile-mega-menu-menu-list list-unstyled" role="list">
+                        {% for link in block.settings.menu.links %}
+                          <li class="mobile-mega-menu-menu-list__list-item body-small">
+                            <a
+                              href="{{ link.url }}"
+                              class="mobile-mega-menu-menu-list__list-link focus-inset"
+                              aria-label="{{ link.title | escape }}"
+                            >
+                              <span>{{ link.title | escape }}</span>
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+            {%- if show_products -%}
+              <div class="mobile-mega-menu-products">
+                <div
+                  class="mobile-mega-menu-slider swiper"
+                >
+                  <div class="mobile-mega-menu-slider-wrapper swiper-wrapper">
+                    {% for product in section.settings.products %}
+                      <div class="mobile-mega-menu-slide swiper-slide">
+                        {% assign section_id = 'mobile-mega-menu-' | append: section.id %}
+
+                        {% render 'product-card-small',
+                          product_card_product: product,
+                          media_ratio: section.settings.product_image_ratio,
+                          media_fit: section.settings.product_image_fit,
+                          show_vendor: section.settings.show_vendor,
+                          section_id: section_id,
+                          add_id: forloop.index,
+                          color_scheme: section.settings.color_scheme
+                        -%}
+                      </div>
+                    {% endfor %}
+                  </div>
+                  {% if section.settings.products.count > 1 %}
+                    <div class="mobile-mega-menu-slider-nav no-js-hidden">
+                      {% render 'slider-button',
+                        direction: 'prev',
+                        classnames: 'mobile-mega-menu-slider-nav-button mobile-mega-menu-slider-nav-button--prev'
+                      %}
+                      {% render 'slider-button',
+                        direction: 'next',
+                        classnames: 'mobile-mega-menu-slider-nav-button mobile-mega-menu-slider-nav-button--next'
+                      %}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </details>
+  {% endif %}
+</template>
+
+{% schema %}
+{
+  "name": "t:sections.mega-menu.name",
+  "class": "shopify-section-mega-menu",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.mega-menu.settings.paragraph__header.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "background-1",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "text",
+      "id": "mega_menu_trigger",
+      "label": "t:sections.mega-menu.settings.mega_menu_trigger.label",
+      "info": "t:sections.mega-menu.settings.mega_menu_trigger.info"
+    },
+
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "t:sections.mega-menu.settings.products.label"
+    },
+    {
+      "type": "range",
+      "id": "products_per_view",
+      "min": 4,
+      "max": 6,
+      "step": 1,
+      "default": 5,
+      "label": "t:sections.mega-menu.settings.products_per_view.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.mega-menu.settings.header__product_card.content"
+    },
+    {
+      "type": "select",
+      "id": "product_image_ratio",
+      "options": [
+        {
+          "value": "landscape",
+          "label": "t:sections.all.card.image_ratio_2.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.all.card.image_ratio_2.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.all.card.image_ratio_2.options__3.label"
+        }
+      ],
+      "default": "portrait",
+      "label": "t:sections.featured-products.settings.product_image_ratio.label"
+    },
+    {
+      "type": "select",
+      "id": "product_image_fit",
+      "label": "t:sections.all.card.image_fit.label",
+      "options": [
+        {
+          "value": "contain",
+          "label": "t:sections.all.card.image_fit.options__1.label"
+        },
+        {
+          "value": "cover",
+          "label": "t:sections.all.card.image_fit.options__2.label"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sections.all.card.show_vendor.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mega_menu_item",
+      "name": "t:sections.mega-menu.settings.blocks.mega_menu_item.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "t:sections.mega-menu.settings.blocks.mega_menu_item.settings.heading.label",
+          "default": "t:sections.mega-menu.settings.blocks.mega_menu_item.settings.heading.default"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "main-menu",
+          "label": "t:sections.mega-menu.settings.blocks.mega_menu_item.settings.menu.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.mega-menu.name"
+    }
+  ]
+}
+{% endschema %}

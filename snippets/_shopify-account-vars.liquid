@@ -1,0 +1,36 @@
+{% comment %}
+  Source: https://shopify.dev/docs/api/storefront-web-components/components/shopify-account#css%20variables
+  Uses color scheme 1 values directly to avoid inheriting the header's color scheme.
+{% endcomment %}
+{% assign scheme_1 = settings.color_schemes | first %}
+{% style %}
+  shopify-account {
+    --shopify-account-color-accent: rgb({{ scheme_1.settings.colors_text.red }}, {{ scheme_1.settings.colors_text.green }}, {{ scheme_1.settings.colors_text.blue }});
+    --shopify-account-color-accent-hover: rgba({{ scheme_1.settings.colors_text.red }}, {{ scheme_1.settings.colors_text.green }}, {{ scheme_1.settings.colors_text.blue }}, 0.8);
+    --shopify-account-color-accent-text: rgb({{ scheme_1.settings.colors_background_1.red }}, {{ scheme_1.settings.colors_background_1.green }}, {{ scheme_1.settings.colors_background_1.blue }});
+    --shopify-account-color-background: rgb({{ scheme_1.settings.colors_background_1.red }}, {{ scheme_1.settings.colors_background_1.green }}, {{ scheme_1.settings.colors_background_1.blue }});
+    --shopify-account-color-background-subdued: rgb({{ scheme_1.settings.colors_background_2.red }}, {{ scheme_1.settings.colors_background_2.green }}, {{ scheme_1.settings.colors_background_2.blue }});
+    --shopify-account-color-border: rgb({{ scheme_1.settings.color_border.red }}, {{ scheme_1.settings.color_border.green }}, {{ scheme_1.settings.color_border.blue }});
+    --shopify-account-color-card-background: rgb({{ scheme_1.settings.colors_background_1.red }}, {{ scheme_1.settings.colors_background_1.green }}, {{ scheme_1.settings.colors_background_1.blue }});
+    --shopify-account-color-control-background: rgb({{ scheme_1.settings.colors_background_1.red }}, {{ scheme_1.settings.colors_background_1.green }}, {{ scheme_1.settings.colors_background_1.blue }});
+    --shopify-account-color-shadow: 0px 4px 35px 0px rgba({{ scheme_1.settings.colors_text.red }}, {{ scheme_1.settings.colors_text.green }}, {{ scheme_1.settings.colors_text.blue }}, 0.08);
+    --shopify-account-color-text: rgb({{ scheme_1.settings.colors_text.red }}, {{ scheme_1.settings.colors_text.green }}, {{ scheme_1.settings.colors_text.blue }});
+    --shopify-account-color-text-subdued: rgb({{ scheme_1.settings.colors_text.red }}, {{ scheme_1.settings.colors_text.green }}, {{ scheme_1.settings.colors_text.blue }});
+  	--shopify-account-signed-in-avatar-color-background: rgb({{ scheme_1.settings.colors_text.red }}, {{ scheme_1.settings.colors_text.green }}, {{ scheme_1.settings.colors_text.blue }});
+  	--shopify-account-signed-in-avatar-color-text: rgb({{ scheme_1.settings.colors_background_1.red }}, {{ scheme_1.settings.colors_background_1.green }}, {{ scheme_1.settings.colors_background_1.blue }});
+
+    --shopify-account-dialog-position-top: calc(var(--header-height) + var(--ann-height) + 6px);
+    --shopify-account-font-body: var(--font-body-family);
+    --shopify-account-font-body-weight: var(--font-body-weight);
+    --shopify-account-font-heading: var(--font-heading-family);
+    --shopify-account-font-heading-weight: var(--font-heading-weight);
+    --shopify-account-font-heading-transform: var(--font-heading-text-transform);
+    --shopify-account-radius-base: var(--border-radius-block);
+    --shopify-account-radius-button: var(--border-radius-button);
+    --shopify-account-radius-button-small: min(var(--border-radius-button), 0.4rem);
+    --shopify-account-radius-dialog: min(var(--border-radius-block-small), 2.4rem);
+    --shopify-account-radius-input: var(--border-radius-input);
+    --shopify-account-signed-in-avatar-size: 24px;
+    --shopify-account-color-card-text: rgb(var(--color-foreground));
+  }
+{% endstyle %}

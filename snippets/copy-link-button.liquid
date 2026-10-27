@@ -1,0 +1,27 @@
+{% comment %}
+  Renders a button that copies the current URL to the clipboard.
+
+  Usage:
+  {% render 'copy-link-button' %}
+{% endcomment %}
+
+<button
+  class="copy-btn button button--primary body-small focus-inset"
+  aria-label="{{ 'general.share.copy_to_clipboard' | t }}"
+>
+  <div class="copy-btn__wrapper">
+    <div class="copy-btn__label button__content">
+      <div class="button__icons">
+        <span class="button__icon button__icon--1">{% render 'icon-copy-link' %}</span>
+        <span class="button__icon button__icon--2">{% render 'icon-copy-link' %}</span>
+      </div>
+    </div>
+    <div class="animated-button-circle"></div>
+  </div>
+  <span class="copy-btn__success body-xs">
+    {{ 'general.share.success_message' | t }}
+  </span>
+  <span class="copy-btn__error body-xs">
+    {{ 'general.share.error_message' | t }}
+  </span>
+</button>

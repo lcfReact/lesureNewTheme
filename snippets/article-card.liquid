@@ -1,0 +1,327 @@
+{% comment %}
+  Renders a blog post card for a given blog.
+
+  Accepts:
+  - blog: {Object} Blog object
+  - article: {Object} Article object
+  - article_type: {String} primary / secondary. Default: Primary.
+  - article_heading_font_family: {String} Post heading font family. Default = heading
+  -	article_heading_font_size: {String} Post heading font size. Default = h3
+  - aspect_ratio: {String} Aspect ratio of the image. Default = square
+  - object_fit: {String} Object fit of the image. Default = cover
+  - show_image: {Boolean} Show the post image or not. Default = false
+  - show_date: {Boolean} Show the post date or not. Default = false
+  - show_author: {Boolean} Show the post author or not. Default = false
+  - show_tags: {Boolean} Show the post tags or not. Default = false
+  - show_excerpt: {Boolean} Show the post excerpt or not. Default = false
+  - columns_count: {Number} Sizes of the card per row for calculate image width. Default image width = 100vw
+  - show_comments_count: {Boolean} Show the comments count or not. Default = false
+  - is_blog_page: {Boolean} Used to determine if card is inside Blog page. Default = false
+
+  Usage:
+  {% render 'article-card',
+    blog: section.settings.blog,
+    article: article,
+    article_type: 'primary',
+    article_heading_font_family: section.settings.article_heading_font_family,
+    article_heading_font_size: section.settings.article_heading_font_size,
+    object_fit: section.settings.object_fit,
+    aspect_ratio: section.settings.aspect_ratio,
+    show_image: section.settings.show_image,
+    show_date: section.settings.show_date,
+    show_author: section.settings.show_author,
+    show_tags: section.settings.show_tags,
+    show_excerpt: section.settings.show_excerpt,
+    show_comments_count: section.settings.show_comments_count,
+    columns_count: section.settings.posts_per_row,
+  %}
+{% endcomment %}
+
+{% liquid
+  assign show_meta = false
+
+  if show_comments_count == true or show_author == true or show_date == true
+    assign show_meta = true
+  endif
+
+  assign image_styles = 'object-fit: cover;'
+
+  if object_fit
+    assign image_styles = 'object-fit: ' | append: object_fit | append: ';'
+  endif
+
+  assign is_show_comments_count = false
+
+  if show_comments_count == true and blog.comments_enabled?
+    assign is_show_comments_count = true
+  endif
+
+  assign metafields_length = article.metafields.custom.post_card_labels.value | size
+%}
+
+{% if article_type == 'primary' %}
+  <article class="article-card article-card--primary" aria-labelledby="Article-{{ article.id }}">
+    <a
+      href="{{ article.url }}"
+      class="article-card-link"
+      aria-label="{{ article.title }} {{ "accessibility.article_link" | t }}"
+    >
+    </a>
+
+    {%- if metafields_length > 0 -%}
+      <div class="article-card-label-wrapper-outer{% if show_image != true %} article-card-label-wrapper-outer--without-img{% endif %}">
+        {% for label in article.metafields.custom.post_card_labels.value -%}
+          {% liquid
+            assign total_length = 0
+            assign text = label.text | strip
+            assign total_length = total_length | plus: text.size
+            assign ticker_elements_count = 128 | divided_by: total_length | at_least: 1 | plus: 1
+          %}
+
+          <div class="article-card-label-wrapper">
+            <div class="article-card-label">
+              {% for index in (1..2) %}
+                <span class="article-card-label-text-wrapper">
+                  {% for i in (1..ticker_elements_count) %}
+                    <span class="article-card-label-text"> {{ text }} </span>
+                  {% endfor %}
+                </span>
+              {% endfor %}
+            </div>
+          </div>
+        {%- endfor %}
+      </div>
+    {%- endif -%}
+
+    {%- if show_image == true -%}
+      <div
+        class="article-card-image-wrapper article-card-image-wrapper--{% if aspect_ratio %}{{ aspect_ratio }}{% else %}square{% endif %}"
+      >
+        {% liquid
+          if aspect_ratio == 'landscape'
+            assign settings_aspect_ratio = 1.77
+          elsif aspect_ratio == 'portrait'
+            assign settings_aspect_ratio = 0.8
+          else
+            assign settings_aspect_ratio = 1
+          endif
+
+          assign calc_ratio = 1
+          if article.image.aspect_ratio > settings_aspect_ratio
+            assign calc_ratio = article.image.aspect_ratio | divided_by: settings_aspect_ratio | round: 2
+          endif
+        %}
+
+        {%- capture img_sizes -%}
+          {%- if columns_count != blank -%}
+            {%- if columns_count == 1 -%}
+              (min-width: 1440px) calc(1280px * {{ calc_ratio }}), (min-width: 1200px) calc(88vw * {{ calc_ratio }}), (min-width: 750px) calc(97vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+            {%- elsif columns_count == 2 -%}
+              (min-width: 1440px) calc(632px * {{ calc_ratio }}), (min-width: 1200px) calc(44vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+            {%- elsif columns_count == 3 -%}
+              (min-width: 1440px) calc(416px * {{ calc_ratio }}), (min-width: 1200px) calc(29vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+            {%- elsif columns_count == 4 -%}
+              (min-width: 1440px) calc(308px * {{ calc_ratio }}), (min-width: 1200px) calc(22vw * {{ calc_ratio }}), (min-width: 990px) calc(31vw * {{ calc_ratio }}), (min-width: 750px) calc(48vw * {{ calc_ratio }}), (min-width: 576px) calc(95vw * {{ calc_ratio }}), calc(91vw * {{ calc_ratio }})
+            {%- else -%}
+              100vw
+            {%- endif -%}
+          {%- else -%}
+            100vw
+          {%- endif -%}
+        {%- endcapture -%}
+        {%- if article.image != blank -%}
+          {{
+            article.image
+            | image_url: width: article.image.width
+            | image_tag:
+              loading: 'lazy',
+              widths: '308, 416, 632, 700, 800, 900, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2560',
+              sizes: img_sizes,
+              class: 'article-card-image motion-reduce',
+              style: image_styles
+          }}
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg article-card-image motion-reduce' }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="article-card-content">
+      {%- if show_tags and article.tags.size > 0 -%}
+        <ul class="article-card-tags">
+          {%- for tag in article.tags -%}
+            <li class="article-card-tag">
+              {% if is_blog_page %}
+                <a
+                  class="article-card-tag__link body-xs"
+                  href="{{ blog.url }}/tagged/{{ tag | handle }}"
+                >
+                  {{- tag -}}
+                </a>
+              {% else %}
+                <span class="article-card-tag__link body-xs">
+                  {{- tag -}}
+                </span>
+              {% endif %}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {% endif %}
+
+      <h3
+        class="article-card-title article-card-title--font-{% if article_heading_font_family != blank %}{{ article_heading_font_family }}{% else %}heading{% endif %}{% if article_heading_font_size != blank %} {{ article_heading_font_size }}{% else %} h4{% endif %}"
+        id="Article-{{ article.id }}"
+      >
+        {{ article.title | escape }}
+      </h3>
+
+      {%- if show_excerpt and article.excerpt_or_content.size > 0 -%}
+        <div class="article-card-excerpt body-normal">
+          {{ article.excerpt_or_content | strip_html | truncate: 150 }}
+        </div>
+      {%- endif -%}
+
+      {%- if show_meta -%}
+        <div class="article-card-meta">
+          {%- if show_author == true -%}
+            <span class="article-card-author body-xs">
+              {{ 'general.blog.author' | t }}
+              {{ article.author }}
+            </span>
+          {%- endif -%}
+          {%- if show_date == true -%}
+            <span class="article-card-date body-xs">
+              {{ article.published_at | date: '%d.%m.%Y' }}
+            </span>
+          {%- endif -%}
+          {%- if is_show_comments_count == true -%}
+            <div class="article-card-comments">
+              {% render 'icon-comments' %}
+              <span class="article-card-comments__count body-xs">
+                {% liquid
+                  assign text_comment = 'general.blog.comment' | t
+                  assign text_comments = 'general.blog.comments' | t
+                %}
+                {{ article.comments_count }}
+                {{ article.comments_count | pluralize: text_comment, text_comments }}
+              </span>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </article>
+{% else %}
+  <article
+    class="article-card article-card--secondary article-card--{{ content_alignment }}"
+    aria-labelledby="Article-{{ article.id }}"
+  >
+    <a
+      href="{{ article.url }}"
+      class="article-card-link"
+      aria-label="{{ article.title }} {{ "accessibility.article_link" | t }}"
+    >
+    </a>
+    {%- if show_image == true -%}
+      <div
+        class="article-card-image-wrapper article-card-image-wrapper--{% if aspect_ratio %}{{ aspect_ratio }}{% else %}square{% endif %}"
+      >
+        {% liquid
+          if aspect_ratio == 'landscape'
+            assign settings_aspect_ratio = 1.77
+          elsif aspect_ratio == 'portrait'
+            assign settings_aspect_ratio = 0.8
+          else
+            assign settings_aspect_ratio = 1
+          endif
+
+          assign calc_ratio = 1
+          if article.image.aspect_ratio > settings_aspect_ratio
+            assign calc_ratio = article.image.aspect_ratio | divided_by: settings_aspect_ratio | round: 2
+          endif
+        %}
+
+        {%- capture img_sizes -%}
+          (min-width: 576px) calc(443px * {{ calc_ratio }}), calc(95vw * {{ calc_ratio }})
+        {%- endcapture -%}
+        {%- if article.image != blank -%}
+          {{
+            article.image
+            | image_url: width: article.image.width
+            | image_tag:
+              loading: 'lazy',
+              widths: '308, 416, 632, 700, 800, 900, 1000, 1200, 1400, 1600',
+              sizes: img_sizes,
+              class: 'article-card-image motion-reduce',
+              style: image_styles
+          }}
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg article-card-image motion-reduce' }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="article-card-content">
+      {%- if show_tags and article.tags.size > 0 -%}
+        <ul class="article-card-tags">
+          {%- for tag in article.tags -%}
+            <li class="article-card-tag">
+              {% if is_blog_page %}
+                <a
+                  class="article-card-tag__link body-xs"
+                  href="{{ blog.url }}/tagged/{{ tag | handle }}"
+                >
+                  {{- tag -}}
+                </a>
+              {% else %}
+                <span class="article-card-tag__link body-xs">
+                  {{- tag -}}
+                </span>
+              {% endif %}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {% endif %}
+
+      <h3
+        class="article-card-title article-card-title--font-{% if article_heading_font_family != blank %}{{ article_heading_font_family }}{% else %}heading{% endif %}{% if article_heading_font_size != blank %} {{ article_heading_font_size }}{% else %} h4{% endif %}"
+        id="Article-{{ article.id }}"
+      >
+        {{ article.title | escape }}
+      </h3>
+
+      {%- if show_excerpt and article.excerpt_or_content.size > 0 -%}
+        <div class="article-card-excerpt body-normal">
+          {{ article.excerpt_or_content | strip_html | truncate: 150 }}
+        </div>
+      {%- endif -%}
+
+      {%- if show_meta -%}
+        <div class="article-card-meta">
+          {%- if show_author == true -%}
+            <span class="article-card-author body-xs">
+              {{ 'general.blog.author' | t }}
+              {{ article.author }}
+            </span>
+          {%- endif -%}
+          {%- if show_date == true -%}
+            <span class="article-card-date body-xs">
+              {{ article.published_at | date: '%d.%m.%Y' }}
+            </span>
+          {%- endif -%}
+          {%- if is_show_comments_count == true -%}
+            <div class="article-card-comments">
+              {% render 'icon-comments' %}
+              <span class="article-card-comments__count body-xs">
+                {% liquid
+                  assign text_comment = 'general.blog.comment' | t
+                  assign text_comments = 'general.blog.comments' | t
+                %}
+                {{ article.comments_count }}
+                {{ article.comments_count | pluralize: text_comment, text_comments }}
+              </span>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </article>
+{% endif %}

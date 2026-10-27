@@ -1,0 +1,123 @@
+{%- if section.settings.enable_account_modal -%}
+  {%- if section.settings.account_modal_type == 'shopify_based' -%}
+    {% comment %} ----- SHOPIFY BASED ACCOUNT MODAL ----- {% endcomment %}
+
+    <div class="header__account">
+      <shopify-account
+        menu="{{ section.settings.customer_account_menu | default: "customer-account-main-menu" }}"
+        style="
+          display: flex; align-items: center; justify-content: center;{% if section.settings.authorization_button_type == 'icon'
+          %} max-width: 24px;{% endif %}
+        "
+      >
+        <div slot="signed-out-avatar">
+          <div
+            class="header__icon header__icon--account"
+          >
+            {% if section.settings.authorization_button_type == 'icon'
+              or section.settings.authorization_button_type == 'icon_and_text'
+            %}
+              {% render 'icon-account' %}
+            {% endif %}
+            {% if section.settings.authorization_button_type == 'text'
+              or section.settings.authorization_button_type == 'icon_and_text'
+            %}
+              <span class="header__account-text header__icon-text">
+                {{ 'customer.account.name' | t }}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+      </shopify-account>
+    </div>
+  {%- else -%}
+    {% comment %} ----- THEME BASED ACCOUNT MODAL ----- {% endcomment %}
+
+    <details-disclosure class="header__account header__account--{{ section.settings.authorization_button_type }}">
+      <details>
+        <summary
+          class="header__icon header__icon--account focus-inset modal__toggle"
+          aria-haspopup="dialog"
+          role="button"
+        >
+          {% if section.settings.authorization_button_type == 'icon'
+            or section.settings.authorization_button_type == 'icon_and_text'
+          %}
+            {% render 'icon-account' %}
+          {% endif %}
+          {% if section.settings.authorization_button_type == 'text'
+            or section.settings.authorization_button_type == 'icon_and_text'
+          %}
+            <span class="header__account-text header__icon-text">
+              {{ 'customer.account.name' | t }}
+            </span>
+          {% endif %}
+        </summary>
+        <div class="header__account-modal modal__toggle color-background-1" role="dialog" aria-modal="true">
+          {%- if customer -%}
+            <div class="header__account-account">
+              {% if customer.name != blank %}
+                <div class="header__account-name body-normal">
+                  {{- customer.name -}}
+                </div>
+              {%- endif -%}
+              <ul class="header__account-body">
+                <li>
+                  <a class="body-normal" href="{{ routes.account_url }}">
+                    {{- 'customer.account_fallback' | t -}}
+                  </a>
+                </li>
+                <li>
+                  <a class="body-normal" href="{{ routes.account_addresses_url }}">
+                    {{- 'customer.addresses.book' | t -}}
+                  </a>
+                </li>
+              </ul>
+              {% assign log_out_btn_label = 'customer.log_out' | t %}
+
+              {% render 'button',
+                btn_label: log_out_btn_label,
+                btn_link: routes.account_logout_url,
+                btn_style: 'primary',
+                class: 'header__account-logout'
+              %}
+            </div>
+          {%- else -%}
+            {% liquid
+              assign log_in_btn_label = 'customer.log_in' | t
+            %}
+
+            {% render 'button',
+              btn_label: log_in_btn_label,
+              btn_link: routes.account_login_url,
+              btn_style: 'primary',
+              class: 'header__account-login'
+            %}
+          {%- endif -%}
+        </div>
+      </details>
+    </details-disclosure>
+  {%- endif -%}
+{%- else -%}
+  {% comment %} ----- ACCOUNT BUTTON ----- {% endcomment %}
+
+  <div class="header__account header__account--{{ section.settings.authorization_button_type }}">
+    <a
+      href="{% if customer %} {{ routes.account_url }} {% else %} {{ routes.account_login_url }} {% endif %}"
+      class="header__icon header__icon--account"
+    >
+      {% if section.settings.authorization_button_type == 'icon'
+        or section.settings.authorization_button_type == 'icon_and_text'
+      %}
+        {% render 'icon-account' %}
+      {% endif %}
+      {% if section.settings.authorization_button_type == 'text'
+        or section.settings.authorization_button_type == 'icon_and_text'
+      %}
+        <span class="header__account-text header__icon-text">
+          {{ 'customer.account.name' | t }}
+        </span>
+      {% endif %}
+    </a>
+  </div>
+{%- endif -%}

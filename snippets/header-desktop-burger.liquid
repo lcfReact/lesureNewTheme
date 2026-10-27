@@ -1,0 +1,491 @@
+<burger-menu>
+  {% liquid
+    assign aspect_ratio = section.settings.burger_image_ratio
+    assign image_width = 400
+    assign ratio_parts = aspect_ratio | split: '/'
+    assign aspect_width = ratio_parts[0] | times: 1.0
+    assign aspect_height = ratio_parts[1] | times: 1.0
+    assign image_height = image_width | times: aspect_height | divided_by: aspect_width | ceil
+  %}
+
+  <style>
+    @media screen and (min-height: {{ image_height }}px) and (min-width: 750px) {
+      .burger-menu__menu--with-image,
+      .burger-menu__menu:has(.burger-menu__image-wrapper) {
+        padding-inline-end: 34rem;
+      }
+    }
+
+    @media screen and (min-height: {{ image_height }}px) and (min-width: 990px) {
+      .burger-menu__menu--with-image,
+      .burger-menu__menu:has(.burger-menu__image-wrapper) {
+        padding-inline-end: 44rem;
+      }
+    }
+
+    @media screen and (max-height: {{ image_height | minus: 1 }}px) {
+      .burger-menu__menu--with-image,
+      .burger-menu__menu:has(.burger-menu__image-wrapper) {
+        min-height: {{ image_height }}px;
+      }
+
+      .burger-menu__image-wrapper--main {
+        position: static;
+      }
+
+      .burger-menu__image-wrapper--link {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+  <div class="burger-menu__container" style="--image-height: {{ image_height }}px;">
+    {%- if is_burger_header == true -%}
+      <button
+        class="burger-menu__button burger-menu__open button--unstyled focus-inset no-js-hidden"
+        aria-label="{{ 'sections.header.burger_menu_open' | t }}"
+      >
+        <div class="burger-menu__button-content">
+          <div class="burger-menu__button-icons">
+            <span class="burger-menu__button-icon burger-menu__button-icon--1">
+              {% render 'icon-hamburger' %}
+            </span>
+            <span class="burger-menu__button-icon burger-menu__button-icon--2">
+              {% render 'icon-hamburger' %}
+            </span>
+          </div>
+        </div>
+
+        <span class="animated-burger-menu-button-circle"></span>
+      </button>
+    {%- else -%}
+      <button
+        class="burger-menu__button burger-menu__open button--unstyled focus-inset no-js-hidden"
+        aria-label="{{ 'sections.header.burger_menu_open' | t }}"
+      >
+        {% render 'icon-hamburger' %}
+      </button>
+    {%- endif -%}
+
+    <div
+      class="burger-menu color-{{ section.settings.color_scheme_modal }}"
+      role="dialog"
+      aria-modal="true"
+      aria-label="{{ 'sections.header.burger_menu' | t }}"
+      tabindex="-1"
+    >
+      <div
+        class="burger-menu__wrapper"
+      >
+        <div class="burger-menu__top">
+          <button
+            class="burger-menu__close button--unstyled focus-inset modal-close-button"
+            aria-label="{{ 'sections.header.burger_menu_close' | t }}"
+          >
+            {% render 'icon-close' %}
+          </button>
+
+          {% if section.settings.logo_burger %}
+            {% assign logo = section.settings.logo_burger %}
+          {% else %}
+            {% assign logo = section.settings.logo %}
+          {% endif %}
+
+          {% liquid
+            if logo != blank
+              assign aspect_ratio = logo.aspect_ratio
+              assign padding_bottom = 1 | divided_by: aspect_ratio | times: 100
+            else
+              assign padding_bottom = 0
+            endif
+          %}
+          <a
+            href="{{ routes.root_url }}"
+            class="header__heading-link focus-inset {{ aspect_ratio }}"
+            {% if logo != blank %}
+              style="width: {{ section.settings.logo_width }}px; --padding_bottom: {{ padding_bottom }}%; "
+            {% endif %}
+          >
+            {%- if logo != blank -%}
+              {%- assign image_size = section.settings.logo_width | append: 'x' -%}
+              {%- assign image_size_2x = section.settings.logo_width | times: 2 | at_most: 5760 -%}
+              <img
+                srcset="{{ logo | image_url: width: image_size }} 1x, {{ logo | image_url: width: image_size_2x }} 2x"
+                src="{{ logo | image_url: width: image_size }}"
+                class="header__heading-logo"
+                width="{{ section.settings.logo_width }}"
+                height="auto"
+                alt="{{ logo.alt | default: shop.name | escape }}"
+                loading="lazy"
+              >
+            {%- else -%}
+              <span>{{ shop.name }}</span>
+            {%- endif -%}
+          </a>
+
+          <div class="burger-menu__icons">
+            {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+              {% render 'header-localization' %}
+            {%- endif -%}
+
+            {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+              {% render 'header-language' %}
+            {%- endif -%}
+
+            <div class="burger-menu__icons-wrapper">
+              {%- if section.settings.enable_search -%}
+                {% render 'header-search', section: section %}
+              {%- endif -%}
+
+              {%- if shop.customer_accounts_enabled -%}
+                {% render 'header-account' %}
+              {%- endif -%}
+
+              {% render 'header-cart', id: 'burger' %}
+            </div>
+          </div>
+        </div>
+
+        {% case section.settings.burger_menu_link_size %}
+          {% when 'large' %}
+            {% assign link_size_1 = 'h2' %}
+            {% assign link_size_2 = 'h3' %}
+            {% assign link_size_3 = 'body-normal' %}
+          {% when 'medium' %}
+            {% assign link_size_1 = 'h3' %}
+            {% assign link_size_2 = 'h4' %}
+            {% assign link_size_3 = 'body-normal' %}
+          {% when 'small' %}
+            {% assign link_size_1 = 'h4' %}
+            {% assign link_size_2 = 'h5' %}
+            {% assign link_size_3 = 'body-small' %}
+        {% endcase %}
+
+        {% if section.settings.burger_menu_type == 'main-menu' and section.settings.menu != blank %}
+          <nav class="burger-menu__menu {% if section.settings.burger_image != blank %} burger-menu__menu--with-image {% endif %}">
+            {%- if section.settings.menu != blank -%}
+              <ul class="burger-menu__menu-list" role="list">
+                {%- for link in section.settings.menu.links -%}
+                  <li
+                    class="burger-menu__menu-list-item{% if link.links != blank %} burger-menu__menu-list--submenu{% endif %}"
+                  >
+                    <a
+                      href="{{ link.url }}"
+                      {% if settings.links_blank and link.type == 'http_link' %}
+                        target="_blank"
+                      {% endif %}
+                      class="burger-menu__menu-item {{ link_size_1 }} {% if link.current and link.url != '/' %} burger-menu__menu-item--active{% endif %} focus-inset"
+                      {% if link.current and link.url != '/' %}
+                        aria-current="page"
+                      {% endif %}
+                      aria-label="{{- link.title | escape -}}"
+                    >
+                      <span class="burger-menu__menu-item-title" title="{{ link.title | escape }}">
+                        <span>{{- link.title | escape -}}</span>
+                      </span>
+                      {% if link.links != blank %}
+                        {% render 'icon-arrow-down' %}
+                      {% endif %}
+                    </a>
+                    {% if link.links != blank %}
+                      {% render 'header-submenu',
+                        link: link,
+                        class: 'burger-menu__submenu',
+                        link_size_2: link_size_2,
+                        link_size_3: link_size_3
+                      %}
+                    {% endif %}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+
+            {% if section.settings.burger_image != blank %}
+              <div class="burger-menu__image-wrapper burger-menu__image-wrapper--main">
+                {% capture style %}
+                  aspect-ratio: {{ section.settings.burger_image_ratio }};
+                {% endcapture %}
+                {{
+                  section.settings.burger_image
+                  | image_url: width: section.settings.burger_image.width
+                  | image_tag: widths: '400, 800, 1200', sizes: '400px', class: 'burger-menu__image', style: style
+                }}
+              </div>
+            {% endif %}
+          </nav>
+        {% elsif section.settings.burger_menu_type == 'blocks' %}
+          {% assign is_image = false %}
+          {% if section.settings.burger_image %}
+            {% assign is_image = true %}
+          {% endif %}
+
+          <nav class="burger-menu__menu {% if is_image %} burger-menu__menu--with-image {% endif %}">
+            {{ links }}
+            {% if section.settings.burger_image != blank %}
+              {% capture style %}
+                aspect-ratio: {{ section.settings.burger_image_ratio }};
+              {% endcapture %}
+              <div class="burger-menu__image-wrapper burger-menu__image-wrapper--main">
+                {{
+                  section.settings.burger_image
+                  | image_url: width: section.settings.burger_image.width
+                  | image_tag: widths: '400, 800, 1200', sizes: '400px', class: 'burger-menu__image', style: style
+                }}
+              </div>
+            {% endif %}
+          </nav>
+        {% endif %}
+
+        {% liquid
+          assign enable_socials = false
+
+          if section.settings.enable_social_burger or section.settings.enable_social_burger_mobile
+            assign enable_socials = true
+          endif
+
+          assign is_show_socials = false
+
+          if enable_socials and settings.social_twitter_link != blank or settings.social_facebook_link != blank or settings.social_pinterest_link != blank or settings.social_instagram_link != blank or settings.social_tiktok_link != blank or settings.social_tumblr_link != blank or settings.social_snapchat_link != blank or settings.social_youtube_link != blank or settings.social_vimeo_link != blank or settings.social_linkedin_link != blank
+            assign is_show_socials = true
+          endif
+        %}
+
+        {% assign enable_country = false %}
+        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+          {% assign enable_country = true %}
+        {% endif %}
+
+        {% assign enable_language = false %}
+        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+          {% assign enable_language = true %}
+        {% endif %}
+
+        {%- if enable_country
+          or enable_language
+          or section.settings.enable_search
+          or shop.customer_accounts_enabled
+          or is_show_socials
+          or section.settings.enable_copyright
+          or section.settings.enable_copyright_mobile
+        -%}
+          <div class="burger-menu__bottom">
+            <div class="burger-menu__bottom-mobile">
+              {%- if enable_country or enable_language -%}
+                <div class="burger-menu__bottom-row">
+                  {%- if enable_country -%}
+                    {% render 'header-localization', additional_id: 'BurgerBottom' %}
+                  {%- endif -%}
+
+                  {%- if enable_language -%}
+                    {% render 'header-language', additional_id: 'BurgerBottom' %}
+                  {%- endif -%}
+                </div>
+              {% endif %}
+
+              {%- if section.settings.enable_search or shop.customer_accounts_enabled -%}
+                <div class="burger-menu__bottom-icons">
+                  {%- if section.settings.enable_search -%}
+                    {% render 'header-search', section: section, additional_id: 'BurgerBottom' %}
+                  {%- endif -%}
+
+                  {%- if shop.customer_accounts_enabled -%}
+                    {% render 'header-account' %}
+                  {%- endif -%}
+                </div>
+              {% endif %}
+            </div>
+
+            {% if section.settings.enable_copyright or section.settings.enable_copyright_mobile %}
+              <div class="burger-menu__copyright{% if section.settings.enable_copyright_mobile %} burger-menu__copyright--mobile-show{% endif %}{% if section.settings.enable_copyright %} burger-menu__copyright--desktop-show{% endif %}">
+                <span class="burger-menu__copyright-content body-xs">
+                  &copy;
+                  {{ 'now' | date: '%Y' }}
+                  {{ shop.name | link_to: routes.root_url }}.
+                </span>
+                <span class="burger-menu__copyright-content body-xs">
+                  {{- powered_by_link -}}
+                </span>
+              </div>
+            {% endif %}
+            {%- if is_show_socials -%}
+              <ul
+                class="list list-social list-unstyled{% if section.settings.enable_social_burger_mobile == true %} list-social--mobile-show{% endif %}{% if section.settings.enable_social_burger == true %} list-social--desktop-show{% endif %}"
+                role="list"
+              >
+                {%- if settings.social_instagram_link != blank -%}
+                  <li class="list-social__item">
+                    <a
+                      href="{{ settings.social_instagram_link }}"
+                      {% if settings.links_blank %}
+                        target="_blank"
+                      {% endif %}
+                      class="list-social__link"
+                      aria-describedby="a11y-external-message"
+                    >
+                      {%- render 'icon-instagram' -%}
+                      <span class="visually-hidden">
+                        {{- 'general.social.links.instagram' | t -}}
+                      </span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_tiktok_link != blank -%}
+                  <li class="list-social__item">
+                    <a
+                      href="{{ settings.social_tiktok_link }}"
+                      {% if settings.links_blank %}
+                        target="_blank"
+                      {% endif %}
+                      class="list-social__link"
+                      aria-describedby="a11y-external-message"
+                    >
+                      {%- render 'icon-tiktok' -%}
+                      <span class="visually-hidden">
+                        {{ 'general.social.links.tiktok' | t }}
+                      </span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_twitter_link != blank -%}
+                  <li class="list-social__item">
+                    <a
+                      href="{{ settings.social_twitter_link }}"
+                      {% if settings.links_blank %}
+                        target="_blank"
+                      {% endif %}
+                      class="list-social__link"
+                      aria-describedby="a11y-external-message"
+                    >
+                      {%- render 'icon-twitter' -%}
+                      <span class="visually-hidden">
+                        {{- 'general.social.links.twitter' | t -}}
+                      </span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_facebook_link != blank -%}
+                  <li class="list-social__item">
+                    <a
+                      href="{{ settings.social_facebook_link }}"
+                      {% if settings.links_blank %}
+                        target="_blank"
+                      {% endif %}
+                      class="list-social__link"
+                      aria-describedby="a11y-external-message"
+                    >
+                      {%- render 'icon-facebook' -%}
+                      <span class="visually-hidden">
+                        {{- 'general.social.links.facebook' | t -}}
+                      </span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_pinterest_link != blank -%}
+                  <li class="list-social__item">
+                    <a
+                      href="{{ settings.social_pinterest_link }}"
+                      {% if settings.links_blank %}
+                        target="_blank"
+                      {% endif %}
+                      class="list-social__link"
+                      aria-describedby="a11y-external-message"
+                    >
+                      {%- render 'icon-pinterest' -%}
+                      <span class="visually-hidden">
+                        {{- 'general.social.links.pinterest' | t -}}
+                      </span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_tumblr_link != blank -%}
+                  <li class="list-social__item">
+                    <a
+                      href="{{ settings.social_tumblr_link }}"
+                      {% if settings.links_blank %}
+                        target="_blank"
+                      {% endif %}
+                      class="list-social__link"
+                      aria-describedby="a11y-external-message"
+                    >
+                      {%- render 'icon-tumblr' -%}
+                      <span class="visually-hidden">
+                        {{- 'general.social.links.tumblr' | t -}}
+                      </span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_snapchat_link != blank -%}
+                  <li class="list-social__item">
+                    <a
+                      href="{{ settings.social_snapchat_link }}"
+                      {% if settings.links_blank %}
+                        target="_blank"
+                      {% endif %}
+                      class="list-social__link"
+                      aria-describedby="a11y-external-message"
+                    >
+                      {%- render 'icon-snapchat' -%}
+                      <span class="visually-hidden">
+                        {{- 'general.social.links.snapchat' | t -}}
+                      </span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_youtube_link != blank -%}
+                  <li class="list-social__item">
+                    <a
+                      href="{{ settings.social_youtube_link }}"
+                      {% if settings.links_blank %}
+                        target="_blank"
+                      {% endif %}
+                      class="list-social__link"
+                      aria-describedby="a11y-external-message"
+                    >
+                      {%- render 'icon-youtube' -%}
+                      <span class="visually-hidden">
+                        {{- 'general.social.links.youtube' | t -}}
+                      </span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_vimeo_link != blank -%}
+                  <li class="list-social__item">
+                    <a
+                      href="{{ settings.social_vimeo_link }}"
+                      {% if settings.links_blank %}
+                        target="_blank"
+                      {% endif %}
+                      class="list-social__link"
+                      aria-describedby="a11y-external-message"
+                    >
+                      {%- render 'icon-vimeo' -%}
+                      <span class="visually-hidden">
+                        {{- 'general.social.links.vimeo' | t -}}
+                      </span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_linkedin_link != blank -%}
+                  <li class="list-social__item">
+                    <a
+                      href="{{ settings.social_linkedin_link }}"
+                      {% if settings.links_blank %}
+                        target="_blank"
+                      {% endif %}
+                      class="list-social__link"
+                      aria-describedby="a11y-external-message"
+                    >
+                      {%- render 'icon-linkedin' -%}
+                      <span class="visually-hidden">
+                        {{- 'general.social.links.linkedin' | t -}}
+                      </span>
+                    </a>
+                  </li>
+                {%- endif -%}
+              </ul>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</burger-menu>

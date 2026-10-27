@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-login",
+      "settings": {
+        "color_scheme": "",
+        "full_width": false,
+        "padding_top": "xl",
+        "padding_bottom": "xl",
+        "margin_top": "no-indent",
+        "margin_bottom": "xs"
+      }
+    }
+  },
+  "order": ["main"]
+}

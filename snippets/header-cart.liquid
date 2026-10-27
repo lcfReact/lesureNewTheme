@@ -1,0 +1,33 @@
+{% liquid
+  assign button_type = section.settings.cart_button_type
+
+  if show_only_icon == true
+    assign button_type = 'icon'
+  endif
+%}
+
+<div class="header__cart header__cart--{{ button_type }} {% if request.page_type == 'cart' %} header__cart--page{% endif %}">
+  <a
+    href="{{ routes.cart_url }}"
+    class="header__icon header__icon--cart focus-inset"
+    id="cart-icon-bubble{%- if id -%}-{{ id }}{%- endif -%}"
+    aria-label="{{- 'general.cart.view' | t -}}"
+  >
+    {%- if is_burger_header -%}
+      <div class="burger-menu__button-content">
+        <div class="burger-menu__button-icons">
+          <span class="burger-menu__button-icon burger-menu__button-icon--1">
+            {% render 'cart-count-bubble' %}
+          </span>
+          <span class="burger-menu__button-icon burger-menu__button-icon--2">
+            {% render 'cart-count-bubble' %}
+          </span>
+        </div>
+      </div>
+
+      <span class="animated-burger-menu-button-circle"></span>
+    {%- else -%}
+      {% render 'cart-count-bubble' %}
+    {%- endif -%}
+  </a>
+</div>

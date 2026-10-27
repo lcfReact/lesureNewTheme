@@ -1,0 +1,545 @@
+<div
+  class="notification-bar popup {% if section.settings.full-width %} notification-bar--full-width{% endif %}"
+  {% if section.settings.popup_id != blank %}
+    id="{{ section.settings.popup_id }}"
+  {% endif %}
+  data-limit-display="{{ section.settings.limit-display }}"
+  data-limit-lifetime="{{ section.settings.limit-cache }}"
+  data-open-trigger="{{ section.settings.trigger-open }}"
+  data-open-delay-number="{{ section.settings.trigger-open-delay }}"
+  data-open-scroll-position="{{ section.settings.open-scroll-position }}"
+  data-open-scroll-type="{{ section.settings.open-scroll-type }}"
+  {% if section.settings['manual-selector'] != blank %}
+    data-open-manual-selector="{{ section.settings.manual-selector }}"
+  {% endif %}
+  data-close-trigger="{{ section.settings.trigger-close }}"
+  data-close-delay-number="{{ section.settings.trigger-close-delay }}"
+  data-close-scroll-position="{{ section.settings.close-scroll-position }}"
+  data-close-scroll-type="{{ section.settings.close-scroll-type }}"
+  data-open-animation="popupOpen{{ section.settings.open-animation }}"
+  data-exit-animation="popupExit{{ section.settings.exit-animation }}"
+  data-overlay="{{ section.settings.show-overlay }}"
+  data-mobile-disable="{{ section.settings.mobile }}"
+  data-body-scroll-disable="{{ section.settings.scrolling }}"
+  data-overlay-close="{{ section.settings.overlay-close }}"
+  data-esc-close="{{ section.settings.esc-close }}"
+  data-f4-close="{{ section.settings.f4-close }}"
+  data-id="{{ section.id }}"
+  style="width: 100%;"
+>
+  <div class="popup-wrap color-{{ section.settings.color_scheme }} background">
+    <div class="popup-container">
+      <div class="popup-outer">
+        <div class="popup-wrapper-text">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'heading' -%}
+                {%- if block.settings.heading != blank -%}
+                  <{{ block.settings.heading_tag | default: 'h3' }}
+                    class="popup-heading richtext-link-inside {{ block.settings.heading_size }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    {{- block.settings.heading -}}
+                  </{{ block.settings.heading_tag | default: 'h3' }}>
+                {%- endif -%}
+              {%- when 'description' -%}
+                {%- if block.settings.description != blank -%}
+                  <div class="popup-description body-xs rte" {{ block.shopify_attributes }}>
+                    {{- block.settings.description -}}
+                  </div>
+                {%- endif -%}
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="popup-wraper-buttons">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'action_button' -%}
+                {%- if block.settings.button_label != blank -%}
+                  {%- if block.settings.button_action == 'accept' -%}
+                    <button
+                      class="button button--primary popup-button popup-accept focus-inset"
+                      {{ block.shopify_attributes }}
+                    >
+                      <div class="button__content">
+                        <span class="button__label" data-label="{{- block.settings.button_label -}}">
+                          {{- block.settings.button_label -}}
+                        </span>
+                      </div>
+                      <span class="animated-button-circle"></span>
+                    </button>
+                  {%- else -%}
+                    <a
+                      class="button button--primary popup-button focus-inset"
+                      {% if block.settings.button_link %}
+                        href="{{ block.settings.button_link }}"
+                      {% else %}
+                        aria-disabled="true"
+                      {% endif %}
+                      {% if settings.links_blank and block.settings.button_link.type == 'external_link' %}
+                        target="_blank"
+                      {% endif %}
+                    >
+                      <div class="button__content">
+                        <span class="button__label" data-label="{{- block.settings.button_label -}}">
+                          {{- block.settings.button_label -}}
+                        </span>
+                      </div>
+                      <span class="animated-button-circle"></span>
+                    </a>
+                  {%- endif -%}
+                {%- endif -%}
+              {%- when 'decline_button' -%}
+                {%- if block.settings.button_label != blank -%}
+                  <button
+                    class="button button--tertiary popup-button popup-decline-button focus-inset"
+                    {{ block.shopify_attributes }}
+                  >
+                    <div class="button__content">
+                      <span class="button__label" data-label="{{- block.settings.button_label -}}">
+                        {{- block.settings.button_label -}}
+                      </span>
+                    </div>
+                  </button>
+                {%- endif -%}
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- if section.settings['show-overlay'] -%}
+  <div
+    class="popup-overlay"
+    {%- if section.settings['overlay-close'] -%}
+      style="cursor: pointer;"
+    {%- endif -%}
+  ></div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.overlay-group.notification-bar.name",
+  "class": "notification-bar-section",
+  "enabled_on": {
+    "groups": ["custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "popup_id",
+      "label": "t:sections.overlay-group.all.settings.popup-id.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "background-1",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "select",
+      "id": "open-animation",
+      "label": "t:sections.overlay-group.all.settings.open-animation.label",
+      "options": [
+        {
+          "value": "Fade",
+          "label": "t:sections.overlay-group.all.settings.animation.options__1.label"
+        },
+        {
+          "value": "Slide",
+          "label": "t:sections.overlay-group.all.settings.animation.options__2.label"
+        },
+        {
+          "value": "Zoom",
+          "label": "t:sections.overlay-group.all.settings.animation.options__3.label"
+        },
+        {
+          "value": "SlideFade",
+          "label": "t:sections.overlay-group.all.settings.animation.options__4.label"
+        }
+      ],
+      "default": "SlideFade"
+    },
+    {
+      "type": "select",
+      "id": "exit-animation",
+      "label": "t:sections.overlay-group.all.settings.exit-animation.label",
+      "options": [
+        {
+          "value": "Fade",
+          "label": "t:sections.overlay-group.all.settings.animation.options__1.label"
+        },
+        {
+          "value": "Slide",
+          "label": "t:sections.overlay-group.all.settings.animation.options__2.label"
+        },
+        {
+          "value": "Zoom",
+          "label": "t:sections.overlay-group.all.settings.animation.options__3.label"
+        },
+        {
+          "value": "SlideFade",
+          "label": "t:sections.overlay-group.all.settings.animation.options__4.label"
+        }
+      ],
+      "default": "SlideFade"
+    },
+    {
+      "type": "checkbox",
+      "id": "full-width",
+      "label": "t:sections.overlay-group.all.settings.full-width.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show-overlay",
+      "label": "t:sections.overlay-group.all.settings.show-overlay.label",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.overlay-group.all.settings.trigger.header.content"
+    },
+    {
+      "type": "select",
+      "id": "trigger-open",
+      "label": "t:sections.overlay-group.all.settings.trigger-open.label",
+      "options": [
+        {
+          "value": "delay",
+          "label": "t:sections.overlay-group.all.settings.trigger.options__1.label"
+        },
+        {
+          "value": "scroll",
+          "label": "t:sections.overlay-group.all.settings.trigger.options__2.label"
+        },
+        {
+          "value": "exit",
+          "label": "t:sections.overlay-group.all.settings.trigger.options__3.label"
+        },
+        {
+          "value": "manual",
+          "label": "t:sections.overlay-group.all.settings.trigger.options__4.label"
+        }
+      ],
+      "default": "delay"
+    },
+    {
+      "type": "range",
+      "id": "trigger-open-delay",
+      "label": "t:sections.overlay-group.all.settings.trigger-open-delay.label",
+      "min": 0,
+      "max": 100,
+      "unit": "sec",
+      "default": 1,
+      "visible_if": "{{ section.settings.trigger-open == 'delay' }}"
+    },
+    {
+      "type": "select",
+      "id": "open-scroll-type",
+      "options": [
+        {
+          "value": "px",
+          "label": "t:sections.overlay-group.all.settings.scroll-type.options__1.label"
+        },
+        {
+          "value": "%",
+          "label": "t:sections.overlay-group.all.settings.scroll-type.options__2.label"
+        }
+      ],
+      "default": "%",
+      "label": "t:sections.overlay-group.all.settings.open-scroll-type.label",
+      "visible_if": "{{ section.settings.trigger-open == 'scroll' }}"
+    },
+    {
+      "type": "number",
+      "id": "open-scroll-position",
+      "default": 50,
+      "label": "t:sections.overlay-group.all.settings.open-scroll-position.label",
+      "visible_if": "{{ section.settings.trigger-open == 'scroll' }}"
+    },
+    {
+      "type": "text",
+      "id": "manual-selector",
+      "label": "t:sections.overlay-group.all.settings.manual-selector.label",
+      "info": "t:sections.overlay-group.all.settings.manual-selector.info",
+      "visible_if": "{{ section.settings.trigger-open == 'manual' }}"
+    },
+    {
+      "type": "select",
+      "id": "trigger-close",
+      "label": "t:sections.overlay-group.all.settings.trigger-close.label",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.overlay-group.all.settings.trigger.options__5.label"
+        },
+        {
+          "value": "delay",
+          "label": "t:sections.overlay-group.all.settings.trigger.options__1.label"
+        },
+        {
+          "value": "scroll",
+          "label": "t:sections.overlay-group.all.settings.trigger.options__2.label"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "trigger-close-delay",
+      "label": "t:sections.overlay-group.all.settings.trigger-close-delay.label",
+      "min": 1,
+      "max": 100,
+      "unit": "sec",
+      "default": 30,
+      "visible_if": "{{ section.settings.trigger-close == 'delay' }}"
+    },
+    {
+      "type": "select",
+      "id": "close-scroll-type",
+      "options": [
+        {
+          "value": "px",
+          "label": "t:sections.overlay-group.all.settings.scroll-type.options__1.label"
+        },
+        {
+          "value": "%",
+          "label": "t:sections.overlay-group.all.settings.scroll-type.options__2.label"
+        }
+      ],
+      "default": "%",
+      "label": "t:sections.overlay-group.all.settings.close-scroll-type.label",
+      "visible_if": "{{ section.settings.trigger-close == 'scroll' }}"
+    },
+    {
+      "type": "number",
+      "id": "close-scroll-position",
+      "default": 50,
+      "label": "t:sections.overlay-group.all.settings.close-scroll-position.label",
+      "info": "t:sections.overlay-group.all.settings.close-scroll-position.info",
+      "visible_if": "{{ section.settings.trigger-close == 'scroll' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.overlay-group.all.settings.advanced.header.content"
+    },
+    {
+      "type": "range",
+      "id": "limit-display",
+      "min": 0,
+      "max": 100,
+      "default": 0,
+      "label": "t:sections.overlay-group.all.settings.limit-display.label",
+      "info": "t:sections.overlay-group.all.settings.limit-display.info"
+    },
+    {
+      "type": "number",
+      "id": "limit-cache",
+      "default": 30,
+      "label": "t:sections.overlay-group.all.settings.limit-cache.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile",
+      "label": "t:sections.overlay-group.all.settings.advanced.mobile.label",
+      "info": "t:sections.overlay-group.all.settings.advanced.mobile.info",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "scrolling",
+      "label": "t:sections.overlay-group.all.settings.advanced.scrolling.label",
+      "info": "t:sections.overlay-group.all.settings.advanced.scrolling.info",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "overlay-close",
+      "label": "t:sections.overlay-group.all.settings.advanced.overlay-close.label",
+      "info": "t:sections.overlay-group.all.settings.advanced.overlay-close.info",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "esc-close",
+      "label": "t:sections.overlay-group.all.settings.advanced.esc-close.label",
+      "info": "t:sections.overlay-group.all.settings.advanced.esc-close.info",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "f4-close",
+      "label": "t:sections.overlay-group.all.settings.advanced.f4-close.label",
+      "info": "t:sections.overlay-group.all.settings.advanced.f4-close.info",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "limit": 1,
+      "name": "t:sections.overlay-group.notification-bar.blocks.heading.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "t:sections.overlay-group.notification-bar.blocks.heading.settings.heading.label",
+          "default": "t:sections.overlay-group.notification-bar.blocks.heading.settings.heading.default"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h6",
+              "label": "t:sections.all.heading_size.options__6.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:sections.all.heading_size.options__5.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:sections.all.heading_size.options__4.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__1.label"
+            }
+          ],
+          "default": "h6",
+          "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "options": [
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_tag.options__1.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_tag.options__2.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:sections.all.heading_tag.options__3.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:sections.all.heading_tag.options__4.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:sections.all.heading_tag.options__5.label"
+            },
+            {
+              "value": "h6",
+              "label": "t:sections.all.heading_tag.options__6.label"
+            },
+            {
+              "value": "div",
+              "label": "t:sections.all.heading_tag.options__7.label"
+            }
+          ],
+          "default": "h3",
+          "label": "t:sections.all.heading_tag.label",
+          "info": "t:sections.all.heading_tag.info"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "t:sections.overlay-group.notification-bar.blocks.description.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "t:sections.overlay-group.notification-bar.blocks.description.settings.description.label",
+          "default": "t:sections.overlay-group.notification-bar.blocks.description.settings.description.default"
+        }
+      ]
+    },
+    {
+      "type": "action_button",
+      "name": "t:sections.overlay-group.notification-bar.blocks.action_button.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "t:sections.all.button.button_label.label",
+          "default": "t:sections.overlay-group.notification-bar.blocks.action_button.settings.button_label.default"
+        },
+        {
+          "type": "select",
+          "id": "button_action",
+          "options": [
+            {
+              "value": "link",
+              "label": "t:sections.overlay-group.notification-bar.blocks.action_button.settings.button_action.options__1.label"
+            },
+            {
+              "value": "accept",
+              "label": "t:sections.overlay-group.notification-bar.blocks.action_button.settings.button_action.options__2.label"
+            }
+          ],
+          "default": "accept",
+          "label": "t:sections.overlay-group.notification-bar.blocks.action_button.settings.button_action.label",
+          "info": "t:sections.overlay-group.notification-bar.blocks.action_button.settings.button_action.info"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.all.button.button_link.label",
+          "visible_if": "{{ block.settings.button_action == 'link' }}"
+        }
+      ]
+    },
+    {
+      "type": "decline_button",
+      "name": "t:sections.overlay-group.notification-bar.blocks.decline_button.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "t:sections.all.button.button_label.label",
+          "default": "t:sections.overlay-group.notification-bar.blocks.decline_button.settings.button_label.default"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.overlay-group.notification-bar.name",
+      "category": "t:sections.categories.overlay_group",
+      "blocks": [
+        {
+          "type": "description"
+        },
+        {
+          "type": "action_button"
+        },
+        {
+          "type": "decline_button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

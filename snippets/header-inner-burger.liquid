@@ -1,0 +1,9 @@
+<div class="header-burger__wrapper">
+  <div class="header-burger__burger color-{{ section.settings.color_scheme }}">
+    {% render 'header-desktop-burger', section: section, links: links, is_burger_header: true %}
+  </div>
+
+  <div class="header-burger__cart color-{{ section.settings.color_scheme }}">
+    {% render 'header-cart', is_burger_header: true, show_only_icon: true %}
+  </div>
+</div>

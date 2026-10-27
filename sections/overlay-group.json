@@ -1,0 +1,13 @@
+{
+  "type": "custom.overlay",
+  "name": "t:sections.overlay-group.name",
+  "sections": {
+    "back_to_top": {
+      "type": "back-to-top",
+      "settings": {
+        "enabled": true
+      }
+    }
+  },
+  "order": ["back_to_top"]
+}

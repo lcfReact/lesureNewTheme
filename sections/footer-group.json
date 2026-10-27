@@ -1,0 +1,104 @@
+{
+  "type": "footer",
+  "name": "t:sections.footer.name",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "nav_info": {
+          "type": "nav_group",
+          "settings": {
+            "heading": "INFO",
+            "link_1_label": "Privacy Policy",
+            "link_1_url": "/policies/privacy-policy",
+            "link_2_label": "Our Accessibility Commitment",
+            "link_2_url": "/pages/accessibility",
+            "link_3_label": "Contact",
+            "link_3_url": "/pages/contact",
+            "default_open": false
+          }
+        },
+        "nav_explore": {
+          "type": "nav_group",
+          "settings": {
+            "heading": "EXPLORE",
+            "link_1_label": "Home",
+            "link_1_url": "/",
+            "link_2_label": "Products",
+            "link_2_url": "/collections/all",
+            "link_3_label": "Blog",
+            "link_3_url": "/blogs/news",
+            "default_open": false
+          }
+        },
+        "nav_about": {
+          "type": "nav_group",
+          "settings": {
+            "heading": "ABOUT",
+            "link_1_label": "Reviews",
+            "link_1_url": "/pages/reviews",
+            "link_2_label": "About Us",
+            "link_2_url": "/pages/about",
+            "link_3_label": "Lesure Impact",
+            "link_3_url": "/pages/lesure-impact",
+            "default_open": true
+          }
+        }
+      },
+      "block_order": ["nav_info", "nav_explore", "nav_about"],
+      "settings": {
+        "color_scheme": "background-3",
+        "enable_border_top": false,
+        "show_subscribe": true,
+        "subscribe_heading": "Join The Lesure Family",
+        "subscribe_heading_size": "h3",
+        "subscribe_text": "Straight to your inbox: 10% off your first order just for showing up, plus first dibs on new arrivals and care tips worth bookmarking.",
+        "subscribe_button_text": "",
+        "newsletter_require_consent": true,
+        "newsletter_consent_text": "I agree to receive marketing emails from Lesure and acknowledge the Privacy Policy. I can unsubscribe at any time. New subscribers only. Discount cannot be combined with other offers.",
+        "newsletter_consent_default": false,
+        "klaviyo_company_id": "",
+        "klaviyo_list_id": "",
+        "address": "10000 Road, 10000, the United States",
+        "phone": "(800) xxx-xxxx",
+        "email": "support@lesure.com",
+        "social_1_icon": "tiktok",
+        "social_1_url": "https://www.tiktok.com",
+        "social_2_icon": "instagram",
+        "social_2_url": "https://www.instagram.com",
+        "social_3_icon": "facebook",
+        "social_3_url": "https://www.facebook.com",
+        "social_4_icon": "youtube",
+        "text_font": "bricolage_grotesque_n4",
+        "font_size": 15,
+        "background_color": "#6A44CE",
+        "text_color": "#FFFFFF",
+        "padding_top": 72,
+        "padding_right": 32,
+        "padding_bottom": 28,
+        "padding_left": 32,
+        "padding_top_mobile": 16,
+        "padding_right_mobile": 20,
+        "padding_bottom_mobile": 16,
+        "padding_left_mobile": 20,
+        "margin_top_desktop": 0,
+        "margin_right_desktop": 0,
+        "margin_bottom_desktop": 0,
+        "margin_left_desktop": 0,
+        "margin_top_mobile": 0,
+        "margin_right_mobile": 0,
+        "margin_bottom_mobile": 0,
+        "margin_left_mobile": 0,
+        "enable_country_selector": false,
+        "show_country_flag": false,
+        "enable_language_selector": false,
+        "payment_enable": false,
+        "enable_copyright": true,
+        "enable_copyright_date": true,
+        "show_policy": true,
+        "enable_follow_on_shop": false
+      }
+    }
+  },
+  "order": ["footer"]
+}

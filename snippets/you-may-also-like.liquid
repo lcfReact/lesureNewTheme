@@ -1,0 +1,458 @@
+{% doc %}
+  Renders stacked recommendation cards with a variant selector and add to cart.
+  @param {object} block - Product section block. Uses heading and products.
+  @param {object} section - Parent section, used to build unique form ids.
+{% enddoc %}
+
+{% liquid
+  assign recommended_products = product.metafields.custom.you_may_also_like.value
+  if recommended_products == blank
+    assign recommended_products = block.settings.products
+  endif
+
+  assign has_recommendations = false
+  if recommended_products != blank and recommended_products.size > 0
+    assign has_recommendations = true
+  endif
+%}
+
+{% if has_recommendations or request.design_mode %}
+  <div class="ymal" {{ block.shopify_attributes }}>
+    {% if block.settings.heading != blank %}
+      <h2 class="ymal__heading">{{ block.settings.heading | escape }}</h2>
+    {% endif %}
+
+    {% if has_recommendations %}
+      <div class="ymal__list">
+        {% for recommended in recommended_products limit: 10 %}
+          {% if recommended != blank %}
+            {% liquid
+              assign current_variant = nil
+              assign form_id = 'YouMayAlsoLike-' | append: section.id | append: '-' | append: block.id | append: '-' | append: forloop.index
+              for variant in recommended.variants limit: 50
+                assign variant_can_add = false
+                if variant.available
+                  if variant.inventory_management == blank or variant.inventory_quantity > 0
+                    assign variant_can_add = true
+                  endif
+                endif
+                if variant_can_add and current_variant == nil
+                  assign current_variant = variant
+                endif
+              endfor
+              if current_variant == nil
+                assign current_variant = recommended.selected_or_first_available_variant
+              endif
+              assign card_media = current_variant.featured_media | default: recommended.featured_media
+              assign current_can_add = false
+              if current_variant.available
+                if current_variant.inventory_management == blank or current_variant.inventory_quantity > 0
+                  assign current_can_add = true
+                endif
+              endif
+            %}
+            <you-may-also-like-card
+              class="ymal__card"
+              data-can-add="{% if current_can_add %}true{% else %}false{% endif %}"
+              data-add-label="{{ 'products.product.add_to_cart' | t | escape }}"
+              data-sold-label="{{ 'products.product.sold_out' | t | escape }}"
+            >
+              <div class="ymal__media">
+                {% if card_media != blank %}
+                  {{
+                    card_media
+                    | image_url: width: 360
+                    | image_tag:
+                      class: 'ymal__image',
+                      widths: '120, 180, 240, 360',
+                      sizes: '(min-width: 750px) 96px, 72px',
+                      loading: 'lazy',
+                      alt: recommended.title
+                  }}
+                {% else %}
+                  {{ 'product-apparel-1' | placeholder_svg_tag: 'ymal__image' }}
+                {% endif %}
+              </div>
+              <div class="ymal__body">
+                <div class="ymal__top">
+                  <p class="ymal__title">{{ recommended.title | escape }}</p>
+                  <p class="ymal__price" data-price>{{ current_variant.price | money }}</p>
+                </div>
+                <product-form class="product-form">
+                  <div class="product-form__error-message-wrapper ymal__error" role="alert" hidden>
+                    {% render 'icon-error' %}
+                    <span class="product-form__error-message"></span>
+                  </div>
+                  {% form 'product', recommended, id: form_id, class: 'ymal__form', novalidate: 'novalidate', data-type: 'add-to-cart-form' %}
+                    <div class="ymal__controls">
+                      {% if recommended.has_only_default_variant %}
+                        <input type="hidden" name="id" value="{{ current_variant.id }}">
+                      {% else %}
+                        <label class="visually-hidden" for="YouMayAlsoLikeVariant-{{ form_id }}">
+                          {{ 'products.you_may_also_like.variant_label' | t }}
+                        </label>
+                        <select
+                          id="YouMayAlsoLikeVariant-{{ form_id }}"
+                          class="ymal__select"
+                          name="id"
+                          data-variant-select
+                        >
+                          {% for variant in recommended.variants limit: 50 %}
+                            {% liquid
+                              assign variant_media = variant.featured_media | default: recommended.featured_media
+                              assign variant_can_add = false
+                              if variant.available
+                                if variant.inventory_management == blank or variant.inventory_quantity > 0
+                                  assign variant_can_add = true
+                                endif
+                              endif
+                            %}
+                            <option
+                              value="{{ variant.id }}"
+                              {% if variant.id == current_variant.id %}
+                                selected
+                              {% endif %}
+                              data-available="{% if variant_can_add %}true{% else %}false{% endif %}"
+                              data-price="{{ variant.price | money | escape }}"
+                              {% if variant_media != blank %}
+                                data-image="{{ variant_media | image_url: width: 360 }}"
+                              {% endif %}
+                            >
+                              {{ variant.title | escape }}
+                            </option>
+                          {% endfor %}
+                        </select>
+                        <script type="application/json" data-ymal-variants>
+                          [
+                            {%- for variant in recommended.variants limit: 50 -%}
+                              {%- liquid
+                                assign variant_media = variant.featured_media | default: recommended.featured_media
+                                assign variant_can_add = false
+                                if variant.available
+                                  if variant.inventory_management == blank or variant.inventory_quantity > 0
+                                    assign variant_can_add = true
+                                  endif
+                                endif
+                              -%}
+                              {
+                                "id": {{ variant.id | json }},
+                                "available": {% if variant_can_add %}true{% else %}false{% endif %},
+                                "price": {{ variant.price | money | json }},
+                                "image": {% if variant_media != blank %}{{ variant_media | image_url: width: 360 | json }}{% else %}null{% endif %}
+                              }{%- unless forloop.last -%},{%- endunless -%}
+                            {%- endfor -%}
+                          ]
+                        </script>
+                      {% endif %}
+                      <button
+                        type="submit"
+                        name="add"
+                        class="ymal__submit"
+                        data-submit
+                        {% unless current_can_add %}
+                          disabled
+                          aria-disabled="true"
+                        {% endunless %}
+                      >
+                        <span class="ymal__label" data-label>
+                          {% if current_can_add %}
+                            {{ 'products.product.add_to_cart' | t }}
+                          {% else %}
+                            {{ 'products.product.sold_out' | t }}
+                          {% endif %}
+                        </span>
+                        <span class="loading-overlay__spinner hidden">
+                          {% render 'icon-loading' %}
+                        </span>
+                      </button>
+                    </div>
+                  {% endform %}
+                </product-form>
+              </div>
+            </you-may-also-like-card>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% elsif request.design_mode %}
+      <p class="ymal__empty">{{ 'products.you_may_also_like.empty' | t }}</p>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .ymal {
+    margin: 0.4rem 0 1.6rem;
+  }
+
+  .ymal__heading {
+    margin: 0 0 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #1a1a1a;
+  }
+
+  .ymal__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .ymal__card {
+    display: grid;
+    grid-template-columns: 7.2rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: center;
+    padding: 0.8rem;
+    border: 0.1rem solid #e6e6e6;
+    border-radius: 4px;
+    background: #fff;
+  }
+
+  .ymal__media {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #f3f3f3;
+  }
+
+  .ymal__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ymal__body {
+    min-width: 0;
+  }
+
+  .ymal__top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .ymal__title,
+  .ymal__price {
+    margin: 0;
+    color: #1a1a1a;
+    font-size: 1.4rem;
+    line-height: 1.3;
+  }
+
+  .ymal__title {
+    min-width: 0;
+    font-weight: 600;
+  }
+
+  .ymal__price {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .ymal__controls {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+
+  .ymal__select {
+    width: 100%;
+    min-width: 0;
+    height: 4.4rem;
+    margin: 0;
+    padding: 0 3.2rem 0 1.4rem;
+    border: 0.1rem solid #d8d8d8;
+    border-radius: 4px;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23111111' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.4rem center;
+    background-size: 1.2rem 0.8rem;
+    color: #1a1a1a;
+    font: inherit;
+    font-size: 1.4rem;
+    appearance: none;
+  }
+
+  .ymal__submit {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 4.4rem;
+    margin: 0;
+    padding: 0 1.6rem;
+    border: 0;
+    border-radius: 4px;
+    background: #111;
+    color: #fff;
+    font: inherit;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .ymal__submit:disabled {
+    background: #eeeeee;
+    color: #8d8d8d;
+    cursor: not-allowed;
+  }
+
+  .ymal__submit .loading-overlay__spinner {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ymal__submit .spinner {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .ymal__submit.loading .ymal__label {
+    visibility: hidden;
+  }
+
+  .ymal__error {
+    margin-bottom: 0.8rem;
+    color: rgb(var(--color-error));
+    font-size: 1.2rem;
+  }
+
+  .ymal__empty {
+    margin: 0;
+    padding: 1.2rem 1.4rem;
+    border: 0.1rem dashed #cfcfcf;
+    border-radius: 4px;
+    color: #666;
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+
+  .ymal__select:focus-visible,
+  .ymal__submit:focus-visible {
+    outline: 0.2rem solid #111;
+    outline-offset: 0.2rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ymal__card {
+      grid-template-columns: 9.6rem minmax(0, 1fr);
+      gap: 1.2rem;
+    }
+
+    .ymal__controls {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .ymal__select {
+      flex: 1 1 auto;
+    }
+
+    .ymal__submit {
+      flex: 0 0 auto;
+      width: auto;
+      margin-left: auto;
+      padding: 0 1.8rem;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  function ymalMap(card) {
+    if (card.ymalMap) return card.ymalMap;
+    const map = {};
+    const node = card.querySelector('[data-ymal-variants]');
+    if (node) {
+      JSON.parse(node.textContent).forEach((item) => {
+        map[String(item.id)] = item;
+      });
+    }
+    card.ymalMap = map;
+    return map;
+  }
+
+  function ymalSelected(card) {
+    const select = card.querySelector('[data-variant-select]');
+    if (!select) return null;
+    return ymalMap(card)[select.value] || null;
+  }
+
+  function ymalCanAdd(card) {
+    const select = card.querySelector('[data-variant-select]');
+    if (!select) return card.dataset.canAdd === 'true';
+    const variant = ymalSelected(card);
+    return Boolean(variant && variant.available);
+  }
+
+  function ymalSync(card) {
+    const select = card.querySelector('[data-variant-select]');
+    const button = card.querySelector('[data-submit]');
+    const label = card.querySelector('[data-label]');
+    if (!button || !label) return;
+    const variant = select ? ymalSelected(card) : null;
+    const available = select ? Boolean(variant && variant.available) : card.dataset.canAdd === 'true';
+    if (variant) {
+      const price = card.querySelector('[data-price]');
+      const image = card.querySelector('.ymal__image');
+      if (price && variant.price) price.textContent = variant.price;
+      if (image && variant.image) {
+        image.removeAttribute('srcset');
+        image.src = variant.image;
+      }
+    }
+    button.disabled = !available;
+    if (available) {
+      button.removeAttribute('aria-disabled');
+      label.textContent = card.dataset.addLabel;
+    } else {
+      button.setAttribute('aria-disabled', 'true');
+      label.textContent = card.dataset.soldLabel;
+    }
+  }
+
+  function ymalInit() {
+    document.querySelectorAll('you-may-also-like-card').forEach(ymalSync);
+  }
+
+  if (!window.ymalBound) {
+    window.ymalBound = true;
+    document.addEventListener(
+      'change',
+      (event) => {
+        if (!event.target.matches || !event.target.matches('[data-variant-select]')) return;
+        const card = event.target.closest('you-may-also-like-card');
+        if (card) ymalSync(card);
+      },
+      true
+    );
+    document.addEventListener(
+      'submit',
+      (event) => {
+        const card = event.target.closest && event.target.closest('you-may-also-like-card');
+        if (!card || ymalCanAdd(card)) return;
+        event.preventDefault();
+        event.stopPropagation();
+        ymalSync(card);
+      },
+      true
+    );
+    document.addEventListener('shopify:section:load', ymalInit);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ymalInit);
+  } else {
+    ymalInit();
+  }
+{% endjavascript %}

@@ -1,0 +1,370 @@
+{%- liquid
+  assign back_to_top_show = false
+  if section.settings.enabled
+    case request.page_type
+      when 'index'
+        if section.settings.page_index
+          assign back_to_top_show = true
+        endif
+      when 'product'
+        if section.settings.page_product
+          assign back_to_top_show = true
+        endif
+      when 'collection'
+        if section.settings.page_collection
+          assign back_to_top_show = true
+        endif
+      when 'page'
+        if section.settings.page_page
+          assign back_to_top_show = true
+        endif
+      when 'blog'
+        if section.settings.page_blog
+          assign back_to_top_show = true
+        endif
+      when 'article'
+        if section.settings.page_article
+          assign back_to_top_show = true
+        endif
+      when 'cart'
+        if section.settings.page_cart
+          assign back_to_top_show = true
+        endif
+      when 'search'
+        if section.settings.page_search
+          assign back_to_top_show = true
+        endif
+      else
+        if section.settings.page_other
+          assign back_to_top_show = true
+        endif
+    endcase
+  endif
+-%}
+{%- if back_to_top_show or request.design_mode and section.settings.enabled -%}
+  {% style %}
+    #BackToTop-{{ section.id }} {
+      --back-bg: {{ section.settings.background }};
+      --back-icon: {{ section.settings.icon_color }};
+      --back-right: {{ section.settings.desktop_right }}px;
+      --back-bottom: {{ section.settings.desktop_bottom }}px;
+      --back-right-mobile: {{ section.settings.mobile_right }}px;
+      --back-bottom-mobile: {{ section.settings.mobile_bottom }}px;
+    }
+  {% endstyle %}
+
+  <button
+    type="button"
+    id="BackToTop-{{ section.id }}"
+    class="back-to-top"
+    aria-label="{{ 'general.back_to_top' | t | escape }}"
+  >
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+      <path d="M5 12.5L10 7.5L15 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+{%- endif -%}
+
+{% stylesheet %}
+  .back-to-top-section {
+    height: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    pointer-events: none;
+    background: transparent;
+  }
+
+  .back-to-top {
+    position: fixed;
+    right: var(--back-right, 24px);
+    bottom: var(--back-bottom, 24px);
+    z-index: 31;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 35px;
+    height: 35px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid color-mix(in srgb, var(--back-icon, #1d2433) 12%, transparent);
+    border-radius: 50%;
+    background: var(--back-bg, #fff);
+    color: var(--back-icon, #1d2433);
+    box-shadow: 0 4px 14px rgba(16, 24, 40, 0.16);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .back-to-top svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 749px) {
+    .back-to-top {
+      right: var(--back-right-mobile, 16px);
+      bottom: var(--back-bottom-mobile, 16px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .back-to-top {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    if (window.backToTopBoot) return;
+    window.backToTopBoot = true;
+
+    const observed = new WeakSet();
+    const observer = new MutationObserver(() => updateAll());
+    let frame = 0;
+    let settle = 0;
+
+    const reduceMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const place = (button) => {
+      const card = document.querySelector(".sticky-atc.is-visible");
+      const rect = card ? card.getBoundingClientRect() : null;
+      if (!rect || rect.width < 8 || rect.height < 8) {
+        button.style.right = "";
+        button.style.bottom = "";
+        return;
+      }
+      const gap = 12;
+      const cardStyle = window.getComputedStyle(card);
+      const cardBottom = parseFloat(cardStyle.bottom) || 0;
+      const anchor = card.querySelector(".sticky-atc__submit") || card;
+      const scrollbar = window.innerWidth - document.documentElement.clientWidth;
+      const anchorRight = anchor.getBoundingClientRect().right;
+      button.style.right = `${Math.max(0, Math.round(window.innerWidth - anchorRight - scrollbar))}px`;
+      button.style.bottom = `${Math.round(cardBottom + card.offsetHeight + gap)}px`;
+    };
+
+    const updateOne = (button) => {
+      const pastFirstScreen = window.scrollY > document.documentElement.clientHeight;
+      const show = pastFirstScreen || window.Shopify?.designMode === true;
+      button.classList.toggle("is-visible", show);
+      button.setAttribute("aria-hidden", show ? "false" : "true");
+      if ("inert" in button) button.inert = !show;
+      if (show) {
+        place(button);
+      } else {
+        button.style.right = "";
+        button.style.bottom = "";
+      }
+    };
+
+    const updateAll = () => {
+      document.querySelectorAll(".back-to-top").forEach(updateOne);
+    };
+
+    const watchCards = () => {
+      document.querySelectorAll(".sticky-atc").forEach((card) => {
+        if (observed.has(card)) return;
+        observed.add(card);
+        observer.observe(card, { attributes: true, attributeFilter: ["class", "style"] });
+      });
+    };
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        updateAll();
+      });
+      window.clearTimeout(settle);
+      settle = window.setTimeout(updateAll, 900);
+    };
+
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest?.(".back-to-top");
+      if (!button) return;
+      window.scrollTo({ top: 0, behavior: reduceMotion() ? "auto" : "smooth" });
+    });
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    document.addEventListener("shopify:section:load", () => {
+      watchCards();
+      updateAll();
+    });
+
+    const boot = () => {
+      watchCards();
+      updateAll();
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", boot);
+    } else {
+      boot();
+    }
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:sections.back-to-top.name",
+  "tag": "div",
+  "class": "back-to-top-section",
+  "limit": 1,
+  "enabled_on": {
+    "groups": ["custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "t:sections.back-to-top.settings.enabled.label",
+      "default": true
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.back-to-top.settings.info.content"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.back-to-top.settings.header_pages.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "page_index",
+      "label": "t:sections.back-to-top.settings.page_index.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "page_product",
+      "label": "t:sections.back-to-top.settings.page_product.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "page_collection",
+      "label": "t:sections.back-to-top.settings.page_collection.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "page_page",
+      "label": "t:sections.back-to-top.settings.page_page.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "page_blog",
+      "label": "t:sections.back-to-top.settings.page_blog.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "page_article",
+      "label": "t:sections.back-to-top.settings.page_article.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "page_cart",
+      "label": "t:sections.back-to-top.settings.page_cart.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "page_search",
+      "label": "t:sections.back-to-top.settings.page_search.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "page_other",
+      "label": "t:sections.back-to-top.settings.page_other.label",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.back-to-top.settings.header_style.content"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "t:sections.back-to-top.settings.background.label",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "t:sections.back-to-top.settings.icon_color.label",
+      "default": "#1d2433"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.back-to-top.settings.header_position.content"
+    },
+    {
+      "type": "range",
+      "id": "desktop_right",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.back-to-top.settings.desktop_right.label",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "desktop_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.back-to-top.settings.desktop_bottom.label",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_right",
+      "min": 0,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.back-to-top.settings.mobile_right.label",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.back-to-top.settings.mobile_bottom.label",
+      "default": 16
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.back-to-top.settings.position_info.content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.back-to-top.presets.name"
+    }
+  ]
+}
+{% endschema %}

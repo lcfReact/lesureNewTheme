@@ -1,0 +1,76 @@
+{% comment %}
+  Shared quick buy dialog. Product cards open it from their add button.
+{% endcomment %}
+<quick-buy-modal
+  class="quick-buy"
+  hidden
+  data-add-label="{{ 'products.product.add_to_cart' | t | escape }}"
+  data-sold-label="{{ 'products.product.sold_out' | t | escape }}"
+  data-added-label="{{ 'products.quick_buy.added' | t | escape }}"
+  data-select-label="{{ 'products.quick_buy.select_option' | t: option: '[option]' | escape }}"
+  data-details-label="{{ 'products.quick_buy.view_full_details' | t | escape }}"
+  data-unavailable-label="{{ 'products.product.unavailable' | t | escape }}"
+>
+  <div class="quick-buy__overlay" data-quick-buy-close></div>
+  <div
+    class="quick-buy__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="QuickBuyTitle"
+    tabindex="-1"
+  >
+    <button
+      type="button"
+      class="quick-buy__close"
+      data-quick-buy-close
+      aria-label="{{ 'accessibility.close' | t }}"
+    >
+      {% render 'icon-modal-close' %}
+    </button>
+    <div class="quick-buy__media">
+      <img class="quick-buy__image" alt="" width="800" height="800">
+      <button
+        type="button"
+        class="quick-buy__nav quick-buy__nav--prev"
+        data-quick-buy-prev
+        aria-label="{{ 'general.slider.previous_slide' | t }}"
+      >
+        {% render 'icon-caret-left' %}
+      </button>
+      <button
+        type="button"
+        class="quick-buy__nav quick-buy__nav--next"
+        data-quick-buy-next
+        aria-label="{{ 'general.slider.next_slide' | t }}"
+      >
+        {% render 'icon-caret-right' %}
+      </button>
+    </div>
+    <div class="quick-buy__info">
+      <h2 class="quick-buy__title" id="QuickBuyTitle"></h2>
+      <p class="quick-buy__price"></p>
+      <p class="quick-buy__desc">
+        <span class="quick-buy__desc-spacer"></span>
+        <a class="quick-buy__details" href=""></a>
+        <span class="quick-buy__desc-text"></span>
+      </p>
+      <div class="quick-buy__options"></div>
+      <p class="quick-buy__notice" role="status" hidden></p>
+      <div class="quick-buy__buy">
+        <div class="quick-buy__actions">
+          <div class="quick-buy__qty">
+            <button type="button" data-quick-buy-qty="-1" aria-label="{{ 'products.product.quantity.decrease' | t: product: '' }}">−</button>
+            <input class="quick-buy__qty-input" type="number" inputmode="numeric" min="1" value="1" aria-label="{{ 'products.quick_buy.quantity' | t }}">
+            <button type="button" data-quick-buy-qty="1" aria-label="{{ 'products.product.quantity.increase' | t: product: '' }}">+</button>
+          </div>
+          <button type="button" class="quick-buy__atc" data-quick-buy-add>
+            {{ 'products.product.add_to_cart' | t }}
+          </button>
+        </div>
+        <button type="button" class="quick-buy__checkout" data-quick-buy-checkout>
+          {{ 'products.quick_buy.checkout' | t }}
+        </button>
+      </div>
+    </div>
+  </div>
+</quick-buy-modal>

@@ -1,0 +1,33 @@
+<nav class="header__inline-menu">
+  {%- if section.settings.menu != blank -%}
+    <ul class="list-menu list-menu--inline" role="list">
+      {%- for link in section.settings.menu.links -%}
+        <li
+          class="list-menu-item{% if link.links != blank %} list-menu--submenu{% endif %}"
+        >
+          <a
+            href="{{ link.url }}"
+            {% if settings.links_blank and link.type == 'http_link' %}
+              target="_blank"
+            {% endif %}
+            class="header__menu-item {% if link.current and link.url != '/' %} header__menu-item--active{% endif %} list-menu__item focus-inset"
+            {% if link.current and link.url != '/' %}
+              aria-current="page"
+            {% endif %}
+            aria-label="{{ link.title | escape }}"
+            data-handle="{{ link.handle }}"
+          >
+            <span class="header__menu-item-title" title="{{ link.title | escape }}">
+              {{ link.title | escape }}
+            </span>
+            {% render 'icon-arrow-down' %}
+          </a>
+
+          {%- if link.links != blank -%}
+            {% render 'header-submenu', link: link, simple_mega_menu: false %}
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</nav>

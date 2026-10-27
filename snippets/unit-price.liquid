@@ -1,0 +1,52 @@
+{% comment %}
+  Renders a custom unit price display with a slash separator.
+
+  Example output: "€0,11 / Stück".
+
+  @param {product} [product] - Optional. - The product whose selected or first available variant will be used. @param
+  {line_item} [line_item] - Optional. - The item from cart.
+
+  @example
+  {% render 'unit-price', product: product, line_item: line_item %}
+{% endcomment %}
+
+{% assign variant = product.selected_or_first_available_variant %}
+
+{% if line_item %}
+  {% assign m = line_item.unit_price_measurement %}
+{% elsif product %}
+  {% assign m = variant.unit_price_measurement %}
+{% endif %}
+
+{% if m %}
+  {% if m.reference_value and m.reference_value != 1 %}
+    {{ m.reference_value }}
+  {% endif %}
+
+  {% case m.reference_unit %}
+    {% when 'ml' %}
+      {{ 'products.unit_price.unit_ml' | t }}
+    {% when 'cl' %}
+      {{ 'products.unit_price.unit_cl' | t }}
+    {% when 'l' %}
+      {{ 'products.unit_price.unit_l' | t }}
+    {% when 'cm' %}
+      {{ 'products.unit_price.unit_cm' | t }}
+    {% when 'm' %}
+      {{ 'products.unit_price.unit_m' | t }}
+    {% when 'g' %}
+      {{ 'products.unit_price.unit_g' | t }}
+    {% when 'kg' %}
+      {{ 'products.unit_price.unit_kg' | t }}
+    {% when 'm2' %}
+      {{ 'products.unit_price.unit_m2' | t }}
+    {% when 'm3' %}
+      {{ 'products.unit_price.unit_m3' | t }}
+    {% when 'oz' %}
+      {{ 'products.unit_price.unit_oz' | t }}
+    {% when 'lb' %}
+      {{ 'products.unit_price.unit_lb' | t }}
+    {% when 'item' %}
+      {{ 'products.unit_price.unit_item' | t }}
+  {% endcase %}
+{% endif %}

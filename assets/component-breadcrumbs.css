@@ -1,0 +1,46 @@
+.breadcrumbs {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 0.6rem;
+  font-family: var(--font-body-family);
+  color: rgba(var(--color-foreground));
+  background-color: transparent;
+}
+.breadcrumbs__delimiter {
+  width: 1rem;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(var(--color-foreground));
+  opacity: 0.5;
+}
+[dir=rtl] .breadcrumbs__delimiter {
+  transform: rotate(180deg);
+}
+.breadcrumbs__delimiter svg {
+  width: 0.5rem;
+  height: 0.8rem;
+}
+.breadcrumbs--center {
+  justify-content: center;
+}
+.breadcrumbs a {
+  position: relative;
+  color: rgba(var(--color-foreground));
+  text-decoration: none;
+  opacity: 0.5;
+  transition: opacity var(--duration-default) ease;
+}
+@media screen and (pointer: fine) {
+  .breadcrumbs a:hover {
+    opacity: 0.8;
+  }
+}
+.breadcrumbs span {
+  color: rgba(var(--color-foreground));
+  text-align: center;
+}

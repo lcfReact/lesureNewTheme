@@ -1,0 +1,617 @@
+{{ 'section-logo-list.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.layout == 'slider-carousel' -%}
+  <script src="{{ 'logo-list-carousel.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- if section.settings.layout == 'slider-with-thumbs' -%}
+  <script src="{{ 'logo-list-with-thumbs.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% liquid
+  if section.blocks.size >= 4 and section.blocks.size <= 9
+    assign slider_blocks = section.blocks | concat: section.blocks
+  elsif section.blocks.size < 4
+    assign slider_blocks = section.blocks | concat: section.blocks | concat: section.blocks
+  else
+    assign slider_blocks = section.blocks
+  endif
+
+  assign slides_gap = section.settings.column_gap | times: 10 | round
+%}
+
+{%- style -%}
+  {% render 'section-padding' %}
+  {% render 'section-margin' %}
+
+  .section-{{ section.id }}-padding .logo-list__wrapper {
+    --column_gap: {{ section.settings.column_gap }}rem;
+  }
+
+  .section-{{ section.id }}-padding .logo-card {
+    width: 12.6rem;
+    {% if section.settings.card_aspect_ratio == 'landscape' %}
+      height: 7.0875rem;
+    {% elsif section.settings.card_aspect_ratio == 'portrait' %}
+      height: 15.75rem;
+    {% elsif section.settings.card_aspect_ratio == 'square' %}
+      height: 12.6rem;
+    {% endif %}
+  }
+
+  @media (min-width: 576px) {
+    .section-{{ section.id }}-padding .logo-card {
+      width: 14.6rem;
+      {% if section.settings.card_aspect_ratio == 'landscape' %}
+        height: 8.6rem;
+      {% elsif section.settings.card_aspect_ratio == 'portrait' %}
+        height: 18.25rem;
+      {% elsif section.settings.card_aspect_ratio == 'square' %}
+        height: 14.6rem;
+      {% endif %}
+    }
+  }
+{%- endstyle -%}
+
+<div class="logo-list color-{{ section.settings.color_scheme }}{% if section.settings.show_border_top %} logo-list--border-top{% endif %}{% if section.settings.show_border_bottom %} logo-list--border-bottom{% endif %} background section-{{ section.id }}-padding">
+  <div class="logo-list__container" data-slider-type="{{section.settings.layout}}">
+    <div
+      class="logo-list__content content swiper js-slider-logos"
+      data-duration="{{ section.settings.speed_slider }}"
+      data-gap="{{ slides_gap }}"
+      {%- if section.settings.layout == 'slider-with-thumbs' -%}
+        id="logo-slider-{{ section.id }}"
+        data-autoplay="{{ section.settings.enable_autoplay }}"
+        data-autoplay-delay="{{ section.settings.slide_duration | times: 1000 }}"
+      {%- endif -%}
+    >
+      {%- if section.settings.layout == 'slider-carousel' -%}
+        <div class="logo-list__wrapper swiper-wrapper js-slider-logos-wrapper">
+          {%- for block in slider_blocks -%}
+            <div
+              class="logo-card swiper-slide{% if block.settings.logo_link != blank %} logo-card--with-link{% endif %}"
+              data-id="{{ block.id }}"
+              {{ block.shopify_attributes }}
+            >
+              <div class="logo-card__inner">
+                {%- if block.settings.image != blank -%}
+                  {% liquid
+                    if section.settings.card_aspect_ratio == 'landscape'
+                      assign settings_aspect_ratio = 0.41
+                    elsif section.settings.card_aspect_ratio == 'portrait'
+                      assign settings_aspect_ratio = 1.23
+                    elsif section.settings.card_aspect_ratio == 'square'
+                      assign settings_aspect_ratio = 1
+                    endif
+
+                    assign calc_ratio = 1
+                    if block.settings.image != blank
+                      if block.settings.image.aspect_ratio > settings_aspect_ratio
+                        assign calc_ratio = block.settings.image.aspect_ratio | divided_by: settings_aspect_ratio
+                      endif
+                    endif
+
+                    assign image_loading = 'lazy'
+
+                    if section.index == 1
+                      assign image_loading = 'eager'
+                    endif
+
+                    assign widths = '240, 300, 360'
+                  %}
+
+                  {%- capture image_sizes -%}
+                    (min-width: 576px) calc((14.6rem * ({{ block.settings.image_width}} / 100) * {{ calc_ratio }})), calc(14.6rem * ({{ block.settings.image_width}} / 100) * {{ calc_ratio }})
+                  {%- endcapture -%}
+
+                  {%- style -%}
+                    .section-{{ section.id }}-padding [data-id="{{ block.id }}"] .logo-card__image-wrapper {
+                      max-width: calc(14.6rem * ({{ block.settings.image_width}} / 100));
+                    }
+                  {%- endstyle -%}
+
+                  <div class="logo-card__image-wrapper">
+                    {% if block.settings.image != blank %}
+                      {{
+                        block.settings.image
+                        | image_url: width: block.settings.image.width
+                        | image_tag:
+                          sizes: image_sizes,
+                          widths: widths,
+                          class: 'logo-card__image',
+                          loading: image_loading
+                      }}
+                    {% endif %}
+                  </div>
+                {% else %}
+                  <div class="logo-card__placeholder">{{- block.settings.placeholder -}}</div>
+                {%- endif -%}
+
+                {%- if block.settings.logo_link != blank -%}
+                  <a
+                    class="logo-card__link "
+                    href="{{ block.settings.logo_link }}"
+                    {% if settings.links_blank and block.settings.logo_link.type == 'external_link' %}
+                      target="_blank"
+                    {% endif %}
+                  ></a>
+                {%- endif -%}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="swiper slider-with-thumbs-top" id="top-slider-{{ section.id }}">
+          <div class="swiper-wrapper">
+            {%- for block in slider_blocks -%}
+              <div
+                class="swiper-slide slider-with-thumbs-top__slide"
+                {{ block.shopify_attributes }}
+              >
+                <div class="slider-with-thumbs-top__slide-content">
+                  {%- if block.settings.text != blank -%}
+                    <span class="slider-with-thumbs-top__slide-text body-small">
+                      {{ block.settings.text }}
+                    </span>
+                  {%- endif -%}
+                  {%- if block.settings.title != blank -%}
+                    <span class="slider-with-thumbs-top__slide-title {{ section.settings.slide_title_size }}">
+                      {{ block.settings.title }}
+                    </span>
+                  {%- endif -%}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        {%- if section.blocks.size > 1 -%}
+          {% render 'slider-button',
+            direction: 'next',
+            classnames: 'slider-with-thumbs-button slider-with-thumbs-button--next'
+          %}
+        {%- endif -%}
+        <div thumbsSlider="" class="swiper slider-with-thumbs" id="thumbs-slider-{{ section.id }}">
+          <div class="logo-list__wrapper swiper-wrapper">
+            {%- for block in slider_blocks -%}
+              <div
+                class="logo-card swiper-slide{% if block.settings.logo_link != blank %} logo-card--with-link{% endif %}"
+                data-id="{{ block.id }}"
+                {{ block.shopify_attributes }}
+              >
+                <div class="logo-card__inner">
+                  {%- if block.settings.image != blank -%}
+                    {% liquid
+                      if section.settings.card_aspect_ratio == 'landscape'
+                        assign settings_aspect_ratio = 0.41
+                      elsif section.settings.card_aspect_ratio == 'portrait'
+                        assign settings_aspect_ratio = 1.23
+                      elsif section.settings.card_aspect_ratio == 'square'
+                        assign settings_aspect_ratio = 1
+                      endif
+
+                      assign calc_ratio = 1
+                      if block.settings.image != blank
+                        if block.settings.image.aspect_ratio > settings_aspect_ratio
+                          assign calc_ratio = block.settings.image.aspect_ratio | divided_by: settings_aspect_ratio
+                        endif
+                      endif
+
+                      assign image_loading = 'lazy'
+
+                      if section.index == 1
+                        assign image_loading = 'eager'
+                      endif
+
+                      assign widths = '240, 300, 360'
+                    %}
+
+                    {%- capture image_sizes -%}
+                      (min-width: 576px) calc((14.6rem * ({{ block.settings.image_width}} / 100) * {{ calc_ratio }})), calc(14.6rem * ({{ block.settings.image_width}} / 100) * {{ calc_ratio }})
+                    {%- endcapture -%}
+
+                    {%- style -%}
+                      .section-{{ section.id }}-padding [data-id="{{ block.id }}"] .logo-card__image-wrapper {
+                        max-width: calc(14.6rem * ({{ block.settings.image_width}} / 100));
+                      }
+                    {%- endstyle -%}
+
+                    <div class="logo-card__image-wrapper">
+                      {% if block.settings.image != blank %}
+                        {{
+                          block.settings.image
+                          | image_url: width: block.settings.image.width
+                          | image_tag:
+                            sizes: image_sizes,
+                            widths: widths,
+                            class: 'logo-card__image',
+                            loading: image_loading
+                        }}
+                      {% endif %}
+                    </div>
+                  {% else %}
+                    <div class="logo-card__placeholder">{{- block.settings.placeholder -}}</div>
+                  {%- endif -%}
+
+                  {%- if block.settings.logo_link != blank -%}
+                    <a
+                      class="logo-card__link "
+                      href="{{ block.settings.logo_link }}"
+                      {% if settings.links_blank and block.settings.logo_link.type == 'external_link' %}
+                        target="_blank"
+                      {% endif %}
+                    ></a>
+                  {%- endif -%}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.logo-list.name",
+  "class": "spaced-section logo-list-section",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["*"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.logo-list.settings.header__main.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "background-1",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border_top",
+      "default": false,
+      "label": "t:sections.logo-list.settings.show_border_top.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border_bottom",
+      "default": false,
+      "label": "t:sections.logo-list.settings.show_border_bottom.label"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "t:sections.logo-list.settings.layout.label",
+      "options": [
+        {
+          "value": "slider-carousel",
+          "label": "t:sections.logo-list.settings.layout.options_1.label"
+        },
+        {
+          "value": "slider-with-thumbs",
+          "label": "t:sections.logo-list.settings.layout.options_2.label"
+        }
+      ],
+      "default": "slider-carousel"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.logo-list.settings.header__column.content"
+    },
+    {
+      "type": "select",
+      "id": "card_aspect_ratio",
+      "options": [
+        {
+          "value": "landscape",
+          "label": "t:sections.all.card.image_ratio_2.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.all.card.image_ratio_2.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.all.card.image_ratio_2.options__3.label"
+        },
+        {
+          "value": "adapt",
+          "label": "t:sections.all.card.image_ratio_2.options__4.label"
+        }
+      ],
+      "default": "landscape",
+      "label": "t:sections.logo-list.settings.card_aspect_ratio.label"
+    },
+    {
+      "type": "select",
+      "id": "slide_title_size",
+      "options": [
+        {
+          "value": "h4",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__2.label"
+        }
+      ],
+      "default": "h2",
+      "label": "t:sections.logo-list.settings.slide_title_size.label",
+      "visible_if": "{{ section.settings.layout == 'slider-with-thumbs' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.logo-list.settings.header__2.content"
+    },
+    {
+      "type": "select",
+      "id": "column_gap",
+      "label": "t:sections.logo-list.settings.column_gap.label",
+      "options": [
+        {
+          "value": "4",
+          "label": "t:sections.logo-list.settings.column_gap.options__3.label"
+        },
+        {
+          "value": "9",
+          "label": "t:sections.logo-list.settings.column_gap.options__2.label"
+        },
+        {
+          "value": "15.4",
+          "label": "t:sections.logo-list.settings.column_gap.options__1.label"
+        }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "range",
+      "id": "speed_slider",
+      "min": 2000,
+      "max": 9500,
+      "step": 500,
+      "default": 4000,
+      "unit": "ms",
+      "label": "t:sections.logo-list.settings.speed_slider.label",
+      "visible_if": "{{ section.settings.layout == 'slider-carousel' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "default": true,
+      "label": "t:sections.all.slider.enable_autoplay.label",
+      "visible_if": "{{ section.settings.layout == 'slider-with-thumbs' }}"
+    },
+    {
+      "type": "range",
+      "id": "slide_duration",
+      "default": 5.5,
+      "min": 1,
+      "max": 10,
+      "step": 0.1,
+      "unit": "s",
+      "label": "t:sections.all.slider.slide_duration.label",
+      "visible_if": "{{ section.settings.layout == 'slider-with-thumbs' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-padding.header.content"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "xs",
+      "label": "t:sections.all.section-padding.padding_top.label"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "xs",
+      "label": "t:sections.all.section-padding.padding_bottom.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "t:sections.logo-list.blocks.logo.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.logo-list.blocks.logo.settings.image.label"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 30,
+          "max": 100,
+          "step": 5,
+          "default": 100,
+          "unit": "%",
+          "label": "t:sections.logo-list.blocks.logo.settings.image_width.label"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "t:sections.logo-list.blocks.logo.settings.placeholder.label",
+          "info": "t:sections.logo-list.blocks.logo.settings.placeholder.info",
+          "default": "t:sections.logo-list.blocks.logo.settings.placeholder.default"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "t:sections.logo-list.blocks.logo.settings.title.label",
+          "default": "t:sections.logo-list.blocks.logo.settings.title.default",
+          "visible_if": "{{ section.settings.layout == 'slider-with-thumbs' }}"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:sections.logo-list.blocks.logo.settings.text.label",
+          "default": "t:sections.logo-list.blocks.logo.settings.text.default",
+          "visible_if": "{{ section.settings.layout == 'slider-with-thumbs' }}"
+        },
+        {
+          "type": "url",
+          "id": "logo_link",
+          "label": "t:sections.logo-list.blocks.logo.settings.logo_link.label",
+          "visible_if": "{{ section.settings.layout == 'slider-carousel' }}"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.logo-list.name",
+      "category": "t:sections.categories.banners",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

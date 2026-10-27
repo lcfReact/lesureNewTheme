@@ -1,0 +1,126 @@
+{% comment %}
+  	Renders a horizontal product card
+  	Accepts:
+  	- product_card_product: {Object} Product Liquid object (optional)
+  	- media_ratio: {String} The aspect ratio to use for the card's image. Default: 'portrait' (optional)
+    - media_fit: {String} The object-fit to use for the card's image. Default: 'cover'
+  	- show_vendor: {Boolean} Show the product vendor.
+    - show_button: {Boolean} Show the product button.
+    - button_label: {String} The label of the button.
+    - color_scheme: {String} Color scheme.
+    - custom_img_width: {String} Custom image width value for image sizes.
+  	Usage:
+  {% render 'product-card-horizontal',
+  	product_card_product: product,
+  	show_vendor: section.settings.show_vendor,
+    color_scheme: section.settings.card_color_scheme,
+    media_ratio: section.settings.media_ratio,
+    media_fit: section.settings.media_fit
+  %}
+{% endcomment %}
+
+{% liquid
+  case media_ratio
+    when 'landscape'
+      assign media_aspect_ratio = '4/3'
+    when 'portrait'
+      assign media_aspect_ratio = '78/102'
+    when 'square'
+      assign media_aspect_ratio = '1/1'
+    else
+      assign media_aspect_ratio = '1/1'
+  endcase
+%}
+
+<div
+  class="card-horizontal {% if color_scheme != blank%}color-{{ color_scheme }}{% else %}color-{{ settings.card_color_scheme }}{% endif %}"
+  data-product="{{ product_card_product.handle }}"
+>
+  {%- if product_card_product.url -%}
+    <a
+      href="{{ product_card_product.url | default: '#' }}"
+      class="link card-horizontal-link-overlay"
+      aria-label="{{ "accessibility.product_link" | t }}"
+    ></a>
+  {%- endif -%}
+
+  <div
+    class="card-horizontal-media"
+    style="aspect-ratio: {{ media_aspect_ratio }}; object-fit: {{ media_fit | default: 'cover' }};"
+  >
+    {%- if product_card_product.featured_media -%}
+      {% liquid
+        if media_ratio == 'landscape'
+          assign settings_aspect_ratio = 1.33
+        elsif media_ratio == 'portrait'
+          assign settings_aspect_ratio = 0.77
+        else
+          assign settings_aspect_ratio = 1
+        endif
+
+        assign calc_ratio = 1.2
+
+        if product_card_product.featured_media.aspect_ratio > settings_aspect_ratio
+          assign calc_ratio = product_card_product.featured_media.aspect_ratio | divided_by: settings_aspect_ratio | round: 2 | times: 1.1
+        endif
+      %}
+
+      {%- if custom_img_width != blank -%}
+        {%- capture sizes -%}
+          calc({{ custom_img_width }} * {{ calc_ratio }})
+        {%- endcapture -%}
+      {%- else -%}
+        {%- capture sizes -%}
+          (min-width: 576px) calc(78px * {{ calc_ratio }}), calc(56px * {{ calc_ratio }})
+        {%- endcapture -%}
+      {%- endif -%}
+
+      {%- capture image_style -%}
+        object-position: {{ product_card_product.featured_media.presentation.focal_point }};
+        object-fit: {{ media_fit | default: 'cover' }};
+      {%- endcapture -%}
+
+      {{
+        product_card_product.featured_media
+        | image_url: width: product_card_product.featured_media.width
+        | image_tag:
+          loading: 'lazy',
+          sizes: sizes,
+          widths: '100, 120, 180, 240, 320, 400',
+          class: 'motion-reduce media--first',
+          style: image_style
+      }}
+    {%- else -%}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+
+  <div class="card-horizontal-information">
+    <div class="card-horizontal-information__top">
+      {%- if show_vendor -%}
+        <div class="card-horizontal-vendor body-xs">
+          <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+          {{ product_card_product.vendor }}
+        </div>
+      {%- endif -%}
+
+      <h3 class="card-horizontal-title">
+        {%- if product_card_product.title -%}
+          {{- product_card_product.title | escape -}}
+        {% else %}
+          {{- 'products.product.product_heading' | t -}}
+        {% endif %}
+      </h3>
+
+      {% render 'price', product: product_card_product, display_mode_variant_prices: settings.display_mode_variant_prices %}
+    </div>
+
+    {%- if show_button and button_label != blank -%}
+      <div class="card-horizontal-button-wrapper">
+        <span class="card-horizontal-button">
+          {{- button_label -}}
+        </span>
+      </div>
+    {%- endif -%}
+  </div>
+</div>

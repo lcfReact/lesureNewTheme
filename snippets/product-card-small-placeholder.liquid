@@ -1,0 +1,88 @@
+{% comment %}
+  Renders a small product card placeholder
+  Accepts:
+  - media_ratio: {String} The aspect ratio to use for the card's image. Default: 'portrait' (optional)
+  - show_vendor: {Boolean} Show the product vendor. Default: true
+  - product_number: {Integer} The number of the product,
+  - color_scheme: {String} Color scheme.
+  Usage:
+  {% render 'product-card-small-placeholder', show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+
+{% liquid
+  case media_ratio
+    when 'landscape'
+      # 4 / 3
+      assign padding_bottom = '75%'
+    when 'portrait'
+      # 574 / 751
+      assign padding_bottom = '130.8%'
+    when 'square'
+      # 1 / 1
+      assign padding_bottom = '100%'
+    else
+      # 574 / 751
+      assign padding_bottom = '130.8%'
+  endcase
+
+  assign product_card_index = 1
+
+  if product_number != blank
+    assign product_card_index = product_number
+  endif
+%}
+
+<div
+  class="card-small{% if color_scheme != blank %} color-{{ color_scheme }}{% else %} color-{{ settings.card_color_scheme }}{% endif %}"
+>
+  <div
+    class="card-small-image-link-wrapper card-small-image-link-wrapper--hover-{{ settings.product_card_hover }}"
+    tabindex="-1"
+  >
+    {% comment %} ------ CARD MEDIA ------ {% endcomment %}
+    <div
+      class="card-small-media"
+      style="padding-bottom: {{ padding_bottom }};"
+    >
+      {% liquid
+        assign placeholder_index = product_card_index | modulo: 6 | plus: 1
+      %}
+
+      {{ 'product-' | append: placeholder_index | placeholder_svg_tag: 'placeholder-svg' }}
+
+      {%- if settings.product_card_hover == 'secondary_image' -%}
+        {{ 'collection-' | append: placeholder_index | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+  </div>
+
+  {% comment %} ----- CARD INFORMATION ----- {% endcomment %}
+  <div class="card-small-information">
+    <div class="card-small-information__wrapper">
+      <div class="card-small-information__group">
+        {%- if show_vendor -%}
+          <div class="card-small__vendor body-xs">
+            <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+            {{- 'products.product.vendor' | t -}}
+          </div>
+        {%- endif -%}
+
+        <div class="card-small__title-price-wrapper">
+          <h3 class="card-small__title">
+            {{- 'products.product.product_heading' | t -}}
+          </h3>
+
+          {% liquid
+            assign is_placeholder_sale_price = false
+
+            if product_card_index == 2 or product_card_index == 4
+              assign is_placeholder_sale_price = true
+            endif
+          %}
+
+          {% render 'price', is_placeholder_sale_price: is_placeholder_sale_price, is_placeholder: true, display_mode_variant_prices: settings.display_mode_variant_prices %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

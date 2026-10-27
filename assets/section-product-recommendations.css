@@ -1,0 +1,221 @@
+.product-recommendations {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+.product-recommendations:empty {
+  padding: 0;
+  margin: 0;
+}
+.product-recommendations.product-recommendations--desktop-layout-slider, .product-recommendations.product-recommendations--mobile-layout-slider {
+  overflow: hidden;
+}
+.product-recommendations.product-recommendations--desktop-layout-slider .product-recommendations-layout, .product-recommendations.product-recommendations--mobile-layout-slider .product-recommendations-layout {
+  overflow: visible;
+}
+@media screen and (min-width: 576px) {
+  .product-recommendations.product-recommendations--desktop-layout-slider .product-recommendations-nav.product-recommendations-nav--show-desktop {
+    display: flex;
+  }
+}
+@media screen and (max-width: 575px) {
+  .product-recommendations.product-recommendations--mobile-layout-slider .product-recommendations-nav.product-recommendations-nav--show-mobile {
+    display: flex;
+  }
+}
+.product-recommendations--border-top {
+  border-top: 1px solid rgba(var(--color-border));
+}
+.product-recommendations--border-top.product-recommendations--border-bottom:empty {
+  border-bottom: none;
+}
+.product-recommendations--border-bottom {
+  border-bottom: 1px solid rgba(var(--color-border));
+}
+.product-recommendations__loading {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-height: 8.8rem;
+  padding: 2.4rem 0;
+}
+.product-recommendations__loading svg {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  max-width: 4rem;
+  max-height: 4rem;
+}
+.product-recommendations__loading.loading {
+  display: flex;
+}
+.product-recommendations-top {
+  width: 100%;
+  display: flex;
+}
+.product-recommendations-top--align-left {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.product-recommendations-top--align-right {
+  flex-direction: column;
+  align-items: flex-end;
+}
+.product-recommendations-top--align-center {
+  flex-direction: column;
+  align-items: center;
+}
+.product-recommendations-top__heading-group {
+  display: block;
+}
+.product-recommendations-top__heading-group + .button.product-recommendations-button {
+  margin-top: 1.6rem;
+}
+@media screen and (min-width: 576px) {
+  .product-recommendations-top__heading-group + .button.product-recommendations-button {
+    margin-top: 2.4rem;
+  }
+}
+.product-recommendations-top + .content {
+  margin-top: 2.4rem;
+}
+@media screen and (min-width: 750px) {
+  .product-recommendations-top + .content {
+    margin-top: 3.2rem;
+  }
+}
+.product-recommendations-top .description {
+  margin-bottom: 0;
+}
+.product-recommendations-main {
+  display: block;
+  width: 100%;
+}
+.product-recommendations-layout {
+  display: block;
+  width: 100%;
+}
+@media screen and (max-width: 575px) {
+  .product-recommendations-layout:not(.swiper-initialized) .product-recommendations-list.product-recommendations-mobile-slider {
+    display: flex;
+    gap: 16px;
+  }
+  .product-recommendations-layout:not(.swiper-initialized) .product-recommendations-list.product-recommendations-mobile-slider .product-recommendations-item {
+    flex: 0 0 calc((100% - 1.6px) / 1.15);
+  }
+}
+@media screen and (min-width: 576px) {
+  .product-recommendations-layout:not(.swiper-initialized) .product-recommendations-list.product-recommendations-desktop-slider {
+    display: flex;
+    gap: 20px;
+  }
+  .product-recommendations-layout:not(.swiper-initialized) .product-recommendations-list.product-recommendations-desktop-slider .product-recommendations-item {
+    flex: 0 0 calc((100% - 22px) / 2.1);
+  }
+}
+@media screen and (min-width: 990px) {
+  .product-recommendations-layout:not(.swiper-initialized)[data-columns="3"] .product-recommendations-list.product-recommendations-desktop-slider, .product-recommendations-layout:not(.swiper-initialized)[data-columns="4"] .product-recommendations-list.product-recommendations-desktop-slider {
+    gap: 24px;
+  }
+  .product-recommendations-layout:not(.swiper-initialized)[data-columns="3"] .product-recommendations-list.product-recommendations-desktop-slider .product-recommendations-item, .product-recommendations-layout:not(.swiper-initialized)[data-columns="4"] .product-recommendations-list.product-recommendations-desktop-slider .product-recommendations-item {
+    flex: 0 0 calc((100% - 50.4px) / 3.15);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .product-recommendations-layout:not(.swiper-initialized)[data-columns="4"] .product-recommendations-list.product-recommendations-desktop-slider {
+    gap: 24px;
+  }
+  .product-recommendations-layout:not(.swiper-initialized)[data-columns="4"] .product-recommendations-list.product-recommendations-desktop-slider .product-recommendations-item {
+    flex: 0 0 calc((100% - 74.4px) / 4.15);
+  }
+}
+@media screen and (max-width: 575px) {
+  .product-recommendations-layout:not(.swiper-initialized)[data-centered-slides=true] .product-recommendations-list.product-recommendations-mobile-slider {
+    display: flex;
+    gap: 16px;
+    margin-left: calc(50% - (100% - 2.4px) / 1.15 / 2);
+  }
+  .product-recommendations-layout:not(.swiper-initialized)[data-centered-slides=true] .product-recommendations-list.product-recommendations-mobile-slider .product-recommendations-item {
+    flex: 0 0 calc((100% - 2.4px) / 1.15);
+  }
+}
+@media screen and (min-width: 576px) {
+  .product-recommendations-layout:not(.swiper-initialized)[data-centered-slides=true] .product-recommendations-list.product-recommendations-desktop-slider {
+    display: flex;
+    gap: 20px;
+    margin-left: calc(50% - (100% - 10px) / 1.5 / 2);
+  }
+  .product-recommendations-layout:not(.swiper-initialized)[data-centered-slides=true] .product-recommendations-list.product-recommendations-desktop-slider .product-recommendations-item {
+    flex: 0 0 calc((100% - 10px) / 1.5);
+  }
+}
+@media screen and (min-width: 990px) {
+  .product-recommendations-layout:not(.swiper-initialized)[data-centered-slides=true] .product-recommendations-list.product-recommendations-desktop-slider {
+    display: flex;
+    gap: 24px;
+    margin-left: calc(50% - (3 * (100% - 51.6px) / 3.15 + 48px) / 2);
+  }
+  .product-recommendations-layout:not(.swiper-initialized)[data-centered-slides=true] .product-recommendations-list.product-recommendations-desktop-slider .product-recommendations-item {
+    flex: 0 0 calc((100% - 51.6px) / 3.15);
+  }
+}
+.product-recommendations-list {
+  width: 100%;
+}
+@media screen and (min-width: 576px) {
+  .product-recommendations-list.product-recommendations-desktop-grid {
+    display: grid;
+    column-gap: 2.4rem;
+    row-gap: 3.2rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 750px) {
+  .product-recommendations-list.product-recommendations-desktop-grid {
+    row-gap: 4rem;
+  }
+}
+@media screen and (min-width: 990px) {
+  .product-recommendations-list.product-recommendations-desktop-grid {
+    row-gap: 5.6rem;
+  }
+}
+@media screen and (min-width: 990px) {
+  .product-recommendations-list.product-recommendations-desktop-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 990px) {
+  .product-recommendations-list.product-recommendations-desktop-grid--4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 1360px) {
+  .product-recommendations-list.product-recommendations-desktop-grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (max-width: 575px) {
+  .product-recommendations-list.product-recommendations-mobile-column {
+    display: grid;
+    row-gap: 3.2rem;
+    grid-template-columns: 1fr;
+  }
+}
+.product-recommendations-nav {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  pointer-events: none;
+  transition: opacity var(--duration-default) ease;
+  opacity: 0;
+}
+.product-recommendations-nav.product-recommendations-nav--visible {
+  opacity: 1;
+}

@@ -1,0 +1,214 @@
+{{ 'component-search.css' | asset_url | stylesheet_tag }}
+{{ 'template-search.css' | asset_url | stylesheet_tag }}
+
+{%- if settings.predictive_search_enabled -%}
+  {{ 'component-article-card.css' | asset_url | stylesheet_tag }}
+  {{ 'component-card.css' | asset_url | stylesheet_tag }}
+  {{ 'component-collection-card.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+{%- style -%}
+  {% render 'section-margin' %}
+
+  predictive-search .spinner {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+{%- endstyle -%}
+
+<div class="template-404 template-404__page">
+  <div class="container">
+    <div class="page-header template-404__header">
+      <div class="page-header__inner template-404__header-inner">
+        <h1 class="main-page-title page-title title--page h2">
+          {{ 'templates.404.title' | t }}
+        </h1>
+        <p class="template-404__header-text">
+          {{ 'templates.404.text' | t }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="template-404__search">
+    {%- if settings.predictive_search_enabled -%}
+      <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
+    {%- endif -%}
+    {%- if search.performed and search.results_count == 0 and search.filters == empty -%}
+      <div class="search-wrapper">
+    {% endif %}
+    <form
+      action="{{ routes.search_url }}"
+      method="get"
+      role="search"
+      class="search{% if search.performed %} search--perfomed{% endif %}"
+    >
+      <div class="search__form-inner">
+        <div class="container">
+          <div class="field">
+            <input
+              class="search__input field__input h3"
+              dir="ltr"
+              id="Search-In-404"
+              type="search"
+              name="q"
+              value="{{ search.terms | escape }}"
+              placeholder="{{ 'general.search.placeholder' | t }}"
+              {%- if settings.predictive_search_enabled -%}
+                role="combobox"
+                aria-expanded="false"
+                aria-owns="predictive-search-results-list"
+                aria-controls="predictive-search-results-list"
+                aria-haspopup="listbox"
+                aria-autocomplete="list"
+                autocorrect="off"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+              {%- endif -%}
+            >
+            <label class="visually-hidden" for="Search-In-404">{{ 'general.search.search' | t }}</label>
+            <input name="options[prefix]" type="hidden" value="last">
+
+            <button
+              class="search__button field__button focus-inset"
+              aria-label="{{ 'general.search.search' | t }}"
+              type="submit"
+            >
+              {% render 'icon-search-input' %}
+            </button>
+            <button
+              class="search__button search__button--reset field__button focus-inset hidden"
+              aria-label="{{- 'general.search.reset_search' | t -}}"
+              type="reset"
+            >
+              {% render 'icon-close' %}
+            </button>
+          </div>
+        </div>
+      </div>
+      {%- if settings.predictive_search_enabled -%}
+        <div class="container">
+          <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
+            <div class="predictive-search__loading-state">
+              {% render 'icon-loading' %}
+            </div>
+          </div>
+          <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+        </div>
+      {%- endif -%}
+    </form>
+    {%- if search.performed and search.results_count == 0 and search.filters == empty -%}
+      </div>
+    {% endif %}
+    {%- if settings.predictive_search_enabled -%}
+      </predictive-search>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (() => {
+    function initSearch() {
+      const input = document.querySelector('#Search-In-404');
+      if (input.closest('predictive-search')) return;
+      if (!input) return;
+
+      const form = input.form;
+      const resetBtn = form?.querySelector('.search__button--reset');
+
+      input.focus();
+      const length = input.value.length;
+      input.setSelectionRange(length, length);
+
+      input?.addEventListener('input', (event) => {
+        resetBtn.classList.toggle("hidden", !event.target.value);
+      });
+
+      resetBtn?.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (input) {
+          input.value = '';
+          input.focus();
+        }
+        resetBtn.classList.add("hidden");
+      });
+    }
+    window.addEventListener('load', initSearch);
+  })();
+</script>
+
+{% schema %}
+{
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ]
+}
+{% endschema %}

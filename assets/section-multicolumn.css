@@ -1,0 +1,300 @@
+.multicolumn--border-bottom {
+  border-bottom: 1px solid rgb(var(--color-border));
+}
+.multicolumn--border-top {
+  border-top: 1px solid rgb(var(--color-border));
+}
+.multicolumn__header {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  margin-bottom: 4rem;
+}
+.multicolumn__header--center {
+  align-items: center;
+}
+.multicolumn__header--center .multicolumn__heading,
+.multicolumn__header--center .multicolumn__description {
+  text-align: center;
+}
+.multicolumn__header--left {
+  align-items: flex-start;
+}
+.multicolumn__header--left .multicolumn__heading,
+.multicolumn__header--left .multicolumn__description {
+  text-align: left;
+}
+.multicolumn__header--right {
+  align-items: flex-end;
+}
+.multicolumn__header--right .multicolumn__heading,
+.multicolumn__header--right .multicolumn__description {
+  text-align: right;
+}
+.multicolumn__heading {
+  max-width: 123rem;
+  width: 100%;
+  white-space: pre-line;
+}
+.multicolumn__heading a {
+  color: rgba(var(--color-foreground));
+  display: inline;
+  transition: background-size var(--duration-default) ease-in-out, opacity var(--duration-default) ease-in-out;
+  background-position: left 90%;
+  background-size: 100% 5%;
+  background-image: linear-gradient(to right, rgba(var(--color-foreground)) 0%, rgba(var(--color-foreground)) 100%);
+  background-repeat: no-repeat;
+  text-decoration: none;
+}
+@media screen and (pointer: fine) {
+  .multicolumn__heading a:hover {
+    background-size: 0% 5%;
+    background-position: right 90%;
+    opacity: 0.8;
+  }
+}
+.multicolumn__description {
+  max-width: 67.6rem;
+  width: 100%;
+}
+.multicolumn__description a {
+  color: rgba(var(--color-foreground));
+  display: inline;
+  transition: background-size var(--duration-default) ease-in-out, opacity var(--duration-default) ease-in-out;
+  background-position: left 90%;
+  background-size: 100% 5%;
+  background-image: linear-gradient(to right, rgba(var(--color-foreground)) 0%, rgba(var(--color-foreground)) 100%);
+  background-repeat: no-repeat;
+  text-decoration: none;
+}
+@media screen and (pointer: fine) {
+  .multicolumn__description a:hover {
+    background-size: 0% 5%;
+    background-position: right 90%;
+    opacity: 0.8;
+  }
+}
+.multicolumn-buttons {
+  margin-top: 4.8rem;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.multicolumn-buttons--left {
+  justify-content: flex-start;
+}
+.multicolumn-buttons--right {
+  justify-content: flex-end;
+}
+.multicolumn-buttons--center {
+  justify-content: center;
+}
+.multicolumn-grid {
+  width: 100%;
+}
+.multicolumn-grid__wrapper {
+  --row_gap: 2.4rem;
+  --column_gap: 2.4rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--row_gap) var(--column_gap);
+  box-sizing: border-box;
+}
+.multicolumn-grid__wrapper .multicolumn-card {
+  width: 100%;
+  min-width: 100%;
+}
+@media (min-width: 576px) {
+  .multicolumn-grid__wrapper--1 .multicolumn-card__heading {
+    max-width: 50.5%;
+  }
+}
+.multicolumn-grid__wrapper--2 .multicolumn-card {
+  width: calc((100% - var(--column_gap)) / 2);
+  min-width: calc((100% - var(--column_gap)) / 2);
+}
+@media (max-width: 576px) {
+  .multicolumn-grid__wrapper--2 .multicolumn-card {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+.multicolumn-grid__wrapper--3 .multicolumn-card {
+  width: calc((100% - 2 * var(--column_gap)) / 3);
+  min-width: calc((100% - 2 * var(--column_gap)) / 3);
+}
+@media (max-width: 990px) {
+  .multicolumn-grid__wrapper--3 .multicolumn-card {
+    width: calc((100% - var(--column_gap)) / 2);
+    min-width: calc((100% - var(--column_gap)) / 2);
+  }
+}
+@media (max-width: 576px) {
+  .multicolumn-grid__wrapper--3 .multicolumn-card {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+.multicolumn-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  height: auto;
+  position: relative;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+.multicolumn-card:has(.multicolumn-card__link) {
+  transition: transform 0.4s cubic-bezier(0.5, 0, 0, 1);
+}
+@media screen and (pointer: fine) {
+  .multicolumn-card:has(.multicolumn-card__link):hover {
+    -webkit-transform: scale(0.97);
+    transform: scale(0.97);
+  }
+}
+.multicolumn-card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2rem;
+}
+.multicolumn-card__content--center {
+  align-items: center;
+}
+.multicolumn-card__content--center .multicolumn-card__heading,
+.multicolumn-card__content--center .multicolumn-card__text {
+  text-align: center;
+}
+.multicolumn-card__content--left {
+  align-items: flex-start;
+}
+.multicolumn-card__content--left .multicolumn-card__heading,
+.multicolumn-card__content--left .multicolumn-card__text {
+  text-align: left;
+}
+.multicolumn-card__content--right {
+  align-items: flex-end;
+}
+.multicolumn-card__content--right .multicolumn-card__heading,
+.multicolumn-card__content--right .multicolumn-card__text {
+  text-align: right;
+}
+.multicolumn-card__heading {
+  max-width: 100%;
+  margin: 0;
+}
+.multicolumn-card__heading--font-body {
+  font-family: var(--font-body-family);
+  font-weight: var(--font-body-weight);
+  line-height: var(--font-body-line-height);
+  letter-spacing: calc(var(--font-body-letter-spacing) * 0.1);
+  font-style: var(--font-body-style);
+  text-transform: none;
+}
+.multicolumn-card__heading span {
+  white-space: pre-line;
+}
+.multicolumn-card__text {
+  margin: 0;
+  max-width: 100%;
+  word-break: break-word;
+}
+.multicolumn-card__text a {
+  color: rgba(var(--color-foreground));
+  display: inline;
+  transition: background-size var(--duration-default) ease-in-out, opacity var(--duration-default) ease-in-out;
+  background-position: left 90%;
+  background-size: 100% 5%;
+  background-image: linear-gradient(to right, rgba(var(--color-foreground)) 0%, rgba(var(--color-foreground)) 100%);
+  background-repeat: no-repeat;
+  text-decoration: none;
+}
+@media screen and (pointer: fine) {
+  .multicolumn-card__text a:hover {
+    background-size: 0% 5%;
+    background-position: right 90%;
+    opacity: 0.8;
+  }
+}
+.multicolumn-card__button {
+  z-index: 10;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.multicolumn-card__button:not(:first-child) {
+  margin-top: 0.4rem;
+}
+.multicolumn-card .multicolumn-card__link {
+  display: block;
+}
+.multicolumn-card__link {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+}
+.multicolumn-card__image {
+  width: 100%;
+  height: 100%;
+}
+.multicolumn-card__image-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+.multicolumn-card__image-wrapper--sharp {
+  border-radius: 4px;
+}
+.multicolumn-card__image-wrapper--round {
+  border-radius: 4px;
+}
+.multicolumn-card__image-wrapper--landscape {
+  aspect-ratio: 16/9;
+}
+.multicolumn-card__image-wrapper--portrait {
+  aspect-ratio: 4/5;
+}
+.multicolumn-card__image-wrapper--square {
+  aspect-ratio: 1/1;
+}
+[dir=rtl] .multicolumn__header--left {
+  align-items: flex-end;
+}
+[dir=rtl] .multicolumn__header--left .multicolumn__heading,
+[dir=rtl] .multicolumn__header--left .multicolumn__description {
+  text-align: right;
+  margin-left: auto;
+}
+[dir=rtl] .multicolumn__header--right {
+  align-items: flex-start;
+}
+[dir=rtl] .multicolumn__header--right .multicolumn__heading,
+[dir=rtl] .multicolumn__header--right .multicolumn__description {
+  text-align: left;
+  margin-right: auto;
+}
+[dir=rtl] .multicolumn-card__content--left {
+  align-items: flex-end;
+}
+[dir=rtl] .multicolumn-card__content--left .multicolumn-card__heading,
+[dir=rtl] .multicolumn-card__content--left .multicolumn-card__text {
+  text-align: right;
+  margin-left: auto;
+}
+[dir=rtl] .multicolumn-card__content--left .multicolumn-card__button {
+  margin-left: auto;
+}
+[dir=rtl] .multicolumn-card__content--right {
+  align-items: flex-start;
+}
+[dir=rtl] .multicolumn-card__content--right .multicolumn-card__heading,
+[dir=rtl] .multicolumn-card__content--right .multicolumn-card__text {
+  text-align: left;
+  margin-right: auto;
+}
+[dir=rtl] .multicolumn-card__content--right .multicolumn-card__button {
+  margin-right: auto;
+}

@@ -1,0 +1,82 @@
+{% if block.settings.row_text_color.alpha != 0 and block.settings.row_text_color != blank %}
+  <style>
+    #shopify-block-{{ block.id }} .features-table-cell {
+      --row-text-color: {{ block.settings.row_text_color.red }},{{ block.settings.row_text_color.green }},{{ block.settings.row_text_color.blue }};
+    }
+  </style>
+{% endif %}
+{% if block.settings.row_bg_color.alpha != 0 and block.settings.row_bg_color != blank %}
+  <style>
+    #shopify-block-{{ block.id }}.features-table-row {
+      --row-bg-color: {{ block.settings.row_bg_color.red }},{{ block.settings.row_bg_color.green }},{{ block.settings.row_bg_color.blue }};
+    }
+  </style>
+{% endif %}
+
+<tr
+  id="shopify-block-{{block.id}}"
+  class="features-table-row{% if block.settings.enable_row_hover %} features-table-row--with-hover{% endif %}"
+>
+  {% content_for 'blocks' %}
+</tr>
+
+{% schema %}
+{
+  "name": "t:sections.features-table.blocks.row.name",
+  "class": "features-table-row",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.features-table.blocks.row.settings.heading.content"
+    },
+    {
+      "type": "color",
+      "id": "row_text_color",
+      "label": "t:sections.features-table.blocks.row.settings.row_text_color.label",
+      "info": "t:sections.features-table.blocks.row.settings.row_text_color.info"
+    },
+    {
+      "type": "color",
+      "id": "row_bg_color",
+      "label": "t:sections.features-table.blocks.row.settings.row_bg_color.label",
+      "info": "t:sections.features-table.blocks.row.settings.row_bg_color.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_row_hover",
+      "label": "t:sections.features-table.blocks.row.settings.enable_row_hover.label",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_table_cell"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Row",
+      "blocks": [
+        {
+          "type": "_table_cell",
+          "settings": {
+            "cell_text": "t:sections.features-table.blocks.cell.settings.cell_text.default"
+          }
+        },
+        {
+          "type": "_table_cell",
+          "settings": {
+            "cell_text": "t:sections.features-table.blocks.cell.settings.cell_text.default"
+          }
+        },
+        {
+          "type": "_table_cell",
+          "settings": {
+            "cell_text": "t:sections.features-table.blocks.cell.settings.cell_text.default"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

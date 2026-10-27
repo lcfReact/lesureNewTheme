@@ -1,0 +1,371 @@
+{{ 'customer.css' | asset_url | stylesheet_tag: preload: true }}
+
+{%- style -%}
+  {% render 'section-margin' %}
+  {% render 'section-padding' %}
+{%- endstyle -%}
+
+<div
+  class="login-container{% if section.settings.full_width == false %} container{% endif %}"
+>
+  <div class="login-wrapper color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
+    <div class="customer login container">
+      <div class="login__wrapper">
+        <div class="login__container">
+          <div class="login__reset" id="recover">
+            <div class="login__header">
+              <h2 class="login__title h2">
+                {{ 'customer.recover_password.title' | t }}
+              </h2>
+              <p class="login__additional-text">
+                {{ 'customer.recover_password.subtext' | t }}
+              </p>
+            </div>
+            <div class="login__col">
+              {%- form 'recover_customer_password' -%}
+                {% assign recover_success = form.posted_successfully? %}
+                <div class="field field--email">
+                  <input
+                    type="email"
+                    dir="ltr"
+                    value=""
+                    name="email"
+                    id="RecoverEmail"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    autocomplete="email"
+                    {% if form.errors %}
+                      aria-invalid="true"
+                      aria-describedby="RecoverEmail-email-error"
+                      autofocus
+                    {% endif %}
+                    placeholder="{{ 'customer.login_page.email_placeholder' | t }}"
+                    required
+                  >
+                  <label for="RecoverEmail" class="body-small visually-hidden">
+                    {{- 'customer.login_page.email' | t -}}
+                  </label>
+                </div>
+
+                <div class="login__buttons">
+                  <button type="submit" class="button button--primary login__recover-submit focus-inset">
+                    <div class="button__content">
+                      <span class="button__label" data-label="{{- 'customer.login_page.send' | t -}}">
+                        {{- 'customer.login_page.send' | t -}}
+                      </span>
+                    </div>
+                    <span class="animated-button-circle"></span>
+                  </button>
+
+                  <a
+                    class="button button--transparent login__recover-cancel anchor focus-inset"
+                    href="#login"
+                  >
+                    <div class="button__content">
+                      <span class="button__label" data-label="{{- 'customer.login_page.cancel' | t -}}">
+                        {{- 'customer.login_page.cancel' | t -}}
+                      </span>
+                    </div>
+                    <span class="animated-button-circle"></span>
+                  </a>
+                </div>
+              {%- endform -%}
+            </div>
+          </div>
+
+          <div class="login__form" id="login">
+            <div class="login__header">
+              <h1 class="login__title h2">
+                {{ 'customer.login_page.title' | t }}
+              </h1>
+
+              {%- if section.settings.additional_text != blank -%}
+                <p class="login__additional-text body-normal">
+                  {{ section.settings.additional_text }}
+                </p>
+              {%- endif -%}
+            </div>
+            <div class="login__col">
+              {%- if recover_success == true -%}
+                <p class="form__message form__message--success" tabindex="-1" autofocus>
+                  {{- 'customer.recover_password.success' | t -}}
+                </p>
+              {%- endif -%}
+              {%- form 'customer_login' -%}
+                <div class="field field--email login__field">
+                  <input
+                    type="email"
+                    dir="ltr"
+                    name="customer[email]"
+                    class="field__input"
+                    id="CustomerEmail"
+                    autocomplete="email"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    required
+                    {% if form.errors contains 'form' %}
+                      aria-invalid="true"
+                      aria-describedby="LoginForm-email-error"
+                    {% endif %}
+                    placeholder="{{ 'customer.login_page.email_placeholder' | t }}"
+                  >
+                  <label for="CustomerEmail" class="body-small visually-hidden">
+                    {{- 'customer.login_page.email' | t -}}
+                  </label>
+                  {% unless template.name == 'register' %}
+                    {{ form.errors | default_errors }}
+                  {% endunless %}
+                </div>
+
+                {%- if form.password_needed -%}
+                  <div class="field field--pass login__field">
+                    <div class="field--pass-wrapper">
+                      <input
+                        type="password"
+                        dir="ltr"
+                        value=""
+                        name="customer[password]"
+                        class="field__input"
+                        id="CustomerPassword"
+                        autocomplete="current-password"
+                        placeholder="{{ 'customer.login_page.password_placeholder' | t }}"
+                        {% if form.errors contains 'form' %}
+                          aria-invalid="true"
+                        {% endif %}
+                        required
+                      >
+                      <div class="button-pass-visibility">
+                        {% render 'icon-eye' %}
+                        {% render 'icon-eye-close' %}
+                      </div>
+                    </div>
+                    <label for="CustomerPassword" class="body-small visually-hidden">
+                      {{- 'customer.login_page.password' | t -}}
+                    </label>
+                    {% unless template.name == 'register' %}
+                      {{ form.errors | default_errors }}
+                    {% endunless %}
+                  </div>
+                {%- endif -%}
+
+                <div class="login__buttons">
+                  <button type="submit" class="button button--primary login__submit focus-inset">
+                    <div class="button__content">
+                      <span class="button__label" data-label="{{- 'customer.log_in' | t -}}">
+                        {{- 'customer.log_in' | t -}}
+                      </span>
+                    </div>
+                    <span class="animated-button-circle"></span>
+                  </button>
+
+                  <div class="login__buttons-links">
+                    <a
+                      href="#recover"
+                      class="login__forgot-password body-normal focus-inset"
+                    >
+                      <span>{{- 'customer.login_page.forgot_password' | t -}}</span>
+                    </a>
+                    <a
+                      href="{{ routes.account_register_url }}"
+                      class="login__create-account body-normal focus-inset"
+                    >
+                      <span>{{- 'customer.login_page.create_account' | t -}}</span>
+                    </a>
+                  </div>
+                </div>
+              {%- endform -%}
+            </div>
+          </div>
+
+          {%- if shop.checkout.guest_login -%}
+            <div class="login__guest">
+              <div class="login__title h4">
+                {{ 'customer.login_page.guest_title' | t }}
+              </div>
+
+              {%- form 'guest_login' -%}
+                <button class="button button--primary focus-inset">
+                  <div class="button__content">
+                    <span class="button__label" data-label="{{- 'customer.login_page.guest_continue' | t -}}">
+                      {{- 'customer.login_page.guest_continue' | t -}}
+                    </span>
+                  </div>
+                  <span class="animated-button-circle"></span>
+                </button>
+              {%- endform -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  window.onload = () => {
+    typeof PasswordViewer !== 'undefined' && new PasswordViewer();
+  };
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.main-login.name",
+  "tag": "section",
+  "class": "spaced-section login-section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "background-3",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": false,
+      "label": "t:sections.all.full_width.label"
+    },
+    {
+      "type": "text",
+      "id": "additional_text",
+      "label": "t:sections.main-login.settings.additional_text.label",
+      "default": "t:sections.main-login.settings.additional_text.default"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-padding.header.content"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "xl",
+      "label": "t:sections.all.section-padding.padding_top.label"
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-padding.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-padding.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-padding.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-padding.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-padding.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-padding.options__6.label"
+        }
+      ],
+      "default": "xl",
+      "label": "t:sections.all.section-padding.padding_bottom.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "xs",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ]
+}
+{% endschema %}

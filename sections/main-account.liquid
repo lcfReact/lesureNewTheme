@@ -1,0 +1,387 @@
+{{ 'customer.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'component-pagination.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.enable_breadcrumbs -%}
+  {{ 'component-breadcrumbs.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+{%- style -%}
+  {% render 'section-margin' %}
+{%- endstyle -%}
+
+<div class="customer account{% if section.settings.enable_border_bottom %} account--border-bottom{% endif %}">
+  <div class="page-header">
+    <div class="customer__top">
+      <div class="container">
+        {%- if section.settings.enable_breadcrumbs -%}
+          {% render 'breadcrumbs', is_centered: true %}
+        {%- endif -%}
+        <h1 class="main-page-title title--page h2">
+          {{- 'customer.account.title' | t -}}
+        </h1>
+        <a
+          class="account__log-out"
+          href="{{ routes.account_logout_url }}"
+        >
+          <span class="account__log-out-label body-small">{{ 'customer.log_out' | t }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="account__wrapper{% if customer.orders == blank or customer.orders.size == 0 %} account__wrapper--without-orders{% endif %}">
+      <div class="account__left">
+        {% paginate customer.orders by 20 %}
+          {%- if customer.orders.size > 0 -%}
+            <h2 class="account__subtitle body-xl">{{- 'customer.orders.title' | t -}}</h2>
+
+            <div class="order-table">
+              <div class="visually-hidden">{{ 'customer.orders.title' | t }}</div>
+              <div class="row thead">
+                <div id="ColumnOrder" class="body-xs">{{- 'customer.orders.order_number' | t -}}</div>
+                <div id="ColumnDate" class="body-xs">{{- 'customer.orders.date' | t -}}</div>
+                <div id="ColumnPayment" class="body-xs">{{- 'customer.orders.payment_status' | t -}}</div>
+                <div id="ColumnFulfillment" class="body-xs">{{- 'customer.orders.fulfillment_status' | t -}}</div>
+                <div id="ColumnTotal" class="body-xs">{{- 'customer.orders.total' | t -}}</div>
+              </div>
+              {%- for order in customer.orders -%}
+                <a
+                  class="row tbody"
+                  href="{{ order.customer_url }}"
+                  aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}"
+                >
+                  <span class="body-small" id="RowOrder" data-label="{{ 'customer.orders.order_number' | t }}">
+                    {{ order.name }}
+                  </span>
+                  <span class="body-small" data-label="{{ 'customer.orders.date' | t }}">
+                    {{ order.created_at | time_tag: format: 'date' }}
+                  </span>
+                  <span class="body-small" data-label="{{ 'customer.orders.payment_status' | t }}">
+                    <span class="body-small">
+                      {{ order.financial_status_label }}
+                    </span>
+                  </span>
+                  <span class="body-small" data-label="{{ 'customer.orders.fulfillment_status' | t }}">
+                    {{ order.fulfillment_status_label }}
+                  </span>
+                  <span class="body-small" data-label="{{ 'customer.orders.total' | t }}">
+                    {% if settings.currency_code_enabled %}
+                      {{ order.total_price | money_with_currency }}
+                    {% else %}
+                      {{ order.total_price | money }}
+                    {% endif %}
+                  </span>
+                </a>
+              {%- endfor -%}
+            </div>
+          {%- else -%}
+            <div class="account-none">
+              <div class="account-none__wrapper">
+                <h2 class="account-none__subtitle body-xl visually-hidden">{{- 'customer.orders.title' | t -}}</h2>
+                <div class="account-none__content">
+                  {%- if section.settings.heading_orders != blank -%}
+                    <span class="body-xl">{{ section.settings.heading_orders }}</span>
+                  {%- endif -%}
+                  {%- if section.settings.text_orders != blank -%}
+                    <div class="account-none__text body-small">
+                      {{ section.settings.text_orders | escape }}
+                    </div>
+                  {%- endif -%}
+                </div>
+                <a
+                  href="{{ routes.collections_url | sort_by: 'best-selling' }}"
+                  class="button button--primary account-none__button"
+                >
+                  <div class="button__content">
+                    <span class="button__label" data-label="{{- 'customer.account.account_button_shop' | t -}}">
+                      {{- 'customer.account.account_button_shop' | t -}}
+                    </span>
+                  </div>
+                  <span class="animated-button-circle"></span>
+                </a>
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- if paginate.pages > 1 -%}
+            {% render 'pagination', paginate: paginate %}
+          {%- endif -%}
+        {% endpaginate %}
+      </div>
+
+      <div class="account__right">
+        {%- if customer.addresses_count > 0 and customer.orders.size == 0 -%}
+          <div class="account-none">
+            <div class="account-none__wrapper">
+              <h2 class="account-none__subtitle body-xl">
+                {{- 'customer.account.details' | t -}}
+              </h2>
+
+              <ul class="account-address__list account-address__default list-unstyled account-address__list--margin-bottom">
+                {%- if customer.default_address.name != blank -%}
+                  <li class="account-address__item account-address__item-name body-normal">
+                    {{- customer.default_address.name -}}
+                  </li>
+                {%- endif -%}
+
+                {%- if customer.default_address != blank -%}
+                  <li class="body-normal">
+                    {%- if customer.default_address.street != blank -%}
+                      <span class="account-address__item">{{- customer.default_address.street -}}</span>
+                    {%- endif -%}
+
+                    {%- if customer.default_address.company != blank -%}
+                      <span class="account-address__item">{{- customer.default_address.company -}}</span>
+                    {%- endif -%}
+
+                    {%- if customer.default_address.city != blank -%}
+                      <span class="account-address__item">{{- customer.default_address.city -}}</span>
+                    {%- endif -%}
+
+                    {%- if customer.default_address.zip != blank -%}
+                      <span class="account-address__item">{{- customer.default_address.zip -}}</span>
+                    {%- endif -%}
+
+                    {%- if customer.default_address.phone != blank -%}
+                      <span class="account-address__item">{{- customer.default_address.phone -}}</span>
+                    {%- endif -%}
+
+                    {%- if customer.default_address.country != blank -%}
+                      <span class="account-address__item account-address__item-address">
+                        {{- customer.default_address.country -}}
+                      </span>
+                    {%- endif -%}
+                  </li>
+                {%- endif -%}
+              </ul>
+
+              <a
+                class="button button--primary account-address__link"
+                href="{{ routes.account_addresses_url }}"
+              >
+                <div class="button__content">
+                  {% liquid
+                    assign address_btn_count = customer.addresses_count | prepend: '(' | append: ')'
+                    assign address_btn_label = 'customer.account.view_addresses' | t | append: ' ' | append: address_btn_count
+                  %}
+                  <span class="button__label" data-label="{{- address_btn_label -}}">
+                    {{- address_btn_label -}}
+                  </span>
+                </div>
+                <span class="animated-button-circle"></span>
+              </a>
+            </div>
+          </div>
+        {%- elsif customer.addresses_count > 0 -%}
+          <h2 class="account__subtitle body-xl">{{ 'customer.account.details' | t }}</h2>
+          <div class="account-address">
+            <ul class="account-address__list account-address__default list-unstyled">
+              {%- if customer.default_address.name != blank -%}
+                <li class="account-address__item account-address__item-name body-normal">
+                  {{- customer.default_address.name -}}
+                </li>
+              {%- endif -%}
+
+              {%- if customer.default_address != blank -%}
+                <li class="body-normal">
+                  {%- if customer.default_address.street != blank -%}
+                    <span class="account-address__item">{{- customer.default_address.street -}}</span>
+                  {%- endif -%}
+
+                  {%- if customer.default_address.company != blank -%}
+                    <span class="account-address__item">{{- customer.default_address.company -}}</span>
+                  {%- endif -%}
+
+                  {%- if customer.default_address.city != blank -%}
+                    <span class="account-address__item">{{- customer.default_address.city -}}</span>
+                  {%- endif -%}
+
+                  {%- if customer.default_address.zip != blank -%}
+                    <span class="account-address__item">{{- customer.default_address.zip -}}</span>
+                  {%- endif -%}
+
+                  {%- if customer.default_address.phone != blank -%}
+                    <span class="account-address__item">{{- customer.default_address.phone -}}</span>
+                  {%- endif -%}
+
+                  {%- if customer.default_address.country != blank -%}
+                    <span class="account-address__item account-address__item-address">
+                      {{- customer.default_address.country -}}
+                    </span>
+                  {%- endif -%}
+                </li>
+              {%- endif -%}
+            </ul>
+            <a
+              class="button button--primary account-address__link"
+              href="{{ routes.account_addresses_url }}"
+            >
+              <div class="button__content">
+                {% liquid
+                  assign address_btn_count = customer.addresses_count | prepend: '(' | append: ')'
+                  assign address_btn_label = 'customer.account.view_addresses' | t | append: ' ' | append: address_btn_count
+                %}
+                <span class="button__label" data-label="{{- address_btn_label -}}">
+                  {{- address_btn_label -}}
+                </span>
+              </div>
+              <span class="animated-button-circle"></span>
+            </a>
+          </div>
+        {%- else -%}
+          <div class="account-none">
+            <div class="account-none__wrapper">
+              <h2 class="account-none__subtitle body-xl visually-hidden">
+                {{ 'customer.account.details' | t }}
+              </h2>
+              <div class="account-none__content">
+                {%- if section.settings.heading_addresses != blank -%}
+                  <span class="body-xl">
+                    {{- section.settings.heading_addresses -}}
+                  </span>
+                {%- endif -%}
+                {%- if section.settings.text_addresses != blank -%}
+                  <div class="account-none__text body-small">
+                    {{ section.settings.text_addresses | escape }}
+                  </div>
+                {%- endif -%}
+              </div>
+              <a
+                href="{{ routes.account_addresses_url }}"
+                class="button button--primary account-none__button focus-inset"
+              >
+                <div class="button__content">
+                  <span class="button__label" data-label="{{- 'customer.addresses.add' | t -}}">
+                    {{- 'customer.addresses.add' | t -}}
+                  </span>
+                </div>
+                <span class="animated-button-circle"></span>
+              </a>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-account.name",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_breadcrumbs",
+      "default": false,
+      "label": "t:sections.main-account.settings.enable_breadcrumbs.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_border_bottom",
+      "default": true,
+      "label": "t:sections.main-account.settings.enable_border_bottom.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-account.settings.header_1.content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_orders",
+      "label": "t:sections.all.heading.label",
+      "default": "t:sections.main-account.settings.empty_order_heading.default"
+    },
+    {
+      "type": "textarea",
+      "id": "text_orders",
+      "label": "t:sections.all.text.label",
+      "default": "t:sections.main-account.settings.empty_order_text.default"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-account.settings.header_2.content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_addresses",
+      "label": "t:sections.all.heading.label",
+      "default": "t:sections.main-account.settings.empty_address_heading.default"
+    },
+    {
+      "type": "textarea",
+      "id": "text_addresses",
+      "label": "t:sections.all.text.label",
+      "default": "t:sections.main-account.settings.empty_address_text.default"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "l",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ]
+}
+{% endschema %}

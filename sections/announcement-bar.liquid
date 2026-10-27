@@ -1,0 +1,663 @@
+<script src="{{ 'announcement-bar.js' | asset_url }}" defer></script>
+{% if section.settings.show_countdown or section.settings.show_countdown_mobile %}
+  <script src="{{ 'countdown.js' | asset_url }}" defer="defer"></script>
+{% endif %}
+
+{% liquid
+  assign slide_count = 0
+  assign has_block_text = false
+  for block in section.blocks
+    if block.type == 'announcement' and block.settings.text != blank
+      assign slide_count = slide_count | plus: 1
+      assign has_block_text = true
+    endif
+  endfor
+
+  assign has_main_text = false
+  if slide_count > 0 or section.settings.text != blank or section.settings.text_mobile != blank
+    assign has_main_text = true
+  endif
+
+  if slide_count == 0 and has_main_text
+    assign slide_count = 1
+  endif
+
+  assign has_countdown = false
+  if section.settings.show_countdown or section.settings.show_countdown_mobile
+    assign has_countdown = true
+  endif
+
+  assign rotate_interval = section.settings.interval | default: 5 | times: 1000
+%}
+
+{%- if has_countdown or has_main_text -%}
+  {%- style -%}
+    :root {
+      --announcement-height: {{ section.settings.height_mobile }}px;
+    }
+
+    @media screen and (min-width: 576px) {
+      :root {
+        --announcement-height: {{ section.settings.height }}px;
+      }
+    }
+
+    .announcement-bar {
+      font-family: var(--font-announcement-family);
+      font-style: var(--font-announcement-style);
+      font-weight: var(--font-announcement-weight);
+      font-size: calc(var(--font-announcement-scale) * 0.85rem);
+      text-transform: var(--font-announcement-text-transform);
+      letter-spacing: var(--font-announcement-letter-spacing);
+    }
+
+    @media screen and (min-width: 576px) {
+      .announcement-bar {
+        font-size: calc(var(--font-announcement-scale) * 1rem);
+      }
+    }
+
+    .announcement-bar__rotator {
+      position: relative;
+      flex: 1 1 auto;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .announcement-bar__viewport {
+      display: grid;
+      min-width: 0;
+      padding-inline: 3.2rem;
+    }
+
+    .announcement-bar__rotator[data-count='1'] .announcement-bar__viewport {
+      padding-inline: 0;
+    }
+
+    .announcement-bar__slide {
+      grid-area: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      opacity: 0;
+      visibility: hidden;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.45s ease, visibility 0.45s ease;
+    }
+
+    .announcement-bar__slide.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .announcement-bar__slide .announcement-bar__text {
+      display: block;
+      width: 100%;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+
+    .announcement-bar__arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.8rem;
+      height: 2.8rem;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .announcement-bar__arrow--prev {
+      left: 0;
+    }
+
+    .announcement-bar__arrow--next {
+      right: 0;
+    }
+
+    .announcement-bar__rotator[data-count='1'] .announcement-bar__arrow {
+      display: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .announcement-bar__slide {
+        transition: none;
+      }
+    }
+  {%- endstyle -%}
+
+  {% if section.settings.show_countdown or section.settings.show_countdown_mobile %}
+    {% liquid
+      assign timezone = 'now' | date: '%Z' | plus: 0 | append: ''
+
+      if timezone.size > 1
+        assign timezone = 'now' | date: '%Z' | divided_by: 100 | times: 3600.0 | plus: 1800
+      else
+        assign timezone = 'now' | date: '%Z' | minus: 1 | times: 3600.0
+      endif
+
+      if section.settings.enable_mock_timer
+        assign days = section.settings.mock_timer_days | append: ''
+        assign hours = section.settings.mock_timer_hours | append: ''
+        assign minutes = '00'
+        assign seconds = '00'
+      else
+        assign date_merge = section.settings.date_picker | append: '-' | append: section.settings.time_picker | append: ':00'
+        assign date_now = 'now' | date: '%s' | minus: 0
+        assign date_settings = date_merge | date: '%s' | minus: 0
+
+        if date_now < date_settings
+          assign distance = date_settings | minus: date_now
+          assign days = distance | divided_by: 3600 | divided_by: 24 | floor | append: ''
+          assign hours = distance | modulo: 86400 | divided_by: 3600 | floor | append: ''
+          assign minutes = distance | modulo: 3600 | divided_by: 60 | floor | append: ''
+          assign seconds = distance | modulo: 60 | floor | append: ''
+        else
+          assign days = '00'
+          assign hours = '00'
+          assign minutes = '00'
+          assign seconds = '00'
+        endif
+      endif
+    %}
+  {% endif %}
+
+  <div
+    class="announcement-bar color-{{ section.settings.color_scheme }} background"
+    role="region"
+    aria-label="{{ 'sections.header.announcement' | t }}"
+  >
+    <div class="announcement-bar__message container">
+      {%- if has_main_text -%}
+        <announcement-rotator
+          class="announcement-bar__rotator"
+          data-count="{{ slide_count }}"
+          data-autoplay="{{ section.settings.autoplay }}"
+          data-interval="{{ rotate_interval }}"
+        >
+          <button
+            type="button"
+            class="announcement-bar__arrow announcement-bar__arrow--prev"
+            data-announcement-prev
+            aria-label="{{ 'sections.header.announcement_previous' | t }}"
+          >
+            <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false">
+              <path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+          <div class="announcement-bar__viewport">
+            {%- if has_block_text -%}
+              {%- assign slide_open = false -%}
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'announcement' and block.settings.text != blank -%}
+                  {%- if block.settings.link != blank -%}
+                    <a
+                      href="{{ block.settings.link }}"
+                      class="announcement-bar__slide{% unless slide_open %} is-active{% endunless %}"
+                      data-announcement-slide
+                      {% if slide_open %}aria-hidden="true"{% else %}aria-hidden="false"{% endif %}
+                      {{ block.shopify_attributes }}
+                    >
+                      <span class="announcement-bar__text">{{ block.settings.text }}</span>
+                    </a>
+                  {%- else -%}
+                    <div
+                      class="announcement-bar__slide{% unless slide_open %} is-active{% endunless %}"
+                      data-announcement-slide
+                      {% if slide_open %}aria-hidden="true"{% else %}aria-hidden="false"{% endif %}
+                      {{ block.shopify_attributes }}
+                    >
+                      <div class="announcement-bar__text">{{ block.settings.text }}</div>
+                    </div>
+                  {%- endif -%}
+                  {%- assign slide_open = true -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- else -%}
+              <div class="announcement-bar__slide is-active" data-announcement-slide aria-hidden="false">
+                <div class="announcement-bar__text">
+                  <p class="{% if section.settings.text_mobile != blank %}announcement-bar__text_desktop{% endif %}">
+                    {{- section.settings.text -}}
+                  </p>
+                  {% if section.settings.text_mobile != blank %}
+                    <p class="announcement-bar__text_mobile">
+                      {{- section.settings.text_mobile -}}
+                    </p>
+                  {% endif %}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+          <button
+            type="button"
+            class="announcement-bar__arrow announcement-bar__arrow--next"
+            data-announcement-next
+            aria-label="{{ 'sections.header.announcement_next' | t }}"
+          >
+            <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false">
+              <path d="M7.5 4.5 13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+        </announcement-rotator>
+      {%- endif -%}
+
+      {%- if has_countdown -%}
+        <announcement-countdown
+          class="announcement-bar-countdown js-countdown js-countdown-{{ section.id }} {% if section.settings.show_countdown == false %} announcement-bar-countdown--desktop-hidden {% endif %} {% if section.settings.show_countdown_mobile == false  %} announcement-bar-countdown--mobile-hidden {% endif %}"
+          data-date="{{ section.settings.date_picker }}"
+          data-time="{{ section.settings.time_picker }}"
+          data-completed="{{ section.settings.completed_countdown }}"
+          data-mock-timer="{{ section.settings.enable_mock_timer | default: false }}"
+          data-mock-days="{{ section.settings.mock_timer_days | default: 2 }}"
+          data-mock-hours="{{ section.settings.mock_timer_hours | default: 3 }}"
+          {% if section.settings.completed_countdown == 'hide_section'
+            and hours == '00'
+            and days == '00'
+            and minutes == '00'
+            and seconds == '00'
+            and section.settings.enable_mock_timer == false
+          %}
+            style="display: none;"
+          {% endif %}
+        >
+          <div
+            class="announcement-bar-countdown__main"
+            style="{% if hours == '00' and days == '00' and minutes == '00' and seconds == '00' and section.settings.enable_mock_timer == false %}display: none;{% endif %}"
+          >
+            {%- capture colon_icon -%}
+              <span class="announcement-bar-countdown__dots">:</span>
+            {%- endcapture -%}
+
+            {% comment %} render days {% endcomment %}
+            <div class="announcement-bar-countdown__main-block">
+              <div id="countdown-days" class="announcement-bar-countdown__block">
+                {%- capture days_html -%}
+                  <span
+                    class="announcement-bar-countdown_block_days"
+                  >
+                    {%- if days.size > 1 -%}
+                      {{- days -}}
+                    {%- else -%}
+                      {{- 0 | append: days -}}
+                    {%- endif -%}
+                  </span>
+                {%- endcapture -%}
+                <div class="announcement-bar-countdown__block_num">
+                  {{ days_html }}
+                  <span class="announcement-bar-countdown__block_mark">
+                    {{- 'general.countdown.days_short' | t -}}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {{ colon_icon }}
+
+            {% comment %} render hours {% endcomment %}
+            <div class="announcement-bar-countdown__main-block">
+              <div id="countdown-hours" class="announcement-bar-countdown__block">
+                {%- capture hours_html -%}
+                  <span
+                    class="announcement-bar-countdown_block_hours"
+                  >
+                    {%- if hours.size > 1 -%}
+                      {{- hours -}}
+                    {%- else -%}
+                      {{- 0 | append: hours -}}
+                    {%- endif -%}
+                  </span>
+                {%- endcapture -%}
+                <div class="announcement-bar-countdown__block_num">
+                  {{ hours_html }}
+                  <span class="announcement-bar-countdown__block_mark">
+                    {{- 'general.countdown.hours_short' | t -}}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {{ colon_icon }}
+
+            {% comment %} render minutes {% endcomment %}
+            <div class="announcement-bar-countdown__main-block">
+              <div id="countdown-minutes" class="announcement-bar-countdown__block">
+                {%- capture minutes_html -%}
+                  <span
+                    class="announcement-bar-countdown_block_minutes"
+                  >
+                    {%- if minutes.size > 1 -%}
+                      {{- minutes -}}
+                    {%- else -%}
+                      {{- 0 | append: minutes -}}
+                    {%- endif -%}
+                  </span>
+                {%- endcapture -%}
+                <div class="announcement-bar-countdown__block_num">
+                  {{ minutes_html }}
+                  <span class="announcement-bar-countdown__block_mark">
+                    {{- 'general.countdown.minutes_short' | t -}}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {{ colon_icon }}
+
+            {% comment %} render seconds {% endcomment %}
+            <div class="announcement-bar-countdown__main-block">
+              <div id="countdown-seconds" class="announcement-bar-countdown__block">
+                {%- capture seconds_html -%}
+                  <span
+                    class="announcement-bar-countdown_block_seconds"
+                  >
+                    {%- if seconds.size > 1 -%}
+                      {{- seconds -}}
+                    {%- else -%}
+                      {{- 0 | append: seconds -}}
+                    {%- endif -%}
+                  </span>
+                {%- endcapture -%}
+                <div class="announcement-bar-countdown__block_num">
+                  {{ seconds_html }}
+                  <span class="announcement-bar-countdown__block_mark">
+                    {{- 'general.countdown.seconds_short' | t -}}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% comment %} render text after timer {% endcomment %}
+          {%- if section.settings.countdown_end_text != blank
+            and section.settings.completed_countdown == 'show_text'
+          -%}
+            <div
+              class="announcement-bar-countdown__end-info"
+              {% if hours == '00'
+                and days == '00'
+                and minutes == '00'
+                and seconds == '00'
+                and section.settings.enable_mock_timer == false
+              %}
+                style="display: flex;"
+              {% endif %}
+            >
+              <span class="announcement-bar-countdown__end-info-text">
+                {{- section.settings.countdown_end_text -}}
+              </span>
+            </div>
+          {%- endif -%}
+        </announcement-countdown>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+<script>
+  if (!customElements.get('announcement-rotator')) {
+    class AnnouncementRotator extends HTMLElement {
+      connectedCallback() {
+        if (this.dataset.bound === 'true') return;
+        this.dataset.bound = 'true';
+        this.slides = Array.from(this.querySelectorAll('[data-announcement-slide]'));
+        this.index = Math.max(
+          0,
+          this.slides.findIndex((slide) => slide.classList.contains('is-active'))
+        );
+        this.timer = 0;
+        this.bar = this.closest('.section-announcement') || this.closest('.announcement-bar');
+        this.onPrev = () => this.move(-1);
+        this.onNext = () => this.move(1);
+        this.querySelector('[data-announcement-prev]')?.addEventListener('click', this.onPrev);
+        this.querySelector('[data-announcement-next]')?.addEventListener('click', this.onNext);
+        this.onEnter = () => this.stop();
+        this.onLeave = () => this.start();
+        this.addEventListener('mouseenter', this.onEnter);
+        this.addEventListener('mouseleave', this.onLeave);
+        this.syncHeight = this.syncHeight.bind(this);
+        if (this.bar && 'ResizeObserver' in window) {
+          this.observer = new ResizeObserver(this.syncHeight);
+          this.observer.observe(this.bar);
+        }
+        this.syncHeight();
+        this.start();
+      }
+
+      disconnectedCallback() {
+        this.stop();
+        this.observer?.disconnect();
+        this.querySelector('[data-announcement-prev]')?.removeEventListener('click', this.onPrev);
+        this.querySelector('[data-announcement-next]')?.removeEventListener('click', this.onNext);
+        this.removeEventListener('mouseenter', this.onEnter);
+        this.removeEventListener('mouseleave', this.onLeave);
+        this.dataset.bound = 'false';
+      }
+
+      move(step) {
+        if (this.slides.length < 2) return;
+        this.show(this.index + step);
+        this.start();
+      }
+
+      show(index) {
+        const count = this.slides.length;
+        if (!count) return;
+        this.index = (index + count) % count;
+        this.slides.forEach((slide, slideIndex) => {
+          const active = slideIndex === this.index;
+          slide.classList.toggle('is-active', active);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+        });
+      }
+
+      start() {
+        this.stop();
+        if (this.dataset.autoplay !== 'true' || this.slides.length < 2) return;
+        const interval = Number(this.dataset.interval) || 5000;
+        this.timer = window.setInterval(() => this.show(this.index + 1), interval);
+      }
+
+      stop() {
+        if (this.timer) window.clearInterval(this.timer);
+        this.timer = 0;
+      }
+
+      syncHeight() {
+        if (!this.bar) return;
+        const height = Math.ceil(this.bar.getBoundingClientRect().height);
+        if (!height) return;
+        document.documentElement.style.setProperty('--announcement-height', height + 'px');
+      }
+    }
+
+    customElements.define('announcement-rotator', AnnouncementRotator);
+  }
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.announcement-bar.name",
+  "class": "section-announcement",
+  "tag": "section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "max_blocks": 12,
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "t:sections.announcement-bar.blocks.announcement.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "default": "t:sections.announcement-bar.settings.text.default",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.announcement-bar.settings.header__1.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "background-4",
+      "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "min": 38,
+      "max": 100,
+      "step": 2,
+      "default": 38,
+      "label": "t:sections.announcement-bar.settings.height.label"
+    },
+    {
+      "type": "range",
+      "id": "height_mobile",
+      "min": 38,
+      "max": 100,
+      "step": 2,
+      "default": 38,
+      "label": "t:sections.announcement-bar.settings.height_mobile.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.announcement-bar.settings.header__2.content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "default": "t:sections.announcement-bar.settings.text.default",
+      "label": "t:sections.announcement-bar.settings.text.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "text_mobile",
+      "label": "t:sections.announcement-bar.settings.text_mobile.label",
+      "info": "t:sections.announcement-bar.settings.text_mobile.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "default": true,
+      "label": "t:sections.announcement-bar.settings.autoplay.label"
+    },
+    {
+      "type": "range",
+      "id": "interval",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 5,
+      "label": "t:sections.announcement-bar.settings.interval.label",
+      "visible_if": "{{ section.settings.autoplay }}"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.announcement-bar.settings.header__3.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "default": false,
+      "label": "t:sections.announcement-bar.settings.show_countdown.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown_mobile",
+      "default": false,
+      "label": "t:sections.announcement-bar.settings.show_countdown_mobile.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mock_timer",
+      "default": false,
+      "label": "t:sections.announcement-bar.settings.enable_mock_timer.label",
+      "info": "t:sections.announcement-bar.settings.enable_mock_timer.info"
+    },
+    {
+      "type": "text",
+      "id": "date_picker",
+      "default": "2026-12-01",
+      "info": "YYYY-MM-DD",
+      "label": "t:sections.countdown.settings.date_picker.label",
+      "visible_if": "{{ section.settings.enable_mock_timer == false }}"
+    },
+    {
+      "type": "text",
+      "id": "time_picker",
+      "default": "00:00",
+      "info": "hh:mm",
+      "label": "t:sections.countdown.settings.time_picker.label",
+      "visible_if": "{{ section.settings.enable_mock_timer == false }}"
+    },
+    {
+      "type": "range",
+      "id": "mock_timer_days",
+      "min": 1,
+      "max": 31,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.announcement-bar.settings.mock_date_picker_day.label",
+      "visible_if": "{{ section.settings.enable_mock_timer }}"
+    },
+    {
+      "type": "range",
+      "id": "mock_timer_hours",
+      "min": 0,
+      "max": 23,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.announcement-bar.settings.mock_date_picker_hours.label",
+      "visible_if": "{{ section.settings.enable_mock_timer }}"
+    },
+    {
+      "type": "select",
+      "id": "completed_countdown",
+      "options": [
+        {
+          "value": "hide_section",
+          "label": "t:sections.announcement-bar.settings.completed_countdown.options_1.label"
+        },
+        {
+          "value": "show_text",
+          "label": "t:sections.announcement-bar.settings.completed_countdown.options_2.label"
+        }
+      ],
+      "default": "show_text",
+      "label": "t:sections.announcement-bar.settings.completed_countdown.label",
+      "visible_if": "{{ section.settings.enable_mock_timer == false }}"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "countdown_end_text",
+      "default": "t:sections.announcement-bar.settings.countdown_end_text.default",
+      "label": "t:sections.announcement-bar.settings.countdown_end_text.label",
+      "visible_if": "{{ section.settings.enable_mock_timer == false and section.settings.completed_countdown == 'show_text' }}"
+    }
+  ]
+}
+{% endschema %}
