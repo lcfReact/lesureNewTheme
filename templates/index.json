@@ -249,6 +249,7 @@
       "name": "t:sections.hero-image.presets.name",
       "settings": {
         "image": "shopify://shop_images/4-_banner.png",
+        "image_mobile": "shopify://shop_images/4-_banner_729ba6d6-f3d0-413f-9ac8-c8c24780953f.png",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",
@@ -274,37 +275,13 @@
     "product_markers_tWmkHa": {
       "type": "product-markers",
       "blocks": {
-        "product_markers_item_bwV8iE": {
+        "product_markers_item_ACMNWx": {
           "type": "product_markers_item",
           "settings": {
-            "product_id": "",
+            "product_id": "realortho™",
             "overwrite_desc": "Here can be a description of the product, its key features and benefits.",
-            "position_x": 20,
-            "position_y": 32,
-            "tooltip_open_position": "to-bottom",
-            "position_x_mobile": 1,
-            "position_y_mobile": 1
-          }
-        },
-        "product_markers_item_Eg6MCt": {
-          "type": "product_markers_item",
-          "settings": {
-            "product_id": "",
-            "overwrite_desc": "Here can be a description of the product, its key features and benefits.",
-            "position_x": 84,
-            "position_y": 50,
-            "tooltip_open_position": "to-bottom",
-            "position_x_mobile": 1,
-            "position_y_mobile": 1
-          }
-        },
-        "product_markers_item_RK7YHQ": {
-          "type": "product_markers_item",
-          "settings": {
-            "product_id": "",
-            "overwrite_desc": "Here can be a description of the product, its key features and benefits.",
-            "position_x": 42,
-            "position_y": 77,
+            "position_x": 1,
+            "position_y": 1,
             "tooltip_open_position": "to-bottom",
             "position_x_mobile": 1,
             "position_y_mobile": 1
@@ -312,20 +289,20 @@
         }
       },
       "block_order": [
-        "product_markers_item_bwV8iE",
-        "product_markers_item_Eg6MCt",
-        "product_markers_item_RK7YHQ"
+        "product_markers_item_ACMNWx"
       ],
       "name": "t:sections.product-markers.name",
       "settings": {
-        "main_color_scheme": "",
+        "main_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "layout": "split",
-        "image_position_desktop": "image-right",
+        "image_position_desktop": "image-left",
         "image_position_mobile": "image-bottom",
         "marker_size": "default",
         "enable_marker_animation": true,
         "marker_color": "#ffffff",
-        "main_image_ratio": "16/9",
+        "image": "shopify://shop_images/4_508365af-da86-4cf6-b00f-ec80e8a1bfec.png",
+        "mobile_image": "shopify://shop_images/4_dafddda3-03c5-40b0-994b-6137adc1cf7b.png",
+        "main_image_ratio": "1/1",
         "main_image_ratio_mobile": "16/9",
         "animate_section_header_on_scroll": true,
         "subheading": "",
