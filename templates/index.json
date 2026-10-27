@@ -771,7 +771,7 @@
       "type": "blog-posts",
       "name": "t:sections.blog-posts.presets.name",
       "settings": {
-        "blog": "",
+        "blog": "blog",
         "image": "shopify://shop_images/8-explore_your_blog.png",
         "image_position": "center",
         "color_scheme": "",
