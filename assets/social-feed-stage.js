@@ -59,7 +59,12 @@
     );
 
     const slideCount = slider.querySelectorAll(".swiper-slide").length;
-    const placeArrows = (prevCenter, nextCenter, sliderRect) => {
+    const mobileQuery = window.matchMedia("(max-width: 749px)");
+    const fanConfig = () =>
+      mobileQuery.matches
+        ? { step: 0.183, innerTilt: 8, outerTilt: 6, hideAfter: 1.15, arrowSlots: 1, arrowScale: 0.044 }
+        : { step: 0.197, innerTilt: 8, outerTilt: 6, hideAfter: 2.2, arrowSlots: 2, arrowScale: 0.036 };
+    const placeArrows = (prevCenter, nextCenter, sliderRect, size) => {
       const main = root.querySelector(".ugc-stage__main");
       const prev = root.querySelector(".ugc-stage__arrow--prev");
       const next = root.querySelector(".ugc-stage__arrow--next");
@@ -70,61 +75,42 @@
         button.style.left = `${centerX - mainRect.left}px`;
         button.style.right = "auto";
         button.style.top = `${y}px`;
+        button.style.width = `${size}px`;
+        button.style.height = `${size}px`;
         button.style.transform = "translate(-50%, -50%)";
       };
       pin(prev, prevCenter);
       pin(next, nextCenter);
     };
     const fan = (swiper) => {
-      const sample = swiper.slides[0];
-      const slideWidth = sample ? sample.offsetWidth : 0;
-      const slideHeight = sample ? sample.offsetHeight : 0;
-      const sideScale = 300 / 368;
-      const innerTilt = 8;
-      const outerTilt = 6;
-      const aspect = slideWidth ? slideHeight / slideWidth : 490 / 368;
-      const theta = (outerTilt * Math.PI) / 180;
-      const halfRatio =
-        (sideScale * Math.abs(Math.cos(theta)) + aspect * sideScale * Math.abs(Math.sin(theta))) / 2;
-      const stepRatio = (1 / (2 * 0.48) - halfRatio) / 2;
-      const visualStep = slideWidth * stepRatio;
-      const innerPull = slideWidth - visualStep;
-      const outerPull = 2 * (slideWidth - visualStep);
-      if (slideWidth) {
-        const sliderRect = slider.getBoundingClientRect();
-        const activeCenter = sliderRect.left + sliderRect.width / 2;
-        placeArrows(activeCenter - 2 * visualStep, activeCenter + 2 * visualStep, sliderRect);
-      }
+      const stageWidth = slider.clientWidth;
+      if (!stageWidth) return;
+      const cfg = fanConfig();
+      if (swiper.wrapperEl) swiper.wrapperEl.style.transform = "translate3d(0px, 0px, 0px)";
       swiper.slides.forEach((slide) => {
-        const progress = slide.progress || 0;
+        const progress = Number.isFinite(slide.progress) ? slide.progress : 0;
         const abs = Math.abs(progress);
-        const side = Math.sign(progress) || 1;
-        const t = Math.min(abs, 2.6);
+        const dir = Math.sign(progress) || 0;
         let tilt;
-        let pullMag;
-        let scale;
-        if (t <= 1) {
-          tilt = t * innerTilt;
-          pullMag = t * innerPull;
-          scale = 1 - t * (1 - sideScale);
-        } else if (t <= 2) {
-          const u = t - 1;
-          tilt = innerTilt + u * (-outerTilt - innerTilt);
-          pullMag = innerPull + u * (outerPull - innerPull);
-          scale = sideScale;
-        } else {
-          const u = t - 2;
-          tilt = -outerTilt - u * outerTilt;
-          pullMag = outerPull - u * slideWidth * 0.9;
-          scale = sideScale;
-        }
-        const pull = side * pullMag;
-        const rotate = side * tilt;
-        slide.style.transitionProperty = "transform";
+        if (abs <= 1) tilt = abs * cfg.innerTilt;
+        else if (abs <= 2) tilt = cfg.innerTilt + (abs - 1) * (-cfg.outerTilt - cfg.innerTilt);
+        else tilt = -cfg.outerTilt - (abs - 2) * cfg.outerTilt;
+        const desired = stageWidth / 2 - dir * abs * cfg.step * stageWidth;
+        const current = slide.offsetLeft + slide.offsetWidth / 2;
+        const pull = desired - current;
+        const opacity = abs <= cfg.hideAfter ? 1 : Math.max(0, 1 - (abs - cfg.hideAfter) / 0.45);
+        slide.style.transitionProperty = "transform, opacity";
         slide.style.transformOrigin = "center center";
-        slide.style.transform = `translate3d(${pull}px, 0, 0) rotate(${rotate}deg) scale(${scale})`;
-        slide.style.zIndex = String(30 - Math.round(Math.min(abs, 3) * 8));
+        slide.style.transform = `translate3d(${pull}px, 0, 0) rotate(${dir * tilt}deg)`;
+        slide.style.opacity = opacity.toFixed(3);
+        slide.style.zIndex = String(40 - Math.round(Math.min(abs, 5) * 8));
+        slide.style.visibility = opacity < 0.02 ? "hidden" : "visible";
       });
+      const sliderRect = slider.getBoundingClientRect();
+      const activeCenter = sliderRect.left + stageWidth / 2;
+      const arrowOffset = cfg.arrowSlots * cfg.step * stageWidth;
+      const arrowSize = Math.max(28, Math.min(72, stageWidth * cfg.arrowScale));
+      placeArrows(activeCenter - arrowOffset, activeCenter + arrowOffset, sliderRect, arrowSize);
     };
     const swiper = new Swiper(slider, {
       centeredSlides: true,
@@ -134,6 +120,7 @@
       speed: 700,
       grabCursor: true,
       watchSlidesProgress: true,
+      virtualTranslate: true,
       preventClicks: false,
       preventClicksPropagation: false,
       navigation: {
@@ -150,7 +137,7 @@
         },
         setTransition(instance, duration) {
           instance.slides.forEach((slide) => {
-            slide.style.transitionProperty = "transform";
+            slide.style.transitionProperty = "transform, opacity";
             slide.style.transitionDuration = `${duration}ms`;
             slide.style.transitionTimingFunction = "cubic-bezier(0.22, 0.61, 0.36, 1)";
           });
@@ -164,6 +151,12 @@
       },
     });
     root._ugcSwiper = swiper;
+    const onBreakpoint = () => {
+      swiper.update();
+      fan(swiper);
+    };
+    if (mobileQuery.addEventListener) mobileQuery.addEventListener("change", onBreakpoint);
+    else if (mobileQuery.addListener) mobileQuery.addListener(onBreakpoint);
   };
 
   const start = () => {
