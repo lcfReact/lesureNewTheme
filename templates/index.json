@@ -773,7 +773,7 @@
       "settings": {
         "blog": "blog",
         "image": "shopify://shop_images/8-explore_your_blog.png",
-        "image_position": "top",
+        "image_position": "center",
         "color_scheme": "",
         "background_color": "#f9f9f9",
         "active_color": "#ddd4f2",

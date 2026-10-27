@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "footer",
   "name": "t:sections.footer.name",
@@ -15,6 +24,12 @@
             "link_2_url": "/pages/accessibility",
             "link_3_label": "Contact",
             "link_3_url": "/pages/contact",
+            "link_4_label": "",
+            "link_4_url": "",
+            "link_5_label": "",
+            "link_5_url": "",
+            "link_6_label": "",
+            "link_6_url": "",
             "default_open": false
           }
         },
@@ -28,6 +43,12 @@
             "link_2_url": "/collections/all",
             "link_3_label": "Blog",
             "link_3_url": "/blogs/news",
+            "link_4_label": "",
+            "link_4_url": "",
+            "link_5_label": "",
+            "link_5_url": "",
+            "link_6_label": "",
+            "link_6_url": "",
             "default_open": false
           }
         },
@@ -41,11 +62,21 @@
             "link_2_url": "/pages/about",
             "link_3_label": "Lesure Impact",
             "link_3_url": "/pages/lesure-impact",
+            "link_4_label": "",
+            "link_4_url": "",
+            "link_5_label": "",
+            "link_5_url": "",
+            "link_6_label": "",
+            "link_6_url": "",
             "default_open": true
           }
         }
       },
-      "block_order": ["nav_info", "nav_explore", "nav_about"],
+      "block_order": [
+        "nav_info",
+        "nav_explore",
+        "nav_about"
+      ],
       "settings": {
         "color_scheme": "background-3",
         "enable_border_top": false,
@@ -55,7 +86,7 @@
         "subscribe_text": "Straight to your inbox: 10% off your first order just for showing up, plus first dibs on new arrivals and care tips worth bookmarking.",
         "subscribe_button_text": "",
         "newsletter_require_consent": true,
-        "newsletter_consent_text": "I agree to receive marketing emails from Lesure and acknowledge the Privacy Policy. I can unsubscribe at any time. New subscribers only. Discount cannot be combined with other offers.",
+        "newsletter_consent_text": "I agree to receive marketing emails from Lesure and acknowledge the Privacy Policy. Unsubscribe at any time.New subscribers only. Discount cannot be combined with other offers.&nbsp;",
         "newsletter_consent_default": false,
         "klaviyo_company_id": "",
         "klaviyo_list_id": "",
@@ -69,10 +100,11 @@
         "social_3_icon": "facebook",
         "social_3_url": "https://www.facebook.com",
         "social_4_icon": "youtube",
+        "social_4_url": "",
         "text_font": "bricolage_grotesque_n4",
         "font_size": 15,
-        "background_color": "#6A44CE",
-        "text_color": "#FFFFFF",
+        "background_color": "#6a44ce",
+        "text_color": "#ffffff",
         "padding_top": 72,
         "padding_right": 32,
         "padding_bottom": 28,
@@ -81,14 +113,6 @@
         "padding_right_mobile": 20,
         "padding_bottom_mobile": 16,
         "padding_left_mobile": 20,
-        "margin_top_desktop": 0,
-        "margin_right_desktop": 0,
-        "margin_bottom_desktop": 0,
-        "margin_left_desktop": 0,
-        "margin_top_mobile": 0,
-        "margin_right_mobile": 0,
-        "margin_bottom_mobile": 0,
-        "margin_left_mobile": 0,
         "enable_country_selector": false,
         "show_country_flag": false,
         "enable_language_selector": false,
@@ -96,9 +120,19 @@
         "enable_copyright": true,
         "enable_copyright_date": true,
         "show_policy": true,
-        "enable_follow_on_shop": false
+        "enable_follow_on_shop": false,
+        "margin_top_desktop": 0,
+        "margin_right_desktop": 0,
+        "margin_bottom_desktop": 0,
+        "margin_left_desktop": 0,
+        "margin_top_mobile": 0,
+        "margin_right_mobile": 0,
+        "margin_bottom_mobile": 0,
+        "margin_left_mobile": 0
       }
     }
   },
-  "order": ["footer"]
+  "order": [
+    "footer"
+  ]
 }
