@@ -1,1 +1,1606 @@
-{"sections":{"hero_image_UnXfzN":{"type":"hero-image","name":"t:sections.hero-image.presets.name","settings":{"desktop_height":"adapt","mobile_height":"adapt","image_fit":"contain","image_position":"center","image_position_mobile":"center","overlay_opacity":0,"heading":"A softer place\nto land","heading_color":"#ffffff","heading_size":5.6,"heading_size_mobile":2.8,"text":"Room to stretch, support that stays, and a spot your pet will actually use.","text_color":"#ffffff","text_size":1.8,"text_size_mobile":1.4,"text_gap":16,"text_gap_mobile":12,"desktop_vertical":"middle","desktop_horizontal":"center","mobile_vertical":"middle","mobile_horizontal":"center"}},"slideshow":{"type":"slideshow","blocks":{"block_1":{"type":"slide","settings":{"show_slide_image":true,"heading":"","heading_tag":"h1","heading_size":"h2","heading_line_height":0.8,"description":"Use this space to provide details about what’s being featured in this slide.","show_button":true,"button_style":"primary","button_label":"Shop Now","button_link":""}},"block_2":{"type":"slide","settings":{"show_slide_image":true,"heading":"","heading_tag":"h2","heading_size":"h2","heading_line_height":0.8,"description":"Use this space to provide details about what’s being featured in this slide.","show_button":true,"button_style":"primary","button_label":"Shop Now","button_link":""}},"block_3":{"type":"slide","settings":{"show_slide_image":true,"heading":"","heading_tag":"h2","heading_size":"h2","heading_line_height":0.8,"description":"Use this space to provide details about what’s being featured in this slide.","show_button":true,"button_style":"primary","button_label":"Shop Now","button_link":""}}},"block_order":["block_1","block_2","block_3"],"disabled":true,"settings":{"color_scheme":"background-2","show_background_media":true,"image_ratio_desktop":"full_height","image_ratio_mobile":"full_height","overlay_opacity":0,"enable_background_media_animation":true,"duration_background_media_animation":1.5,"rotating_text":"ADD YOUR MESSAGE","color_scheme_rotating_text":"","rotating_text_position_x":80,"rotating_text_position_y":75,"rotating_text_letter_spacing":11.4,"overwrite_slideshow_text":true,"overwrite_slideshow_image_width":1860,"slideshow_text":"SLIDESHOW","slideshow_text_font_weight":"600","slideshow_text_line_height":0.7,"slideshow_text_align":"center","slider_type":"type-1","enable_loop":true,"enable_autoplay":true,"slide_duration":3,"image_ratio":"square","mobile_image_ratio":"adapt","object_fit":"contain","enable_slide_animation":true,"margin_top":"no-indent","margin_bottom":"no-indent"}},"logo_list_fd4Fz6":{"type":"logo-list","blocks":{"logo_bNKqqi":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_jXFmnX":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_t9EcCD":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_b8Nphe":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_4cXpfM":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_BTqxcF":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_y3TRbK":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_W4NXip":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_eEXjLT":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_dkP8ft":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_Dd4E6a":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_gUt4V4":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_d7bUTA":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_DLF49M":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_TGkQFY":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}}},"block_order":["logo_bNKqqi","logo_jXFmnX","logo_t9EcCD","logo_b8Nphe","logo_4cXpfM","logo_BTqxcF","logo_y3TRbK","logo_W4NXip","logo_eEXjLT","logo_dkP8ft","logo_Dd4E6a","logo_gUt4V4","logo_d7bUTA","logo_DLF49M","logo_TGkQFY"],"name":"t:sections.logo-list.name","settings":{"color_scheme":"background-3","show_border_top":true,"show_border_bottom":false,"layout":"slider-carousel","card_aspect_ratio":"landscape","slide_title_size":"h2","column_gap":"4","speed_slider":2000,"enable_autoplay":true,"slide_duration":5.5,"padding_top":"no-indent","padding_bottom":"no-indent","margin_top":"no-indent","margin_bottom":"no-indent"}},"popular-products":{"type":"popular-products","settings":{"color_scheme":"","enable_border_top":false,"enable_border_bottom":false,"animate_section_header_on_scroll":true,"subheading":"","heading":"","heading_size":"h3","heading_level":"h2","description":"","text_align":"center","product_list":[],"desktop_layout":"slider","show_nav_buttons_desktop":true,"mobile_layout":"slider","show_nav_buttons_mobile":true,"enable_loop":false,"centered_slides":false,"products_to_show":4,"image_ratio":"square","image_fit":"cover","show_vendor":false,"show_desc":true,"button_show":false,"button_label":"View all","button_style":"primary","button_link":"","padding_top":"l","padding_bottom":"l","margin_top":"no-indent","margin_bottom":"no-indent"}},"hero_4jQf4y":{"type":"hero","name":"t:sections.hero.name","settings":{"color_scheme":"","show_background_media":true,"image_ratio_desktop":"full_height","image_ratio_mobile":"full_height","overlay_opacity":0,"overlay_as_gradient":false,"section_heading":"Add a powerful message right here","heading_tag":"h2","section_heading_size":"h2","hero_description":"Use this space to provide details about what’s being featured in this section.","content_align":"left","enable_content_animation":true,"show_logo":false,"logo_width":580,"hero_text":"ADD YOUR TEXT","hero_text_font_weight":"600","hero_text_line_height":0.7,"hero_text_align":"center","content_order":"column","show_button":true,"button_style":"primary","button_label":"Shop Now","button_link":"","margin_top":"no-indent","margin_bottom":"no-indent"}},"product_markers_tWmkHa":{"type":"product-markers","blocks":{"product_markers_item_bwV8iE":{"type":"product_markers_item","settings":{"product_id":"","overwrite_desc":"Here can be a description of the product, its key features and benefits.","position_x":20,"position_y":32,"tooltip_open_position":"to-bottom","position_x_mobile":1,"position_y_mobile":1}},"product_markers_item_Eg6MCt":{"type":"product_markers_item","settings":{"product_id":"","overwrite_desc":"Here can be a description of the product, its key features and benefits.","position_x":84,"position_y":50,"tooltip_open_position":"to-bottom","position_x_mobile":1,"position_y_mobile":1}},"product_markers_item_RK7YHQ":{"type":"product_markers_item","settings":{"product_id":"","overwrite_desc":"Here can be a description of the product, its key features and benefits.","position_x":42,"position_y":77,"tooltip_open_position":"to-bottom","position_x_mobile":1,"position_y_mobile":1}}},"block_order":["product_markers_item_bwV8iE","product_markers_item_Eg6MCt","product_markers_item_RK7YHQ"],"name":"t:sections.product-markers.name","settings":{"main_color_scheme":"","layout":"split","image_position_desktop":"image-right","image_position_mobile":"image-bottom","marker_size":"default","enable_marker_animation":true,"marker_color":"#ffffff","main_image_ratio":"16\/9","main_image_ratio_mobile":"16\/9","animate_section_header_on_scroll":true,"subheading":"","heading":"","heading_size":"h3","heading_level":"h2","description":"","text_align":"center","color_scheme_card":"","product_image_ratio":"portrait","product_image_fit":"cover","show_vendor":false,"show_desc":true,"padding_top":"xl","padding_bottom":"xl","margin_top":"no-indent","margin_bottom":"no-indent"}},"collections_list_nQjr7U":{"type":"collections-list","blocks":{"collection_item_afHftx":{"type":"collection_item","settings":{"collection":"cat","title":"","card_url":"","button_label":"Shop Beds"}},"collection_item_y6wXML":{"type":"collection_item","settings":{"collection":"","title":"","card_url":"","button_label":"Shop Beds"}},"collection_item_jjie3n":{"type":"collection_item","settings":{"collection":"","title":"","card_url":"","button_label":"Shop Beds"}},"collection_item_yiYr7W":{"type":"collection_item","settings":{"collection":"","title":"","card_url":"","button_label":"Shop Beds"}}},"block_order":["collection_item_afHftx","collection_item_y6wXML","collection_item_jjie3n","collection_item_yiYr7W"],"name":"t:sections.collections-list.presets.name","settings":{"color_scheme":"scheme-f7a6a688-0dfe-4af7-9043-ca3701954195","animate_section_header_on_scroll":true,"heading":"Human Inspired. Pet Perfected.","heading_size":"h2","heading_level":"h2","description":"","text_align":"center","collections_column_count":"4","collections_column_gap":"2.4","card_color_scheme":"scheme-f7a6a688-0dfe-4af7-9043-ca3701954195","card_type":"primary","aspect_ratio":"portrait","object_fit":"cover","collections_titles_size":"h4","padding_top":"xl","padding_bottom":"xl","margin_top":"no-indent","margin_bottom":"no-indent"}},"logo_list_JPQRMh":{"type":"logo-list","blocks":{"logo_gFdpU4":{"type":"logo","settings":{"image":"shopify:\/\/shop_images\/7_c55250e9-c3b5-4215-99c8-ecbddc50e0e5.jpg","image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_aWzKad":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_ytfQXB":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_YhhGBx":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_Wyfh4B":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}},"logo_JBAegN":{"type":"logo","settings":{"image_width":100,"placeholder":"Brand","title":"Use this space to briefly describe the project, results, or history of working with this partner.","text":"Additional text","logo_link":""}}},"block_order":["logo_gFdpU4","logo_aWzKad","logo_ytfQXB","logo_YhhGBx","logo_Wyfh4B","logo_JBAegN"],"disabled":true,"name":"t:sections.logo-list.name","settings":{"color_scheme":"","show_border_top":false,"show_border_bottom":false,"layout":"slider-carousel","card_aspect_ratio":"landscape","slide_title_size":"h2","column_gap":"4","speed_slider":4000,"enable_autoplay":true,"slide_duration":5.5,"padding_top":"xs","padding_bottom":"xs","margin_top":"no-indent","margin_bottom":"no-indent"}},"image_carousel_m3qWLW":{"type":"image-carousel","blocks":{"image_carousel_slide_KifVJk":{"type":"image-carousel-slide","settings":{"image":"shopify:\/\/shop_images\/1_5ffed11c-817b-47cf-9b91-e8c89741a55f.png","overlay_opacity":0}},"image_carousel_slide_bh4G9c":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"image_carousel_slide_jMBmfc":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"image_carousel_slide_8thxpt":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"image_carousel_slide_dw9QaE":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"image_carousel_slide_rrUjnc":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"image_carousel_slide_6CaBjn":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"image_carousel_slide_BTfNdT":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"image_carousel_slide_mQnyY3":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}}},"block_order":["image_carousel_slide_KifVJk","image_carousel_slide_bh4G9c","image_carousel_slide_jMBmfc","image_carousel_slide_8thxpt","image_carousel_slide_dw9QaE","image_carousel_slide_rrUjnc","image_carousel_slide_6CaBjn","image_carousel_slide_BTfNdT","image_carousel_slide_mQnyY3"],"disabled":true,"name":"t:sections.image-carousel.name","settings":{"main_color_scheme":"","show_border_top":false,"show_border_bottom":false,"animate_section_header_on_scroll":true,"subheading":"","heading":"","heading_size":"h2","heading_level":"h2","description":"","text_align":"center","image_width":216,"mobile_image_ratio":"3\/4","desktop_image_ratio":"3\/4","speed_slider":6,"padding_top":"s","padding_bottom":"s","margin_top":"no-indent","margin_bottom":"no-indent"}},"social_feed_pkHX6Y":{"type":"social-feed","blocks":{"slide_AzaBr6":{"type":"slide","settings":{"color_scheme":"","show_product":true,"product":"","show_video":false,"video_muted":false,"show_sound_button":true,"video_autoplay":false,"video_loop":false,"show_play_button":true,"show_author_image":true,"author_name":"@author_name","author_text":"319K Followers"}},"slide_UxRJnb":{"type":"slide","settings":{"color_scheme":"","show_product":true,"product":"","show_video":false,"video_muted":false,"show_sound_button":true,"video_autoplay":false,"video_loop":false,"show_play_button":true,"show_author_image":true,"author_name":"@author_name","author_text":"319K Followers"}},"slide_miEWwk":{"type":"slide","settings":{"color_scheme":"","show_product":true,"product":"","show_video":false,"video_muted":false,"show_sound_button":true,"video_autoplay":false,"video_loop":false,"show_play_button":true,"show_author_image":true,"author_name":"@author_name","author_text":"319K Followers"}},"slide_V4QWaG":{"type":"slide","settings":{"color_scheme":"","show_product":true,"product":"","show_video":false,"video_muted":false,"show_sound_button":true,"video_autoplay":false,"video_loop":false,"show_play_button":true,"show_author_image":true,"author_name":"@author_name","author_text":"319K Followers"}},"slide_GM643g":{"type":"slide","settings":{"color_scheme":"","show_product":true,"product":"","show_video":false,"video_muted":false,"show_sound_button":true,"video_autoplay":false,"video_loop":false,"show_play_button":true,"show_author_image":true,"author_name":"@author_name","author_text":"319K Followers"}},"slide_dreaeY":{"type":"slide","settings":{"color_scheme":"","show_product":true,"product":"","show_video":false,"video_muted":false,"show_sound_button":true,"video_autoplay":false,"video_loop":false,"show_play_button":true,"show_author_image":true,"author_name":"@author_name","author_text":"319K Followers"}},"slide_cWf8Th":{"type":"slide","settings":{"color_scheme":"","show_product":true,"product":"","show_video":false,"video_muted":false,"show_sound_button":true,"video_autoplay":false,"video_loop":false,"show_play_button":true,"show_author_image":true,"author_name":"@author_name","author_text":"319K Followers"}},"slide_3pHwje":{"type":"slide","settings":{"color_scheme":"","show_product":true,"product":"","show_video":false,"video_muted":false,"show_sound_button":true,"video_autoplay":false,"video_loop":false,"show_play_button":true,"show_author_image":true,"author_name":"@author_name","author_text":"319K Followers"}},"slide_9yK4GF":{"type":"slide","settings":{"color_scheme":"","show_product":true,"product":"","show_video":false,"video_muted":false,"show_sound_button":true,"video_autoplay":false,"video_loop":false,"show_play_button":true,"show_author_image":true,"author_name":"@author_name","author_text":"319K Followers"}},"slide_FXmR9J":{"type":"slide","settings":{"color_scheme":"","show_product":true,"product":"","show_video":false,"video_muted":false,"show_sound_button":true,"video_autoplay":false,"video_loop":false,"show_play_button":true,"show_author_image":true,"author_name":"@author_name","author_text":"319K Followers"}}},"block_order":["slide_AzaBr6","slide_UxRJnb","slide_miEWwk","slide_V4QWaG","slide_GM643g","slide_dreaeY","slide_cWf8Th","slide_3pHwje","slide_9yK4GF","slide_FXmR9J"],"name":"t:sections.social-feed.presets.name","settings":{"color_scheme":"","enable_border_top":false,"enable_border_bottom":false,"animate_section_header_on_scroll":true,"subheading":"","heading":"Loved by Pets, Shared by You","heading_size":"h2","heading_level":"h2","description":"&nbsp;Real moments, cozy spaces, and stories from the Lesure community.&nbsp;","text_align":"center","speed":3,"enable_loop":true,"enable_autoplay":true,"slides_per_view":5,"centered_slides":true,"show_nav_buttons_desktop":true,"show_nav_buttons_mobile":false,"product_card_color_scheme":"","product_card_image_ratio":"portrait","product_card_image_fit":"cover","product_card_show_vendor":false,"product_card_show_button":true,"product_card_button_label":"Shop Now","button_show":false,"button_label":"","button_style":"primary","button_link":"","padding_top":"l","padding_bottom":"l","margin_top":"no-indent","margin_bottom":"no-indent"}},"media_banner_slider_X66bQr":{"type":"media-banner-slider","blocks":{"slide_TzDaLT":{"type":"slide","settings":{"show_background_media":true,"overlay_opacity":0,"show_video":false,"heading":"Slide title here","heading_tag":"h2","heading_size":"h2","description":"Use this space to provide details about what’s being featured in this slide, whether it’s a new launch, a trending product, or an exclusive deal.","show_label":true,"label_border_radius":"pill","label_text":"Label","label_count":5,"show_button":true,"button_style":"primary","button_label":"Shop Now","button_link":""}}},"block_order":["slide_TzDaLT"],"name":"t:sections.media-banner-slider.presets.name","settings":{"full_width":false,"color_scheme":"","enable_border_top":false,"enable_border_bottom":false,"slide_image_position":"full_width_image","image_ratio_desktop":"adapt","image_ratio_mobile":"adapt","vertical_align_content":"center","rotating_text":"ADD YOUR MESSAGE","color_scheme_rotating_text":"scheme-f7a6a688-0dfe-4af7-9043-ca3701954195","rotating_text_vertical_align":"top","rotating_text_letter_spacing":10.8,"slide_color_scheme":"scheme-f7a6a688-0dfe-4af7-9043-ca3701954195","enable_loop":true,"enable_parallax":false,"enable_pagination":true,"show_nav_buttons":false,"enable_autoplay":false,"slider_stop_on_hover":false,"slide_duration":5,"animation_type":"slide","controls_position":"center","padding_top":"no-indent","padding_bottom":"no-indent","margin_top":"no-indent","margin_bottom":"no-indent"}},"blog_posts_zgkxzL":{"type":"blog-posts","name":"t:sections.blog-posts.presets.name","settings":{"blog":"","color_scheme":"","show_border_top":false,"show_border_bottom":false,"animate_section_header_on_scroll":true,"heading":"Explore Our Blog","heading_level":"h2","heading_size":"h2","text_align":"center","posts_per_row":3,"posts_count":3,"show_image":true,"aspect_ratio":"square","object_fit":"cover","article_heading_font_family":"heading","article_heading_font_size":"h4","show_date":true,"show_tags":true,"show_author":true,"show_excerpt":true,"show_comments_count":true,"show_button":true,"button_label":"View More","button_link":"/blogs/blog","button_style":"primary","button_align":"center","padding_top":"xl","padding_bottom":"xl","margin_top":"no-indent","margin_bottom":"no-indent"}},"ticker-banner":{"type":"ticker-banner","blocks":{"ticker_item_TkETdc":{"type":"ticker_item","settings":{"ticker_text":"Your latest announcement"}},"block_1":{"type":"ticker_item","settings":{"ticker_text":"Your latest announcement"}},"ticker_item_KP6dJn":{"type":"ticker_item","settings":{"ticker_text":"Your latest announcement"}}},"block_order":["ticker_item_TkETdc","block_1","ticker_item_KP6dJn"],"disabled":true,"custom_css":[".ticker-banner__ticker-text {margin-top: -8px;}"],"settings":{"color_scheme":"","enable_border_top":true,"enable_border_bottom":true,"heading_size_ticker":"h2","ticker_speed":2,"margin_top":"no-indent","margin_bottom":"no-indent"}},"testimonials_TAeUrm":{"type":"testimonials","blocks":{"testimonials_slide_tYym9R":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.","show_author":true,"slide_author":"<strong>Author's name<\/strong>","show_slide_author_image":true,"slide_author_desc":"@author's_link","show_product":true,"product":""}},"testimonials_slide_cTgUxn":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.","show_author":true,"slide_author":"<strong>Author's name<\/strong>","show_slide_author_image":true,"slide_author_desc":"@author's_link","show_product":true,"product":""}},"testimonials_slide_DFUDwh":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.","show_author":true,"slide_author":"<strong>Author's name<\/strong>","show_slide_author_image":true,"slide_author_desc":"@author's_link","show_product":true,"product":""}},"testimonials_slide_crzYmX":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.","show_author":true,"slide_author":"<strong>Author's name<\/strong>","show_slide_author_image":true,"slide_author_desc":"@author's_link","show_product":true,"product":""}}},"block_order":["testimonials_slide_tYym9R","testimonials_slide_cTgUxn","testimonials_slide_DFUDwh","testimonials_slide_crzYmX"],"disabled":true,"name":"t:sections.testimonials.name","settings":{"color_scheme":"background-4","enable_border_top":false,"enable_border_bottom":false,"show_nav_buttons_desktop":true,"show_nav_buttons_mobile":false,"nav_buttons_color_scheme":"background-4","enable_loop":false,"centered_slides":false,"slides_per_view":2,"animate_section_header_on_scroll":true,"subheading":"","heading":"","heading_size":"h3","heading_level":"h2","description":"","text_align":"left","testimonial_color_scheme":"background-2","testimonial_text_size":"h3","product_card_color_scheme":"","product_card_aspect_ratio":"portrait","product_card_object_fit":"cover","product_card_show_vendor":false,"product_card_show_button":true,"product_card_button_label":"Shop Now","padding_top":"l","padding_bottom":"l","margin_top":"no-indent","margin_bottom":"no-indent"}},"features_table_JkLeF9":{"type":"features-table","blocks":{"table_row_EWUak8":{"type":"_table_row","settings":{"row_text_color":"","row_bg_color":"","enable_row_hover":false},"blocks":{"table_cell_mtKz7h":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"body-normal","type_icon":"check","cell_content_alignment":"left"},"blocks":{}},"table_cell_FPtX8c":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"h4","type_icon":"check","cell_content_alignment":"center"},"blocks":{}},"table_cell_MQ9bkR":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"body-small","type_icon":"check","cell_content_alignment":"center"},"blocks":{}},"table_cell_JqNbwX":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"body-small","type_icon":"check","cell_content_alignment":"center"},"blocks":{}}},"block_order":["table_cell_mtKz7h","table_cell_FPtX8c","table_cell_MQ9bkR","table_cell_JqNbwX"]},"table_row_BKgJkp":{"type":"_table_row","settings":{"row_text_color":"","row_bg_color":"","enable_row_hover":true},"blocks":{"table_cell_y8rgJV":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"h5","type_icon":"check","cell_content_alignment":"left"},"blocks":{}},"table_cell_gEVd9M":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"body-normal","type_icon":"check","cell_content_alignment":"center"},"blocks":{}},"table_cell_9eAFwV":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"body-normal","type_icon":"check","cell_content_alignment":"center"},"blocks":{}},"table_cell_TKmaG4":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"body-normal","type_icon":"check","cell_content_alignment":"center"},"blocks":{}}},"block_order":["table_cell_y8rgJV","table_cell_gEVd9M","table_cell_9eAFwV","table_cell_TKmaG4"]},"table_row_X4ckmt":{"type":"_table_row","settings":{"row_text_color":"","row_bg_color":"","enable_row_hover":true},"blocks":{"table_cell_aeTJL9":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"h5","type_icon":"check","cell_content_alignment":"left"},"blocks":{}},"table_cell_KR78hU":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"body-normal","type_icon":"check","cell_content_alignment":"center"},"blocks":{}},"table_cell_jXAzmt":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"body-normal","type_icon":"check","cell_content_alignment":"center"},"blocks":{}},"table_cell_9bhLKC":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"body-normal","type_icon":"cross","cell_content_alignment":"center"},"blocks":{}}},"block_order":["table_cell_aeTJL9","table_cell_KR78hU","table_cell_jXAzmt","table_cell_9bhLKC"]},"table_row_yfaJCE":{"type":"_table_row","name":"Row","settings":{"row_text_color":"","row_bg_color":"","enable_row_hover":true},"blocks":{"table_cell_AkhPJq":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"h5","type_icon":"check","cell_content_alignment":"left"},"blocks":{}},"table_cell_fTiaWJ":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"body-normal","type_icon":"check","cell_content_alignment":"center"},"blocks":{}},"table_cell_ctYhGJ":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"body-normal","type_icon":"check","cell_content_alignment":"center"},"blocks":{}},"table_cell_BTJBz6":{"type":"_table_cell","name":"t:sections.features-table.blocks.cell.name","settings":{"type":"text","cell_text":"","text_size":"body-normal","type_icon":"check","cell_content_alignment":"center"},"blocks":{}}},"block_order":["table_cell_AkhPJq","table_cell_fTiaWJ","table_cell_ctYhGJ","table_cell_BTJBz6"]},"table_row_jyR3dV":{"type":"_table_row","name":"Row","settings":{"row_text_color":"","row_bg_color":"","enable_row_hover":true},"blocks":{"table_cell_JWEKga":{"type":"_table_cell","settings":{"type":"text","cell_text":"","text_size":"h5","type_icon":"check","cell_content_alignment":"left"},"blocks":{}},"table_cell_LrjNFX":{"type":"_table_cell","settings":{"type":"icon","cell_text":"","text_size":"body-normal","type_icon":"check","cell_content_alignment":"center"},"blocks":{}},"table_cell_64PG9x":{"type":"_table_cell","settings":{"type":"icon","cell_text":"","text_size":"body-normal","type_icon":"cross","cell_content_alignment":"center"},"blocks":{}},"table_cell_X6LRti":{"type":"_table_cell","name":"t:sections.features-table.blocks.cell.name","settings":{"type":"icon","cell_text":"","text_size":"body-normal","type_icon":"cross","cell_content_alignment":"center"},"blocks":{}}},"block_order":["table_cell_JWEKga","table_cell_LrjNFX","table_cell_64PG9x","table_cell_X6LRti"]}},"block_order":["table_row_EWUak8","table_row_BKgJkp","table_row_X4ckmt","table_row_yfaJCE","table_row_jyR3dV"],"disabled":true,"name":"t:sections.features-table.name","settings":{"color_scheme":"","top_border":true,"bottom_border":true,"animate_section_header_on_scroll":true,"heading":"Features table","heading_size":"h2","heading_level":"h2","description":"Features table description will be here","text_align":"center","enable_table_border":true,"enable_column_highlight":true,"column_index":2,"column_bg_color":"#ffcc01","padding_top":"l","padding_bottom":"l","margin_top":"no-indent","margin_bottom":"no-indent","anchor_id":""}},"social-media":{"type":"social-media","blocks":{"block_1":{"type":"image","settings":{"image_link":"","image_border_radius":"pill"}},"block_2":{"type":"image","settings":{"image_link":"","image_border_radius":"pill"}},"block_3":{"type":"image","settings":{"image_link":"","image_border_radius":"pill"}},"block_4":{"type":"image","settings":{"image_link":"","image_border_radius":"pill"}}},"block_order":["block_1","block_2","block_3","block_4"],"disabled":true,"settings":{"show_border_top":true,"show_border_bottom":true,"color_scheme":"","layout":"socials-right","media_block_color_scheme":"background-4","show_social_media":true,"socials_img_size":"small","image_blocks_border_radius":"pill","socials_img_align":"center","main_text":"Follow Us","main_text_font":"heading","main_text_size":"h3","text_align":"center","show_text_underline":true,"enable_text_animation":true,"text_underline_color":"#fedc2d","padding_top":"no-indent","padding_bottom":"no-indent","margin_top":"no-indent","margin_bottom":"no-indent","anchor_id":""}},"image_carousel_GMEwaX":{"type":"image-carousel","blocks":{"image_carousel_slide_9EtMhf":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"image_carousel_slide_GdbjXC":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"image_carousel_slide_UtNbFX":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"image_carousel_slide_8XM67n":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"image_carousel_slide_8mq9Re":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"image_carousel_slide_7Fgact":{"type":"image-carousel-slide","disabled":true,"settings":{"overlay_opacity":0}},"image_carousel_slide_cbDABW":{"type":"image-carousel-slide","disabled":true,"settings":{"overlay_opacity":0}},"image_carousel_slide_jmyjLd":{"type":"image-carousel-slide","disabled":true,"settings":{"overlay_opacity":0}}},"block_order":["image_carousel_slide_9EtMhf","image_carousel_slide_GdbjXC","image_carousel_slide_UtNbFX","image_carousel_slide_8XM67n","image_carousel_slide_8mq9Re","image_carousel_slide_7Fgact","image_carousel_slide_cbDABW","image_carousel_slide_jmyjLd"],"disabled":true,"name":"t:sections.image-carousel.name","settings":{"main_color_scheme":"","show_border_top":false,"show_border_bottom":false,"animate_section_header_on_scroll":true,"subheading":"","heading":"","heading_size":"h2","heading_level":"h2","description":"","text_align":"center","image_width":216,"mobile_image_ratio":"adapt","desktop_image_ratio":"adapt","speed_slider":6,"padding_top":"s","padding_bottom":"s","margin_top":"no-indent","margin_bottom":"no-indent"}},"hero_image_G7xHXR":{"type":"hero-image","disabled":true,"name":"t:sections.hero-image.presets.name","settings":{"desktop_height":"adapt","mobile_height":"adapt","image_fit":"contain","image_position":"center","image_position_mobile":"center","overlay_opacity":0,"heading":"A softer place\nto land","heading_color":"#ffffff","heading_size":5.6,"heading_size_mobile":2.8,"text":"Room to stretch, support that stays, and a spot your pet will actually use.","text_color":"#ffffff","text_size":1.8,"text_size_mobile":1.4,"text_gap":16,"text_gap_mobile":12,"desktop_vertical":"middle","desktop_horizontal":"center","mobile_vertical":"middle","mobile_horizontal":"center"}},"multicolumn_KKdrjn":{"type":"multicolumn","blocks":{"column_p7j4Wf":{"type":"column","settings":{"link":"","title":"2026 Pet Innovation Awards"}},"column_Bz8ykT":{"type":"column","settings":{"link":"","title":"2026 WIRED Recommends"}},"column_KttQ8A":{"type":"column","settings":{"link":"","title":"2026 Parade Pets Best in Show Awards"}},"column_EHcVbF":{"type":"column","settings":{"link":"","title":"2026 Good Housekeeping Travel Awards"}},"column_P4rb7c":{"type":"column","settings":{"link":"","title":"2026 Apartment Therapy Best in Home Awards"}},"column_zWVdnk":{"type":"column","settings":{"link":"","title":"2026 Best Pet Bed"}},"column_AdaDag":{"type":"column","settings":{"link":"","title":"2026 Design Award"}}},"block_order":["column_p7j4Wf","column_Bz8ykT","column_KttQ8A","column_EHcVbF","column_P4rb7c","column_zWVdnk","column_AdaDag"],"disabled":true,"name":"t:sections.multicolumn.presets.name","settings":{"title":"Recognized for Better Pet Living","subtitle":"Thoughtful details make a difference in everyday life with pets — and they haven't gone unnoticed.","heading_alignment":"center","heading_color":"#1a1a1a","subtitle_color":"#8a8a8a","heading_font_size":3.2,"heading_font_size_mobile":2.4,"subtitle_size":1.5,"subtitle_size_mobile":1.3,"heading_gap":12,"heading_gap_mobile":8,"header_gap":32,"header_gap_mobile":24,"columns_desktop":5,"image_ratio":"award","column_gap":16,"column_gap_mobile":12,"caption_color":"#6e6e6e","caption_size":1.4,"caption_size_mobile":1.2,"caption_gap":12,"caption_gap_mobile":12,"arrow_color":"#f5c518","background_color":"#f4f4f4","section_width":"page","padding_top":36,"padding_bottom":36}}},"order":["hero_image_UnXfzN","slideshow","logo_list_fd4Fz6","popular-products","hero_4jQf4y","product_markers_tWmkHa","collections_list_nQjr7U","logo_list_JPQRMh","image_carousel_m3qWLW","social_feed_pkHX6Y","media_banner_slider_X66bQr","blog_posts_zgkxzL","ticker-banner","testimonials_TAeUrm","features_table_JkLeF9","social-media","image_carousel_GMEwaX","hero_image_G7xHXR","multicolumn_KKdrjn"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_image_UnXfzN": {
+      "type": "hero-image",
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/20261026-172243.jpg",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center"
+      }
+    },
+    "logo_list_fd4Fz6": {
+      "type": "logo-list",
+      "blocks": {
+        "logo_bNKqqi": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_jXFmnX": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_t9EcCD": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_b8Nphe": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_4cXpfM": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_BTqxcF": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_y3TRbK": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_W4NXip": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_eEXjLT": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_dkP8ft": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_Dd4E6a": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_gUt4V4": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_d7bUTA": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_DLF49M": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_TGkQFY": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_bNKqqi",
+        "logo_jXFmnX",
+        "logo_t9EcCD",
+        "logo_b8Nphe",
+        "logo_4cXpfM",
+        "logo_BTqxcF",
+        "logo_y3TRbK",
+        "logo_W4NXip",
+        "logo_eEXjLT",
+        "logo_dkP8ft",
+        "logo_Dd4E6a",
+        "logo_gUt4V4",
+        "logo_d7bUTA",
+        "logo_DLF49M",
+        "logo_TGkQFY"
+      ],
+      "name": "t:sections.logo-list.name",
+      "settings": {
+        "color_scheme": "background-3",
+        "show_border_top": true,
+        "show_border_bottom": false,
+        "layout": "slider-carousel",
+        "card_aspect_ratio": "landscape",
+        "slide_title_size": "h2",
+        "column_gap": "4",
+        "speed_slider": 2000,
+        "enable_autoplay": true,
+        "slide_duration": 5.5,
+        "padding_top": "no-indent",
+        "padding_bottom": "no-indent",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "popular-products": {
+      "type": "popular-products",
+      "settings": {
+        "color_scheme": "",
+        "enable_border_top": false,
+        "enable_border_bottom": false,
+        "animate_section_header_on_scroll": true,
+        "subheading": "",
+        "heading": "",
+        "heading_size": "h3",
+        "heading_level": "h2",
+        "description": "",
+        "text_align": "center",
+        "product_list": [],
+        "desktop_layout": "slider",
+        "show_nav_buttons_desktop": true,
+        "mobile_layout": "slider",
+        "show_nav_buttons_mobile": true,
+        "enable_loop": false,
+        "centered_slides": false,
+        "products_to_show": 4,
+        "image_ratio": "square",
+        "image_fit": "cover",
+        "show_vendor": false,
+        "show_desc": true,
+        "button_show": false,
+        "button_label": "View all",
+        "button_style": "primary",
+        "button_link": "",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "hero_4jQf4y": {
+      "type": "hero",
+      "name": "t:sections.hero.name",
+      "settings": {
+        "color_scheme": "",
+        "show_background_media": true,
+        "image_ratio_desktop": "full_height",
+        "image_ratio_mobile": "full_height",
+        "overlay_opacity": 0,
+        "overlay_as_gradient": false,
+        "section_heading": "Add a powerful message right here",
+        "heading_tag": "h2",
+        "section_heading_size": "h2",
+        "hero_description": "Use this space to provide details about what’s being featured in this section.",
+        "content_align": "left",
+        "enable_content_animation": true,
+        "show_logo": false,
+        "logo_width": 580,
+        "hero_text": "ADD YOUR TEXT",
+        "hero_text_font_weight": "600",
+        "hero_text_line_height": 0.7,
+        "hero_text_align": "center",
+        "content_order": "column",
+        "show_button": true,
+        "button_style": "primary",
+        "button_label": "Shop Now",
+        "button_link": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "product_markers_tWmkHa": {
+      "type": "product-markers",
+      "blocks": {
+        "product_markers_item_bwV8iE": {
+          "type": "product_markers_item",
+          "settings": {
+            "product_id": "",
+            "overwrite_desc": "Here can be a description of the product, its key features and benefits.",
+            "position_x": 20,
+            "position_y": 32,
+            "tooltip_open_position": "to-bottom",
+            "position_x_mobile": 1,
+            "position_y_mobile": 1
+          }
+        },
+        "product_markers_item_Eg6MCt": {
+          "type": "product_markers_item",
+          "settings": {
+            "product_id": "",
+            "overwrite_desc": "Here can be a description of the product, its key features and benefits.",
+            "position_x": 84,
+            "position_y": 50,
+            "tooltip_open_position": "to-bottom",
+            "position_x_mobile": 1,
+            "position_y_mobile": 1
+          }
+        },
+        "product_markers_item_RK7YHQ": {
+          "type": "product_markers_item",
+          "settings": {
+            "product_id": "",
+            "overwrite_desc": "Here can be a description of the product, its key features and benefits.",
+            "position_x": 42,
+            "position_y": 77,
+            "tooltip_open_position": "to-bottom",
+            "position_x_mobile": 1,
+            "position_y_mobile": 1
+          }
+        }
+      },
+      "block_order": [
+        "product_markers_item_bwV8iE",
+        "product_markers_item_Eg6MCt",
+        "product_markers_item_RK7YHQ"
+      ],
+      "name": "t:sections.product-markers.name",
+      "settings": {
+        "main_color_scheme": "",
+        "layout": "split",
+        "image_position_desktop": "image-right",
+        "image_position_mobile": "image-bottom",
+        "marker_size": "default",
+        "enable_marker_animation": true,
+        "marker_color": "#ffffff",
+        "main_image_ratio": "16/9",
+        "main_image_ratio_mobile": "16/9",
+        "animate_section_header_on_scroll": true,
+        "subheading": "",
+        "heading": "",
+        "heading_size": "h3",
+        "heading_level": "h2",
+        "description": "",
+        "text_align": "center",
+        "color_scheme_card": "",
+        "product_image_ratio": "portrait",
+        "product_image_fit": "cover",
+        "show_vendor": false,
+        "show_desc": true,
+        "padding_top": "xl",
+        "padding_bottom": "xl",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "collections_list_nQjr7U": {
+      "type": "collections-list",
+      "blocks": {
+        "collection_item_afHftx": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "cat",
+            "title": "",
+            "card_url": "",
+            "image_position": "center",
+            "button_label": "Shop Beds"
+          }
+        },
+        "collection_item_y6wXML": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "card_url": "",
+            "image_position": "center",
+            "button_label": "Shop Beds"
+          }
+        },
+        "collection_item_jjie3n": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "card_url": "",
+            "image_position": "center",
+            "button_label": "Shop Beds"
+          }
+        },
+        "collection_item_yiYr7W": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "card_url": "",
+            "image_position": "center",
+            "button_label": "Shop Beds"
+          }
+        }
+      },
+      "block_order": [
+        "collection_item_afHftx",
+        "collection_item_y6wXML",
+        "collection_item_jjie3n",
+        "collection_item_yiYr7W"
+      ],
+      "name": "t:sections.collections-list.presets.name",
+      "settings": {
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "animate_section_header_on_scroll": true,
+        "heading": "Human Inspired. Pet Perfected.",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "description": "",
+        "text_align": "center",
+        "heading_color": "#111111",
+        "heading_font_size": 32,
+        "heading_font_size_mobile": 24,
+        "heading_gap": 36,
+        "heading_gap_mobile": 20,
+        "background_color": "#ffffff",
+        "button_color": "#f5d400",
+        "button_text_color": "#171717",
+        "card_radius": 4,
+        "card_gap": 20,
+        "card_gap_mobile": 12,
+        "collections_column_count": "4",
+        "card_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "card_type": "primary",
+        "aspect_ratio": "portrait",
+        "object_fit": "cover",
+        "collections_titles_size": "h4",
+        "padding_top_desktop": 64,
+        "padding_bottom_desktop": 64,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32,
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "logo_list_JPQRMh": {
+      "type": "logo-list",
+      "blocks": {
+        "logo_gFdpU4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/7_c55250e9-c3b5-4215-99c8-ecbddc50e0e5.jpg",
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_aWzKad": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_ytfQXB": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_YhhGBx": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_Wyfh4B": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        },
+        "logo_JBAegN": {
+          "type": "logo",
+          "settings": {
+            "image_width": 100,
+            "placeholder": "Brand",
+            "title": "Use this space to briefly describe the project, results, or history of working with this partner.",
+            "text": "Additional text",
+            "logo_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_gFdpU4",
+        "logo_aWzKad",
+        "logo_ytfQXB",
+        "logo_YhhGBx",
+        "logo_Wyfh4B",
+        "logo_JBAegN"
+      ],
+      "disabled": true,
+      "name": "t:sections.logo-list.name",
+      "settings": {
+        "color_scheme": "",
+        "show_border_top": false,
+        "show_border_bottom": false,
+        "layout": "slider-carousel",
+        "card_aspect_ratio": "landscape",
+        "slide_title_size": "h2",
+        "column_gap": "4",
+        "speed_slider": 4000,
+        "enable_autoplay": true,
+        "slide_duration": 5.5,
+        "padding_top": "xs",
+        "padding_bottom": "xs",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "image_carousel_m3qWLW": {
+      "type": "image-carousel",
+      "blocks": {
+        "image_carousel_slide_KifVJk": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "image": "shopify://shop_images/1_5ffed11c-817b-47cf-9b91-e8c89741a55f.png",
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_bh4G9c": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_jMBmfc": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_8thxpt": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_dw9QaE": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_rrUjnc": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_6CaBjn": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_BTfNdT": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_mQnyY3": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_carousel_slide_KifVJk",
+        "image_carousel_slide_bh4G9c",
+        "image_carousel_slide_jMBmfc",
+        "image_carousel_slide_8thxpt",
+        "image_carousel_slide_dw9QaE",
+        "image_carousel_slide_rrUjnc",
+        "image_carousel_slide_6CaBjn",
+        "image_carousel_slide_BTfNdT",
+        "image_carousel_slide_mQnyY3"
+      ],
+      "disabled": true,
+      "name": "t:sections.image-carousel.name",
+      "settings": {
+        "main_color_scheme": "",
+        "show_border_top": false,
+        "show_border_bottom": false,
+        "animate_section_header_on_scroll": true,
+        "subheading": "",
+        "heading": "",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "description": "",
+        "text_align": "center",
+        "image_width": 216,
+        "mobile_image_ratio": "3/4",
+        "desktop_image_ratio": "3/4",
+        "speed_slider": 6,
+        "padding_top": "s",
+        "padding_bottom": "s",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "social_feed_pkHX6Y": {
+      "type": "social-feed",
+      "blocks": {
+        "slide_AzaBr6": {
+          "type": "slide",
+          "settings": {
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "slide_UxRJnb": {
+          "type": "slide",
+          "settings": {
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "slide_miEWwk": {
+          "type": "slide",
+          "settings": {
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "slide_V4QWaG": {
+          "type": "slide",
+          "settings": {
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "slide_GM643g": {
+          "type": "slide",
+          "settings": {
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "slide_dreaeY": {
+          "type": "slide",
+          "settings": {
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "slide_cWf8Th": {
+          "type": "slide",
+          "settings": {
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "slide_3pHwje": {
+          "type": "slide",
+          "settings": {
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "slide_9yK4GF": {
+          "type": "slide",
+          "settings": {
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "slide_FXmR9J": {
+          "type": "slide",
+          "settings": {
+            "show_product": true,
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_AzaBr6",
+        "slide_UxRJnb",
+        "slide_miEWwk",
+        "slide_V4QWaG",
+        "slide_GM643g",
+        "slide_dreaeY",
+        "slide_cWf8Th",
+        "slide_3pHwje",
+        "slide_9yK4GF",
+        "slide_FXmR9J"
+      ],
+      "name": "t:sections.social-feed.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "enable_border_top": false,
+        "enable_border_bottom": false,
+        "animate_section_header_on_scroll": true,
+        "subheading": "",
+        "heading": "Loved by Pets, Shared by You",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "description": "&nbsp;Real moments, cozy spaces, and stories from the Lesure community.&nbsp;",
+        "heading_font_size": 53,
+        "heading_color": "#171717",
+        "text_font_size": 21,
+        "text_color": "#3a3a3a",
+        "background_color": "",
+        "card_radius": 4,
+        "social_tiktok": "",
+        "social_instagram": "",
+        "social_facebook": "",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "media_banner_slider_X66bQr": {
+      "type": "media-banner-slider",
+      "blocks": {
+        "slide_TzDaLT": {
+          "type": "slide",
+          "settings": {
+            "show_background_media": true,
+            "overlay_opacity": 0,
+            "show_video": false,
+            "heading": "Slide title here",
+            "heading_tag": "h2",
+            "heading_size": "h2",
+            "description": "Use this space to provide details about what’s being featured in this slide, whether it’s a new launch, a trending product, or an exclusive deal.",
+            "show_label": true,
+            "label_border_radius": "pill",
+            "label_text": "Label",
+            "label_count": 5,
+            "show_button": true,
+            "button_style": "primary",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_TzDaLT"
+      ],
+      "name": "t:sections.media-banner-slider.presets.name",
+      "settings": {
+        "full_width": false,
+        "color_scheme": "",
+        "enable_border_top": false,
+        "enable_border_bottom": false,
+        "slide_image_position": "full_width_image",
+        "image_ratio_desktop": "adapt",
+        "image_ratio_mobile": "adapt",
+        "vertical_align_content": "center",
+        "rotating_text": "ADD YOUR MESSAGE",
+        "color_scheme_rotating_text": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "rotating_text_vertical_align": "top",
+        "rotating_text_letter_spacing": 10.8,
+        "slide_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "enable_loop": true,
+        "enable_parallax": false,
+        "enable_pagination": true,
+        "show_nav_buttons": false,
+        "enable_autoplay": false,
+        "slider_stop_on_hover": false,
+        "slide_duration": 5,
+        "animation_type": "slide",
+        "controls_position": "center",
+        "padding_top": "no-indent",
+        "padding_bottom": "no-indent",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "blog_posts_zgkxzL": {
+      "type": "blog-posts",
+      "name": "t:sections.blog-posts.presets.name",
+      "settings": {
+        "blog": "",
+        "image_position": "center",
+        "color_scheme": "",
+        "background_color": "#f9f9f9",
+        "active_color": "#ddd4f2",
+        "show_border_top": false,
+        "show_border_bottom": false,
+        "animate_section_header_on_scroll": true,
+        "heading": "Explore Our Blog",
+        "heading_level": "h2",
+        "heading_size": "h2",
+        "show_button": true,
+        "button_label": "View More",
+        "button_link": "/blogs/blog",
+        "button_style": "primary",
+        "padding_top": "xl",
+        "padding_bottom": "xl",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "ticker-banner": {
+      "type": "ticker-banner",
+      "blocks": {
+        "ticker_item_TkETdc": {
+          "type": "ticker_item",
+          "settings": {
+            "ticker_text": "Your latest announcement"
+          }
+        },
+        "block_1": {
+          "type": "ticker_item",
+          "settings": {
+            "ticker_text": "Your latest announcement"
+          }
+        },
+        "ticker_item_KP6dJn": {
+          "type": "ticker_item",
+          "settings": {
+            "ticker_text": "Your latest announcement"
+          }
+        }
+      },
+      "block_order": [
+        "ticker_item_TkETdc",
+        "block_1",
+        "ticker_item_KP6dJn"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".ticker-banner__ticker-text {margin-top: -8px;}"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "enable_border_top": true,
+        "enable_border_bottom": true,
+        "heading_size_ticker": "h2",
+        "ticker_speed": 2,
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "testimonials_TAeUrm": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonials_slide_tYym9R": {
+          "type": "testimonials_slide",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.",
+            "show_author": true,
+            "slide_author": "<strong>Author's name</strong>",
+            "show_slide_author_image": true,
+            "slide_author_desc": "@author's_link",
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "testimonials_slide_cTgUxn": {
+          "type": "testimonials_slide",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.",
+            "show_author": true,
+            "slide_author": "<strong>Author's name</strong>",
+            "show_slide_author_image": true,
+            "slide_author_desc": "@author's_link",
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "testimonials_slide_DFUDwh": {
+          "type": "testimonials_slide",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.",
+            "show_author": true,
+            "slide_author": "<strong>Author's name</strong>",
+            "show_slide_author_image": true,
+            "slide_author_desc": "@author's_link",
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "testimonials_slide_crzYmX": {
+          "type": "testimonials_slide",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.",
+            "show_author": true,
+            "slide_author": "<strong>Author's name</strong>",
+            "show_slide_author_image": true,
+            "slide_author_desc": "@author's_link",
+            "show_product": true,
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonials_slide_tYym9R",
+        "testimonials_slide_cTgUxn",
+        "testimonials_slide_DFUDwh",
+        "testimonials_slide_crzYmX"
+      ],
+      "disabled": true,
+      "name": "t:sections.testimonials.name",
+      "settings": {
+        "color_scheme": "background-4",
+        "enable_border_top": false,
+        "enable_border_bottom": false,
+        "show_nav_buttons_desktop": true,
+        "show_nav_buttons_mobile": false,
+        "nav_buttons_color_scheme": "background-4",
+        "enable_loop": false,
+        "centered_slides": false,
+        "slides_per_view": 2,
+        "animate_section_header_on_scroll": true,
+        "subheading": "",
+        "heading": "",
+        "heading_size": "h3",
+        "heading_level": "h2",
+        "description": "",
+        "text_align": "left",
+        "testimonial_color_scheme": "background-2",
+        "testimonial_text_size": "h3",
+        "product_card_color_scheme": "",
+        "product_card_aspect_ratio": "portrait",
+        "product_card_object_fit": "cover",
+        "product_card_show_vendor": false,
+        "product_card_show_button": true,
+        "product_card_button_label": "Shop Now",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "features_table_JkLeF9": {
+      "type": "features-table",
+      "blocks": {
+        "table_row_EWUak8": {
+          "type": "_table_row",
+          "settings": {
+            "row_text_color": "",
+            "row_bg_color": "",
+            "enable_row_hover": false
+          },
+          "blocks": {
+            "table_cell_mtKz7h": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "left"
+              },
+              "blocks": {}
+            },
+            "table_cell_FPtX8c": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "h4",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_MQ9bkR": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "body-small",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_JqNbwX": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "body-small",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "table_cell_mtKz7h",
+            "table_cell_FPtX8c",
+            "table_cell_MQ9bkR",
+            "table_cell_JqNbwX"
+          ]
+        },
+        "table_row_BKgJkp": {
+          "type": "_table_row",
+          "settings": {
+            "row_text_color": "",
+            "row_bg_color": "",
+            "enable_row_hover": true
+          },
+          "blocks": {
+            "table_cell_y8rgJV": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "left"
+              },
+              "blocks": {}
+            },
+            "table_cell_gEVd9M": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_9eAFwV": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_TKmaG4": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "table_cell_y8rgJV",
+            "table_cell_gEVd9M",
+            "table_cell_9eAFwV",
+            "table_cell_TKmaG4"
+          ]
+        },
+        "table_row_X4ckmt": {
+          "type": "_table_row",
+          "settings": {
+            "row_text_color": "",
+            "row_bg_color": "",
+            "enable_row_hover": true
+          },
+          "blocks": {
+            "table_cell_aeTJL9": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "left"
+              },
+              "blocks": {}
+            },
+            "table_cell_KR78hU": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_jXAzmt": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_9bhLKC": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "body-normal",
+                "type_icon": "cross",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "table_cell_aeTJL9",
+            "table_cell_KR78hU",
+            "table_cell_jXAzmt",
+            "table_cell_9bhLKC"
+          ]
+        },
+        "table_row_yfaJCE": {
+          "type": "_table_row",
+          "name": "Row",
+          "settings": {
+            "row_text_color": "",
+            "row_bg_color": "",
+            "enable_row_hover": true
+          },
+          "blocks": {
+            "table_cell_AkhPJq": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "left"
+              },
+              "blocks": {}
+            },
+            "table_cell_fTiaWJ": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_ctYhGJ": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_BTJBz6": {
+              "type": "_table_cell",
+              "name": "t:sections.features-table.blocks.cell.name",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "table_cell_AkhPJq",
+            "table_cell_fTiaWJ",
+            "table_cell_ctYhGJ",
+            "table_cell_BTJBz6"
+          ]
+        },
+        "table_row_jyR3dV": {
+          "type": "_table_row",
+          "name": "Row",
+          "settings": {
+            "row_text_color": "",
+            "row_bg_color": "",
+            "enable_row_hover": true
+          },
+          "blocks": {
+            "table_cell_JWEKga": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "left"
+              },
+              "blocks": {}
+            },
+            "table_cell_LrjNFX": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "icon",
+                "cell_text": "",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_64PG9x": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "icon",
+                "cell_text": "",
+                "text_size": "body-normal",
+                "type_icon": "cross",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_X6LRti": {
+              "type": "_table_cell",
+              "name": "t:sections.features-table.blocks.cell.name",
+              "settings": {
+                "type": "icon",
+                "cell_text": "",
+                "text_size": "body-normal",
+                "type_icon": "cross",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "table_cell_JWEKga",
+            "table_cell_LrjNFX",
+            "table_cell_64PG9x",
+            "table_cell_X6LRti"
+          ]
+        }
+      },
+      "block_order": [
+        "table_row_EWUak8",
+        "table_row_BKgJkp",
+        "table_row_X4ckmt",
+        "table_row_yfaJCE",
+        "table_row_jyR3dV"
+      ],
+      "disabled": true,
+      "name": "t:sections.features-table.name",
+      "settings": {
+        "color_scheme": "",
+        "top_border": true,
+        "bottom_border": true,
+        "animate_section_header_on_scroll": true,
+        "heading": "Features table",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "description": "Features table description will be here",
+        "text_align": "center",
+        "enable_table_border": true,
+        "enable_column_highlight": true,
+        "column_index": 2,
+        "column_bg_color": "#ffcc01",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent",
+        "anchor_id": ""
+      }
+    },
+    "social-media": {
+      "type": "social-media",
+      "blocks": {
+        "block_1": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_2": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_3": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_4": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ],
+      "disabled": true,
+      "settings": {
+        "show_border_top": true,
+        "show_border_bottom": true,
+        "color_scheme": "",
+        "layout": "socials-right",
+        "media_block_color_scheme": "background-4",
+        "show_social_media": true,
+        "socials_img_size": "small",
+        "image_blocks_border_radius": "pill",
+        "socials_img_align": "center",
+        "main_text": "Follow Us",
+        "main_text_font": "heading",
+        "main_text_size": "h3",
+        "text_align": "center",
+        "show_text_underline": true,
+        "enable_text_animation": true,
+        "text_underline_color": "#fedc2d",
+        "padding_top": "no-indent",
+        "padding_bottom": "no-indent",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent",
+        "anchor_id": ""
+      }
+    },
+    "image_carousel_GMEwaX": {
+      "type": "image-carousel",
+      "blocks": {
+        "image_carousel_slide_9EtMhf": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_GdbjXC": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_UtNbFX": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_8XM67n": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_8mq9Re": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_7Fgact": {
+          "type": "image-carousel-slide",
+          "disabled": true,
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_cbDABW": {
+          "type": "image-carousel-slide",
+          "disabled": true,
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "image_carousel_slide_jmyjLd": {
+          "type": "image-carousel-slide",
+          "disabled": true,
+          "settings": {
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_carousel_slide_9EtMhf",
+        "image_carousel_slide_GdbjXC",
+        "image_carousel_slide_UtNbFX",
+        "image_carousel_slide_8XM67n",
+        "image_carousel_slide_8mq9Re",
+        "image_carousel_slide_7Fgact",
+        "image_carousel_slide_cbDABW",
+        "image_carousel_slide_jmyjLd"
+      ],
+      "disabled": true,
+      "name": "t:sections.image-carousel.name",
+      "settings": {
+        "main_color_scheme": "",
+        "show_border_top": false,
+        "show_border_bottom": false,
+        "animate_section_header_on_scroll": true,
+        "subheading": "",
+        "heading": "",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "description": "",
+        "text_align": "center",
+        "image_width": 216,
+        "mobile_image_ratio": "adapt",
+        "desktop_image_ratio": "adapt",
+        "speed_slider": 6,
+        "padding_top": "s",
+        "padding_bottom": "s",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "hero_image_G7xHXR": {
+      "type": "hero-image",
+      "disabled": true,
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center"
+      }
+    },
+    "multicolumn_KKdrjn": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_p7j4Wf": {
+          "type": "column",
+          "settings": {
+            "link": "",
+            "title": "2026 Pet Innovation Awards"
+          }
+        },
+        "column_Bz8ykT": {
+          "type": "column",
+          "settings": {
+            "link": "",
+            "title": "2026 WIRED Recommends"
+          }
+        },
+        "column_KttQ8A": {
+          "type": "column",
+          "settings": {
+            "link": "",
+            "title": "2026 Parade Pets Best in Show Awards"
+          }
+        },
+        "column_EHcVbF": {
+          "type": "column",
+          "settings": {
+            "link": "",
+            "title": "2026 Good Housekeeping Travel Awards"
+          }
+        },
+        "column_P4rb7c": {
+          "type": "column",
+          "settings": {
+            "link": "",
+            "title": "2026 Apartment Therapy Best in Home Awards"
+          }
+        },
+        "column_zWVdnk": {
+          "type": "column",
+          "settings": {
+            "link": "",
+            "title": "2026 Best Pet Bed"
+          }
+        },
+        "column_AdaDag": {
+          "type": "column",
+          "settings": {
+            "link": "",
+            "title": "2026 Design Award"
+          }
+        }
+      },
+      "block_order": [
+        "column_p7j4Wf",
+        "column_Bz8ykT",
+        "column_KttQ8A",
+        "column_EHcVbF",
+        "column_P4rb7c",
+        "column_zWVdnk",
+        "column_AdaDag"
+      ],
+      "disabled": true,
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Recognized for Better Pet Living",
+        "subtitle": "Thoughtful details make a difference in everyday life with pets — and they haven't gone unnoticed.",
+        "heading_alignment": "center",
+        "heading_color": "#1a1a1a",
+        "subtitle_color": "#8a8a8a",
+        "heading_font_size": 3.2,
+        "heading_font_size_mobile": 2.4,
+        "subtitle_size": 1.5,
+        "subtitle_size_mobile": 1.3,
+        "heading_gap": 12,
+        "heading_gap_mobile": 8,
+        "header_gap": 32,
+        "header_gap_mobile": 24,
+        "columns_desktop": 5,
+        "image_ratio": "award",
+        "column_gap": 16,
+        "column_gap_mobile": 12,
+        "caption_color": "#6e6e6e",
+        "caption_size": 1.4,
+        "caption_size_mobile": 1.2,
+        "caption_gap": 12,
+        "caption_gap_mobile": 12,
+        "arrow_color": "#f5c518",
+        "background_color": "#f4f4f4",
+        "section_width": "page",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "hero_image_UnXfzN",
+    "logo_list_fd4Fz6",
+    "popular-products",
+    "hero_4jQf4y",
+    "product_markers_tWmkHa",
+    "collections_list_nQjr7U",
+    "logo_list_JPQRMh",
+    "image_carousel_m3qWLW",
+    "social_feed_pkHX6Y",
+    "media_banner_slider_X66bQr",
+    "blog_posts_zgkxzL",
+    "ticker-banner",
+    "testimonials_TAeUrm",
+    "features_table_JkLeF9",
+    "social-media",
+    "image_carousel_GMEwaX",
+    "hero_image_G7xHXR",
+    "multicolumn_KKdrjn"
+  ]
+}
