@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "color_modal_overlay": "#6A44CE",
+    "color_modal_overlay": "#FFFFFF",
     "type_header_font": "poppins_n7",
     "heading_h0_scale": 120,
     "heading_h3_scale": 110,
@@ -128,8 +128,8 @@
           "new_badge_color": "#6d2d09",
           "custom_badge_bg": "#ffffff",
           "custom_badge_color": "#6d2d09",
-          "card_regular_price_color": "#6A44CE",
-          "card_sale_price_color": "#FFD73C",
+          "card_regular_price_color": "#6a44ce",
+          "card_sale_price_color": "#ffd73c",
           "color_border": "#6d2d09",
           "colors_background_overlay": "#ffffff",
           "color_success": "#2e870d",
