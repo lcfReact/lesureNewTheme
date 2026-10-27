@@ -14,11 +14,26 @@
     if (!root || root.dataset.fbBound === "true") return;
     root.dataset.fbBound = "true";
 
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let lockTimer = 0;
+
+    const arm = (item) => {
+      if (!item || !root.contains(item) || item.classList.contains("is-open")) return;
+      activate(item);
+      window.clearTimeout(lockTimer);
+      lockTimer = window.setTimeout(() => {
+        lockTimer = 0;
+        const hovered = root.querySelector(".fb-item:hover");
+        if (hovered && hovered !== item) arm(hovered);
+      }, motionQuery.matches ? 0 : 480);
+    };
+
     root.addEventListener("mouseover", (event) => {
       if (!desktopQuery.matches || !window.matchMedia("(hover: hover)").matches) return;
+      if (lockTimer) return;
       const item = event.target.closest(".fb-item");
       if (!item || !root.contains(item)) return;
-      activate(item);
+      arm(item);
     });
 
     root.addEventListener("click", (event) => {

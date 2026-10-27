@@ -55,14 +55,18 @@
   overflow: hidden;
   border-radius: 4px;
   background: #efeaf8;
-  aspect-ratio: 622 / 664;
+  aspect-ratio: var(--fb-ratio, 622 / 664);
+  width: 100%;
+  max-width: 100%;
 }
-.fb-visual__img {
+.fb-visual__img,
+.fb-visual img,
+.fb-visual svg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: var(--fb-image-position, center);
   display: block;
 }
@@ -192,7 +196,6 @@
     align-items: start;
   }
   .fb-visual {
-    aspect-ratio: 622 / 664;
     width: 100%;
     height: auto;
   }
@@ -255,10 +258,6 @@
     margin-top: 20px;
   }
 
-  .fb-visual {
-    aspect-ratio: 1 / 1;
-  }
-
   .fb-list {
     gap: 18px;
   }
@@ -272,23 +271,27 @@
   }
 
   .fb-item__title {
-    min-height: calc(16px * 1.3 * 2);
-    font-size: 16px;
+    min-height: 0;
+    font-size: clamp(1.6rem, 4.6vw, 2rem);
   }
 
   .fb-item__excerpt {
-    min-height: calc(13px * 1.45 * 2);
+    min-height: 0;
     margin-top: 6px;
-    font-size: 13px;
+    font-size: clamp(1.3rem, 3.6vw, 1.5rem);
   }
 
   .fb-item.is-open .fb-item__cover {
     margin-top: 12px;
-    margin-bottom: 40px;
+    margin-bottom: 44px;
   }
 
-  .fb-item__img {
-    height: 100px;
+  .fb-item__img,
+  .fb-item.is-open .fb-item__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
   }
 
   .fb-item__arrow {

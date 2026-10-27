@@ -29,13 +29,14 @@
         <div class="fb-item__cover">
       {% endif %}
         {% if image != blank %}
+          {% assign fb_item_alt = image.alt | default: title | escape %}
           {{
             image
             | image_url: width: 1200
             | image_tag:
               widths: '400, 700, 1000, 1200',
               sizes: '(min-width: 750px) 42vw, 92vw',
-              alt: image.alt | default: title,
+              alt: fb_item_alt,
               class: 'fb-item__img',
               loading: 'lazy'
           }}
