@@ -213,15 +213,6 @@
         assign header_bg_mobile = header_bg_desktop
       endif
 
-      assign header_bg_ratio = 0.041666
-      assign header_bg_ratio_mobile = header_bg_ratio
-      if header_bg_desktop.aspect_ratio > 0
-        assign header_bg_ratio = 1.0 | divided_by: header_bg_desktop.aspect_ratio
-      endif
-      if header_bg_mobile.aspect_ratio > 0
-        assign header_bg_ratio_mobile = 1.0 | divided_by: header_bg_mobile.aspect_ratio
-      endif
-
       assign header_nav_color = ''
       if section.settings.text_color == blank and section.settings.icon_color == blank
         assign header_scheme = section.settings.color_scheme
@@ -242,47 +233,28 @@
         endif
       endif
     -%}
-    :root {
-      --header-height: calc(100vw * {{ header_bg_ratio_mobile }});
-    }
-    @media screen and (min-width: 1100px) {
-      :root {
-        --header-height: calc(100vw * {{ header_bg_ratio }});
-      }
-    }
-
-    #shopify-section-{{ section.id }} .header-wrapper,
-    #shopify-section-{{ section.id }} .header {
-      height: auto;
-      min-height: 0;
-      max-height: none;
-    }
     #shopify-section-{{ section.id }} .header-wrapper {
       background-image: none !important;
       background-attachment: scroll !important;
     }
     #shopify-section-{{ section.id }} .header-bg {
-      display: block;
+      position: absolute;
+      inset: 0;
+      z-index: 0;
       line-height: 0;
       pointer-events: none;
     }
     #shopify-section-{{ section.id }} .header-bg__img {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
       max-width: none;
+      object-fit: fill;
     }
     #shopify-section-{{ section.id }} .header {
-      position: absolute;
-      inset: 0;
+      position: relative;
       z-index: 4;
       background: transparent !important;
-    }
-    #shopify-section-{{ section.id }} .header__heading,
-    #shopify-section-{{ section.id }} .header > .header__heading-link,
-    #shopify-section-{{ section.id }} .header__heading-link {
-      height: auto;
-      max-height: 62%;
     }
 
     {%- if header_nav_color != blank -%}
