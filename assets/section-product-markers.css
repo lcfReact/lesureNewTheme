@@ -551,11 +551,15 @@
   display: none;
 }
 .product-markers-section .product-markers-card-actions {
+  position: absolute;
+  z-index: 2;
+  right: 10px;
+  bottom: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 12px;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 0;
 }
 .product-markers-section .product-markers-card-actions .button--quick-add,
 .product-markers-section .product-markers-card-actions .button--quick-view {
@@ -563,9 +567,9 @@
   height: 36px;
   min-height: 36px;
   padding: 0;
-  border: 1px solid #d9d9d9;
+  border: 0;
   border-radius: 50%;
-  background: #ffffff;
+  background: #f5d400;
   color: #171717;
 }
 .product-markers-section .product-markers-card-actions .button__content,

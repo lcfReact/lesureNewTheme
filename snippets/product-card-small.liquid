@@ -9,7 +9,7 @@
   - add_id: {Integer} The index of this card.
   - custom_sizes: {Integer} Custom sizes.
   - color_scheme: {String} Color scheme.
-  - show_actions: {Boolean} Show the add and quick view buttons under the image.
+  - show_actions: {Boolean} Show the add and quick view buttons on the image.
   Usage:
   {% render 'product-card-small', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
@@ -173,7 +173,6 @@
       class="link card-small-link-overlay js-color-swatches-link"
       aria-label="{{ 'accessibility.product_link' | t }}"
     ></a>
-  </div>
 
   {%- if show_actions -%}
     <div class="product-markers-card-actions">
@@ -227,6 +226,7 @@
       {%- endif -%}
     </div>
   {%- endif -%}
+  </div>
 
   {% comment %} ----- CARD INFORMATION ----- {% endcomment %}
   <div class="card-small-information">
