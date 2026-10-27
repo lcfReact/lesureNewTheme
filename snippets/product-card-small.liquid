@@ -9,6 +9,7 @@
   - add_id: {Integer} The index of this card.
   - custom_sizes: {Integer} Custom sizes.
   - color_scheme: {String} Color scheme.
+  - show_actions: {Boolean} Show the add and quick view buttons under the image.
   Usage:
   {% render 'product-card-small', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
@@ -173,6 +174,59 @@
       aria-label="{{ 'accessibility.product_link' | t }}"
     ></a>
   </div>
+
+  {%- if show_actions -%}
+    <div class="product-markers-card-actions">
+      {%- if settings.add_to_cart_enabled -%}
+        {%- liquid
+          assign quick_buy_suffix = add_id | default: product_card_product.id
+          assign quick_buy_key = section_id | append: '-' | append: product_card_product.id | append: '-' | append: quick_buy_suffix
+        -%}
+        <div class="card__add-to-cart card__button">
+          <button
+            type="button"
+            class="card__link button button--{{ settings.quickview_button_style }} button--quick-add card-focused quick-buy-open"
+            aria-haspopup="dialog"
+            aria-label="{{ settings.add_to_cart | escape }} {{ product_card_product.title | escape }}"
+            data-product-url="{{ product_card_product.url }}"
+            data-swatch-id="QuickBuySwatches-{{ quick_buy_key }}"
+          >
+            <div class="button__content">
+              <span class="button__label visually-hidden" data-label="{{- settings.add_to_cart | escape -}}">
+                {{- settings.add_to_cart | escape -}}
+              </span>
+              <div class="button__icons">
+                <span class="button__icon button__icon--1">{% render 'icon-plus' %}</span>
+                <span class="button__icon button__icon--2">{% render 'icon-plus' %}</span>
+              </div>
+            </div>
+          </button>
+          {% render 'quick-buy-swatches',
+            product_card_product: product_card_product,
+            section_id: section_id,
+            add_id: add_id
+          %}
+        </div>
+      {%- endif -%}
+      {%- if settings.quickview_show -%}
+        <a
+          href="{{ product_card_product.url }}"
+          class="card__link button button--{{ settings.quickview_button_style }} button--quick-view card-focused"
+          aria-label="{{ 'accessibility.product_link' | t }} {{ product_card_product.title | escape }}"
+        >
+          <div class="button__content">
+            <span class="button__label visually-hidden">
+              {{ product_card_product.title | escape }}
+            </span>
+            <div class="button__icons">
+              <span class="button__icon button__icon--1">{% render 'icon-quick-view' %}</span>
+              <span class="button__icon button__icon--2">{% render 'icon-quick-view' %}</span>
+            </div>
+          </div>
+        </a>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
 
   {% comment %} ----- CARD INFORMATION ----- {% endcomment %}
   <div class="card-small-information">

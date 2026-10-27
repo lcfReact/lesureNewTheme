@@ -493,8 +493,8 @@
           {%- endif -%}
 
           <div class="product-markers-split-slider-container">
-            <div class="product-markers-split-slider swiper">
-              <div class="product-markers-split-slider-wrapper swiper-wrapper">
+            <div class="product-markers-split-slider">
+              <div class="product-markers-split-slider-wrapper">
                 {%- if section.blocks.size > 0 -%}
                   {%- for block in section.blocks -%}
                     {% liquid
@@ -505,7 +505,7 @@
                       endif
                     %}
                     <div
-                      class="product-markers-split-slider-slide swiper-slide"
+                      class="product-markers-split-slider-slide"
                       data-block-id="{{ section.id }}-{{ block.id }}"
                       data-marker-id="{{ product_id }}"
                       {{ block.shopify_attributes }}
@@ -517,6 +517,7 @@
                             media_ratio: section.settings.product_image_ratio,
                             media_fit: section.settings.product_image_fit,
                             show_vendor: section.settings.show_vendor,
+                            show_actions: true,
                             section_id: section.id,
                             add_id: forloop.index,
                             color_scheme: section.settings.main_color_scheme
@@ -551,7 +552,7 @@
                       assign product_id = section.id | append: '-product-marker-' | append: forloop.index
                     %}
                     <div
-                      class="product-markers-split-slider-slide swiper-slide"
+                      class="product-markers-split-slider-slide"
                       data-block-id="{{ section.id }}-{{ forloop.index }}"
                       data-marker-id="{{ product_id }}"
                     >
@@ -573,18 +574,6 @@
                 {%- endif -%}
               </div>
             </div>
-            {% if section.blocks.size != 1 %}
-              <div class="product-markers-split-nav no-js-hidden">
-                {% render 'slider-button',
-                  direction: 'prev',
-                  classnames: 'product-markers-split-nav-button product-markers-split-nav-button--prev'
-                %}
-                {% render 'slider-button',
-                  direction: 'next',
-                  classnames: 'product-markers-split-nav-button product-markers-split-nav-button--next'
-                %}
-              </div>
-            {% endif %}
           </div>
         </div>
       </div>

@@ -547,6 +547,43 @@
   width: 100%;
   max-width: 21rem;
 }
+.product-markers-section .card-small__title {
+  display: none;
+}
+.product-markers-section .product-markers-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+.product-markers-section .product-markers-card-actions .button--quick-add,
+.product-markers-section .product-markers-card-actions .button--quick-view {
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0;
+  border: 1px solid #d9d9d9;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #171717;
+}
+.product-markers-section .product-markers-card-actions .button__content,
+.product-markers-section .product-markers-card-actions .button__icons,
+.product-markers-section .product-markers-card-actions .button__icon {
+  width: 16px;
+  min-width: 16px;
+  height: 16px;
+  min-height: 16px;
+}
+.product-markers-section .product-markers-card-actions .button--quick-add .button__icon,
+.product-markers-section .product-markers-card-actions .button--quick-view .button__icon,
+.product-markers-section .product-markers-card-actions .button--quick-add:hover .button__icon,
+.product-markers-section .product-markers-card-actions .button--quick-view:hover .button__icon {
+  color: #171717;
+  transform: none;
+  opacity: 1;
+}
 .product-markers-split-slider-slide__desc {
   text-align: center;
   max-width: 32.8rem;
