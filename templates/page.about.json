@@ -705,141 +705,6 @@
         "padding_bottom": 72
       }
     },
-    "testimonials_LNDDdE": {
-      "type": "testimonials",
-      "blocks": {
-        "testimonials_slide_mftXtV": {
-          "type": "testimonials_slide",
-          "settings": {
-            "show_rating": true,
-            "rating": 5,
-            "show_rating_numbers": true,
-            "slide_text": "\"Got my 8 year old Lab this bed and it’s PERFECT! She heads straight for it instead of her old raggedy bed. 100/10!\"",
-            "show_author": true,
-            "slide_author": "Petrea S.&nbsp;",
-            "show_slide_author_image": true,
-            "slide_author_desc": "@author's_link",
-            "show_product": true,
-            "product": "realortho™"
-          }
-        },
-        "testimonials_slide_7mmhgp": {
-          "type": "testimonials_slide",
-          "settings": {
-            "show_rating": true,
-            "rating": 5,
-            "show_rating_numbers": true,
-            "slide_text": "\"The entire thing is well thought out. It has the best safety measures. The most comfortable car seat I've ever owned.\"",
-            "show_author": true,
-            "slide_author": "&nbsp;Jules B.&nbsp;",
-            "show_slide_author_image": true,
-            "slide_author_desc": "@author's_link",
-            "show_product": true,
-            "product": ""
-          }
-        },
-        "testimonials_slide_Da43pA": {
-          "type": "testimonials_slide",
-          "settings": {
-            "show_rating": true,
-            "rating": 5,
-            "show_rating_numbers": true,
-            "slide_text": "This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.",
-            "show_author": true,
-            "slide_author": "<strong>Author's name</strong>",
-            "show_slide_author_image": true,
-            "slide_author_desc": "@author's_link",
-            "show_product": true,
-            "product": ""
-          }
-        },
-        "testimonials_slide_8iyybe": {
-          "type": "testimonials_slide",
-          "settings": {
-            "show_rating": true,
-            "rating": 5,
-            "show_rating_numbers": true,
-            "slide_text": "This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.",
-            "show_author": true,
-            "slide_author": "<strong>Author's name</strong>",
-            "show_slide_author_image": true,
-            "slide_author_desc": "@author's_link",
-            "show_product": true,
-            "product": ""
-          }
-        },
-        "testimonials_slide_pUt6AB": {
-          "type": "testimonials_slide",
-          "settings": {
-            "show_rating": true,
-            "rating": 5,
-            "show_rating_numbers": true,
-            "slide_text": "This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.",
-            "show_author": true,
-            "slide_author": "<strong>Author's name</strong>",
-            "show_slide_author_image": true,
-            "slide_author_desc": "@author's_link",
-            "show_product": true,
-            "product": ""
-          }
-        },
-        "testimonials_slide_FdUX36": {
-          "type": "testimonials_slide",
-          "settings": {
-            "show_rating": true,
-            "rating": 5,
-            "show_rating_numbers": true,
-            "slide_text": "This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.",
-            "show_author": true,
-            "slide_author": "<strong>Author's name</strong>",
-            "show_slide_author_image": true,
-            "slide_author_desc": "@author's_link",
-            "show_product": true,
-            "product": ""
-          }
-        }
-      },
-      "block_order": [
-        "testimonials_slide_mftXtV",
-        "testimonials_slide_7mmhgp",
-        "testimonials_slide_Da43pA",
-        "testimonials_slide_8iyybe",
-        "testimonials_slide_pUt6AB",
-        "testimonials_slide_FdUX36"
-      ],
-      "disabled": true,
-      "name": "t:sections.testimonials.name",
-      "settings": {
-        "color_scheme": "",
-        "enable_border_top": false,
-        "enable_border_bottom": false,
-        "show_nav_buttons_desktop": true,
-        "show_nav_buttons_mobile": true,
-        "nav_buttons_color_scheme": "scheme-7ddb7b8a-ad46-48db-b445-c234e65e7229",
-        "enable_loop": true,
-        "centered_slides": true,
-        "slides_per_view": 2,
-        "animate_section_header_on_scroll": true,
-        "subheading": "",
-        "heading": "What Pet Parents Are Saying",
-        "heading_size": "h2",
-        "heading_level": "h2",
-        "description": "",
-        "text_align": "center",
-        "testimonial_color_scheme": "",
-        "testimonial_text_size": "h3",
-        "product_card_color_scheme": "",
-        "product_card_aspect_ratio": "portrait",
-        "product_card_object_fit": "cover",
-        "product_card_show_vendor": false,
-        "product_card_show_button": true,
-        "product_card_button_label": "Shop Now",
-        "padding_top": "l",
-        "padding_bottom": "l",
-        "margin_top": "no-indent",
-        "margin_bottom": "no-indent"
-      }
-    },
     "testimonials_zijtgB": {
       "type": "testimonials",
       "blocks": {
@@ -939,7 +804,7 @@
         "enable_border_bottom": false,
         "show_nav_buttons_desktop": true,
         "show_nav_buttons_mobile": true,
-        "nav_buttons_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "nav_buttons_color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
         "enable_loop": true,
         "centered_slides": false,
         "slides_per_view": 3,
@@ -950,9 +815,9 @@
         "heading_level": "h2",
         "description": "",
         "text_align": "center",
-        "testimonial_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "testimonial_color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
         "testimonial_text_size": "h5",
-        "product_card_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "product_card_color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
         "product_card_aspect_ratio": "portrait",
         "product_card_object_fit": "cover",
         "product_card_show_vendor": false,
@@ -1104,7 +969,6 @@
     "media_banner_slider_dfLp9P",
     "image_collage_BPaBUM",
     "multicolumn_xjTjMJ",
-    "testimonials_LNDDdE",
     "testimonials_zijtgB",
     "media_banner_slider_fz8pgH",
     "image-carousel"
