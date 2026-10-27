@@ -317,7 +317,7 @@
         "show_vendor": false,
         "show_desc": true,
         "padding_top": "xs",
-        "padding_bottom": "xl",
+        "padding_bottom": "xs",
         "margin_top": "no-indent",
         "margin_bottom": "no-indent"
       }
@@ -331,6 +331,7 @@
             "collection": "cat",
             "title": "",
             "card_url": "",
+            "image": "shopify://shop_images/1_96b8b7b7-eac2-4406-8872-1e05367825b1.png",
             "image_position": "center",
             "button_label": "Shop Beds"
           }
@@ -338,21 +339,23 @@
         "collection_item_y6wXML": {
           "type": "collection_item",
           "settings": {
-            "collection": "",
+            "collection": "cat",
             "title": "",
             "card_url": "",
+            "image": "shopify://shop_images/2_199329b2-06ef-4b72-b1f8-c80e1c774b2f.png",
             "image_position": "center",
-            "button_label": "Shop Beds"
+            "button_label": "SHOP SMART DEVICES"
           }
         },
         "collection_item_jjie3n": {
           "type": "collection_item",
           "settings": {
-            "collection": "",
+            "collection": "outdoors",
             "title": "",
             "card_url": "",
+            "image": "shopify://shop_images/3_339b8eb2-6280-427a-b238-3c1c9947602a.png",
             "image_position": "center",
-            "button_label": "Shop Beds"
+            "button_label": "SHOP TRAVEL GEAR"
           }
         },
         "collection_item_yiYr7W": {
@@ -361,6 +364,7 @@
             "collection": "",
             "title": "",
             "card_url": "",
+            "image": "shopify://shop_images/4_72d95597-df8f-46a9-8699-c105cfd81916.png",
             "image_position": "center",
             "button_label": "Shop Beds"
           }
