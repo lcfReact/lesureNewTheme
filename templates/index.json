@@ -361,12 +361,12 @@
         "collection_item_yiYr7W": {
           "type": "collection_item",
           "settings": {
-            "collection": "",
+            "collection": "essentials",
             "title": "",
             "card_url": "",
             "image": "shopify://shop_images/4_72d95597-df8f-46a9-8699-c105cfd81916.png",
             "image_position": "center",
-            "button_label": "Shop Beds"
+            "button_label": "SHOP HYGIENE ESSENTIALS"
           }
         }
       },
