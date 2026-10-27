@@ -178,10 +178,38 @@
           "settings": {
             "product": "lesure-cat-litter-box"
           }
+        },
+        "product_KnpqzC": {
+          "type": "product",
+          "settings": {
+            "product": "lesure-calming-donut-bed-for-dog-cat-cozy-clouds-blue"
+          }
+        },
+        "product_dGqTyC": {
+          "type": "product",
+          "settings": {
+            "product": "high-back-pet-sofa"
+          }
+        },
+        "product_BzBi8E": {
+          "type": "product",
+          "settings": {
+            "product": "lesure-waterproof-puppy-blanket-for-dog-cat"
+          }
+        },
+        "product_3yQat3": {
+          "type": "product",
+          "settings": {
+            "product": "realortho™"
+          }
         }
       },
       "block_order": [
-        "product_nAyiE4"
+        "product_nAyiE4",
+        "product_KnpqzC",
+        "product_dGqTyC",
+        "product_BzBi8E",
+        "product_3yQat3"
       ],
       "settings": {
         "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
@@ -210,7 +238,7 @@
         "button_label": "View all",
         "button_style": "primary",
         "button_link": "",
-        "padding_top": "l",
+        "padding_top": "s",
         "padding_bottom": "l",
         "margin_top": "no-indent",
         "margin_bottom": "no-indent"

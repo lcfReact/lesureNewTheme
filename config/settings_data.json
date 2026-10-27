@@ -62,10 +62,10 @@
     "color_schemes": {
       "scheme-7ddb7b8a-ad46-48db-b445-c234e65e7229": {
         "settings": {
-          "colors_text": "#FFFFFF",
-          "colors_secondary_text": "#FFFFFF",
-          "colors_background_1": "#6A44CE",
-          "colors_background_2": "#FFFFFF",
+          "colors_text": "#ffffff",
+          "colors_secondary_text": "#ffffff",
+          "colors_background_1": "#6a44ce",
+          "colors_background_2": "#ffffff",
           "background_gradient": "",
           "colors_background_card_small": "#ffd73c",
           "colors_background_card_small_hover": "#000000",
@@ -128,8 +128,8 @@
           "new_badge_color": "#6d2d09",
           "custom_badge_bg": "#ffffff",
           "custom_badge_color": "#6d2d09",
-          "card_regular_price_color": "#6d2d09",
-          "card_sale_price_color": "#eb0000",
+          "card_regular_price_color": "#6A44CE",
+          "card_sale_price_color": "#FFD73C",
           "color_border": "#6d2d09",
           "colors_background_overlay": "#ffffff",
           "color_success": "#2e870d",
