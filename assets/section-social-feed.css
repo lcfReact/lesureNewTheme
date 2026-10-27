@@ -1,6 +1,10 @@
 .social-feed {
   overflow: hidden;
 }
+
+.social-feed.ugc-stage {
+  overflow: clip;
+}
 .social-feed.social-feed--border-top {
   border-top: 1px solid rgb(var(--color-border));
 }
