@@ -735,7 +735,7 @@
         "full_width": true,
         "alignment": "center",
         "padding_top": "l",
-        "padding_bottom": "l",
+        "padding_bottom": "xs",
         "margin_top": "no-indent",
         "margin_bottom": "no-indent"
       }
@@ -772,6 +772,7 @@
       "name": "t:sections.blog-posts.presets.name",
       "settings": {
         "blog": "",
+        "image": "shopify://shop_images/8-explore_your_blog.png",
         "image_position": "center",
         "color_scheme": "",
         "background_color": "#f9f9f9",
