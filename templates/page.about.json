@@ -1,1 +1,1112 @@
-{"sections":{"image-parallax-with-text":{"type":"image-parallax-with-text","blocks":{"block_1":{"type":"image","settings":{"image_width":140,"aspect_ratio":"square","enable_mobile_positioning":false,"position_x":15,"position_x_mobile":50,"position_y":12,"position_y_mobile":50,"image_rotate":0,"parallax_direction":"down","image_border_radius":"rounded"}},"block_2":{"type":"image","settings":{"image_width":144,"aspect_ratio":"square","enable_mobile_positioning":false,"position_x":2,"position_x_mobile":50,"position_y":55,"position_y_mobile":50,"image_rotate":0,"parallax_direction":"down","image_border_radius":"rounded"}},"block_3":{"type":"image","settings":{"image_width":144,"aspect_ratio":"square","enable_mobile_positioning":false,"position_x":85,"position_x_mobile":50,"position_y":18,"position_y_mobile":50,"image_rotate":0,"parallax_direction":"up","image_border_radius":"rounded"}},"block_4":{"type":"image","settings":{"image_width":144,"aspect_ratio":"square","enable_mobile_positioning":false,"position_x":93,"position_x_mobile":50,"position_y":75,"position_y_mobile":50,"image_rotate":0,"parallax_direction":"up","image_border_radius":"rounded"}}},"block_order":["block_1","block_2","block_3","block_4"],"disabled":true,"settings":{"color_scheme":"scheme-7ddb7b8a-ad46-48db-b445-c234e65e7229","show_border_top":false,"show_border_bottom":true,"show_background_media":false,"overlay_opacity":0,"enable_parallax":true,"enable_image_animation":true,"subheading_text":"","subheading_size":"body-xl","show_subheading_underline":true,"subheading_underline_style":"type-1","subheading_underline_color":"#000000","subheading_stroke_width":3,"enable_subheading_text_animation":true,"main_text":"Human Standards.Made for Pets.","main_text_size":"h1","main_text_level":"h2","enable_main_text_animation":true,"description":"Welcome to Lesure! Here, pets live like we do — because they're family, and family deserves the same comfort, care, and quality we'd choose for ourselves.&nbsp;","description_text_size":"body-xl","show_button":false,"button_label":"Shop Now","button_link":"","button_style":"primary","padding_top":"xl","padding_bottom":"xl","margin_top":"no-indent","margin_bottom":"no-indent"}},"hero_qmchMx":{"type":"hero","disabled":true,"name":"t:sections.hero.name","settings":{"color_scheme":"","show_background_media":true,"background_image":"shopify:\/\/shop_images\/1_68c8b1b5-27b1-406e-a196-0ed099c098bd.jpg","image_ratio_desktop":"full_height","image_ratio_mobile":"full_height","overlay_opacity":0,"overlay_as_gradient":false,"section_heading":"","heading_tag":"h2","section_heading_size":"h2","hero_description":"","content_align":"center","enable_content_animation":true,"show_logo":false,"logo_width":580,"hero_text":"","hero_text_font_weight":"600","hero_text_line_height":0.7,"hero_text_align":"right","content_order":"column-reverse","show_button":false,"button_style":"primary","button_label":"Shop Now","button_link":"","margin_top":"no-indent","margin_bottom":"no-indent"}},"hero_image_nmRx6N":{"type":"hero-image","name":"t:sections.hero-image.presets.name","settings":{"image":"shopify:\/\/shop_images\/1_68c8b1b5-27b1-406e-a196-0ed099c098bd.jpg","image_mobile":"shopify:\/\/shop_images\/1_21839a29-b325-4e92-a24a-39ca27ea2230.jpg","desktop_height":"adapt","mobile_height":"adapt","image_fit":"contain","image_position":"center","image_position_mobile":"center","overlay_opacity":0,"heading":"","heading_color":"#ffffff","heading_size":5.6,"heading_size_mobile":2.8,"text":"","text_color":"#ffffff","text_size":1.8,"text_size_mobile":1.4,"text_gap":16,"text_gap_mobile":12,"desktop_vertical":"middle","desktop_horizontal":"center","mobile_vertical":"middle","mobile_horizontal":"center"}},"slideshow_qDgJya":{"type":"slideshow","blocks":{"slide_dpMjNd":{"type":"slide","settings":{"show_slide_image":false,"image":"shopify:\/\/shop_images\/1_3c4fce9b-51f0-4512-be04-a17ec1cdb7f8.png","heading":"","heading_tag":"h2","heading_size":"h2","heading_line_height":0.8,"description":"Use this space to provide details about what’s being featured in this slide.","show_button":true,"button_style":"primary","button_label":"Shop Now","button_link":""}},"slide_QgtBTC":{"type":"slide","settings":{"show_slide_image":true,"heading":"Slide title","heading_tag":"h2","heading_size":"h2","heading_line_height":0.8,"description":"Use this space to provide details about what’s being featured in this slide.","show_button":true,"button_style":"primary","button_label":"Shop Now","button_link":""}}},"block_order":["slide_dpMjNd","slide_QgtBTC"],"disabled":true,"name":"t:sections.slideshow.presets.name","settings":{"color_scheme":"","show_background_media":true,"background_image":"shopify:\/\/shop_images\/1_3c4fce9b-51f0-4512-be04-a17ec1cdb7f8.png","image_ratio_desktop":"full_height","image_ratio_mobile":"16\/9","overlay_opacity":0,"enable_background_media_animation":false,"duration_background_media_animation":1.5,"rotating_text":"ADD YOUR MESSAGE","color_scheme_rotating_text":"","rotating_text_position_x":80,"rotating_text_position_y":75,"rotating_text_letter_spacing":10.8,"overwrite_slideshow_text":false,"overwrite_slideshow_image_width":1860,"slideshow_text":"SLIDESHOW","slideshow_text_font_weight":"600","slideshow_text_line_height":0.7,"slideshow_text_align":"center","slider_type":"type-2","enable_loop":true,"enable_autoplay":false,"slide_duration":5,"image_ratio":"portrait","mobile_image_ratio":"landscape","object_fit":"cover","enable_slide_animation":false,"margin_top":"no-indent","margin_bottom":"no-indent"}},"rich_text_6FqwWw":{"type":"rich-text","blocks":{"subheading_86YzfY":{"type":"subheading","disabled":true,"settings":{"subheading":"Short introduction"}},"heading_98KXBt":{"type":"heading","settings":{"heading":"&nbsp;What Human Standards Mean to Us&nbsp;","heading_tag":"h2","heading_size":"h2"}},"text_CVyxGU":{"type":"text","settings":{"text":"<p>It means adapting the design and engineering behind products made for people to the things your pets rely on every day. From sleep and travel to smart care, play, and daily essentials, Lesure designs around their needs and your life together.<br\/><br\/><\/p>"}},"button_qiyryY":{"type":"button","disabled":true,"settings":{"button_label":"Learn more","button_link":"","button_style":"primary"}}},"block_order":["subheading_86YzfY","heading_98KXBt","text_CVyxGU","button_qiyryY"],"name":"t:sections.rich-text.presets.name","settings":{"color_scheme":"scheme-7ddb7b8a-ad46-48db-b445-c234e65e7229","full_width":true,"alignment":"center","padding_top":"l","padding_bottom":"no-indent","margin_top":"no-indent","margin_bottom":"no-indent"}},"media_banner_slider_CmMqJd":{"type":"media-banner-slider","blocks":{"slide_fDYdXE":{"type":"slide","settings":{"show_background_media":true,"image":"shopify:\/\/shop_images\/2_2640152f-37f4-48dd-aa9f-c199e25af39c.jpg","mobile_image":"shopify:\/\/shop_images\/2.1.jpg","overlay_opacity":0,"show_video":false,"heading":"","heading_tag":"h2","heading_size":"h2","description":"","show_label":false,"label_border_radius":"pill","label_text":"Label","label_count":5,"show_button":false,"button_style":"primary","button_label":"Shop Now","button_link":""}},"slide_T7YQ3J":{"type":"slide","settings":{"show_background_media":true,"image":"shopify:\/\/shop_images\/3_356ac663-a9e6-492b-9b10-5bd521cef4bd.jpg","mobile_image":"shopify:\/\/shop_images\/2.2_2f98925f-514f-4471-893c-396a5ef4ccae.jpg","overlay_opacity":0,"show_video":false,"heading":"","heading_tag":"h2","heading_size":"h2","description":"","show_label":false,"label_border_radius":"pill","label_text":"","label_count":1,"show_button":false,"button_style":"primary","button_label":"Shop Now","button_link":""}},"slide_Kapp3p":{"type":"slide","settings":{"show_background_media":true,"image":"shopify:\/\/shop_images\/4_8064517c-aa4d-4848-9171-bd61e5326aff.jpg","mobile_image":"shopify:\/\/shop_images\/2.3.jpg","overlay_opacity":0,"show_video":false,"heading":"","heading_tag":"h2","heading_size":"h2","description":"","show_label":false,"label_border_radius":"pill","label_text":"","label_count":5,"show_button":false,"button_style":"primary","button_label":"Shop Now","button_link":""}},"slide_ycR9zB":{"type":"slide","settings":{"show_background_media":true,"image":"shopify:\/\/shop_images\/5_5af9ab87-a656-42d9-bca7-8e5d65e3ddf6.jpg","mobile_image":"shopify:\/\/shop_images\/2.4.jpg","overlay_opacity":0,"show_video":false,"heading":"","heading_tag":"h2","heading_size":"h2","description":"","show_label":false,"label_border_radius":"pill","label_text":"","label_count":5,"show_button":false,"button_style":"primary","button_label":"Shop Now","button_link":""}}},"block_order":["slide_fDYdXE","slide_T7YQ3J","slide_Kapp3p","slide_ycR9zB"],"name":"t:sections.media-banner-slider.presets.name","settings":{"full_width":true,"color_scheme":"scheme-7ddb7b8a-ad46-48db-b445-c234e65e7229","enable_border_top":false,"enable_border_bottom":false,"slide_image_position":"full_width_image","image_ratio_desktop":"adapt","image_ratio_mobile":"adapt","vertical_align_content":"top","rotating_text":"","color_scheme_rotating_text":"","rotating_text_vertical_align":"top","rotating_text_letter_spacing":10.8,"slide_color_scheme":"","enable_loop":true,"enable_parallax":false,"enable_pagination":true,"show_nav_buttons":false,"enable_autoplay":false,"slider_stop_on_hover":false,"slide_duration":1,"animation_type":"slide","controls_position":"center","padding_top":"no-indent","padding_bottom":"no-indent","margin_top":"no-indent","margin_bottom":"no-indent"}},"media_banner_slider_dfLp9P":{"type":"media-banner-slider","blocks":{"slide_7RCtqx":{"type":"slide","settings":{"show_background_media":true,"image":"shopify:\/\/shop_images\/6_1aa9c8d3-11b3-45ff-861d-b659f8024424.jpg","overlay_opacity":0,"show_video":false,"heading":"","heading_tag":"h2","heading_size":"h2","description":"","show_label":false,"label_border_radius":"pill","label_text":"Label","label_count":5,"show_button":false,"button_style":"primary","button_label":"Shop Now","button_link":""}}},"block_order":["slide_7RCtqx"],"name":"t:sections.media-banner-slider.presets.name","settings":{"full_width":true,"color_scheme":"","enable_border_top":false,"enable_border_bottom":false,"slide_image_position":"full_width_image","image_ratio_desktop":"adapt","image_ratio_mobile":"adapt","vertical_align_content":"top","rotating_text":"","color_scheme_rotating_text":"","rotating_text_vertical_align":"top","rotating_text_letter_spacing":10.8,"slide_color_scheme":"","enable_loop":true,"enable_parallax":false,"enable_pagination":true,"show_nav_buttons":false,"enable_autoplay":false,"slider_stop_on_hover":false,"slide_duration":5,"animation_type":"slide","controls_position":"center","padding_top":"no-indent","padding_bottom":"no-indent","margin_top":"no-indent","margin_bottom":"no-indent"}},"image_collage_BPaBUM":{"type":"image-collage","blocks":{"image_collage_column_LhkeHM":{"type":"_image_collage_column","settings":{"column_padding_top":0},"blocks":{"image_collage_block_PHQXH9":{"type":"_image_collage_block","settings":{"aspect_ratio":"adapt","object_fit":"cover","image_padding_left":5,"image_padding_right":0,"border_top_left_radius":true,"border_bottom_left_radius":true,"border_top_right_radius":true,"border_bottom_right_radius":true},"blocks":{}},"image_collage_block_wmGFgk":{"type":"_image_collage_block","settings":{"aspect_ratio":"adapt","object_fit":"cover","image_padding_left":0,"image_padding_right":0,"border_top_left_radius":false,"border_bottom_left_radius":false,"border_top_right_radius":true,"border_bottom_right_radius":true},"blocks":{}}},"block_order":["image_collage_block_PHQXH9","image_collage_block_wmGFgk"]},"image_collage_column_nmLRaR":{"type":"_image_collage_column","settings":{"column_padding_top":15},"blocks":{"image_collage_block_Bgtzzg":{"type":"_image_collage_block","settings":{"aspect_ratio":"adapt","object_fit":"cover","image_padding_left":0,"image_padding_right":0,"border_top_left_radius":true,"border_bottom_left_radius":true,"border_top_right_radius":true,"border_bottom_right_radius":true},"blocks":{}}},"block_order":["image_collage_block_Bgtzzg"]},"image_collage_column_jPbxah":{"type":"_image_collage_column","settings":{"column_padding_top":0},"blocks":{"image_collage_block_jbfiQN":{"type":"_image_collage_block","settings":{"aspect_ratio":"adapt","object_fit":"cover","image_padding_left":0,"image_padding_right":0,"border_top_left_radius":true,"border_bottom_left_radius":true,"border_top_right_radius":false,"border_bottom_right_radius":false},"blocks":{}},"image_collage_block_3yQEJJ":{"type":"_image_collage_block","settings":{"aspect_ratio":"adapt","object_fit":"cover","image_padding_left":0,"image_padding_right":5,"border_top_left_radius":true,"border_bottom_left_radius":true,"border_top_right_radius":true,"border_bottom_right_radius":true},"blocks":{}}},"block_order":["image_collage_block_jbfiQN","image_collage_block_3yQEJJ"]}},"block_order":["image_collage_column_LhkeHM","image_collage_column_nmLRaR","image_collage_column_jPbxah"],"disabled":true,"name":"t:sections.image-collage.name","settings":{"main_color_scheme":"","enable_border_top":false,"enable_border_bottom":true,"enable_parallax":true,"animate_section_header_on_scroll":true,"heading":"Section heading","heading_size":"h2","heading_level":"h2","subheading":"This is where your subtitle goes","heading_tag":"h2","description":"<p>Use this space to describe the purpose of this block<\/p>","text_align":"center","padding_top":"l","padding_bottom":"l","margin_top":"no-indent","margin_bottom":"no-indent"}},"multicolumn_xjTjMJ":{"type":"multicolumn","blocks":{"column_8bebLc":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/7_9e8ec9a8-e0ec-4df9-a81a-e51eb5682f98.jpg","link":"","title":"2026 Pet Innovation Awards"}},"column_wTFwzQ":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/8_d8e225aa-23ac-4cb5-86f2-b3bb214c4a91.jpg","link":"","title":"2026 WIRED Recommends"}},"column_MWejQd":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/9_283fc188-07a7-4c9b-b8f2-96642dfca189.jpg","link":"","title":"2026 Parade Pets Best in Show Awards"}},"column_CpyP73":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/10_c0eb2be5-d466-49a8-895f-eb7f7a434a83.jpg","link":"","title":"&nbsp;2026 Good Housekeeping Travel Awards&nbsp;"}},"column_HBGpYi":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/11_7643eca3-4905-459a-87a0-9cdda2445740.jpg","link":"","title":"2026 Apartment Therapy Best in Home Awards &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;"}}},"block_order":["column_8bebLc","column_wTFwzQ","column_MWejQd","column_CpyP73","column_HBGpYi"],"name":"t:sections.multicolumn.name","settings":{"title":"Recognized for Better Pet Living","subtitle":"Thoughtful details make a difference in everyday life with pets— and they haven’t gone unnoticed.","heading_alignment":"center","heading_color":"#1a1a1a","subtitle_color":"#5c5c5c","heading_font_size":3.2,"heading_font_size_mobile":2.4,"subtitle_size":1.5,"subtitle_size_mobile":1.3,"heading_gap":12,"heading_gap_mobile":8,"header_gap":32,"header_gap_mobile":24,"columns_desktop":5,"image_ratio":"award","column_gap":24,"column_gap_mobile":12,"caption_color":"#1a1a1a","caption_size":1.4,"caption_size_mobile":1.2,"caption_gap":12,"caption_gap_mobile":12,"arrow_color":"#ffd73c","background_color":"#ecebed","section_width":"page","padding_top":72,"padding_bottom":72}},"testimonials_LNDDdE":{"type":"testimonials","blocks":{"testimonials_slide_mftXtV":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"\"Got my 8 year old Lab this bed and it’s PERFECT! She heads straight for it instead of her old raggedy bed. 100\/10!\"","show_author":true,"slide_author":"Petrea S.&nbsp;","show_slide_author_image":true,"slide_author_desc":"@author's_link","show_product":true,"product":"realortho™"}},"testimonials_slide_7mmhgp":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"\"The entire thing is well thought out. It has the best safety measures. The most comfortable car seat I've ever owned.\"","show_author":true,"slide_author":"&nbsp;Jules B.&nbsp;","show_slide_author_image":true,"slide_author_desc":"@author's_link","show_product":true,"product":""}},"testimonials_slide_Da43pA":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.","show_author":true,"slide_author":"<strong>Author's name<\/strong>","show_slide_author_image":true,"slide_author_desc":"@author's_link","show_product":true,"product":""}},"testimonials_slide_8iyybe":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.","show_author":true,"slide_author":"<strong>Author's name<\/strong>","show_slide_author_image":true,"slide_author_desc":"@author's_link","show_product":true,"product":""}},"testimonials_slide_pUt6AB":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.","show_author":true,"slide_author":"<strong>Author's name<\/strong>","show_slide_author_image":true,"slide_author_desc":"@author's_link","show_product":true,"product":""}},"testimonials_slide_FdUX36":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.","show_author":true,"slide_author":"<strong>Author's name<\/strong>","show_slide_author_image":true,"slide_author_desc":"@author's_link","show_product":true,"product":""}}},"block_order":["testimonials_slide_mftXtV","testimonials_slide_7mmhgp","testimonials_slide_Da43pA","testimonials_slide_8iyybe","testimonials_slide_pUt6AB","testimonials_slide_FdUX36"],"disabled":true,"name":"t:sections.testimonials.name","settings":{"color_scheme":"","enable_border_top":false,"enable_border_bottom":false,"show_nav_buttons_desktop":true,"show_nav_buttons_mobile":true,"nav_buttons_color_scheme":"scheme-7ddb7b8a-ad46-48db-b445-c234e65e7229","enable_loop":true,"centered_slides":true,"slides_per_view":2,"animate_section_header_on_scroll":true,"subheading":"","heading":"What Pet Parents Are Saying","heading_size":"h2","heading_level":"h2","description":"","text_align":"center","testimonial_color_scheme":"","testimonial_text_size":"h3","product_card_color_scheme":"","product_card_aspect_ratio":"portrait","product_card_object_fit":"cover","product_card_show_vendor":false,"product_card_show_button":true,"product_card_button_label":"Shop Now","padding_top":"l","padding_bottom":"l","margin_top":"no-indent","margin_bottom":"no-indent"}},"testimonials_zijtgB":{"type":"testimonials","blocks":{"testimonials_slide_HWY4Dk":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"\"Got my 8 year old Lab this bed and it’s PERFECT! She heads straight for it instead of her old raggedy bed. 100\/10!\"","show_author":true,"slide_author":"&nbsp;Petrea S.&nbsp;","show_slide_author_image":true,"slide_author_image":"shopify:\/\/shop_images\/1_5ffed11c-817b-47cf-9b91-e8c89741a55f.png","slide_author_desc":"&nbsp;","show_product":true,"product":"realortho™"}},"testimonials_slide_zEWJQG":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.","show_author":true,"slide_author":"<strong>Author's name<\/strong>","show_slide_author_image":true,"slide_author_image":"shopify:\/\/shop_images\/2_5ac0dc29-6b86-4071-ad19-6f4fd2857c5e.png","slide_author_desc":"@author's_link","show_product":true,"product":""}},"testimonials_slide_ABzDyV":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.","show_author":true,"slide_author":"<strong>Author's name<\/strong>","show_slide_author_image":true,"slide_author_image":"shopify:\/\/shop_images\/1_5ffed11c-817b-47cf-9b91-e8c89741a55f.png","slide_author_desc":"@author's_link","show_product":true,"product":""}},"testimonials_slide_QqLedi":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.","show_author":true,"slide_author":"<strong>Author's name<\/strong>","show_slide_author_image":true,"slide_author_image":"shopify:\/\/shop_images\/2_5ac0dc29-6b86-4071-ad19-6f4fd2857c5e.png","slide_author_desc":"@author's_link","show_product":true,"product":""}},"testimonials_slide_ebQUa6":{"type":"testimonials_slide","settings":{"show_rating":true,"rating":5,"show_rating_numbers":true,"slide_text":"This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.","show_author":true,"slide_author":"<strong>Author's name<\/strong>","show_slide_author_image":true,"slide_author_image":"shopify:\/\/shop_images\/1_5ffed11c-817b-47cf-9b91-e8c89741a55f.png","slide_author_desc":"@author's_link","show_product":true,"product":""}}},"block_order":["testimonials_slide_HWY4Dk","testimonials_slide_zEWJQG","testimonials_slide_ABzDyV","testimonials_slide_QqLedi","testimonials_slide_ebQUa6"],"name":"t:sections.testimonials.name","settings":{"color_scheme":"","enable_border_top":false,"enable_border_bottom":false,"show_nav_buttons_desktop":true,"show_nav_buttons_mobile":true,"nav_buttons_color_scheme":"scheme-f7a6a688-0dfe-4af7-9043-ca3701954195","enable_loop":true,"centered_slides":false,"slides_per_view":3,"animate_section_header_on_scroll":true,"subheading":"","heading":"","heading_size":"h3","heading_level":"h2","description":"","text_align":"center","testimonial_color_scheme":"","testimonial_text_size":"h3","product_card_color_scheme":"scheme-7ddb7b8a-ad46-48db-b445-c234e65e7229","product_card_aspect_ratio":"portrait","product_card_object_fit":"cover","product_card_show_vendor":false,"product_card_show_button":true,"product_card_button_label":"Shop Now","padding_top":"l","padding_bottom":"l","margin_top":"no-indent","margin_bottom":"no-indent"}},"media_banner_slider_fz8pgH":{"type":"media-banner-slider","blocks":{"slide_rwmKhB":{"type":"slide","settings":{"show_background_media":true,"image":"shopify:\/\/shop_images\/12_458ca4f8-f735-4c4a-a7e2-788e3276860a.jpg","mobile_image":"shopify:\/\/shop_images\/7_c55250e9-c3b5-4215-99c8-ecbddc50e0e5.jpg","overlay_opacity":0,"show_video":false,"heading":"Care Beyond Our Products","heading_tag":"h5","heading_size":"h4","description":"","show_label":false,"label_border_radius":"pill","label_text":"Label","label_count":5,"show_button":true,"button_style":"primary","button_label":"EXPLORE LESURE IMPACT","button_link":""}}},"block_order":["slide_rwmKhB"],"name":"t:sections.media-banner-slider.presets.name","settings":{"full_width":true,"color_scheme":"scheme-f7a6a688-0dfe-4af7-9043-ca3701954195","enable_border_top":false,"enable_border_bottom":false,"slide_image_position":"full_width_image","image_ratio_desktop":"adapt","image_ratio_mobile":"adapt","vertical_align_content":"top","rotating_text":"","color_scheme_rotating_text":"scheme-f7a6a688-0dfe-4af7-9043-ca3701954195","rotating_text_vertical_align":"top","rotating_text_letter_spacing":10.8,"slide_color_scheme":"scheme-f7a6a688-0dfe-4af7-9043-ca3701954195","enable_loop":true,"enable_parallax":false,"enable_pagination":true,"show_nav_buttons":false,"enable_autoplay":false,"slider_stop_on_hover":false,"slide_duration":5,"animation_type":"slide","controls_position":"center","padding_top":"no-indent","padding_bottom":"no-indent","margin_top":"no-indent","margin_bottom":"no-indent"}},"image-carousel":{"type":"image-carousel","blocks":{"block_1":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"block_2":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"block_3":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"block_4":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"block_5":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"block_6":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}}},"block_order":["block_1","block_2","block_3","block_4","block_5","block_6"],"disabled":true,"settings":{"main_color_scheme":"","show_border_top":true,"show_border_bottom":false,"animate_section_header_on_scroll":true,"subheading":"","heading":"","heading_size":"h2","heading_level":"h2","description":"","text_align":"center","image_width":216,"mobile_image_ratio":"adapt","desktop_image_ratio":"adapt","speed_slider":6,"padding_top":"s","padding_bottom":"s","margin_top":"no-indent","margin_bottom":"no-indent"}}},"order":["image-parallax-with-text","hero_qmchMx","hero_image_nmRx6N","slideshow_qDgJya","rich_text_6FqwWw","media_banner_slider_CmMqJd","media_banner_slider_dfLp9P","image_collage_BPaBUM","multicolumn_xjTjMJ","testimonials_LNDDdE","testimonials_zijtgB","media_banner_slider_fz8pgH","image-carousel"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image-parallax-with-text": {
+      "type": "image-parallax-with-text",
+      "blocks": {
+        "block_1": {
+          "type": "image",
+          "settings": {
+            "image_width": 140,
+            "aspect_ratio": "square",
+            "enable_mobile_positioning": false,
+            "position_x": 15,
+            "position_x_mobile": 50,
+            "position_y": 12,
+            "position_y_mobile": 50,
+            "image_rotate": 0,
+            "parallax_direction": "down",
+            "image_border_radius": "rounded"
+          }
+        },
+        "block_2": {
+          "type": "image",
+          "settings": {
+            "image_width": 144,
+            "aspect_ratio": "square",
+            "enable_mobile_positioning": false,
+            "position_x": 2,
+            "position_x_mobile": 50,
+            "position_y": 55,
+            "position_y_mobile": 50,
+            "image_rotate": 0,
+            "parallax_direction": "down",
+            "image_border_radius": "rounded"
+          }
+        },
+        "block_3": {
+          "type": "image",
+          "settings": {
+            "image_width": 144,
+            "aspect_ratio": "square",
+            "enable_mobile_positioning": false,
+            "position_x": 85,
+            "position_x_mobile": 50,
+            "position_y": 18,
+            "position_y_mobile": 50,
+            "image_rotate": 0,
+            "parallax_direction": "up",
+            "image_border_radius": "rounded"
+          }
+        },
+        "block_4": {
+          "type": "image",
+          "settings": {
+            "image_width": 144,
+            "aspect_ratio": "square",
+            "enable_mobile_positioning": false,
+            "position_x": 93,
+            "position_x_mobile": 50,
+            "position_y": 75,
+            "position_y_mobile": 50,
+            "image_rotate": 0,
+            "parallax_direction": "up",
+            "image_border_radius": "rounded"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-7ddb7b8a-ad46-48db-b445-c234e65e7229",
+        "show_border_top": false,
+        "show_border_bottom": true,
+        "show_background_media": false,
+        "overlay_opacity": 0,
+        "enable_parallax": true,
+        "enable_image_animation": true,
+        "subheading_text": "",
+        "subheading_size": "body-xl",
+        "show_subheading_underline": true,
+        "subheading_underline_style": "type-1",
+        "subheading_underline_color": "#000000",
+        "subheading_stroke_width": 3,
+        "enable_subheading_text_animation": true,
+        "main_text": "Human Standards.Made for Pets.",
+        "main_text_size": "h1",
+        "main_text_level": "h2",
+        "enable_main_text_animation": true,
+        "description": "Welcome to Lesure! Here, pets live like we do — because they're family, and family deserves the same comfort, care, and quality we'd choose for ourselves.&nbsp;",
+        "description_text_size": "body-xl",
+        "show_button": false,
+        "button_label": "Shop Now",
+        "button_link": "",
+        "button_style": "primary",
+        "padding_top": "xl",
+        "padding_bottom": "xl",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "hero_qmchMx": {
+      "type": "hero",
+      "disabled": true,
+      "name": "t:sections.hero.name",
+      "settings": {
+        "color_scheme": "",
+        "show_background_media": true,
+        "background_image": "shopify://shop_images/1_68c8b1b5-27b1-406e-a196-0ed099c098bd.jpg",
+        "image_ratio_desktop": "full_height",
+        "image_ratio_mobile": "full_height",
+        "overlay_opacity": 0,
+        "overlay_as_gradient": false,
+        "section_heading": "",
+        "heading_tag": "h2",
+        "section_heading_size": "h2",
+        "hero_description": "",
+        "content_align": "center",
+        "enable_content_animation": true,
+        "show_logo": false,
+        "logo_width": 580,
+        "hero_text": "",
+        "hero_text_font_weight": "600",
+        "hero_text_line_height": 0.7,
+        "hero_text_align": "right",
+        "content_order": "column-reverse",
+        "show_button": false,
+        "button_style": "primary",
+        "button_label": "Shop Now",
+        "button_link": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "hero_image_nmRx6N": {
+      "type": "hero-image",
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/1_68c8b1b5-27b1-406e-a196-0ed099c098bd.jpg",
+        "image_mobile": "shopify://shop_images/1_21839a29-b325-4e92-a24a-39ca27ea2230.jpg",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "slideshow_qDgJya": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_dpMjNd": {
+          "type": "slide",
+          "settings": {
+            "show_slide_image": false,
+            "image": "shopify://shop_images/1_3c4fce9b-51f0-4512-be04-a17ec1cdb7f8.png",
+            "heading": "",
+            "heading_tag": "h2",
+            "heading_size": "h2",
+            "heading_line_height": 0.8,
+            "description": "Use this space to provide details about what’s being featured in this slide.",
+            "show_button": true,
+            "button_style": "primary",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "slide_QgtBTC": {
+          "type": "slide",
+          "settings": {
+            "show_slide_image": true,
+            "heading": "Slide title",
+            "heading_tag": "h2",
+            "heading_size": "h2",
+            "heading_line_height": 0.8,
+            "description": "Use this space to provide details about what’s being featured in this slide.",
+            "show_button": true,
+            "button_style": "primary",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_dpMjNd",
+        "slide_QgtBTC"
+      ],
+      "disabled": true,
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "show_background_media": true,
+        "background_image": "shopify://shop_images/1_3c4fce9b-51f0-4512-be04-a17ec1cdb7f8.png",
+        "image_ratio_desktop": "full_height",
+        "image_ratio_mobile": "16/9",
+        "overlay_opacity": 0,
+        "enable_background_media_animation": false,
+        "duration_background_media_animation": 1.5,
+        "rotating_text": "ADD YOUR MESSAGE",
+        "color_scheme_rotating_text": "",
+        "rotating_text_position_x": 80,
+        "rotating_text_position_y": 75,
+        "rotating_text_letter_spacing": 10.8,
+        "overwrite_slideshow_text": false,
+        "overwrite_slideshow_image_width": 1860,
+        "slideshow_text": "SLIDESHOW",
+        "slideshow_text_font_weight": "600",
+        "slideshow_text_line_height": 0.7,
+        "slideshow_text_align": "center",
+        "slider_type": "type-2",
+        "enable_loop": true,
+        "enable_autoplay": false,
+        "slide_duration": 5,
+        "image_ratio": "portrait",
+        "mobile_image_ratio": "landscape",
+        "object_fit": "cover",
+        "enable_slide_animation": false,
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "rich_text_6FqwWw": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_86YzfY": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "subheading": "Short introduction"
+          }
+        },
+        "heading_98KXBt": {
+          "type": "heading",
+          "settings": {
+            "heading": "&nbsp;What Human Standards Mean to Us&nbsp;",
+            "heading_tag": "h2",
+            "heading_size": "h2"
+          }
+        },
+        "text_CVyxGU": {
+          "type": "text",
+          "settings": {
+            "text": "<p>It means adapting the design and engineering behind products made for people to the things your pets rely on every day. From sleep and travel to smart care, play, and daily essentials, Lesure designs around their needs and your life together.<br/><br/></p>"
+          }
+        },
+        "button_qiyryY": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Learn more",
+            "button_link": "",
+            "button_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_86YzfY",
+        "heading_98KXBt",
+        "text_CVyxGU",
+        "button_qiyryY"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "full_width": true,
+        "alignment": "center",
+        "padding_top": "l",
+        "padding_bottom": "no-indent",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "media_banner_slider_CmMqJd": {
+      "type": "media-banner-slider",
+      "blocks": {
+        "slide_fDYdXE": {
+          "type": "slide",
+          "settings": {
+            "show_background_media": true,
+            "image": "shopify://shop_images/2_2640152f-37f4-48dd-aa9f-c199e25af39c.jpg",
+            "mobile_image": "shopify://shop_images/2.1.jpg",
+            "overlay_opacity": 0,
+            "show_video": false,
+            "heading": "",
+            "heading_tag": "h2",
+            "heading_size": "h2",
+            "description": "",
+            "show_label": false,
+            "label_border_radius": "pill",
+            "label_text": "Label",
+            "label_count": 5,
+            "show_button": false,
+            "button_style": "primary",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "slide_T7YQ3J": {
+          "type": "slide",
+          "settings": {
+            "show_background_media": true,
+            "image": "shopify://shop_images/3_356ac663-a9e6-492b-9b10-5bd521cef4bd.jpg",
+            "mobile_image": "shopify://shop_images/2.2_2f98925f-514f-4471-893c-396a5ef4ccae.jpg",
+            "overlay_opacity": 0,
+            "show_video": false,
+            "heading": "",
+            "heading_tag": "h2",
+            "heading_size": "h2",
+            "description": "",
+            "show_label": false,
+            "label_border_radius": "pill",
+            "label_text": "",
+            "label_count": 1,
+            "show_button": false,
+            "button_style": "primary",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "slide_Kapp3p": {
+          "type": "slide",
+          "settings": {
+            "show_background_media": true,
+            "image": "shopify://shop_images/4_8064517c-aa4d-4848-9171-bd61e5326aff.jpg",
+            "mobile_image": "shopify://shop_images/2.3.jpg",
+            "overlay_opacity": 0,
+            "show_video": false,
+            "heading": "",
+            "heading_tag": "h2",
+            "heading_size": "h2",
+            "description": "",
+            "show_label": false,
+            "label_border_radius": "pill",
+            "label_text": "",
+            "label_count": 5,
+            "show_button": false,
+            "button_style": "primary",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "slide_ycR9zB": {
+          "type": "slide",
+          "settings": {
+            "show_background_media": true,
+            "image": "shopify://shop_images/5_5af9ab87-a656-42d9-bca7-8e5d65e3ddf6.jpg",
+            "mobile_image": "shopify://shop_images/2.4.jpg",
+            "overlay_opacity": 0,
+            "show_video": false,
+            "heading": "",
+            "heading_tag": "h2",
+            "heading_size": "h2",
+            "description": "",
+            "show_label": false,
+            "label_border_radius": "pill",
+            "label_text": "",
+            "label_count": 5,
+            "show_button": false,
+            "button_style": "primary",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_fDYdXE",
+        "slide_T7YQ3J",
+        "slide_Kapp3p",
+        "slide_ycR9zB"
+      ],
+      "name": "t:sections.media-banner-slider.presets.name",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "enable_border_top": false,
+        "enable_border_bottom": false,
+        "slide_image_position": "full_width_image",
+        "image_ratio_desktop": "adapt",
+        "image_ratio_mobile": "adapt",
+        "vertical_align_content": "top",
+        "rotating_text": "",
+        "color_scheme_rotating_text": "",
+        "rotating_text_vertical_align": "top",
+        "rotating_text_letter_spacing": 10.8,
+        "slide_color_scheme": "",
+        "enable_loop": true,
+        "enable_parallax": false,
+        "enable_pagination": true,
+        "show_nav_buttons": false,
+        "enable_autoplay": false,
+        "slider_stop_on_hover": false,
+        "slide_duration": 1,
+        "animation_type": "slide",
+        "controls_position": "center",
+        "padding_top": "no-indent",
+        "padding_bottom": "no-indent",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "media_banner_slider_dfLp9P": {
+      "type": "media-banner-slider",
+      "blocks": {
+        "slide_7RCtqx": {
+          "type": "slide",
+          "settings": {
+            "show_background_media": true,
+            "image": "shopify://shop_images/6_1aa9c8d3-11b3-45ff-861d-b659f8024424.jpg",
+            "overlay_opacity": 0,
+            "show_video": false,
+            "heading": "",
+            "heading_tag": "h2",
+            "heading_size": "h2",
+            "description": "",
+            "show_label": false,
+            "label_border_radius": "pill",
+            "label_text": "Label",
+            "label_count": 5,
+            "show_button": false,
+            "button_style": "primary",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_7RCtqx"
+      ],
+      "name": "t:sections.media-banner-slider.presets.name",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "enable_border_top": false,
+        "enable_border_bottom": false,
+        "slide_image_position": "full_width_image",
+        "image_ratio_desktop": "adapt",
+        "image_ratio_mobile": "adapt",
+        "vertical_align_content": "top",
+        "rotating_text": "",
+        "color_scheme_rotating_text": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "rotating_text_vertical_align": "top",
+        "rotating_text_letter_spacing": 10.8,
+        "slide_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "enable_loop": true,
+        "enable_parallax": false,
+        "enable_pagination": true,
+        "show_nav_buttons": false,
+        "enable_autoplay": false,
+        "slider_stop_on_hover": false,
+        "slide_duration": 5,
+        "animation_type": "slide",
+        "controls_position": "center",
+        "padding_top": "no-indent",
+        "padding_bottom": "no-indent",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "image_collage_BPaBUM": {
+      "type": "image-collage",
+      "blocks": {
+        "image_collage_column_LhkeHM": {
+          "type": "_image_collage_column",
+          "settings": {
+            "column_padding_top": 0
+          },
+          "blocks": {
+            "image_collage_block_PHQXH9": {
+              "type": "_image_collage_block",
+              "settings": {
+                "aspect_ratio": "adapt",
+                "object_fit": "cover",
+                "image_padding_left": 5,
+                "image_padding_right": 0,
+                "border_top_left_radius": true,
+                "border_bottom_left_radius": true,
+                "border_top_right_radius": true,
+                "border_bottom_right_radius": true
+              },
+              "blocks": {}
+            },
+            "image_collage_block_wmGFgk": {
+              "type": "_image_collage_block",
+              "settings": {
+                "aspect_ratio": "adapt",
+                "object_fit": "cover",
+                "image_padding_left": 0,
+                "image_padding_right": 0,
+                "border_top_left_radius": false,
+                "border_bottom_left_radius": false,
+                "border_top_right_radius": true,
+                "border_bottom_right_radius": true
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_collage_block_PHQXH9",
+            "image_collage_block_wmGFgk"
+          ]
+        },
+        "image_collage_column_nmLRaR": {
+          "type": "_image_collage_column",
+          "settings": {
+            "column_padding_top": 15
+          },
+          "blocks": {
+            "image_collage_block_Bgtzzg": {
+              "type": "_image_collage_block",
+              "settings": {
+                "aspect_ratio": "adapt",
+                "object_fit": "cover",
+                "image_padding_left": 0,
+                "image_padding_right": 0,
+                "border_top_left_radius": true,
+                "border_bottom_left_radius": true,
+                "border_top_right_radius": true,
+                "border_bottom_right_radius": true
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_collage_block_Bgtzzg"
+          ]
+        },
+        "image_collage_column_jPbxah": {
+          "type": "_image_collage_column",
+          "settings": {
+            "column_padding_top": 0
+          },
+          "blocks": {
+            "image_collage_block_jbfiQN": {
+              "type": "_image_collage_block",
+              "settings": {
+                "aspect_ratio": "adapt",
+                "object_fit": "cover",
+                "image_padding_left": 0,
+                "image_padding_right": 0,
+                "border_top_left_radius": true,
+                "border_bottom_left_radius": true,
+                "border_top_right_radius": false,
+                "border_bottom_right_radius": false
+              },
+              "blocks": {}
+            },
+            "image_collage_block_3yQEJJ": {
+              "type": "_image_collage_block",
+              "settings": {
+                "aspect_ratio": "adapt",
+                "object_fit": "cover",
+                "image_padding_left": 0,
+                "image_padding_right": 5,
+                "border_top_left_radius": true,
+                "border_bottom_left_radius": true,
+                "border_top_right_radius": true,
+                "border_bottom_right_radius": true
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_collage_block_jbfiQN",
+            "image_collage_block_3yQEJJ"
+          ]
+        }
+      },
+      "block_order": [
+        "image_collage_column_LhkeHM",
+        "image_collage_column_nmLRaR",
+        "image_collage_column_jPbxah"
+      ],
+      "disabled": true,
+      "name": "t:sections.image-collage.name",
+      "settings": {
+        "main_color_scheme": "",
+        "enable_border_top": false,
+        "enable_border_bottom": true,
+        "enable_parallax": true,
+        "animate_section_header_on_scroll": true,
+        "heading": "Section heading",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "subheading": "This is where your subtitle goes",
+        "heading_tag": "h2",
+        "description": "<p>Use this space to describe the purpose of this block</p>",
+        "text_align": "center",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "multicolumn_xjTjMJ": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_8bebLc": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/7_9e8ec9a8-e0ec-4df9-a81a-e51eb5682f98.jpg",
+            "link": "",
+            "title": "2026 Pet Innovation Awards"
+          }
+        },
+        "column_wTFwzQ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/8_d8e225aa-23ac-4cb5-86f2-b3bb214c4a91.jpg",
+            "link": "",
+            "title": "2026 WIRED Recommends"
+          }
+        },
+        "column_MWejQd": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9_283fc188-07a7-4c9b-b8f2-96642dfca189.jpg",
+            "link": "",
+            "title": "2026 Parade Pets Best in Show Awards"
+          }
+        },
+        "column_CpyP73": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/10_c0eb2be5-d466-49a8-895f-eb7f7a434a83.jpg",
+            "link": "",
+            "title": "&nbsp;2026 Good Housekeeping Travel Awards&nbsp;"
+          }
+        },
+        "column_HBGpYi": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/11_7643eca3-4905-459a-87a0-9cdda2445740.jpg",
+            "link": "",
+            "title": "2026 Apartment Therapy Best in Home Awards &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;"
+          }
+        }
+      },
+      "block_order": [
+        "column_8bebLc",
+        "column_wTFwzQ",
+        "column_MWejQd",
+        "column_CpyP73",
+        "column_HBGpYi"
+      ],
+      "name": "t:sections.multicolumn.name",
+      "settings": {
+        "title": "Recognized for Better Pet Living",
+        "subtitle": "Thoughtful details make a difference in everyday life with pets— and they haven’t gone unnoticed.",
+        "heading_alignment": "center",
+        "heading_color": "#1a1a1a",
+        "subtitle_color": "#5c5c5c",
+        "heading_font_size": 3.2,
+        "heading_font_size_mobile": 2.4,
+        "subtitle_size": 1.5,
+        "subtitle_size_mobile": 1.3,
+        "heading_gap": 12,
+        "heading_gap_mobile": 8,
+        "header_gap": 32,
+        "header_gap_mobile": 24,
+        "columns_desktop": 5,
+        "image_ratio": "award",
+        "column_gap": 24,
+        "column_gap_mobile": 12,
+        "caption_color": "#1a1a1a",
+        "caption_size": 1.4,
+        "caption_size_mobile": 1.2,
+        "caption_gap": 12,
+        "caption_gap_mobile": 12,
+        "arrow_color": "#ffd73c",
+        "background_color": "#ecebed",
+        "section_width": "page",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "testimonials_LNDDdE": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonials_slide_mftXtV": {
+          "type": "testimonials_slide",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "\"Got my 8 year old Lab this bed and it’s PERFECT! She heads straight for it instead of her old raggedy bed. 100/10!\"",
+            "show_author": true,
+            "slide_author": "Petrea S.&nbsp;",
+            "show_slide_author_image": true,
+            "slide_author_desc": "@author's_link",
+            "show_product": true,
+            "product": "realortho™"
+          }
+        },
+        "testimonials_slide_7mmhgp": {
+          "type": "testimonials_slide",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "\"The entire thing is well thought out. It has the best safety measures. The most comfortable car seat I've ever owned.\"",
+            "show_author": true,
+            "slide_author": "&nbsp;Jules B.&nbsp;",
+            "show_slide_author_image": true,
+            "slide_author_desc": "@author's_link",
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "testimonials_slide_Da43pA": {
+          "type": "testimonials_slide",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.",
+            "show_author": true,
+            "slide_author": "<strong>Author's name</strong>",
+            "show_slide_author_image": true,
+            "slide_author_desc": "@author's_link",
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "testimonials_slide_8iyybe": {
+          "type": "testimonials_slide",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.",
+            "show_author": true,
+            "slide_author": "<strong>Author's name</strong>",
+            "show_slide_author_image": true,
+            "slide_author_desc": "@author's_link",
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "testimonials_slide_pUt6AB": {
+          "type": "testimonials_slide",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.",
+            "show_author": true,
+            "slide_author": "<strong>Author's name</strong>",
+            "show_slide_author_image": true,
+            "slide_author_desc": "@author's_link",
+            "show_product": true,
+            "product": ""
+          }
+        },
+        "testimonials_slide_FdUX36": {
+          "type": "testimonials_slide",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.",
+            "show_author": true,
+            "slide_author": "<strong>Author's name</strong>",
+            "show_slide_author_image": true,
+            "slide_author_desc": "@author's_link",
+            "show_product": true,
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonials_slide_mftXtV",
+        "testimonials_slide_7mmhgp",
+        "testimonials_slide_Da43pA",
+        "testimonials_slide_8iyybe",
+        "testimonials_slide_pUt6AB",
+        "testimonials_slide_FdUX36"
+      ],
+      "disabled": true,
+      "name": "t:sections.testimonials.name",
+      "settings": {
+        "color_scheme": "",
+        "enable_border_top": false,
+        "enable_border_bottom": false,
+        "show_nav_buttons_desktop": true,
+        "show_nav_buttons_mobile": true,
+        "nav_buttons_color_scheme": "scheme-7ddb7b8a-ad46-48db-b445-c234e65e7229",
+        "enable_loop": true,
+        "centered_slides": true,
+        "slides_per_view": 2,
+        "animate_section_header_on_scroll": true,
+        "subheading": "",
+        "heading": "What Pet Parents Are Saying",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "description": "",
+        "text_align": "center",
+        "testimonial_color_scheme": "",
+        "testimonial_text_size": "h3",
+        "product_card_color_scheme": "",
+        "product_card_aspect_ratio": "portrait",
+        "product_card_object_fit": "cover",
+        "product_card_show_vendor": false,
+        "product_card_show_button": true,
+        "product_card_button_label": "Shop Now",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "testimonials_zijtgB": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonials_slide_HWY4Dk": {
+          "type": "testimonials_slide",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "\"Got my 8 year old Lab this bed and it’s PERFECT! She heads straight for it instead of her old raggedy bed. 100/10!\"",
+            "show_author": true,
+            "slide_author": "&nbsp;Petrea S.&nbsp;",
+            "show_slide_author_image": true,
+            "slide_author_image": "shopify://shop_images/1_5ffed11c-817b-47cf-9b91-e8c89741a55f.png",
+            "slide_author_desc": "&nbsp;",
+            "show_product": true,
+            "product": "realortho™"
+          }
+        },
+        "testimonials_slide_zEWJQG": {
+          "type": "testimonials_slide",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "\"Love not scooping anymore! It’s super quiet, no smell so far, and my kitten used it right away. Sooo happy with this!\"",
+            "show_author": true,
+            "slide_author": "&nbsp;Cathy M.&nbsp;",
+            "show_slide_author_image": true,
+            "slide_author_image": "shopify://shop_images/2_5ac0dc29-6b86-4071-ad19-6f4fd2857c5e.png",
+            "slide_author_desc": "",
+            "show_product": true,
+            "product": "lesure-cat-litter-box"
+          }
+        },
+        "testimonials_slide_ABzDyV": {
+          "type": "testimonials_slide",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "\"Beyond how cute they look, the quality is great, and our pups were drawn to them immediately.\"",
+            "show_author": true,
+            "slide_author": "&nbsp;Morgan K.&nbsp;",
+            "show_slide_author_image": true,
+            "slide_author_image": "shopify://shop_images/1_5ffed11c-817b-47cf-9b91-e8c89741a55f.png",
+            "slide_author_desc": "",
+            "show_product": true,
+            "product": "lesure-calming-donut-bed-for-dog-cat-cozy-clouds-blue"
+          }
+        },
+        "testimonials_slide_QqLedi": {
+          "type": "testimonials_slide",
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "\"I was impressed with these belly bands because they are surprisingly thin, but they still do exactly what I need them to do.\"",
+            "show_author": true,
+            "slide_author": "&nbsp;Brianna M.&nbsp;",
+            "show_slide_author_image": true,
+            "slide_author_image": "shopify://shop_images/2_5ac0dc29-6b86-4071-ad19-6f4fd2857c5e.png",
+            "slide_author_desc": "",
+            "show_product": true,
+            "product": "lesure-disposable-male-dog-diapers-50-count"
+          }
+        },
+        "testimonials_slide_ebQUa6": {
+          "type": "testimonials_slide",
+          "disabled": true,
+          "settings": {
+            "show_rating": true,
+            "rating": 5,
+            "show_rating_numbers": true,
+            "slide_text": "This space is for a compelling testimonial that highlights a great customer experience or outstanding product support.",
+            "show_author": true,
+            "slide_author": "<strong>Author's name</strong>",
+            "show_slide_author_image": true,
+            "slide_author_image": "shopify://shop_images/1_5ffed11c-817b-47cf-9b91-e8c89741a55f.png",
+            "slide_author_desc": "@author's_link",
+            "show_product": true,
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonials_slide_HWY4Dk",
+        "testimonials_slide_zEWJQG",
+        "testimonials_slide_ABzDyV",
+        "testimonials_slide_QqLedi",
+        "testimonials_slide_ebQUa6"
+      ],
+      "name": "t:sections.testimonials.name",
+      "settings": {
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "enable_border_top": false,
+        "enable_border_bottom": false,
+        "show_nav_buttons_desktop": true,
+        "show_nav_buttons_mobile": true,
+        "nav_buttons_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "enable_loop": true,
+        "centered_slides": false,
+        "slides_per_view": 3,
+        "animate_section_header_on_scroll": true,
+        "subheading": "",
+        "heading": "",
+        "heading_size": "h3",
+        "heading_level": "h2",
+        "description": "",
+        "text_align": "center",
+        "testimonial_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "testimonial_text_size": "h5",
+        "product_card_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "product_card_aspect_ratio": "portrait",
+        "product_card_object_fit": "cover",
+        "product_card_show_vendor": false,
+        "product_card_show_button": true,
+        "product_card_button_label": "Shop Now",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "media_banner_slider_fz8pgH": {
+      "type": "media-banner-slider",
+      "blocks": {
+        "slide_rwmKhB": {
+          "type": "slide",
+          "settings": {
+            "show_background_media": true,
+            "image": "shopify://shop_images/12_458ca4f8-f735-4c4a-a7e2-788e3276860a.jpg",
+            "mobile_image": "shopify://shop_images/7_c55250e9-c3b5-4215-99c8-ecbddc50e0e5.jpg",
+            "overlay_opacity": 0,
+            "show_video": false,
+            "heading": "Care Beyond Our Products",
+            "heading_tag": "h5",
+            "heading_size": "h4",
+            "description": "",
+            "show_label": false,
+            "label_border_radius": "pill",
+            "label_text": "Label",
+            "label_count": 5,
+            "show_button": true,
+            "button_style": "primary",
+            "button_label": "EXPLORE LESURE IMPACT",
+            "button_link": "shopify://pages/lesure-impact"
+          }
+        }
+      },
+      "block_order": [
+        "slide_rwmKhB"
+      ],
+      "name": "t:sections.media-banner-slider.presets.name",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "enable_border_top": true,
+        "enable_border_bottom": true,
+        "slide_image_position": "full_width_image",
+        "image_ratio_desktop": "adapt",
+        "image_ratio_mobile": "adapt",
+        "vertical_align_content": "center",
+        "rotating_text": "",
+        "color_scheme_rotating_text": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "rotating_text_vertical_align": "top",
+        "rotating_text_letter_spacing": 10.8,
+        "slide_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "enable_loop": true,
+        "enable_parallax": false,
+        "enable_pagination": true,
+        "show_nav_buttons": false,
+        "enable_autoplay": false,
+        "slider_stop_on_hover": false,
+        "slide_duration": 5,
+        "animation_type": "slide",
+        "controls_position": "left",
+        "padding_top": "no-indent",
+        "padding_bottom": "no-indent",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "image-carousel": {
+      "type": "image-carousel",
+      "blocks": {
+        "block_1": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "block_2": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "block_3": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "block_4": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "block_5": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "block_6": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4",
+        "block_5",
+        "block_6"
+      ],
+      "disabled": true,
+      "settings": {
+        "main_color_scheme": "",
+        "show_border_top": true,
+        "show_border_bottom": false,
+        "animate_section_header_on_scroll": true,
+        "subheading": "",
+        "heading": "",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "description": "",
+        "text_align": "center",
+        "image_width": 216,
+        "mobile_image_ratio": "adapt",
+        "desktop_image_ratio": "adapt",
+        "speed_slider": 6,
+        "padding_top": "s",
+        "padding_bottom": "s",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    }
+  },
+  "order": [
+    "image-parallax-with-text",
+    "hero_qmchMx",
+    "hero_image_nmRx6N",
+    "slideshow_qDgJya",
+    "rich_text_6FqwWw",
+    "media_banner_slider_CmMqJd",
+    "media_banner_slider_dfLp9P",
+    "image_collage_BPaBUM",
+    "multicolumn_xjTjMJ",
+    "testimonials_LNDDdE",
+    "testimonials_zijtgB",
+    "media_banner_slider_fz8pgH",
+    "image-carousel"
+  ]
+}
