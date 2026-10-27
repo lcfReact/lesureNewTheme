@@ -33,7 +33,13 @@
         "desktop_vertical": "middle",
         "desktop_horizontal": "center",
         "mobile_vertical": "middle",
-        "mobile_horizontal": "center"
+        "mobile_horizontal": "center",
+        "button_label": "Shop the sale",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "link": "/collections/all",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
       }
     },
     "logo_list_fd4Fz6": {

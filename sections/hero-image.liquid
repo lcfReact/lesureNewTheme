@@ -6,20 +6,33 @@
     assign hero_fetchpriority = 'auto'
   endif
 
-  if section.settings.image != blank
-    assign desktop_image = section.settings.image
-  elsif section.settings.image_mobile != blank
-    assign desktop_image = section.settings.image_mobile
+  if section.blocks.size > 0
+    assign ratio_source_desktop = section.blocks.first.settings.image
+    assign ratio_source_mobile = section.blocks.first.settings.image_mobile
+  else
+    assign ratio_source_desktop = section.settings.image
+    assign ratio_source_mobile = section.settings.image_mobile
+  endif
+
+  if ratio_source_desktop != blank
+    assign desktop_image = ratio_source_desktop
+  elsif ratio_source_mobile != blank
+    assign desktop_image = ratio_source_mobile
   else
     assign desktop_image = blank
   endif
 
-  if section.settings.image_mobile != blank
-    assign mobile_image = section.settings.image_mobile
-  elsif section.settings.image != blank
-    assign mobile_image = section.settings.image
+  if ratio_source_mobile != blank
+    assign mobile_image = ratio_source_mobile
+  elsif ratio_source_desktop != blank
+    assign mobile_image = ratio_source_desktop
   else
     assign mobile_image = blank
+  endif
+
+  assign hero_carousel = false
+  if section.blocks.size > 1
+    assign hero_carousel = true
   endif
 
   assign desktop_ratio = 2.4
@@ -62,7 +75,6 @@
       assign mobile_pos = 'center center'
   endcase
 
-  assign desktop_sizes = '(min-width: 1360px) 1920px, 100vw'
 -%}
 
 {% style %}
@@ -78,6 +90,8 @@
     --hi-pos-desktop: {{ desktop_pos }};
     --hi-pos-mobile: {{ mobile_pos }};
     --hi-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    --hi-button-bg: {{ section.settings.button_background }};
+    --hi-button-text: {{ section.settings.button_text_color }};
   }
 
   @media screen and (min-width: 750px) {
@@ -89,56 +103,86 @@
   }
 {% endstyle %}
 
+{%- liquid
+  assign hero_heading_id = 'HeroImageHeading-' | append: section.id
+  assign hero_content_class = 'hero-image__content hero-image__content--desktop-v-' | append: section.settings.desktop_vertical | append: ' hero-image__content--desktop-h-' | append: section.settings.desktop_horizontal | append: ' hero-image__content--mobile-v-' | append: section.settings.mobile_vertical | append: ' hero-image__content--mobile-h-' | append: section.settings.mobile_horizontal
+  assign hero_show_overlay = false
+  if section.settings.overlay_opacity > 0
+    assign hero_show_overlay = true
+  endif
+-%}
+
 <div
   id="HeroImage-{{ section.id }}"
-  class="hero-image hero-image--desktop-{{ section.settings.desktop_height }} hero-image--mobile-{{ section.settings.mobile_height }}"
+  class="hero-image hero-image--desktop-{{ section.settings.desktop_height }} hero-image--mobile-{{ section.settings.mobile_height }}{% if hero_carousel %} hero-image--carousel{% endif %}"
 >
-  <div class="hero-image__media">
-    {%- if desktop_image != blank -%}
-      <picture class="hero-image__picture">
-        {%- if section.settings.image != blank and section.settings.image_mobile != blank -%}
-          <source
-            media="(max-width: 749px)"
-            srcset="{{ mobile_image | image_url: width: 400 }} 400w, {{ mobile_image | image_url: width: 600 }} 600w, {{ mobile_image | image_url: width: 800 }} 800w, {{ mobile_image | image_url: width: 1000 }} 1000w, {{ mobile_image | image_url: width: 1200 }} 1200w"
-            sizes="100vw"
-          >
-        {%- endif -%}
-        {{
-          desktop_image
-          | image_url: width: 2400
-          | image_tag:
-            widths: '600, 800, 1200, 1600, 1920, 2400',
-            sizes: desktop_sizes,
-            loading: hero_loading,
-            fetchpriority: hero_fetchpriority,
-            class: 'hero-image__img',
-            alt: desktop_image.alt
-        }}
-      </picture>
-    {%- else -%}
-      {{ 'hero-apparel-1' | placeholder_svg_tag: 'hero-image__placeholder' }}
-    {%- endif -%}
-    {%- if section.settings.overlay_opacity > 0 -%}
-      <div class="hero-image__overlay"></div>
+  <div
+    class="hero-image__slider{% if hero_carousel %} swiper{% endif %}"
+    {% if hero_carousel %}
+      data-hero-slider
+      data-autoplay="{{ section.settings.enable_autoplay }}"
+      data-delay="{{ section.settings.autoplay_speed }}"
+    {% endif %}
+  >
+    <div class="{% if hero_carousel %}swiper-wrapper{% endif %}">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign slide_desktop = block.settings.image
+            assign slide_mobile = block.settings.image_mobile
+            if slide_desktop == blank
+              assign slide_desktop = slide_mobile
+            endif
+            if slide_mobile == blank
+              assign slide_mobile = slide_desktop
+            endif
+            assign slide_button = block.settings.button_label | default: section.settings.button_label
+            assign slide_link = block.settings.link | default: section.settings.link
+            assign slide_loading = 'lazy'
+            assign slide_priority = 'auto'
+            if forloop.first
+              assign slide_loading = hero_loading
+              assign slide_priority = hero_fetchpriority
+            endif
+          -%}
+          {% render 'hero-image-slide',
+            desktop_image: slide_desktop,
+            mobile_image: slide_mobile,
+            loading: slide_loading,
+            fetchpriority: slide_priority,
+            heading: block.settings.heading,
+            text: block.settings.text,
+            button_label: slide_button,
+            link: slide_link,
+            content_class: hero_content_class,
+            show_overlay: hero_show_overlay,
+            carousel: hero_carousel,
+            heading_id: blank,
+            shopify_attributes: block.shopify_attributes
+          %}
+        {%- endfor -%}
+      {%- else -%}
+        {% render 'hero-image-slide',
+          desktop_image: desktop_image,
+          mobile_image: mobile_image,
+          loading: hero_loading,
+          fetchpriority: hero_fetchpriority,
+          heading: section.settings.heading,
+          text: section.settings.text,
+          button_label: section.settings.button_label,
+          link: section.settings.link,
+          content_class: hero_content_class,
+          show_overlay: hero_show_overlay,
+          carousel: false,
+          heading_id: hero_heading_id,
+          shopify_attributes: blank
+        %}
+      {%- endif -%}
+    </div>
+    {%- if hero_carousel -%}
+      <div class="hero-image__pagination swiper-pagination"></div>
     {%- endif -%}
   </div>
-
-  {%- if section.settings.heading != blank or section.settings.text != blank -%}
-    <div
-      class="hero-image__content hero-image__content--desktop-v-{{ section.settings.desktop_vertical }} hero-image__content--desktop-h-{{ section.settings.desktop_horizontal }} hero-image__content--mobile-v-{{ section.settings.mobile_vertical }} hero-image__content--mobile-h-{{ section.settings.mobile_horizontal }}"
-    >
-      <div class="hero-image__copy">
-        {%- if section.settings.heading != blank -%}
-          <h2 class="hero-image__heading" id="HeroImageHeading-{{ section.id }}">
-            {{ section.settings.heading | newline_to_br }}
-          </h2>
-        {%- endif -%}
-        {%- if section.settings.text != blank -%}
-          <p class="hero-image__text">{{ section.settings.text | newline_to_br }}</p>
-        {%- endif -%}
-      </div>
-    </div>
-  {%- endif -%}
 </div>
 
 {% stylesheet %}
@@ -330,7 +374,67 @@
   .hero-image__heading + .hero-image__text {
     margin-top: var(--hi-gap);
   }
+
+  .hero-image__slider,
+  .hero-image__slide {
+    position: relative;
+  }
+
+  .hero-image__hit {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0 1.6rem 18%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .hero-image__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 4.4rem;
+    padding: 0 2.2rem;
+    border-radius: 0.4rem;
+    background: var(--hi-button-bg, #f5d400);
+    color: var(--hi-button-text, #171717);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+
+  .hero-image__pagination {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1.2rem;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  .hero-image__pagination .swiper-pagination-bullet {
+    width: 0.8rem;
+    height: 0.8rem;
+    margin: 0 !important;
+    background: #ffffff;
+    opacity: 0.55;
+  }
+
+  .hero-image__pagination .swiper-pagination-bullet-active {
+    background: var(--hi-button-bg, #f5d400);
+    opacity: 1;
+  }
 {% endstylesheet %}
+
+<script src="{{ 'hero-image.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {
@@ -563,11 +667,105 @@
         { "value": "right", "label": "t:sections.hero-image.settings.desktop_horizontal.options__3.label" }
       ],
       "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "按钮"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "按钮文字",
+      "info": "显示在图片水平居中、偏下的位置。"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "跳转链接",
+      "info": "点击图片任意区域都会跳转到这个链接。"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "按钮背景",
+      "default": "#F5D400"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "按钮文字颜色",
+      "default": "#171717"
+    },
+    {
+      "type": "header",
+      "content": "轮播"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "自动轮播",
+      "info": "至少添加两张幻灯片后才会轮播。",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "切换间隔",
+      "default": 5
     }
   ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "幻灯片",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.hero-image.settings.image.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "t:sections.hero-image.settings.image_mobile.label"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.hero-image.settings.heading.label"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "t:sections.hero-image.settings.text.label"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "按钮文字",
+          "info": "留空则使用区块的按钮文字。"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "跳转链接",
+          "info": "留空则使用区块的跳转链接。整张幻灯片都可以点击。"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
   "presets": [
     {
-      "name": "t:sections.hero-image.presets.name"
+      "name": "t:sections.hero-image.presets.name",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" }
+      ]
     }
   ]
 }
