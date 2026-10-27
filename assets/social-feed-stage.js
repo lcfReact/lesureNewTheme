@@ -62,7 +62,7 @@
     const mobileQuery = window.matchMedia("(max-width: 749px)");
     const fanConfig = () =>
       mobileQuery.matches
-        ? { step: 0.183, innerTilt: 8, outerTilt: 6, hideAfter: 1.15, arrowSlots: 1, arrowScale: 0.044 }
+        ? { step: 0.27, innerTilt: 8, outerTilt: 6, hideAfter: 1.15, arrowSlots: 1, arrowScale: 0.09 }
         : { step: 0.197, innerTilt: 8, outerTilt: 6, hideAfter: 2.2, arrowSlots: 2, arrowScale: 0.036 };
     const placeArrows = (prevCenter, nextCenter, sliderRect, size) => {
       const main = root.querySelector(".ugc-stage__main");

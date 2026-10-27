@@ -1021,8 +1021,8 @@
 
 @media screen and (max-width: 749px) {
   .ugc-stage {
-    --ugc-card-w: 28%;
-    --ugc-stage-ratio: 810.02 / 324.48;
+    --ugc-card-w: 52%;
+    --ugc-stage-ratio: 1.2;
   }
 
   .ugc-stage__title {
@@ -1036,17 +1036,17 @@
 
   .ugc-stage__arrow {
     display: flex;
-    width: 4.4%;
-    min-width: 28px;
-    min-height: 28px;
+    width: 9%;
+    min-width: 32px;
+    min-height: 32px;
   }
 
   .ugc-stage__arrow--prev {
-    left: 31.7%;
+    left: 23%;
   }
 
   .ugc-stage__arrow--next {
-    left: 68.3%;
+    left: 77%;
   }
 
   .ugc-stage__arrow svg {
