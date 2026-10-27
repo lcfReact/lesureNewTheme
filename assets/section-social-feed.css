@@ -755,10 +755,10 @@
 }
 
 .ugc-slide {
-  width: 68vw;
-  height: calc(68vw * 490 / 368);
-  max-width: 491px;
-  max-height: 653px;
+  width: 48vw;
+  height: calc(48vw * 490 / 368);
+  max-width: 540px;
+  max-height: calc(540px * 490 / 368);
   transform-origin: center center;
 }
 
@@ -1004,13 +1004,6 @@
     right: 72px;
   }
 
-  .ugc-slide {
-    width: 540px;
-    height: 718px;
-    max-width: none;
-    max-height: none;
-  }
-
   .ugc-card__play {
     top: 46%;
     width: 90px;
@@ -1078,13 +1071,6 @@
   .ugc-stage__eyebrow,
   .ugc-stage__text {
     font-size: min(var(--ugc-text-size, 21px), 16px);
-  }
-
-  .ugc-slide {
-    width: 56vw;
-    height: calc(56vw * 490 / 368);
-    max-width: 260px;
-    max-height: calc(260px * 490 / 368);
   }
 
   .ugc-stage__arrow {

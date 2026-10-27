@@ -76,38 +76,24 @@
       pin(next, nextCenter);
     };
     const fan = (swiper) => {
-      const wide = window.matchMedia("(min-width: 750px)").matches;
       const sample = swiper.slides[0];
       const slideWidth = sample ? sample.offsetWidth : 0;
       const slideHeight = sample ? sample.offsetHeight : 0;
-      const innerTilt = wide ? 8 : 4;
-      const outerTilt = wide ? 6 : 3;
-      let innerPull = wide ? 124 : 0;
-      let outerPull = wide ? 249 : 0;
-      let sideScale = wide ? 300 / 368 : 0.67;
-      if (wide && slideWidth) {
-        sideScale = 300 / 368;
-        const sideW = slideWidth * sideScale;
-        const sideH = slideHeight * sideScale;
-        const theta = (outerTilt * Math.PI) / 180;
-        const half =
-          (sideW * Math.abs(Math.cos(theta)) + sideH * Math.abs(Math.sin(theta))) / 2;
-        const stageRect = root.getBoundingClientRect();
+      const sideScale = 300 / 368;
+      const innerTilt = 8;
+      const outerTilt = 6;
+      const aspect = slideWidth ? slideHeight / slideWidth : 490 / 368;
+      const theta = (outerTilt * Math.PI) / 180;
+      const halfRatio =
+        (sideScale * Math.abs(Math.cos(theta)) + aspect * sideScale * Math.abs(Math.sin(theta))) / 2;
+      const stepRatio = (1 / (2 * 0.48) - halfRatio) / 2;
+      const visualStep = slideWidth * stepRatio;
+      const innerPull = slideWidth - visualStep;
+      const outerPull = 2 * (slideWidth - visualStep);
+      if (slideWidth) {
         const sliderRect = slider.getBoundingClientRect();
         const activeCenter = sliderRect.left + sliderRect.width / 2;
-        const leftCenter = stageRect.left + half;
-        outerPull = leftCenter - (activeCenter - 2 * slideWidth);
-        innerPull = (leftCenter + activeCenter) / 2 - (activeCenter - slideWidth);
-        placeArrows(stageRect.left + half, stageRect.right - half, sliderRect);
-      } else if (slideWidth) {
-        sideScale = 0.67;
-        const gap = 14;
-        innerPull = slideWidth * (0.5 - sideScale / 2) - gap;
-        outerPull = innerPull;
-        const sliderRect = slider.getBoundingClientRect();
-        const activeCenter = sliderRect.left + sliderRect.width / 2;
-        const nextArrow = activeCenter + slideWidth / 2 + gap / 2;
-        placeArrows(activeCenter - (nextArrow - activeCenter), nextArrow, sliderRect);
+        placeArrows(activeCenter - 2 * visualStep, activeCenter + 2 * visualStep, sliderRect);
       }
       swiper.slides.forEach((slide) => {
         const progress = slide.progress || 0;
