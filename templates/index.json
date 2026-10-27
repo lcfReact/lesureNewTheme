@@ -683,7 +683,7 @@
       ],
       "name": "t:sections.social-feed.presets.name",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "enable_border_top": false,
         "enable_border_bottom": false,
         "animate_section_header_on_scroll": true,
@@ -707,61 +707,64 @@
         "margin_bottom": "no-indent"
       }
     },
-    "media_banner_slider_X66bQr": {
-      "type": "media-banner-slider",
+    "rich_text_ihJXKf": {
+      "type": "rich-text",
       "blocks": {
-        "slide_TzDaLT": {
-          "type": "slide",
+        "heading_QkDMEr": {
+          "type": "heading",
           "settings": {
-            "show_background_media": true,
-            "overlay_opacity": 0,
-            "show_video": false,
-            "heading": "Slide title here",
+            "heading": "&nbsp;Care Made Simple&nbsp;",
             "heading_tag": "h2",
-            "heading_size": "h2",
-            "description": "Use this space to provide details about what’s being featured in this slide, whether it’s a new launch, a trending product, or an exclusive deal.",
-            "show_label": true,
-            "label_border_radius": "pill",
-            "label_text": "Label",
-            "label_count": 5,
-            "show_button": true,
-            "button_style": "primary",
-            "button_label": "Shop Now",
-            "button_link": ""
+            "heading_size": "h3"
+          }
+        },
+        "text_4LTJb8": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Everyday pet questions, helpful answers, and tips worth keeping handy.</p>"
           }
         }
       },
       "block_order": [
-        "slide_TzDaLT"
+        "heading_QkDMEr",
+        "text_4LTJb8"
       ],
-      "name": "t:sections.media-banner-slider.presets.name",
+      "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "full_width": false,
-        "color_scheme": "",
-        "enable_border_top": false,
-        "enable_border_bottom": false,
-        "slide_image_position": "full_width_image",
-        "image_ratio_desktop": "adapt",
-        "image_ratio_mobile": "adapt",
-        "vertical_align_content": "center",
-        "rotating_text": "ADD YOUR MESSAGE",
-        "color_scheme_rotating_text": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
-        "rotating_text_vertical_align": "top",
-        "rotating_text_letter_spacing": 10.8,
-        "slide_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
-        "enable_loop": true,
-        "enable_parallax": false,
-        "enable_pagination": true,
-        "show_nav_buttons": false,
-        "enable_autoplay": false,
-        "slider_stop_on_hover": false,
-        "slide_duration": 5,
-        "animation_type": "slide",
-        "controls_position": "center",
-        "padding_top": "no-indent",
-        "padding_bottom": "no-indent",
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "full_width": true,
+        "alignment": "center",
+        "padding_top": "l",
+        "padding_bottom": "l",
         "margin_top": "no-indent",
         "margin_bottom": "no-indent"
+      }
+    },
+    "hero_image_T8Ata7": {
+      "type": "hero-image",
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/7-care_made_simple.png",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "",
+        "heading_color": "#FFFFFF",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "",
+        "text_color": "#FFFFFF",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center"
       }
     },
     "blog_posts_zgkxzL": {
@@ -1555,7 +1558,8 @@
     "logo_list_JPQRMh",
     "image_carousel_m3qWLW",
     "social_feed_pkHX6Y",
-    "media_banner_slider_X66bQr",
+    "rich_text_ihJXKf",
+    "hero_image_T8Ata7",
     "blog_posts_zgkxzL",
     "ticker-banner",
     "testimonials_TAeUrm",
