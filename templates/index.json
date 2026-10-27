@@ -128,7 +128,7 @@
       ],
       "name": "t:sections.logo-list.name",
       "settings": {
-        "color_scheme": "background-3",
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "show_border_top": true,
         "show_border_bottom": false,
         "layout": "slider-carousel",
@@ -147,7 +147,7 @@
     "popular-products": {
       "type": "popular-products",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "enable_border_top": false,
         "enable_border_bottom": false,
         "animate_section_header_on_scroll": true,
