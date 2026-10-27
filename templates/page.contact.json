@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -14,34 +23,56 @@
         "block_1": {
           "type": "info",
           "settings": {
+            "heading": "Contact information",
+            "heading_tag": "h6",
+            "description": "<p>Use this space to add your contact information</p>",
             "text_align": "left"
           }
         },
         "block_2": {
           "type": "info",
           "settings": {
+            "heading": "Contact information",
+            "heading_tag": "h6",
+            "description": "<p>Use this space to add your contact information</p>",
             "text_align": "left"
           }
         },
         "block_3": {
           "type": "info",
           "settings": {
+            "heading": "Contact information",
+            "heading_tag": "h6",
+            "description": "<p>Use this space to add your contact information</p>",
             "text_align": "left"
           }
         }
       },
-      "block_order": ["block_1", "block_2", "block_3"],
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3"
+      ],
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
         "show_border_top": false,
         "show_border_bottom": false,
+        "heading": "Contact form",
         "heading_level": "h2",
         "heading_size": "h2",
+        "description": "Use this space to provide details about what’s being featured in this section.",
         "text_align": "center",
+        "show_name_field": true,
+        "name_required": true,
+        "show_phone_field": true,
+        "phone_required": true,
+        "show_message_field": true,
         "position": "center",
         "mobile_layout": "first-form",
         "button_style": "primary",
+        "button_label": "Submit Request",
         "form_require_consent": false,
+        "form_consent_text": "I agree to the company’s Privacy Policy and data processing terms.",
         "form_consent_default": false,
         "info_color_scheme": "",
         "padding_top": "l",
@@ -102,6 +133,7 @@
         "main_color_scheme": "",
         "show_border_top": true,
         "show_border_bottom": false,
+        "animate_section_header_on_scroll": true,
         "subheading": "",
         "heading": "",
         "heading_size": "h2",
@@ -124,29 +156,38 @@
         "block_1": {
           "type": "image",
           "settings": {
+            "image_link": "",
             "image_border_radius": "pill"
           }
         },
         "block_2": {
           "type": "image",
           "settings": {
+            "image_link": "",
             "image_border_radius": "pill"
           }
         },
         "block_3": {
           "type": "image",
           "settings": {
+            "image_link": "",
             "image_border_radius": "pill"
           }
         },
         "block_4": {
           "type": "image",
           "settings": {
+            "image_link": "",
             "image_border_radius": "pill"
           }
         }
       },
-      "block_order": ["block_1", "block_2", "block_3", "block_4"],
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ],
       "settings": {
         "show_border_top": true,
         "show_border_bottom": true,
@@ -157,6 +198,7 @@
         "socials_img_size": "big",
         "image_blocks_border_radius": "pill",
         "socials_img_align": "center",
+        "main_text": "Follow Us",
         "main_text_font": "heading",
         "main_text_size": "h3",
         "text_align": "center",
@@ -166,9 +208,15 @@
         "padding_top": "no-indent",
         "padding_bottom": "no-indent",
         "margin_top": "no-indent",
-        "margin_bottom": "no-indent"
+        "margin_bottom": "no-indent",
+        "anchor_id": ""
       }
     }
   },
-  "order": ["main", "contact-form", "image-carousel", "social-media"]
+  "order": [
+    "main",
+    "contact-form",
+    "image-carousel",
+    "social-media"
+  ]
 }

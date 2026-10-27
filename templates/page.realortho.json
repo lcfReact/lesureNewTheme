@@ -148,8 +148,7 @@
       "type": "hero-image",
       "name": "t:sections.hero-image.presets.name",
       "settings": {
-        "image": "shopify://shop_images/1_68c8b1b5-27b1-406e-a196-0ed099c098bd.jpg",
-        "image_mobile": "shopify://shop_images/1_21839a29-b325-4e92-a24a-39ca27ea2230.jpg",
+        "image": "shopify://shop_images/RealOrtho_1.png",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",
