@@ -213,8 +213,6 @@
   line-height: 1;
   text-transform: uppercase;
   pointer-events: auto;
-  opacity: 0;
-  transition: opacity 0.35s ease;
 }
 
 .collections-list .collection-card__btn .animated-button-circle,
@@ -246,13 +244,6 @@
   }
 }
 
-@media screen and (hover: hover) and (pointer: fine) and (min-width: 750px) {
-  .collections-list .collection-card:hover .collection-card__btn,
-  .collections-list .collection-card:focus-within .collection-card__btn {
-    opacity: 1;
-  }
-}
-
 @media screen and (max-width: 749px) {
   .collections-list-grid {
     display: flex;
@@ -277,9 +268,5 @@
     width: min(316px, 78vw);
     max-width: none;
     scroll-snap-align: start;
-  }
-
-  .collections-list .collection-card__btn {
-    opacity: 1;
   }
 }

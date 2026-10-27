@@ -79,7 +79,7 @@
   flex-direction: column;
   gap: 2.8rem;
   position: relative;
-  bottom: -7.4rem;
+  bottom: 0;
   margin-top: -10rem;
   transition: bottom var(--duration-default) cubic-bezier(0.645, 0.045, 0.355, 1);
 }
@@ -92,8 +92,6 @@
   text-align: center;
 }
 .collection-card__btn {
-  opacity: 0;
-  transition: opacity var(--duration-default) cubic-bezier(0.645, 0.045, 0.355, 1), scale 0.4s cubic-bezier(0.5, 0, 0, 1);
   max-height: 5.4rem;
   background-color: rgba(var(--color-button));
   border-color: transparent;
@@ -107,17 +105,6 @@
 @media screen and (hover: none) and (pointer: coarse) {
   .collection-card .collection-card__content {
     transform: unset;
-  }
-  .collection-card .collection-card__btn {
-    opacity: 1;
-  }
-}
-@media screen and (hover: hover) and (pointer: fine) {
-  .collection-card:hover .collection-card__btn, .collection-card:focus-visible .collection-card__btn, .collection-card:focus-within .collection-card__btn {
-    opacity: 1;
-  }
-  .collection-card:hover .collection-card__content, .collection-card:focus-visible .collection-card__content, .collection-card:focus-within .collection-card__content {
-    bottom: 0;
   }
 }
 @media screen and (hover: hover) and (pointer: fine) {
