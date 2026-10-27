@@ -34,10 +34,10 @@
         "desktop_horizontal": "center",
         "mobile_vertical": "middle",
         "mobile_horizontal": "center",
-        "button_label": "Shop the sale",
+        "button_label": "",
+        "link": "shopify://collections/weekly-sale",
         "button_background": "#f5d400",
         "button_text_color": "#171717",
-        "link": "/collections/all",
         "enable_autoplay": true,
         "autoplay_speed": 5
       }
@@ -275,7 +275,13 @@
         "desktop_vertical": "middle",
         "desktop_horizontal": "center",
         "mobile_vertical": "middle",
-        "mobile_horizontal": "center"
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
       }
     },
     "product_markers_tWmkHa": {
@@ -770,7 +776,13 @@
         "desktop_vertical": "middle",
         "desktop_horizontal": "center",
         "mobile_vertical": "middle",
-        "mobile_horizontal": "center"
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
       }
     },
     "blog_posts_zgkxzL": {
@@ -1456,7 +1468,13 @@
         "desktop_vertical": "middle",
         "desktop_horizontal": "center",
         "mobile_vertical": "middle",
-        "mobile_horizontal": "center"
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
       }
     },
     "multicolumn_KKdrjn": {
