@@ -112,11 +112,22 @@
       const arrowSize = Math.max(28, Math.min(72, stageWidth * cfg.arrowScale));
       placeArrows(activeCenter - arrowOffset, activeCenter + arrowOffset, sliderRect, arrowSize);
     };
+    let transitionTicket = 0;
+    const releaseTranslate = (instance, duration) => {
+      const ticket = ++transitionTicket;
+      window.clearTimeout(root._ugcRelease);
+      if (!duration) return;
+      root._ugcRelease = window.setTimeout(() => {
+        if (ticket !== transitionTicket || instance.destroyed || !instance.animating) return;
+        instance.transitionEnd();
+      }, duration);
+    };
     const swiper = new Swiper(slider, {
       centeredSlides: true,
       slidesPerView: "auto",
       spaceBetween: 0,
       loop: slideCount > 4,
+      loopPreventsSliding: false,
       speed: 700,
       grabCursor: true,
       watchSlidesProgress: true,
@@ -141,6 +152,7 @@
             slide.style.transitionDuration = `${duration}ms`;
             slide.style.transitionTimingFunction = "cubic-bezier(0.22, 0.61, 0.36, 1)";
           });
+          releaseTranslate(instance, duration);
         },
         resize(instance) {
           fan(instance);
@@ -175,6 +187,7 @@
 
   document.addEventListener("shopify:section:unload", (event) => {
     const root = event.target.querySelector?.("[data-ugc-stage]");
+    window.clearTimeout(root?._ugcRelease);
     if (root?._ugcSwiper) {
       root._ugcSwiper.destroy(true, true);
       root._ugcSwiper = null;
