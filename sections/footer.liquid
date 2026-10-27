@@ -88,14 +88,13 @@
     width: calc(100% + {{ section.settings.padding_left_mobile }}px + {{ section.settings.padding_right_mobile }}px);
     height: 13px;
     margin: {{ section.settings.padding_bottom_mobile }}px calc({{ section.settings.padding_right_mobile }}px * -1) calc({{ section.settings.padding_bottom_mobile | plus: 13 }}px * -1) calc({{ section.settings.padding_left_mobile }}px * -1);
-    overflow: hidden;
     line-height: 0;
   }
   #shopify-section-{{ section.id }} .footer-ruler__image {
     display: block;
     width: 100%;
     height: 13px;
-    object-fit: cover;
+    object-fit: fill;
     object-position: center;
   }
   #shopify-section-{{ section.id }} .footer-ruler--split .footer-ruler__image--mobile {
