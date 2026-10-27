@@ -203,45 +203,102 @@
   }
 
   {%- if section.settings.background_image != blank or section.settings.background_image_mobile != blank -%}
+    {%- liquid
+      assign header_bg_desktop = section.settings.background_image
+      assign header_bg_mobile = section.settings.background_image_mobile
+      if header_bg_desktop == blank
+        assign header_bg_desktop = header_bg_mobile
+      endif
+      if header_bg_mobile == blank
+        assign header_bg_mobile = header_bg_desktop
+      endif
+
+      assign header_bg_ratio = 0.041666
+      assign header_bg_ratio_mobile = header_bg_ratio
+      if header_bg_desktop.aspect_ratio > 0
+        assign header_bg_ratio = 1.0 | divided_by: header_bg_desktop.aspect_ratio
+      endif
+      if header_bg_mobile.aspect_ratio > 0
+        assign header_bg_ratio_mobile = 1.0 | divided_by: header_bg_mobile.aspect_ratio
+      endif
+
+      assign header_nav_color = ''
+      if section.settings.text_color == blank and section.settings.icon_color == blank
+        assign header_scheme = section.settings.color_scheme
+        assign header_text_luma_r = header_scheme.settings.colors_text.red | times: 0.299
+        assign header_text_luma_g = header_scheme.settings.colors_text.green | times: 0.587
+        assign header_text_luma_b = header_scheme.settings.colors_text.blue | times: 0.114
+        assign header_text_luma = header_text_luma_r | plus: header_text_luma_g | plus: header_text_luma_b
+        if header_text_luma > 180
+          assign header_bg_luma_r = header_scheme.settings.colors_background_1.red | times: 0.299
+          assign header_bg_luma_g = header_scheme.settings.colors_background_1.green | times: 0.587
+          assign header_bg_luma_b = header_scheme.settings.colors_background_1.blue | times: 0.114
+          assign header_bg_luma = header_bg_luma_r | plus: header_bg_luma_g | plus: header_bg_luma_b
+          if header_bg_luma < 180
+            assign header_nav_color = header_scheme.settings.colors_background_1
+          else
+            assign header_nav_color = '#1a1a1a'
+          endif
+        endif
+      endif
+    -%}
+    :root {
+      --header-height: calc(100vw * {{ header_bg_ratio_mobile }});
+    }
+    @media screen and (min-width: 1100px) {
+      :root {
+        --header-height: calc(100vw * {{ header_bg_ratio }});
+      }
+    }
+
+    #shopify-section-{{ section.id }} .header-wrapper,
+    #shopify-section-{{ section.id }} .header {
+      height: auto;
+      min-height: 0;
+      max-height: none;
+    }
     #shopify-section-{{ section.id }} .header-wrapper {
-      {%- if section.settings.background_image != blank -%}
-        background-image: url('{{ section.settings.background_image | image_url: width: 2400 }}');
-        background-position: {{ section.settings.background_position }};
-      {%- endif -%}
-      background-size: cover;
-      background-repeat: no-repeat;
+      background-image: none !important;
+      background-attachment: scroll !important;
+    }
+    #shopify-section-{{ section.id }} .header-bg {
+      display: block;
+      line-height: 0;
+      pointer-events: none;
+    }
+    #shopify-section-{{ section.id }} .header-bg__img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: none;
+    }
+    #shopify-section-{{ section.id }} .header {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      background: transparent !important;
+    }
+    #shopify-section-{{ section.id }} .header__heading,
+    #shopify-section-{{ section.id }} .header > .header__heading-link,
+    #shopify-section-{{ section.id }} .header__heading-link {
+      height: auto;
+      max-height: 62%;
     }
 
-    @media screen and (max-width: 1099px) {
-      #shopify-section-{{ section.id }} .header-wrapper {
-        {%- if section.settings.background_image_mobile != blank -%}
-          background-image: url('{{ section.settings.background_image_mobile | image_url: width: 1400 }}');
-        {%- endif -%}
-        background-position: {{ section.settings.background_position_mobile }};
+    {%- if header_nav_color != blank -%}
+      #shopify-section-{{ section.id }} .header__menu-item,
+      #shopify-section-{{ section.id }} .list-menu--inline .list-menu-item > .header__menu-item > span,
+      #shopify-section-{{ section.id }} .header__icon,
+      #shopify-section-{{ section.id }} .header__icon svg,
+      #shopify-section-{{ section.id }} .header__icon-text,
+      #shopify-section-{{ section.id }} .header__icon-name,
+      #shopify-section-{{ section.id }} .header__account-text,
+      #shopify-section-{{ section.id }} .header__search-text,
+      #shopify-section-{{ section.id }} .header__localization-button,
+      #shopify-section-{{ section.id }} .burger-menu__button {
+        color: {{ header_nav_color }};
       }
-    }
-
-    body:has(main > .overlay-section:first-child) #shopify-section-{{ section.id }} .header-wrapper.header-wrapper--full {
-      {%- if section.settings.background_image != blank -%}
-        background-image: url('{{ section.settings.background_image | image_url: width: 2400 }}') !important;
-        background-position: {{ section.settings.background_position }} !important;
-      {%- endif -%}
-      background-size: cover !important;
-      background-repeat: no-repeat !important;
-    }
-
-    @media screen and (max-width: 1099px) {
-      body:has(main > .overlay-section:first-child) #shopify-section-{{ section.id }} .header-wrapper.header-wrapper--full {
-        {%- if section.settings.background_image_mobile != blank -%}
-          background-image: url('{{ section.settings.background_image_mobile | image_url: width: 1400 }}') !important;
-        {%- elsif section.settings.background_image != blank -%}
-          background-image: url('{{ section.settings.background_image | image_url: width: 2400 }}') !important;
-        {%- endif -%}
-        background-position: {{ section.settings.background_position_mobile }} !important;
-        background-size: cover !important;
-        background-repeat: no-repeat !important;
-      }
-    }
+    {%- endif -%}
   {%- endif -%}
 
   {%- if section.settings.text_color != blank -%}
@@ -288,6 +345,30 @@
   <sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}" class="{{ wrapper_class }}">
 {%- else -%}
   <div class="{{ wrapper_class }}">
+{%- endif -%}
+{%- if header_bg_desktop != blank -%}
+  <div class="header-bg">
+    <picture>
+      {%- if section.settings.background_image_mobile != blank and section.settings.background_image != blank -%}
+        <source
+          media="(max-width: 1099px)"
+          srcset="{{ header_bg_mobile | image_url: width: 600 }} 600w, {{ header_bg_mobile | image_url: width: 900 }} 900w, {{ header_bg_mobile | image_url: width: 1200 }} 1200w, {{ header_bg_mobile | image_url: width: 1600 }} 1600w"
+          sizes="100vw"
+        >
+      {%- endif -%}
+      {{
+        header_bg_desktop
+        | image_url: width: 2400
+        | image_tag:
+          class: 'header-bg__img',
+          widths: '600, 900, 1200, 1600, 1920, 2400',
+          sizes: '100vw',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: ''
+      }}
+    </picture>
+  </div>
 {%- endif -%}
 <header class="header header-{{ section.settings.layout }} header--{{ header_logo_position }}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if section.settings.overlay_mode == true %} header--overlay-mode{% endif %}{% if section.settings.logo_2 != blank %} header--has-overlay-logo{% endif %}{% if section.settings.layout == 'burger' %} header-burger--mobile-layout-{{ section.settings.burger_header_mobile_layout }}{% endif %} container">
   {% capture links %}
