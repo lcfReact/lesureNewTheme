@@ -100,7 +100,7 @@
       },
       "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195": {
         "settings": {
-          "colors_text": "#000000",
+          "colors_text": "#FFFFFF",
           "colors_secondary_text": "#000000",
           "colors_background_1": "#ffffff",
           "colors_background_2": "#ffffff",
@@ -139,7 +139,7 @@
       "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7": {
         "settings": {
           "colors_text": "#000000",
-          "colors_secondary_text": "#ffffff",
+          "colors_secondary_text": "#000000",
           "colors_background_1": "#FFFFFF",
           "colors_background_2": "#ffffff",
           "background_gradient": "",
