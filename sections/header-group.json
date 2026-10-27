@@ -17,8 +17,8 @@
         "announcement_promo": {
           "type": "announcement",
           "settings": {
-            "text": "Here can be a short promotional message",
-            "link": ""
+            "text": "&nbsp;Free Shipping on Orders $69+&nbsp;",
+            "link": "shopify://collections/all"
           }
         }
       },
