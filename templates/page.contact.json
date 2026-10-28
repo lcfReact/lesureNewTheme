@@ -17,6 +17,56 @@
         "padding_bottom": "m"
       }
     },
+    "hero_image_kyEG8c": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_kWmFF6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/contact_us_fca553cd-2cc0-4b25-bde9-c12fac1722b0.png",
+            "image_mobile": "shopify://shop_images/contact_us.png",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_kWmFF6"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "background_color": "#F9F9F9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#FFFFFF",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#FFFFFF",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#F5D400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5,
+        "anchor_id": ""
+      }
+    },
     "contact-form": {
       "type": "contact-form",
       "blocks": {
@@ -74,7 +124,7 @@
         "form_require_consent": false,
         "form_consent_text": "I agree to the company’s Privacy Policy and data processing terms.",
         "form_consent_default": false,
-        "info_color_scheme": "",
+        "info_color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
         "padding_top": "l",
         "padding_bottom": "l",
         "margin_top": "no-indent",
@@ -215,6 +265,7 @@
   },
   "order": [
     "main",
+    "hero_image_kyEG8c",
     "contact-form",
     "image-carousel",
     "social-media"
