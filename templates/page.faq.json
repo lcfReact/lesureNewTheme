@@ -25,7 +25,7 @@
           "settings": {
             "image": "shopify://shop_images/faqs.png",
             "image_mobile": "shopify://shop_images/faqs_2abb54e4-932c-4907-a4a1-d0cd27e79202.png",
-            "heading": "",
+            "heading": "FAQ",
             "text": "",
             "button_label": "",
             "link": ""
@@ -46,8 +46,8 @@
         "image_position": "center",
         "image_position_mobile": "center",
         "overlay_opacity": 0,
-        "heading": "FAQ",
-        "heading_color": "#000000",
+        "heading": "",
+        "heading_color": "#F9F9F9",
         "heading_size": 5.6,
         "heading_size_mobile": 2.8,
         "text": "",
