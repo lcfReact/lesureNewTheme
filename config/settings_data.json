@@ -67,17 +67,17 @@
     "color_schemes": {
       "scheme-7ddb7b8a-ad46-48db-b445-c234e65e7229": {
         "settings": {
-          "colors_text": "#ffffff",
+          "colors_text": "#000000",
           "colors_secondary_text": "#ffffff",
           "colors_background_1": "#FFFFFF",
           "colors_background_2": "#ffffff",
           "background_gradient": "",
           "colors_background_card_small": "#ffd73c",
           "colors_background_card_small_hover": "#000000",
-          "colors_solid_button_labels": "#ffffff",
-          "colors_solid_button_labels_hover": "#ffd73c",
-          "colors_solid_button_background": "#ffffff",
-          "colors_solid_button_background_hover": "#ffffff",
+          "colors_solid_button_labels": "#000000",
+          "colors_solid_button_labels_hover": "#FFFFFF",
+          "colors_solid_button_background": "#FFD73C",
+          "colors_solid_button_background_hover": "#6A44CE",
           "colors_secondary_button_labels": "#6a44ce",
           "colors_secondary_button_labels_hover": "#ffd73c",
           "colors_secondary_button_background": "#ffffff",
