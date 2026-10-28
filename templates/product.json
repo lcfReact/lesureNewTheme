@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main-product": {
@@ -12,6 +21,7 @@
         "title": {
           "type": "title",
           "settings": {
+            "heading_tag": "h1",
             "heading_size": "h3"
           }
         },
@@ -33,7 +43,9 @@
             "picker_type": "pills",
             "swatch_type": "variant_image",
             "variant_image_size": "square",
-            "unavailable_options_clickable": false
+            "unavailable_options_clickable": false,
+            "enable_linked_products": false,
+            "linked_products_label": "Style"
           }
         },
         "buy_buttons": {
@@ -62,7 +74,7 @@
         "inventory_N84rJV"
       ],
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
         "badge_sale_show": true,
         "badge_sale_type": "percentage",
         "badge_soldout_show": true,
@@ -85,6 +97,20 @@
         "padding_top": "xs",
         "padding_bottom": "l",
         "anchor_id": "overview"
+      }
+    },
+    "sticky_add_to_cart": {
+      "type": "sticky-add-to-cart",
+      "settings": {
+        "enabled": true,
+        "card_background": "#ffffff",
+        "card_text": "#1d2433",
+        "button_background": "#101828",
+        "button_text": "#ffffff",
+        "card_radius": 4,
+        "desktop_bottom": 35,
+        "desktop_right": 35,
+        "mobile_bottom": 0
       }
     },
     "product_anchor_nav": {
@@ -136,7 +162,9 @@
         "enable_border_top": true,
         "enable_border_bottom": true,
         "products_limit": 6,
+        "animate_section_header_on_scroll": true,
         "subheading": "",
+        "heading": "You may be interested",
         "heading_size": "h2",
         "heading_level": "h2",
         "description": "",
@@ -152,6 +180,7 @@
         "show_vendor": false,
         "show_desc": false,
         "button_show": false,
+        "button_label": "View all",
         "button_style": "primary",
         "button_link": "",
         "padding_top": "l",
@@ -212,6 +241,7 @@
         "main_color_scheme": "",
         "show_border_top": false,
         "show_border_bottom": false,
+        "animate_section_header_on_scroll": true,
         "subheading": "",
         "heading": "",
         "heading_size": "h2",
@@ -234,29 +264,38 @@
         "block_1": {
           "type": "image",
           "settings": {
+            "image_link": "",
             "image_border_radius": "pill"
           }
         },
         "block_2": {
           "type": "image",
           "settings": {
+            "image_link": "",
             "image_border_radius": "pill"
           }
         },
         "block_3": {
           "type": "image",
           "settings": {
+            "image_link": "",
             "image_border_radius": "pill"
           }
         },
         "block_4": {
           "type": "image",
           "settings": {
+            "image_link": "",
             "image_border_radius": "pill"
           }
         }
       },
-      "block_order": ["block_1", "block_2", "block_3", "block_4"],
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ],
       "settings": {
         "show_border_top": true,
         "show_border_bottom": true,
@@ -267,6 +306,7 @@
         "socials_img_size": "big",
         "image_blocks_border_radius": "pill",
         "socials_img_align": "center",
+        "main_text": "Follow Us",
         "main_text_font": "heading",
         "main_text_size": "h3",
         "text_align": "center",
@@ -278,12 +318,6 @@
         "margin_top": "no-indent",
         "margin_bottom": "no-indent",
         "anchor_id": "social"
-      }
-    },
-    "sticky_add_to_cart": {
-      "type": "sticky-add-to-cart",
-      "settings": {
-        "enabled": true
       }
     }
   },
