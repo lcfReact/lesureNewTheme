@@ -156,7 +156,7 @@
         "enable_image_zoom_desktop": true,
         "show_arrows_desktop": true,
         "show_arrows_mobile": false,
-        "arrow_color_scheme": "",
+        "arrow_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "padding_top": "xs",
         "padding_bottom": "l",
         "anchor_id": "overview"
