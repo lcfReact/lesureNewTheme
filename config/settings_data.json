@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "color_modal_overlay": "#FFFFFF",
+    "color_modal_overlay": "#F9F9F9",
     "type_header_font": "poppins_n7",
     "heading_h0_scale": 120,
     "heading_h3_scale": 110,
