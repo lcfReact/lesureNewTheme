@@ -1,1 +1,284 @@
-{"sections":{"hero_image_jDeVHX":{"type":"hero-image","name":"t:sections.hero-image.presets.name","settings":{"desktop_height":"adapt","mobile_height":"adapt","image_fit":"contain","image_position":"center","image_position_mobile":"center","overlay_opacity":0,"heading":"A softer place\nto land","heading_color":"#ffffff","heading_size":5.6,"heading_size_mobile":2.8,"text":"Room to stretch, support that stays, and a spot your pet will actually use.","text_color":"#ffffff","text_size":1.8,"text_size_mobile":1.4,"text_gap":16,"text_gap_mobile":12,"desktop_vertical":"middle","desktop_horizontal":"center","mobile_vertical":"middle","mobile_horizontal":"center"}},"social-media":{"type":"social-media","blocks":{"block_1":{"type":"image","settings":{"image_link":"","image_border_radius":"pill"}},"block_2":{"type":"image","settings":{"image_link":"","image_border_radius":"pill"}},"block_3":{"type":"image","settings":{"image_link":"","image_border_radius":"pill"}},"block_4":{"type":"image","settings":{"image_link":"","image_border_radius":"pill"}}},"block_order":["block_1","block_2","block_3","block_4"],"settings":{"show_border_top":true,"show_border_bottom":true,"color_scheme":"","layout":"socials-right","media_block_color_scheme":"","show_social_media":true,"socials_img_size":"big","image_blocks_border_radius":"pill","socials_img_align":"center","main_text":"Follow Us","main_text_font":"heading","main_text_size":"h3","text_align":"center","show_text_underline":true,"enable_text_animation":true,"text_underline_color":"#fedc2d","padding_top":"no-indent","padding_bottom":"no-indent","margin_top":"no-indent","margin_bottom":"no-indent","anchor_id":""}},"main":{"type":"main-blog","blocks":{"slide_Un4RMw":{"type":"slide","settings":{"featured_post":"","heading_tag":"h2"}},"slide_3iFckq":{"type":"slide","settings":{"featured_post":"","heading_tag":"h2"}},"slide_yPK3c4":{"type":"slide","settings":{"featured_post":"","heading_tag":"h2"}}},"block_order":["slide_Un4RMw","slide_3iFckq","slide_yPK3c4"],"settings":{"slider_color_scheme":"","slider_heading":"Featured posts","slider_heading_size":"h2","slider_heading_level":"h2","slider_description":"","slider_text_align":"center","show_post_image":true,"desktop_slider_aspect_ratio":"4\/3","mobile_slider_aspect_ratio":"1\/1","featured_show_date":true,"featured_show_tags":true,"featured_show_author":false,"featured_show_excerpt":true,"featured_show_comments_count":false,"featured_show_read_article_button":true,"featured_read_article_button_label":"","enable_autoplay":false,"slide_duration":5,"rotating_text":"FEATURED POSTS","color_scheme_rotating_text":"","rotating_text_letter_spacing":11.6,"heading":"","heading_size":"h2","heading_level":"h2","description":"","text_align":"center","posts_per_page":9,"posts_per_row":3,"show_image":true,"aspect_ratio":"square","object_fit":"cover","article_heading_font_family":"heading","article_heading_font_size":"h4","show_date":false,"show_tags":true,"show_author":false,"show_excerpt":true,"show_comments_count":false,"padding_top":"l","padding_bottom":"l"}},"image-carousel":{"type":"image-carousel","blocks":{"block_1":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"block_2":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"block_3":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"block_4":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"block_5":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}},"block_6":{"type":"image-carousel-slide","settings":{"overlay_opacity":0}}},"block_order":["block_1","block_2","block_3","block_4","block_5","block_6"],"disabled":true,"settings":{"main_color_scheme":"","show_border_top":true,"show_border_bottom":false,"animate_section_header_on_scroll":true,"subheading":"","heading":"","heading_size":"h2","heading_level":"h2","description":"","text_align":"center","image_width":216,"mobile_image_ratio":"adapt","desktop_image_ratio":"adapt","speed_slider":6,"padding_top":"s","padding_bottom":"s","margin_top":"no-indent","margin_bottom":"no-indent"}},"newsletter_yHekYw":{"type":"newsletter","name":"t:sections.newsletter.name","settings":{"color_scheme":"scheme-f7a6a688-0dfe-4af7-9043-ca3701954195","show_border_top":false,"show_border_bottom":false,"animate_section_header_on_scroll":true,"heading":"JOIN THE LESURE FAMILY","heading_level":"h2","heading_size":"h2","description":"&nbsp;Sign up for plus new arrivals, pet care tips, and special offers.&nbsp;","content_align":"left","button_style":"primary","newsletter_require_consent":true,"newsletter_consent_text":"&nbsp;I agree to receive marketing emails from Lesure and acknowledge the Privacy Policy. I can unsubscribe at any time.New subscribers only. Discount cannot be combined with other offers.&nbsp;","newsletter_consent_default":false,"primary_image":"shopify:\/\/shop_images\/2.1.jpg","align_content":"right","padding_top":"l","padding_bottom":"l","margin_top":"no-indent","margin_bottom":"no-indent"}}},"order":["hero_image_jDeVHX","social-media","main","image-carousel","newsletter_yHekYw"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_image_jDeVHX": {
+      "type": "hero-image",
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "background_color": "",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5,
+        "anchor_id": ""
+      }
+    },
+    "social-media": {
+      "type": "social-media",
+      "blocks": {
+        "block_1": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_2": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_3": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_4": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ],
+      "settings": {
+        "show_border_top": true,
+        "show_border_bottom": true,
+        "color_scheme": "",
+        "layout": "socials-right",
+        "media_block_color_scheme": "",
+        "show_social_media": true,
+        "socials_img_size": "big",
+        "image_blocks_border_radius": "pill",
+        "socials_img_align": "center",
+        "main_text": "Follow Us",
+        "main_text_font": "heading",
+        "main_text_size": "h3",
+        "text_align": "center",
+        "show_text_underline": true,
+        "enable_text_animation": true,
+        "text_underline_color": "#fedc2d",
+        "padding_top": "no-indent",
+        "padding_bottom": "no-indent",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent",
+        "anchor_id": ""
+      }
+    },
+    "main": {
+      "type": "main-blog",
+      "blocks": {
+        "slide_Un4RMw": {
+          "type": "slide",
+          "settings": {
+            "featured_post": "",
+            "heading_tag": "h2"
+          }
+        },
+        "slide_3iFckq": {
+          "type": "slide",
+          "settings": {
+            "featured_post": "",
+            "heading_tag": "h2"
+          }
+        },
+        "slide_yPK3c4": {
+          "type": "slide",
+          "settings": {
+            "featured_post": "",
+            "heading_tag": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "slide_Un4RMw",
+        "slide_3iFckq",
+        "slide_yPK3c4"
+      ],
+      "settings": {
+        "slider_color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "slider_heading": "Featured posts",
+        "slider_heading_size": "h2",
+        "slider_heading_level": "h2",
+        "slider_description": "",
+        "slider_text_align": "center",
+        "show_post_image": true,
+        "desktop_slider_aspect_ratio": "4/3",
+        "mobile_slider_aspect_ratio": "1/1",
+        "featured_show_date": true,
+        "featured_show_tags": true,
+        "featured_show_author": false,
+        "featured_show_excerpt": true,
+        "featured_show_comments_count": false,
+        "featured_show_read_article_button": true,
+        "featured_read_article_button_label": "",
+        "enable_autoplay": false,
+        "slide_duration": 5,
+        "rotating_text": "FEATURED POSTS",
+        "color_scheme_rotating_text": "",
+        "rotating_text_letter_spacing": 11.6,
+        "heading": "",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "description": "",
+        "text_align": "center",
+        "posts_per_page": 9,
+        "posts_per_row": 3,
+        "show_image": true,
+        "aspect_ratio": "square",
+        "object_fit": "cover",
+        "article_heading_font_family": "heading",
+        "article_heading_font_size": "h4",
+        "show_date": false,
+        "show_tags": true,
+        "show_author": false,
+        "show_excerpt": true,
+        "show_comments_count": false,
+        "padding_top": "l",
+        "padding_bottom": "l"
+      }
+    },
+    "image-carousel": {
+      "type": "image-carousel",
+      "blocks": {
+        "block_1": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "block_2": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "block_3": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "block_4": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "block_5": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        },
+        "block_6": {
+          "type": "image-carousel-slide",
+          "settings": {
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4",
+        "block_5",
+        "block_6"
+      ],
+      "disabled": true,
+      "settings": {
+        "main_color_scheme": "",
+        "show_border_top": true,
+        "show_border_bottom": false,
+        "animate_section_header_on_scroll": true,
+        "subheading": "",
+        "heading": "",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "description": "",
+        "text_align": "center",
+        "image_width": 216,
+        "mobile_image_ratio": "adapt",
+        "desktop_image_ratio": "adapt",
+        "speed_slider": 6,
+        "padding_top": "s",
+        "padding_bottom": "s",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "newsletter_yHekYw": {
+      "type": "newsletter",
+      "name": "t:sections.newsletter.name",
+      "settings": {
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "show_border_top": false,
+        "show_border_bottom": false,
+        "animate_section_header_on_scroll": true,
+        "heading": "JOIN THE LESURE FAMILY",
+        "heading_level": "h2",
+        "heading_size": "h2",
+        "description": "&nbsp;Sign up for plus new arrivals, pet care tips, and special offers.&nbsp;",
+        "content_align": "left",
+        "button_style": "primary",
+        "newsletter_require_consent": true,
+        "newsletter_consent_text": "&nbsp;I agree to receive marketing emails from Lesure and acknowledge the Privacy Policy. I can unsubscribe at any time.New subscribers only. Discount cannot be combined with other offers.&nbsp;",
+        "newsletter_consent_default": false,
+        "primary_image": "shopify://shop_images/2.1.jpg",
+        "align_content": "right",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    }
+  },
+  "order": [
+    "hero_image_jDeVHX",
+    "social-media",
+    "main",
+    "image-carousel",
+    "newsletter_yHekYw"
+  ]
+}
