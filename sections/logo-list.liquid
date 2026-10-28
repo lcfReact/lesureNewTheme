@@ -51,6 +51,18 @@
       {% endif %}
     }
   }
+
+  .section-{{ section.id }}-padding .logo-list__container[data-slider-type="slider-carousel"] .logo-card {
+    width: auto;
+    height: clamp(2.8rem, 3.2vw, 4.8rem);
+    flex: 0 0 auto;
+  }
+
+  .section-{{ section.id }}-padding .logo-list__container[data-slider-type="slider-carousel"] .logo-card__image-wrapper {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+  }
 {%- endstyle -%}
 
 <div class="logo-list color-{{ section.settings.color_scheme }}{% if section.settings.show_border_top %} logo-list--border-top{% endif %}{% if section.settings.show_border_bottom %} logo-list--border-bottom{% endif %} background section-{{ section.id }}-padding">
@@ -67,7 +79,7 @@
     >
       {%- if section.settings.layout == 'slider-carousel' -%}
         <div class="logo-list__wrapper swiper-wrapper js-slider-logos-wrapper">
-          {%- for block in slider_blocks -%}
+          {%- for block in section.blocks -%}
             <div
               class="logo-card swiper-slide{% if block.settings.logo_link != blank %} logo-card--with-link{% endif %}"
               data-id="{{ block.id }}"

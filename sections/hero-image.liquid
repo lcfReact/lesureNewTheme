@@ -103,6 +103,18 @@
   }
 {% endstyle %}
 
+{%- if section.settings.background_color != blank -%}
+  {% style %}
+    #HeroImage-{{ section.id }} {
+      --hi-bg: {{ section.settings.background_color }};
+    }
+
+    #shopify-section-{{ section.id }} {
+      background-color: {{ section.settings.background_color }};
+    }
+  {% endstyle %}
+{%- endif -%}
+
 {%- liquid
   assign hero_heading_id = 'HeroImageHeading-' | append: section.id
   assign hero_content_class = 'hero-image__content hero-image__content--desktop-v-' | append: section.settings.desktop_vertical | append: ' hero-image__content--desktop-h-' | append: section.settings.desktop_horizontal | append: ' hero-image__content--mobile-v-' | append: section.settings.mobile_vertical | append: ' hero-image__content--mobile-h-' | append: section.settings.mobile_horizontal
@@ -202,7 +214,7 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    background: #f4f1ec;
+    background: var(--hi-bg, #f4f1ec);
     aspect-ratio: var(--hi-ratio-mobile);
   }
 
@@ -471,6 +483,12 @@
       "id": "image_mobile",
       "label": "t:sections.hero-image.settings.image_mobile.label",
       "info": "t:sections.hero-image.settings.image_mobile.info"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "info": "宽屏时图片两侧，以及图片没有铺满时露出的底色。留空则两侧继续使用页面背景。"
     },
     {
       "type": "select",
