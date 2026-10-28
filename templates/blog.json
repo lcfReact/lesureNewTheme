@@ -15,7 +15,7 @@
       "settings": {
         "image": "shopify://shop_images/new_stories.png",
         "image_mobile": "shopify://shop_images/new_stories_3cf4c665-0e4f-4218-a1b8-d825291dcfc0.png",
-        "background_color": "#F9F9F9",
+        "background_color": "#f9f9f9",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",
@@ -95,7 +95,7 @@
         "enable_autoplay": false,
         "slide_duration": 5,
         "rotating_text": "FEATURED POSTS",
-        "color_scheme_rotating_text": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "color_scheme_rotating_text": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "rotating_text_letter_spacing": 11.6,
         "heading": "",
         "heading_size": "h2",
