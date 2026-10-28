@@ -145,8 +145,8 @@
         "settings": {
           "colors_text": "#211e2a",
           "colors_secondary_text": "#000000",
-          "colors_background_1": "#FFFFFF",
-          "colors_background_2": "#FFFFFF",
+          "colors_background_1": "#F9F9F9",
+          "colors_background_2": "#F9F9F9",
           "background_gradient": "",
           "colors_background_card_small": "#f9f9f9",
           "colors_background_card_small_hover": "#f9f9f9",
