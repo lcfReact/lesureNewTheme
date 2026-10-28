@@ -1025,7 +1025,7 @@
               "type": "_table_cell",
               "settings": {
                 "type": "text",
-                "cell_text": "Cell text",
+                "cell_text": "15",
                 "text_size": "body-normal",
                 "type_icon": "check",
                 "cell_content_alignment": "center"
@@ -1036,7 +1036,62 @@
               "type": "_table_cell",
               "settings": {
                 "type": "text",
-                "cell_text": "Cell text",
+                "cell_text": "25",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_XpNbKg": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "35",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_JNfTGX": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "45",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_U6MHmd": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "60",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_m9QzhP": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "100",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_HHCk9J": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "110",
                 "text_size": "body-normal",
                 "type_icon": "check",
                 "cell_content_alignment": "center"
@@ -1047,7 +1102,12 @@
           "block_order": [
             "table_cell_hpPPzU",
             "table_cell_epjNbt",
-            "table_cell_em7Mjx"
+            "table_cell_em7Mjx",
+            "table_cell_XpNbKg",
+            "table_cell_JNfTGX",
+            "table_cell_U6MHmd",
+            "table_cell_m9QzhP",
+            "table_cell_HHCk9J"
           ]
         },
         "table_row_GhLEty": {
@@ -1074,7 +1134,7 @@
               "type": "_table_cell",
               "settings": {
                 "type": "text",
-                "cell_text": "Cell text",
+                "cell_text": "Cat, Chihuahua, yorkie...",
                 "text_size": "body-normal",
                 "type_icon": "check",
                 "cell_content_alignment": "center"
@@ -1085,7 +1145,62 @@
               "type": "_table_cell",
               "settings": {
                 "type": "text",
-                "cell_text": "Cell text",
+                "cell_text": "Pug, Shin tzu, Toy poodle...",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_DAi9mJ": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Corgi, French Bulldog, Schnauzer...",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_LGgXfg": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Dachshund, Boston Terrier Beagle...",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_FJNyyN": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Border Collie, Australian Shepherd,...",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_CJj6bV": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Bulldog, Husky...",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_LyKPkV": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Labrador Retriever, Golden Retriever...",
                 "text_size": "body-normal",
                 "type_icon": "check",
                 "cell_content_alignment": "center"
@@ -1096,7 +1211,12 @@
           "block_order": [
             "table_cell_YTaPdx",
             "table_cell_TREHJp",
-            "table_cell_Lcprrr"
+            "table_cell_Lcprrr",
+            "table_cell_DAi9mJ",
+            "table_cell_LGgXfg",
+            "table_cell_FJNyyN",
+            "table_cell_CJj6bV",
+            "table_cell_LyKPkV"
           ]
         }
       },
