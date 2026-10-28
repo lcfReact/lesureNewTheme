@@ -470,6 +470,57 @@
         "autoplay_speed": 5
       }
     },
+    "hero_image_XDXrRe": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_nNmwP8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/US_A_0622-07_351c71f1-2747-4b0f-be90-a226709487ba.jpg",
+            "image_mobile": "shopify://shop_images/US_A_0622-25_a9e6caab-d3d3-4222-bfe5-0d309b31f251.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_nNmwP8"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/US_A_0622-03_1b96e2ff-9b2e-4713-91b2-5ef24ebd6207.jpg",
+        "image_mobile": "shopify://shop_images/US_A_0622-20.jpg",
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
     "media_banner_slider_dNaazB": {
       "type": "media-banner-slider",
       "blocks": {
@@ -624,6 +675,7 @@
     "hero_image_qaRAE7",
     "hero_image_xGhEVE",
     "hero_image_XkpjBX",
+    "hero_image_XDXrRe",
     "media_banner_slider_dNaazB",
     "social-media"
   ]
