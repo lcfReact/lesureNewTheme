@@ -106,11 +106,15 @@
           "type": "you_may_also_like",
           "settings": {
             "heading": "You May Also Like",
-            "products": []
+            "products": [
+              "lesure-cat-litter-box",
+              "realortho™"
+            ]
           }
         },
         "inventory_N84rJV": {
           "type": "inventory",
+          "disabled": true,
           "settings": {
             "show_inventory_amount": true,
             "limited_stock": 4
