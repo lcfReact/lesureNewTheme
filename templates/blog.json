@@ -13,7 +13,7 @@
       "type": "hero-image",
       "name": "t:sections.hero-image.presets.name",
       "settings": {
-        "background_color": "",
+        "background_color": "#F9F9F9",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",
@@ -40,68 +40,6 @@
         "button_text_color": "#171717",
         "enable_autoplay": true,
         "autoplay_speed": 5,
-        "anchor_id": ""
-      }
-    },
-    "social-media": {
-      "type": "social-media",
-      "blocks": {
-        "block_1": {
-          "type": "image",
-          "settings": {
-            "image_link": "",
-            "image_border_radius": "pill"
-          }
-        },
-        "block_2": {
-          "type": "image",
-          "settings": {
-            "image_link": "",
-            "image_border_radius": "pill"
-          }
-        },
-        "block_3": {
-          "type": "image",
-          "settings": {
-            "image_link": "",
-            "image_border_radius": "pill"
-          }
-        },
-        "block_4": {
-          "type": "image",
-          "settings": {
-            "image_link": "",
-            "image_border_radius": "pill"
-          }
-        }
-      },
-      "block_order": [
-        "block_1",
-        "block_2",
-        "block_3",
-        "block_4"
-      ],
-      "settings": {
-        "show_border_top": true,
-        "show_border_bottom": true,
-        "color_scheme": "",
-        "layout": "socials-right",
-        "media_block_color_scheme": "",
-        "show_social_media": true,
-        "socials_img_size": "big",
-        "image_blocks_border_radius": "pill",
-        "socials_img_align": "center",
-        "main_text": "Follow Us",
-        "main_text_font": "heading",
-        "main_text_size": "h3",
-        "text_align": "center",
-        "show_text_underline": true,
-        "enable_text_animation": true,
-        "text_underline_color": "#fedc2d",
-        "padding_top": "no-indent",
-        "padding_bottom": "no-indent",
-        "margin_top": "no-indent",
-        "margin_bottom": "no-indent",
         "anchor_id": ""
       }
     },
@@ -155,7 +93,7 @@
         "enable_autoplay": false,
         "slide_duration": 5,
         "rotating_text": "FEATURED POSTS",
-        "color_scheme_rotating_text": "",
+        "color_scheme_rotating_text": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
         "rotating_text_letter_spacing": 11.6,
         "heading": "",
         "heading_size": "h2",
@@ -276,7 +214,6 @@
   },
   "order": [
     "hero_image_jDeVHX",
-    "social-media",
     "main",
     "image-carousel",
     "newsletter_yHekYw"
