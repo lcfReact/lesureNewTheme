@@ -689,6 +689,67 @@
         "autoplay_speed": 5
       }
     },
+    "collapsible_content_YErTHJ": {
+      "type": "collapsible-content",
+      "blocks": {
+        "accordion_pJyH84": {
+          "type": "accordion",
+          "settings": {
+            "question": "How do I choose the right size?",
+            "answer": "<p>Consider your dog's breed, weight, sleep style, and length from the nose to the base of the tail. If your dog is between sizes, has a larger build, or likes to stretch out, size up.</p>",
+            "opened": true
+          }
+        },
+        "accordion_RPCGyd": {
+          "type": "accordion",
+          "settings": {
+            "question": "Why does the bed look flat and wrinkled after unpacking?",
+            "answer": "<p>This is normal because the bed is vaccum-packed for shipping. Open the bottom zipper, gently pat and shake the bed, and allow up to 48 hours to fully expand.&nbsp;</p>",
+            "opened": false
+          }
+        },
+        "accordion_Bi6hgW": {
+          "type": "accordion",
+          "settings": {
+            "question": "Can the fabric handle my dog's digging?",
+            "answer": "<p>The cover is designed for normal daily use but is not scratch-or chew-proof. If your dog likes to dig or nest before lying down, place a blanket over the bed for extra protection.</p>",
+            "opened": false
+          }
+        },
+        "accordion_AepRGh": {
+          "type": "accordion",
+          "settings": {
+            "question": "Use this space to ask a question",
+            "answer": "<p>Use this space to provide a more informative response, explaining the topic in a way that is easy to understand while covering the key points that customers need to know.</p>",
+            "opened": false
+          }
+        }
+      },
+      "block_order": [
+        "accordion_pJyH84",
+        "accordion_RPCGyd",
+        "accordion_Bi6hgW",
+        "accordion_AepRGh"
+      ],
+      "name": "t:sections.collapsible-content.name",
+      "settings": {
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "show_border_top": false,
+        "show_border_bottom": false,
+        "content_align": "center",
+        "animate_section_header_on_scroll": true,
+        "heading": "Frequently Asked Questions",
+        "heading_level": "h3",
+        "heading_size": "h3",
+        "description": "",
+        "question_size": "h6",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent",
+        "anchor_id": ""
+      }
+    },
     "collections_list_dbR3nV": {
       "type": "collections-list",
       "blocks": {
@@ -853,6 +914,7 @@
     "hero_image_XDXrRe",
     "media_banner_slider_dNaazB",
     "hero_image_zWKtMN",
+    "collapsible_content_YErTHJ",
     "collections_list_dbR3nV",
     "social-media"
   ]
