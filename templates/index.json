@@ -763,7 +763,7 @@
         "mobile_vertical": "middle",
         "mobile_horizontal": "center",
         "button_label": "EXPLORE TIPS & GUIDES",
-        "link": "",
+        "link": "shopify://blogs/blog",
         "button_background": "#f5d400",
         "button_text_color": "#171717",
         "enable_autoplay": true,
