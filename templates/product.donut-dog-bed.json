@@ -167,9 +167,10 @@
       "name": "t:sections.sticky-add-to-cart.presets.name",
       "settings": {
         "enabled": true,
-        "card_background": "#F9F9F9",
+        "card_background": "#f9f9f9",
         "card_text": "#000000",
-        "button_background": "#211E2A",
+        "title_color": "#000000",
+        "button_background": "#211e2a",
         "button_text": "#ffffff",
         "card_radius": 4,
         "desktop_bottom": 35,
@@ -265,7 +266,8 @@
         "button_background": "#f5d400",
         "button_text_color": "#171717",
         "enable_autoplay": true,
-        "autoplay_speed": 5
+        "autoplay_speed": 5,
+        "anchor_id": ""
       }
     },
     "hero_image_KBQk8F": {
@@ -314,7 +316,8 @@
         "button_background": "#f5d400",
         "button_text_color": "#171717",
         "enable_autoplay": true,
-        "autoplay_speed": 5
+        "autoplay_speed": 5,
+        "anchor_id": ""
       }
     },
     "product_image_with_text_MNGgCa": {
@@ -343,13 +346,14 @@
         "heading_gap": 16,
         "heading_gap_mobile": 12,
         "text_background": "#f6f3ee",
+        "background_color": "#F9F9F9",
         "section_width": "page",
         "module_radius": 4,
         "text_padding": 48,
         "text_padding_mobile": 24,
         "anchor_id": "",
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 0
       }
     },
     "product_image_with_text_nMgygr": {
@@ -378,13 +382,14 @@
         "heading_gap": 16,
         "heading_gap_mobile": 12,
         "text_background": "#f6f3ee",
+        "background_color": "#F9F9F9",
         "section_width": "page",
         "module_radius": 4,
         "text_padding": 48,
         "text_padding_mobile": 24,
         "anchor_id": "",
         "padding_top": 0,
-        "padding_bottom": 20
+        "padding_bottom": 0
       }
     },
     "product_image_with_text_iCj89y": {
@@ -413,13 +418,14 @@
         "heading_gap": 16,
         "heading_gap_mobile": 12,
         "text_background": "#f6f3ee",
+        "background_color": "#F9F9F9",
         "section_width": "page",
         "module_radius": 4,
         "text_padding": 48,
         "text_padding_mobile": 24,
         "anchor_id": "",
         "padding_top": 0,
-        "padding_bottom": 20
+        "padding_bottom": 0
       }
     },
     "product_image_with_text_Jz9cJJ": {
@@ -448,6 +454,7 @@
         "heading_gap": 16,
         "heading_gap_mobile": 12,
         "text_background": "#f6f3ee",
+        "background_color": "#F9F9F9",
         "section_width": "page",
         "module_radius": 4,
         "text_padding": 48,
@@ -505,7 +512,8 @@
         "button_background": "#f5d400",
         "button_text_color": "#171717",
         "enable_autoplay": true,
-        "autoplay_speed": 5
+        "autoplay_speed": 5,
+        "anchor_id": ""
       }
     },
     "hero_image_XDXrRe": {
@@ -557,7 +565,8 @@
         "button_background": "#f5d400",
         "button_text_color": "#171717",
         "enable_autoplay": true,
-        "autoplay_speed": 5
+        "autoplay_speed": 5,
+        "anchor_id": ""
       }
     },
     "hero_image_9QtV4t": {
@@ -609,7 +618,8 @@
         "button_background": "#f5d400",
         "button_text_color": "#171717",
         "enable_autoplay": true,
-        "autoplay_speed": 5
+        "autoplay_speed": 5,
+        "anchor_id": ""
       }
     },
     "hero_image_zWKtMN": {
@@ -671,7 +681,8 @@
         "button_background": "#f5d400",
         "button_text_color": "#171717",
         "enable_autoplay": true,
-        "autoplay_speed": 5
+        "autoplay_speed": 5,
+        "anchor_id": ""
       }
     },
     "features_table_yyErzP": {
