@@ -45,6 +45,14 @@
   }
 {%- endstyle -%}
 
+{%- if section.settings.background_color != blank -%}
+  {% style %}
+    #shopify-section-{{ section.id }} {
+      background-color: {{ section.settings.background_color }};
+    }
+  {% endstyle %}
+{%- endif -%}
+
 <div
   id="ProductImageText-{{ section.id }}"
   class="pit-section"
@@ -466,6 +474,12 @@
       "id": "text_background",
       "label": "t:sections.product-image-with-text.settings.text_background.label",
       "default": "#F6F3EE"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "info": "模块外侧和上下留白的底色。留空则继续使用页面背景。"
     },
     {
       "type": "select",

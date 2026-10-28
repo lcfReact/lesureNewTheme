@@ -55,6 +55,36 @@
   endcase
 %}
 
+{%- if show_menus and show_products == false -%}
+  <template
+    class="mega-menu-template"
+    data-trigger="{{ section.settings.mega_menu_trigger | handle | strip }}"
+    data-layout="dropdown"
+  >
+    <ul
+      class="header__submenu header__submenu--flat list-menu list-menu--disclosure color-background-1 motion-reduce"
+      role="list"
+    >
+      {%- for block in section.blocks -%}
+        {%- if block.settings.menu != blank and block.settings.menu.links != blank -%}
+          {%- for link in block.settings.menu.links -%}
+            <li {% if forloop.first %}{{ block.shopify_attributes }}{% endif %}>
+              <a
+                href="{{ link.url }}"
+                class="header__menu-item list-menu__item focus-inset"
+                {% if settings.links_blank and link.type == 'http_link' %}
+                  target="_blank"
+                {% endif %}
+              >
+                <span>{{ link.title | escape }}</span>
+              </a>
+            </li>
+          {%- endfor -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </template>
+{%- else -%}
 <template
   class="mega-menu-template"
   data-trigger="{{ section.settings.mega_menu_trigger | handle | strip }}"
@@ -142,7 +172,52 @@
     </mega-menu>
   {%- endif -%}
 </template>
+{%- endif -%}
 
+{%- if show_menus and show_products == false -%}
+  <template
+    class="mobile-mega-menu-template"
+    data-trigger="{{ section.settings.mega_menu_trigger | handle | strip }}"
+    data-layout="dropdown"
+  >
+    <details>
+      <summary class="menu-drawer__menu-summary focus-inset">
+        <a
+          href="#"
+          class="menu-drawer__menu-link menu-drawer__menu-link--mobile-mega-menu focus-inset"
+          tabindex="0"
+        >
+          {{- 'accessibility.link' | t -}}
+        </a>
+        {% render 'icon-caret-mobile-menu' %}
+      </summary>
+      <div class="menu-drawer__submenu motion-reduce" tabindex="-1">
+        <div class="menu-drawer__inner-submenu">
+          <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+            {%- for block in section.blocks -%}
+              {%- if block.settings.menu != blank and block.settings.menu.links != blank -%}
+                {%- for link in block.settings.menu.links -%}
+                  <li class="menu-drawer__menu-item" {% if forloop.first %}{{ block.shopify_attributes }}{% endif %}>
+                    <a
+                      href="{{ link.url }}"
+                      class="menu-drawer__menu-link focus-inset childlink"
+                      {% if settings.links_blank and link.type == 'http_link' %}
+                        target="_blank"
+                      {% endif %}
+                      tabindex="0"
+                    >
+                      {{- link.title | escape -}}
+                    </a>
+                  </li>
+                {%- endfor -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    </details>
+  </template>
+{%- else -%}
 <template
   class="mobile-mega-menu-template"
   data-trigger="{{ section.settings.mega_menu_trigger | handle | strip }}"
@@ -238,6 +313,7 @@
     </details>
   {% endif %}
 </template>
+{%- endif -%}
 
 {% schema %}
 {

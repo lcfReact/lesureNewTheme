@@ -1,6 +1,7 @@
 {%- liquid
   assign hero_loading = 'eager'
   assign hero_fetchpriority = 'high'
+  assign anchor = section.settings.anchor_id | handleize
   if section.index > 2
     assign hero_loading = 'lazy'
     assign hero_fetchpriority = 'auto'
@@ -124,6 +125,10 @@
   endif
 -%}
 
+{%- if anchor != blank -%}
+  <div class="hero-image__anchor" id="{{ anchor }}" data-anchor="{{ anchor }}"></div>
+{%- endif -%}
+
 <div
   id="HeroImage-{{ section.id }}"
   class="hero-image hero-image--desktop-{{ section.settings.desktop_height }} hero-image--mobile-{{ section.settings.mobile_height }}{% if hero_carousel %} hero-image--carousel{% endif %}"
@@ -198,6 +203,12 @@
 </div>
 
 {% stylesheet %}
+  .hero-image__anchor {
+    display: block;
+    height: 0;
+    scroll-margin-top: calc(var(--header-height, 8rem) + var(--announcement-height, 0px) + 1.2rem);
+  }
+
   .hero-image {
     position: relative;
     width: 100%;
@@ -748,6 +759,16 @@
       "unit": "s",
       "label": "切换间隔",
       "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Anchor id"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor id",
+      "info": "用于页内跳转。填写 sale 后，链接写成 #sale。留空则不生成锚点。"
     }
   ],
   "blocks": [

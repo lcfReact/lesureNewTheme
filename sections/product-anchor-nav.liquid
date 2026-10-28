@@ -180,33 +180,17 @@
 
     function headerState() {
       const header = document.querySelector('.shopify-section-header');
-      const sticky = document.querySelector('sticky-header');
-      const type = sticky ? sticky.getAttribute('data-sticky-type') : 'none';
-      const headerHeight = header ? header.getBoundingClientRect().height : 0;
-      return { header, type, headerHeight };
+      return { header };
     }
 
-    function visibleOffset(nav) {
+    function scrollOffset(nav) {
       const { header } = headerState();
       let headerBottom = 0;
       if (header) {
         const bottom = header.getBoundingClientRect().bottom;
         if (bottom > 0) headerBottom = bottom;
       }
-      return headerBottom + nav.getBoundingClientRect().height;
-    }
-
-    function scrollOffset(nav, target) {
-      const { type, headerHeight } = headerState();
-      const navHeight = nav.getBoundingClientRect().height;
-      const gap = 12;
-      const announcement = document.querySelector('.section-announcement');
-      const announcementHeight = announcement ? announcement.getBoundingClientRect().height : 0;
-      if (type === 'always') return headerHeight + announcementHeight + navHeight + gap;
-      if (type === 'none') return navHeight + gap;
-      const scrollingDown = target.getBoundingClientRect().top > visibleOffset(nav);
-      if (scrollingDown) return navHeight + gap;
-      return headerHeight + navHeight + gap;
+      return headerBottom + nav.getBoundingClientRect().height + 12;
     }
 
     function sectionHasContent(target) {
@@ -264,24 +248,15 @@
     function updateActive(nav) {
       const links = Array.from(nav.querySelectorAll('[data-anchor-link]')).filter((link) => !link.hidden);
       if (!links.length) return;
-      const line = visibleOffset(nav) + 24;
-      const items = links
-        .map((link) => {
-          const target = document.getElementById(link.dataset.anchorLink);
-          if (!target) return null;
-          const rect = target.getBoundingClientRect();
-          return { link, top: rect.top, bottom: rect.bottom };
-        })
-        .filter(Boolean);
+      const line = scrollOffset(nav);
       let current = null;
-      items.forEach((item) => {
-        if (item.top <= line) current = item;
+      links.forEach((link) => {
+        const target = document.getElementById(link.dataset.anchorLink);
+        if (!target) return;
+        if (target.getBoundingClientRect().top <= line + 2) current = link;
       });
-      const next = items.find((item) => item.top > line);
-      if (current && current.bottom < line && next) current = next;
-      if (!current && next) current = next;
-      if (!current && items.length) current = items[items.length - 1];
-      setActive(nav, current ? current.link : links[0]);
+      if (!current) current = links.find((link) => document.getElementById(link.dataset.anchorLink));
+      setActive(nav, current || links[0]);
     }
 
     function refresh() {
@@ -292,7 +267,7 @@
     }
 
     function scrollToTarget(nav, target) {
-      const top = target.getBoundingClientRect().top + window.scrollY - scrollOffset(nav, target);
+      const top = target.getBoundingClientRect().top + window.scrollY - scrollOffset(nav);
       window.scrollTo({
         top: Math.max(0, top),
         behavior: reducedMotion.matches ? 'auto' : 'smooth'

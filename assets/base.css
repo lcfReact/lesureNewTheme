@@ -3501,6 +3501,17 @@ menu-drawer + .header__search {
   top: calc(100% + 0.6rem);
   left: 0;
 }
+.header__inline-menu .header__submenu--flat {
+  width: max-content;
+  min-width: 20rem;
+  max-width: min(36rem, 70vw);
+}
+.header__inline-menu .header__submenu--flat .header__menu-item {
+  overflow: visible;
+}
+.header__inline-menu .header__submenu--flat .header__menu-item span {
+  white-space: nowrap;
+}
 .header__inline-menu .list-menu--disclosure .list-menu--disclosure {
   margin: 0;
   top: -0.8rem;

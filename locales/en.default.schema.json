@@ -7057,7 +7057,7 @@
           "label": "Mobile text padding"
         },
         "header_anchor": {
-          "content": "Anchor"
+          "content": "Anchor id"
         },
         "anchor_id": {
           "label": "Anchor id",

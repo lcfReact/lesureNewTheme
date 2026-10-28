@@ -90,6 +90,7 @@
     #StickyAtc-{{ section.id }} {
       --sticky-bg: {{ section.settings.card_background }};
       --sticky-text: {{ section.settings.card_text }};
+      --sticky-title: {{ section.settings.title_color }};
       --sticky-button-bg: {{ section.settings.button_background }};
       --sticky-button-text: {{ section.settings.button_text }};
       --sticky-radius: {{ section.settings.card_radius }}px;
@@ -351,6 +352,7 @@
     -webkit-line-clamp: 2;
     line-clamp: 2;
     white-space: normal;
+    color: var(--sticky-title, #000000);
   }
 
   .sticky-atc__price {
@@ -1087,6 +1089,12 @@
       "id": "card_text",
       "label": "t:sections.sticky-add-to-cart.settings.card_text.label",
       "default": "#1d2433"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Product name color",
+      "default": "#000000"
     },
     {
       "type": "color",

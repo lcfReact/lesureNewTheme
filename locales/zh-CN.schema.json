@@ -6887,7 +6887,7 @@
       "name": "锚点导航",
       "settings": {
         "paragraph": {
-          "content": "这些导航项对该产品模板下的所有产品生效。可修改名称、调整顺序，并把锚点标识设成与目标板块一致。单个产品可填写元字段 custom.anchor_navigation（多行文本，或单行文本列表）来替换这组导航。每行一项，例如 Overview|#overview。目标板块不存在或没有内容时，对应入口不显示。"
+          "content": "这些导航项对该产品模板下的所有产品生效。可修改名称、调整顺序，并把 Anchor id 设成与目标板块一致。单个产品可填写元字段 custom.anchor_navigation（多行文本，或单行文本列表）来替换这组导航。每行一项，例如 Overview|#overview。目标板块不存在或没有内容时，对应入口不显示。"
         }
       },
       "blocks": {
@@ -6898,7 +6898,7 @@
               "label": "名称"
             },
             "anchor_id": {
-              "info": "与目标板块的锚点标识一致。例如 specs，对应链接 #specs。"
+              "info": "与目标板块的 Anchor id 一致。例如 specs，对应链接 #specs。"
             }
           }
         }
@@ -7057,10 +7057,10 @@
           "label": "手机端文字区内边距"
         },
         "header_anchor": {
-          "content": "锚点"
+          "content": "Anchor id"
         },
         "anchor_id": {
-          "label": "锚点标识",
+          "label": "Anchor id",
           "info": "供产品详情页锚点导航使用。例如 features，对应链接 #features。"
         }
       },
