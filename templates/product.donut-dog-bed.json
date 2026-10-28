@@ -353,6 +353,41 @@
         "padding_bottom": 0
       }
     },
+    "product_image_with_text_nMgygr": {
+      "type": "product-image-with-text",
+      "name": "t:sections.product-image-with-text.presets.name",
+      "settings": {
+        "layout": "text-left",
+        "mobile_order": "image",
+        "image": "shopify://shop_images/4_79dd7be7-d4d5-4f9b-88b2-5a31b37f892f.png",
+        "image_width": 50,
+        "image_ratio": "adapt",
+        "image_fit": "cover",
+        "image_radius": 4,
+        "heading": "Enhanced Comfort",
+        "text": "<p>Catering to your pet's well-being. Providing support for joint pain, body aches, and more.&nbsp;</p>",
+        "heading_color": "#1A1A1A",
+        "text_color": "#4A4A4A",
+        "heading_size": 3.2,
+        "heading_size_mobile": 2.4,
+        "text_size": 1.6,
+        "text_size_mobile": 1.4,
+        "heading_line_height": 1.2,
+        "text_line_height": 1.6,
+        "text_alignment": "left",
+        "vertical_alignment": "middle",
+        "heading_gap": 16,
+        "heading_gap_mobile": 12,
+        "text_background": "#F6F3EE",
+        "section_width": "page",
+        "module_radius": 4,
+        "text_padding": 48,
+        "text_padding_mobile": 24,
+        "anchor_id": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "hero_image_qaRAE7": {
       "type": "hero-image",
       "blocks": {
@@ -892,6 +927,7 @@
     "hero_image_ebGrpw",
     "hero_image_KBQk8F",
     "product_image_with_text_MNGgCa",
+    "product_image_with_text_nMgygr",
     "hero_image_qaRAE7",
     "hero_image_xGhEVE",
     "hero_image_XkpjBX",
