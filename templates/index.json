@@ -14,7 +14,7 @@
       "name": "t:sections.hero-image.presets.name",
       "settings": {
         "image": "shopify://shop_images/20261026-172243.jpg",
-        "background_color": "#F9F9F9",
+        "background_color": "#f9f9f9",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",
@@ -145,7 +145,7 @@
         "speed_slider": 2000,
         "enable_autoplay": true,
         "slide_duration": 5.5,
-        "padding_top": "no-indent",
+        "padding_top": "xs",
         "padding_bottom": "no-indent",
         "margin_top": "no-indent",
         "margin_bottom": "no-indent"
@@ -257,7 +257,7 @@
       "settings": {
         "image": "shopify://shop_images/4-_banner.png",
         "image_mobile": "shopify://shop_images/4-_banner_729ba6d6-f3d0-413f-9ac8-c8c24780953f.png",
-        "background_color": "#F9F9F9",
+        "background_color": "#f9f9f9",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",
@@ -729,7 +729,7 @@
       "name": "t:sections.hero-image.presets.name",
       "settings": {
         "image": "shopify://shop_images/7-care_made_simple.png",
-        "background_color": "#F9F9F9",
+        "background_color": "#f9f9f9",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",

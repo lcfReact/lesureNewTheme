@@ -42,6 +42,7 @@
     "type_popups_heading_font": "poppins_n4",
     "type_popups_text_font": "figtree_n4",
     "type_announcement_font": "poppins_n4",
+    "favicon": "shopify://shop_images/20261028-161110.png",
     "card_color_scheme": "background-1",
     "badge_sale_type": "percentage",
     "show_shipping": true,
