@@ -60,45 +60,45 @@
         "dropdown_information_kn4a3k": {
           "type": "dropdown_information",
           "settings": {
-            "heading": "VERSATILE 2-IN-1 COMFORT",
+            "heading": "PLUSH COMFORT",
             "heading_tag": "h3",
-            "description": "<p>Lesure's Cat Tunnel Bed combines a playful tunnel with a cozy nap spot, perfect for cats up to 15 lbs and small pets. Ideal for homes with multiple pets, it offers a hidden play area and a tranquil sleeping space.</p>",
+            "description": "<p>Designed with thick egg crate foam that provides gentle, orthopedic support to relieve pressure on aching joints. This dog sofa is wrapped in an ultra-soft faux fur outer layer that creates a warm, soothing surface your pet will love to curl up on.</p>",
             "default_open": true
           }
         },
         "dropdown_information_fN8k8c": {
           "type": "dropdown_information",
           "settings": {
-            "heading": "LUXURIOUS & DURABLE MATERIALS",
+            "heading": "HEAD AND NECK SUPPORT",
             "heading_tag": "h3",
-            "description": "<p>Crafted with plush jacquard shaggy sherpa, this tunnel bed provides unmatched softness and warmth. High-quality materials ensure durability, while a soft inner cushion offers ultimate comfort for your pet.</p>",
+            "description": "<p>Thoughtfully designed with a bolstered headrest filled with soft, crushed sponge to deliver exceptional cushioning and support. Your furry friend will love cradling in to enjoy long-lasting rest and relaxation.</p>",
             "default_open": false
           }
         },
         "dropdown_information_kgUQkG": {
           "type": "dropdown_information",
           "settings": {
-            "heading": "INTERACTIVE FUN ",
+            "heading": "EASY-TO-CLEAN",
             "heading_tag": "h3",
-            "description": "<p>The tunnel can be shaped into a circle, S-shape, or semi-circle, keeping your cat entertained. Includes two interactive toy balls for endless fun, making it perfect for multi-cat play.</p>",
+            "description": "<p>The sleeping area is in a waterproof liner to protect the foam from spills, water damage, or accidents. Hassle-free maintance is key! Simply remove the zippered cover in seconds and machine wash for easy care.</p>",
             "default_open": false
           }
         },
         "dropdown_information_wbgYrB": {
           "type": "dropdown_information",
           "settings": {
-            "heading": "STYLISH PET OASIS",
+            "heading": "FITS ALL FURY FRIENDS-",
             "heading_tag": "h3",
-            "description": "<p>Available in fashionable patterns, this cat tunnel bed enhances your home decor while providing a chic retreat for your pet. It's a stylish addition to your space and a thoughtful gift for your furry friend.</p>",
+            "description": "<p>Available in a range of sizes to comfortably accommodate all pets, giving the perfect fit for every four-legged friend.</p>",
             "default_open": false
           }
         },
         "dropdown_information_tYfaye": {
           "type": "dropdown_information",
           "settings": {
-            "heading": "HASSLE-FREE MAINTENANCE ",
+            "heading": "AESTHETICS DESIGN",
             "heading_tag": "h3",
-            "description": "<p>Easy to assemble and store, the cat tunnel bed features a removable, machine-washable inner bed for simple cleaning. The non-slip, studded bottom keeps it securely in place for stability.</p>",
+            "description": "<p>The human-inspired high-back design embodies 'pets as family' philosophy, enhancing your furry friend's comfort and well-being while adding a touch of charm to your living space</p>",
             "default_open": false
           }
         },
