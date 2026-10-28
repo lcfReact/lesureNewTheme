@@ -698,8 +698,9 @@
             "collection": "",
             "title": "",
             "card_url": "",
+            "image": "shopify://shop_images/1_96b8b7b7-eac2-4406-8872-1e05367825b1.png",
             "image_position": "center",
-            "button_label": "View Collection"
+            "button_label": "SHOP BEDS"
           }
         },
         "collection_item_wr8ALD": {
@@ -708,6 +709,18 @@
             "collection": "",
             "title": "",
             "card_url": "",
+            "image": "shopify://shop_images/2_199329b2-06ef-4b72-b1f8-c80e1c774b2f.png",
+            "image_position": "center",
+            "button_label": "View Collection"
+          }
+        },
+        "collection_item_f9M3Vh": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "card_url": "",
+            "image": "shopify://shop_images/3_339b8eb2-6280-427a-b238-3c1c9947602a.png",
             "image_position": "center",
             "button_label": "View Collection"
           }
@@ -718,6 +731,7 @@
             "collection": "",
             "title": "",
             "card_url": "",
+            "image": "shopify://shop_images/4_72d95597-df8f-46a9-8699-c105cfd81916.png",
             "image_position": "center",
             "button_label": "View Collection"
           }
@@ -726,13 +740,14 @@
       "block_order": [
         "collection_item_xbX7y8",
         "collection_item_wr8ALD",
+        "collection_item_f9M3Vh",
         "collection_item_XAFmb7"
       ],
       "name": "t:sections.collections-list.presets.name",
       "settings": {
         "color_scheme": "",
         "animate_section_header_on_scroll": true,
-        "heading": "Collections",
+        "heading": "Human Inspired. Pet Perfected.",
         "heading_size": "h2",
         "heading_level": "h2",
         "description": "",
@@ -748,7 +763,7 @@
         "card_radius": 4,
         "card_gap": 20,
         "card_gap_mobile": 12,
-        "collections_column_count": "3",
+        "collections_column_count": "4",
         "card_color_scheme": "",
         "card_type": "primary",
         "aspect_ratio": "portrait",
