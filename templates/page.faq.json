@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -8,30 +17,90 @@
         "padding_bottom": "m"
       }
     },
+    "hero_image_3nLEGG": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_ezP7DD": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/faqs.png",
+            "image_mobile": "shopify://shop_images/faqs_2abb54e4-932c-4907-a4a1-d0cd27e79202.png",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_ezP7DD"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/faqs.png",
+        "image_mobile": "shopify://shop_images/faqs_2abb54e4-932c-4907-a4a1-d0cd27e79202.png",
+        "background_color": "#F9F9F9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "FAQ",
+        "heading_color": "#000000",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "",
+        "text_color": "#FFFFFF",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#F5D400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5,
+        "anchor_id": ""
+      }
+    },
     "collapsible_content_LzK6iw": {
       "type": "collapsible-content",
       "blocks": {
         "accordion_TcfkcG": {
           "type": "accordion",
           "settings": {
+            "question": "Use this space to ask a question",
+            "answer": "<p>Use this space to provide a more informative response, explaining the topic in a way that is easy to understand while covering the key points that customers need to know.</p>",
             "opened": true
           }
         },
         "accordion_EAzimU": {
           "type": "accordion",
           "settings": {
+            "question": "Use this space to ask a question",
+            "answer": "<p>Use this space to provide a more informative response, explaining the topic in a way that is easy to understand while covering the key points that customers need to know.</p>",
             "opened": false
           }
         },
         "accordion_XWdHRF": {
           "type": "accordion",
           "settings": {
+            "question": "Use this space to ask a question",
+            "answer": "<p>Use this space to provide a more informative response, explaining the topic in a way that is easy to understand while covering the key points that customers need to know.</p>",
             "opened": false
           }
         },
         "accordion_rBQWL3": {
           "type": "accordion",
           "settings": {
+            "question": "Use this space to ask a question",
+            "answer": "<p>Use this space to provide a more informative response, explaining the topic in a way that is easy to understand while covering the key points that customers need to know.</p>",
             "opened": false
           }
         }
@@ -44,10 +113,12 @@
       ],
       "name": "t:sections.collapsible-content.name",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
         "show_border_top": false,
         "show_border_bottom": false,
         "content_align": "center",
+        "animate_section_header_on_scroll": true,
+        "heading": "Your FAQs title",
         "heading_level": "h2",
         "heading_size": "h2",
         "description": "",
@@ -55,7 +126,8 @@
         "padding_top": "l",
         "padding_bottom": "l",
         "margin_top": "no-indent",
-        "margin_bottom": "no-indent"
+        "margin_bottom": "no-indent",
+        "anchor_id": ""
       }
     },
     "image-carousel": {
@@ -107,9 +179,10 @@
         "block_6"
       ],
       "settings": {
-        "main_color_scheme": "",
+        "main_color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
         "show_border_top": true,
         "show_border_bottom": false,
+        "animate_section_header_on_scroll": true,
         "subheading": "",
         "heading": "",
         "heading_size": "h2",
@@ -132,29 +205,38 @@
         "block_1": {
           "type": "image",
           "settings": {
+            "image_link": "",
             "image_border_radius": "pill"
           }
         },
         "block_2": {
           "type": "image",
           "settings": {
+            "image_link": "",
             "image_border_radius": "pill"
           }
         },
         "block_3": {
           "type": "image",
           "settings": {
+            "image_link": "",
             "image_border_radius": "pill"
           }
         },
         "block_4": {
           "type": "image",
           "settings": {
+            "image_link": "",
             "image_border_radius": "pill"
           }
         }
       },
-      "block_order": ["block_1", "block_2", "block_3", "block_4"],
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ],
       "settings": {
         "show_border_top": true,
         "show_border_bottom": true,
@@ -165,6 +247,7 @@
         "socials_img_size": "big",
         "image_blocks_border_radius": "pill",
         "socials_img_align": "center",
+        "main_text": "Follow Us",
         "main_text_font": "heading",
         "main_text_size": "h3",
         "text_align": "center",
@@ -174,12 +257,14 @@
         "padding_top": "no-indent",
         "padding_bottom": "no-indent",
         "margin_top": "no-indent",
-        "margin_bottom": "no-indent"
+        "margin_bottom": "no-indent",
+        "anchor_id": ""
       }
     }
   },
   "order": [
     "main",
+    "hero_image_3nLEGG",
     "collapsible_content_LzK6iw",
     "image-carousel",
     "social-media"
