@@ -656,16 +656,16 @@
         "accordion_W9TKJ8": {
           "type": "accordion",
           "settings": {
-            "question": "Use this space to ask a question",
-            "answer": "<p>Use this space to provide a more informative response, explaining the topic in a way that is easy to understand while covering the key points that customers need to know.</p>",
+            "question": "What types of cat litter should I use for Lesure litter box?",
+            "answer": "<p>Comes with two litter sifters: Vertical Strip Mesh for tofu/mixed litter, Butterfly Mesh for mineral/bentonite litter.</p>",
             "opened": false
           }
         },
         "accordion_J8WUh9": {
           "type": "accordion",
           "settings": {
-            "question": "Use this space to ask a question",
-            "answer": "<p>Use this space to provide a more informative response, explaining the topic in a way that is easy to understand while covering the key points that customers need to know.</p>",
+            "question": "How do I train my cat to use Lesure litter box?",
+            "answer": "<p>Most cats adapt easily, but some may need time to get used to the new litter box. Follow these tips to help your cat transition smoothly:</p><ol><li><strong>Place Side by Side: </strong>Keep the new litter box next to the old one. Allow your cat to use both for at least a week (longer if needed, depending on temperament).</li><li><strong>Mix in Familiar Litter: </strong>Add a small amount of old litter to the new box to create a familiar scent.</li><li><strong>Adjust Cleaning Frequency: </strong>Reduce cleaning of the old litter box, since cats prefer clean litter.</li><li><strong>Remove the Old Box: </strong>Once your cat consistently uses the new box, remove the old one.<br/><br/></li></ol>",
             "opened": false
           }
         }
