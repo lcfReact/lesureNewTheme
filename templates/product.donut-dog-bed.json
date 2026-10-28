@@ -137,7 +137,7 @@
         "inventory_N84rJV"
       ],
       "settings": {
-        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "badge_sale_show": true,
         "badge_sale_type": "percentage",
         "badge_soldout_show": true,
@@ -217,7 +217,7 @@
         "reviews"
       ],
       "settings": {
-        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7"
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195"
       }
     },
     "hero_image_ebGrpw": {
@@ -346,7 +346,7 @@
         "heading_gap": 16,
         "heading_gap_mobile": 12,
         "text_background": "#f6f3ee",
-        "background_color": "#F9F9F9",
+        "background_color": "#f9f9f9",
         "section_width": "page",
         "module_radius": 4,
         "text_padding": 48,
@@ -382,7 +382,7 @@
         "heading_gap": 16,
         "heading_gap_mobile": 12,
         "text_background": "#f6f3ee",
-        "background_color": "#F9F9F9",
+        "background_color": "#f9f9f9",
         "section_width": "page",
         "module_radius": 4,
         "text_padding": 48,
@@ -418,7 +418,7 @@
         "heading_gap": 16,
         "heading_gap_mobile": 12,
         "text_background": "#f6f3ee",
-        "background_color": "#F9F9F9",
+        "background_color": "#f9f9f9",
         "section_width": "page",
         "module_radius": 4,
         "text_padding": 48,
@@ -454,7 +454,7 @@
         "heading_gap": 16,
         "heading_gap_mobile": 12,
         "text_background": "#f6f3ee",
-        "background_color": "#F9F9F9",
+        "background_color": "#f9f9f9",
         "section_width": "page",
         "module_radius": 4,
         "text_padding": 48,
