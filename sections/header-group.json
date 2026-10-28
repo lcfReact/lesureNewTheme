@@ -40,7 +40,7 @@
         "text": "",
         "text_mobile": "",
         "autoplay": true,
-        "interval": 5,
+        "interval": 10,
         "show_countdown": false,
         "show_countdown_mobile": false,
         "enable_mock_timer": false,
