@@ -634,6 +634,67 @@
         "autoplay_speed": 5
       }
     },
+    "collapsible_content_QWr3Hx": {
+      "type": "collapsible-content",
+      "blocks": {
+        "accordion_j47PCH": {
+          "type": "accordion",
+          "settings": {
+            "question": "Is there a weight limit for Lesure litter box?",
+            "answer": "<p>Must be used with cats weighing at least 3.3 lbs (1.5 kg) and taller than 6 inches.<br/><br/></p>",
+            "opened": true
+          }
+        },
+        "accordion_8Qax64": {
+          "type": "accordion",
+          "settings": {
+            "question": "How does it keep my cat safe?",
+            "answer": "<p>Equipped with 6 sweeping infrared sensors for instant safety, day or night. The Pinch-Free Rotation System keeps gear movement within a safe angle, preventing pinching for a worry-free cat experience.</p>",
+            "opened": false
+          }
+        },
+        "accordion_W9TKJ8": {
+          "type": "accordion",
+          "settings": {
+            "question": "Use this space to ask a question",
+            "answer": "<p>Use this space to provide a more informative response, explaining the topic in a way that is easy to understand while covering the key points that customers need to know.</p>",
+            "opened": false
+          }
+        },
+        "accordion_J8WUh9": {
+          "type": "accordion",
+          "settings": {
+            "question": "Use this space to ask a question",
+            "answer": "<p>Use this space to provide a more informative response, explaining the topic in a way that is easy to understand while covering the key points that customers need to know.</p>",
+            "opened": false
+          }
+        }
+      },
+      "block_order": [
+        "accordion_j47PCH",
+        "accordion_8Qax64",
+        "accordion_W9TKJ8",
+        "accordion_J8WUh9"
+      ],
+      "name": "t:sections.collapsible-content.name",
+      "settings": {
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "show_border_top": false,
+        "show_border_bottom": false,
+        "content_align": "center",
+        "animate_section_header_on_scroll": true,
+        "heading": "Frequently Asked Questions",
+        "heading_level": "h3",
+        "heading_size": "h3",
+        "description": "",
+        "question_size": "h6",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent",
+        "anchor_id": ""
+      }
+    },
     "collections_list_dbR3nV": {
       "type": "collections-list",
       "blocks": {
@@ -798,6 +859,7 @@
     "hero_image_XDXrRe",
     "hero_image_9QtV4t",
     "hero_image_zWKtMN",
+    "collapsible_content_QWr3Hx",
     "collections_list_dbR3nV",
     "social-media"
   ]
