@@ -789,7 +789,7 @@
         "heading_size": "h2",
         "show_button": true,
         "button_label": "View More",
-        "button_link": "/blogs/blog",
+        "button_link": "shopify://blogs/news",
         "button_style": "primary",
         "padding_top": "xl",
         "padding_bottom": "xl",
