@@ -45,6 +45,69 @@
         "anchor_id": ""
       }
     },
+    "social_media_g7eP39": {
+      "type": "social-media",
+      "blocks": {
+        "image_FtAwaA": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "image_W8kGKF": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "image_n8Yj6E": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "image_7GMHa4": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        }
+      },
+      "block_order": [
+        "image_FtAwaA",
+        "image_W8kGKF",
+        "image_n8Yj6E",
+        "image_7GMHa4"
+      ],
+      "name": "t:sections.social-media.presets.name",
+      "settings": {
+        "show_border_top": true,
+        "show_border_bottom": true,
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "layout": "socials-right",
+        "media_block_color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "show_social_media": false,
+        "socials_img_size": "small",
+        "image_blocks_border_radius": "pill",
+        "socials_img_align": "center",
+        "main_text": "Follow Us",
+        "main_text_font": "heading",
+        "main_text_size": "h3",
+        "text_align": "center",
+        "show_text_underline": true,
+        "enable_text_animation": true,
+        "text_underline_color": "#000000",
+        "padding_top": "no-indent",
+        "padding_bottom": "no-indent",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent",
+        "anchor_id": ""
+      }
+    },
     "main": {
       "type": "main-blog",
       "settings": {
@@ -189,6 +252,7 @@
   },
   "order": [
     "hero_image_jDeVHX",
+    "social_media_g7eP39",
     "main",
     "image-carousel",
     "newsletter_yHekYw"
