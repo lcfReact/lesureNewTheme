@@ -105,7 +105,7 @@
       ],
       "name": "t:sections.image-with-text.name",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
         "enable_border_top": true,
         "enable_border_bottom": true,
         "animate_section_header_on_scroll": true,
