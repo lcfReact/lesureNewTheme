@@ -31,7 +31,7 @@
       "type": "main-collection-product-grid",
       "settings": {
         "products_per_page": 6,
-        "columns": 4,
+        "columns": 3,
         "columns_mobile": "2",
         "enable_border_top": true,
         "enable_border_bottom": true,

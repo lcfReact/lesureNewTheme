@@ -43,8 +43,9 @@
     "type_popups_text_font": "figtree_n4",
     "type_announcement_font": "poppins_n4",
     "favicon": "shopify://shop_images/20261028-161110.png",
-    "card_color_scheme": "background-1",
+    "card_color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
     "badge_sale_type": "percentage",
+    "quickview_button_style": "secondary",
     "show_shipping": true,
     "cart_upsell_products": [
       "lesure-orthopedic-dog-stairs",
