@@ -25,7 +25,7 @@
           "settings": {
             "image": "shopify://shop_images/contact_us_fca553cd-2cc0-4b25-bde9-c12fac1722b0.png",
             "image_mobile": "shopify://shop_images/contact_us.png",
-            "heading": "",
+            "heading": "Contact",
             "text": "",
             "button_label": "",
             "link": ""
@@ -179,6 +179,7 @@
         "block_5",
         "block_6"
       ],
+      "disabled": true,
       "settings": {
         "main_color_scheme": "",
         "show_border_top": true,
@@ -238,6 +239,7 @@
         "block_3",
         "block_4"
       ],
+      "disabled": true,
       "settings": {
         "show_border_top": true,
         "show_border_bottom": true,
