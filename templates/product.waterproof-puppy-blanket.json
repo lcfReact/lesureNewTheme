@@ -137,7 +137,7 @@
         "inventory_N84rJV"
       ],
       "settings": {
-        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "badge_sale_show": true,
         "badge_sale_type": "percentage",
         "badge_soldout_show": true,
@@ -241,7 +241,7 @@
       ],
       "name": "t:sections.hero-image.presets.name",
       "settings": {
-        "background_color": "#f9f9f9",
+        "background_color": "#FFFFFF",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",
@@ -291,7 +291,7 @@
       ],
       "name": "t:sections.hero-image.presets.name",
       "settings": {
-        "background_color": "#f9f9f9",
+        "background_color": "#FFFFFF",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",
@@ -341,7 +341,7 @@
       ],
       "name": "t:sections.hero-image.presets.name",
       "settings": {
-        "background_color": "#f9f9f9",
+        "background_color": "#FFFFFF",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",
@@ -391,7 +391,7 @@
       ],
       "name": "t:sections.hero-image.presets.name",
       "settings": {
-        "background_color": "#f9f9f9",
+        "background_color": "#FFFFFF",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",
@@ -441,7 +441,7 @@
       ],
       "name": "t:sections.hero-image.presets.name",
       "settings": {
-        "background_color": "#f9f9f9",
+        "background_color": "#FFFFFF",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",
@@ -491,7 +491,7 @@
       ],
       "name": "t:sections.hero-image.presets.name",
       "settings": {
-        "background_color": "#f9f9f9",
+        "background_color": "#FFFFFF",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",
@@ -541,7 +541,7 @@
       ],
       "name": "t:sections.hero-image.presets.name",
       "settings": {
-        "background_color": "#f9f9f9",
+        "background_color": "#FFFFFF",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",
@@ -593,7 +593,7 @@
       "settings": {
         "image": "shopify://shop_images/US_A_0622-03_1b96e2ff-9b2e-4713-91b2-5ef24ebd6207.jpg",
         "image_mobile": "shopify://shop_images/US_A_0622-20.jpg",
-        "background_color": "#f9f9f9",
+        "background_color": "#FFFFFF",
         "desktop_height": "adapt",
         "mobile_height": "adapt",
         "image_fit": "contain",
