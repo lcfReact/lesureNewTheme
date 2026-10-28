@@ -33,6 +33,7 @@
         },
         "description_aM9wGk": {
           "type": "description",
+          "disabled": true,
           "settings": {
             "description": ""
           }
@@ -48,19 +49,64 @@
             "linked_products_label": "Style"
           }
         },
-        "you_may_also_like_tbUQAp": {
-          "type": "you_may_also_like",
-          "settings": {
-            "heading": "You May Also Like",
-            "products": []
-          }
-        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true,
             "show_quantity": true,
             "show_gift_card_recipient": false
+          }
+        },
+        "dropdown_information_Unzn86": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "Vet Recommended, Scientifically Balanced Support",
+            "heading_tag": "h2",
+            "description": "<p>Ever wake to paws pacing in the dark as your dog circles, lies down, then gets right back up? Built for large dogs that sink through ordinary beds and senior dogs that struggle to rest, this orthopedic dog bed uses a scientifically balanced foam system to cushion sore hips and elbows while keeping their body gently lifted and fully supported.</p>",
+            "default_open": true
+          }
+        },
+        "dropdown_information_kgUQkG": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "Each Layer Is Made to Help",
+            "heading_tag": "h3",
+            "description": "<p><em>When your dog keeps shifting through the night, sinking too deep, or struggling to stand, every layer matters. Memory foam contours in 2 seconds to cradle tired joints. Responsive foam offers 10x higher rebound for a gentle boost when senior dogs rise. Base foam delivers 2.4x stronger support so larger dogs can rest without bottoming out.</em></p>",
+            "default_open": false
+          }
+        },
+        "dropdown_information_kn4a3k": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "Year-Round Comfort",
+            "heading_tag": "h3",
+            "description": "<p>When stuffy summer nights, chilly winter mornings, or high edges make it harder for your senior dog to settle, the right design matters. Breathable mesh sides help air circulate, quilted Dutch velvet adds cozy warmth, and a wide, low entry makes stepping in and out easier. The L-shaped bolster offers a supportive place to lean or rest their head without crowding the sleep space.</p>",
+            "default_open": false
+          }
+        },
+        "dropdown_information_fN8k8c": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "Built for Real Pet Messes",
+            "heading_tag": "h3",
+            "description": "<p>Drool, damp paws, hair, and small accidents happen. The waterproof lining helps keep everyday moisture from soaking into the foam. The cover is removable and machine washable, while the non-slip base helps reduce sliding on hardwood or tile floors, so the bed stays steadier when your dog turns, stretches, or settles back in.</p>",
+            "default_open": false
+          }
+        },
+        "dropdown_information_wbgYrB": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "Before Your Dog Settles In",
+            "heading_tag": "h3",
+            "description": "<p><em>The bed may look flatter or slightly smaller right out of the box after vacuum packing. Simply unzip the cover, let the foam breathe, pat and fluff it, and allow up to 48 hours for the shape and feel to fully recover.</em></p>",
+            "default_open": false
+          }
+        },
+        "you_may_also_like_tbUQAp": {
+          "type": "you_may_also_like",
+          "settings": {
+            "heading": "You May Also Like",
+            "products": []
           }
         },
         "inventory_N84rJV": {
@@ -77,8 +123,13 @@
         "price",
         "description_aM9wGk",
         "variant_picker",
-        "you_may_also_like_tbUQAp",
         "buy_buttons",
+        "dropdown_information_Unzn86",
+        "dropdown_information_kgUQkG",
+        "dropdown_information_kn4a3k",
+        "dropdown_information_fN8k8c",
+        "dropdown_information_wbgYrB",
+        "you_may_also_like_tbUQAp",
         "inventory_N84rJV"
       ],
       "settings": {
