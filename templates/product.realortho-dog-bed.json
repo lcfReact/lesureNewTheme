@@ -219,6 +219,155 @@
         "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7"
       }
     },
+    "hero_image_ebGrpw": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_knW96X": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/US_A_0629-01.jpg",
+            "image_mobile": "shopify://shop_images/US_A_0629-19.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_knW96X"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "background_color": "#F9F9F9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#FFFFFF",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#FFFFFF",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#F5D400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "hero_image_KBQk8F": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_VRqjkK": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/US_A_0629-02.jpg",
+            "image_mobile": "shopify://shop_images/US_A_0629-23.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_VRqjkK"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "background_color": "#F9F9F9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#FFFFFF",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#FFFFFF",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#F5D400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "hero_image_qaRAE7": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_JQaB3B": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/US_A_0629-02.jpg",
+            "image_mobile": "shopify://shop_images/US_A_0629-23.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_JQaB3B"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/US_A_0629-05_74b462d2-b24a-4ca3-a668-476354d3ae1c.jpg",
+        "image_mobile": "shopify://shop_images/US_A_0622-21_a449847b-d6ff-4caa-bf11-548d78256f7e.jpg",
+        "background_color": "#F9F9F9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#FFFFFF",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#FFFFFF",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#F5D400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
     "social-media": {
       "type": "social-media",
       "blocks": {
@@ -286,6 +435,9 @@
     "main-product",
     "sticky_add_to_cart_qmPgiz",
     "product_anchor_nav",
+    "hero_image_ebGrpw",
+    "hero_image_KBQk8F",
+    "hero_image_qaRAE7",
     "social-media"
   ]
 }
