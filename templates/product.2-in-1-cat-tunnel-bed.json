@@ -1,0 +1,1495 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h1",
+            "heading_size": "h3"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_tax_info": true
+          }
+        },
+        "description_aM9wGk": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "description": ""
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "pills",
+            "swatch_type": "variant_image",
+            "variant_image_size": "square",
+            "unavailable_options_clickable": false,
+            "enable_linked_products": false,
+            "linked_products_label": "Style"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_quantity": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "dropdown_information_kn4a3k": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "SNUGGLE HAVEN",
+            "heading_tag": "h3",
+            "description": "<p>Lesure's Calming Donut Bed offers soothing sherpa and a raised rim for head and neck support, perfect for pet relaxation.</p>",
+            "default_open": true
+          }
+        },
+        "dropdown_information_kgUQkG": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "PET-PAMPERING PERFECTION",
+            "heading_tag": "h3",
+            "description": "<p>Certified safe, this bed is ideal for small dogs and cats, providing comfort without health risks.</p>",
+            "default_open": false
+          }
+        },
+        "dropdown_information_fN8k8c": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "FITS ALL FURRY FRIENDS ",
+            "heading_tag": "h3",
+            "description": "<p>This &nbsp;bed suits pets up to 45 lbs, with an anti-slip bottom and cozy sherpa. Size up for extra comfort.</p>",
+            "default_open": false
+          }
+        },
+        "dropdown_information_wbgYrB": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "HASSLE-FREE HYGIENE",
+            "heading_tag": "h3",
+            "description": "<p>Removable, washable cover for XS-M sizes. Cold wash, tumble dry low, and fluff for freshness.</p>",
+            "default_open": false
+          }
+        },
+        "dropdown_information_tYfaye": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "CHIC PET RETREAT",
+            "heading_tag": "h3",
+            "description": "<p>Stylish Bow, Cloud, Flower, or Checkboard patterns. Pair with matching blankets for a decor boost. Great pet gift!</p>",
+            "default_open": false
+          }
+        },
+        "you_may_also_like_tbUQAp": {
+          "type": "you_may_also_like",
+          "settings": {
+            "heading": "You May Also Like",
+            "products": [
+              "lesure-orthopedic-dog-stairs",
+              "lesure-disposable-male-dog-diapers-50-count"
+            ]
+          }
+        },
+        "inventory_N84rJV": {
+          "type": "inventory",
+          "disabled": true,
+          "settings": {
+            "show_inventory_amount": true,
+            "limited_stock": 4
+          }
+        }
+      },
+      "block_order": [
+        "text",
+        "title",
+        "price",
+        "description_aM9wGk",
+        "variant_picker",
+        "buy_buttons",
+        "dropdown_information_kn4a3k",
+        "dropdown_information_kgUQkG",
+        "dropdown_information_fN8k8c",
+        "dropdown_information_wbgYrB",
+        "dropdown_information_tYfaye",
+        "you_may_also_like_tbUQAp",
+        "inventory_N84rJV"
+      ],
+      "settings": {
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "badge_sale_show": true,
+        "badge_sale_type": "percentage",
+        "badge_soldout_show": true,
+        "badge_new_show": false,
+        "badge_custom_show": true,
+        "desktop_alignment": "left",
+        "mobile_alignment": "before",
+        "aspect_ratio": "square",
+        "image_fit": "cover",
+        "thumbs_direction": "vertical",
+        "thumbs_aspect_ratio": "square",
+        "thumbs_image_fit": "cover",
+        "enable_video_looping": false,
+        "enable_video_autoplay": false,
+        "enable_image_zoom_mobile": false,
+        "enable_image_zoom_desktop": true,
+        "show_arrows_desktop": true,
+        "show_arrows_mobile": false,
+        "arrow_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "padding_top": "xs",
+        "padding_bottom": "l",
+        "anchor_id": "overview"
+      }
+    },
+    "sticky_add_to_cart_qmPgiz": {
+      "type": "sticky-add-to-cart",
+      "name": "t:sections.sticky-add-to-cart.presets.name",
+      "settings": {
+        "enabled": true,
+        "card_background": "#f9f9f9",
+        "card_text": "#000000",
+        "title_color": "#000000",
+        "button_background": "#211e2a",
+        "button_text": "#ffffff",
+        "card_radius": 4,
+        "desktop_bottom": 35,
+        "desktop_right": 35,
+        "mobile_bottom": 0
+      }
+    },
+    "product_anchor_nav": {
+      "type": "product-anchor-nav",
+      "blocks": {
+        "overview": {
+          "type": "link",
+          "settings": {
+            "label": "Overview",
+            "anchor_id": "overview"
+          }
+        },
+        "specs": {
+          "type": "link",
+          "settings": {
+            "label": "Specs",
+            "anchor_id": "specs"
+          }
+        },
+        "faq": {
+          "type": "link",
+          "settings": {
+            "label": "FAQ",
+            "anchor_id": "faq"
+          }
+        },
+        "reviews": {
+          "type": "link",
+          "settings": {
+            "label": "Reviews",
+            "anchor_id": "reviews"
+          }
+        }
+      },
+      "block_order": [
+        "overview",
+        "specs",
+        "faq",
+        "reviews"
+      ],
+      "settings": {
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7"
+      }
+    },
+    "hero_image_ebGrpw": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_knW96X": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1_f986da22-e4ba-4cac-967f-1fa721716175.png",
+            "image_mobile": "shopify://shop_images/1_11f1f935-3754-496e-a06e-fd7e83ca1ab1.png",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_knW96X"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5,
+        "anchor_id": ""
+      }
+    },
+    "hero_image_KBQk8F": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_VRqjkK": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/2_0c94e54e-35bd-4ca0-b18c-67dce2e842c5.png",
+            "image_mobile": "shopify://shop_images/2_119e9e16-5a02-4d3b-89b7-b093fa4096cb.png",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_VRqjkK"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5,
+        "anchor_id": ""
+      }
+    },
+    "product_image_with_text_MNGgCa": {
+      "type": "product-image-with-text",
+      "name": "t:sections.product-image-with-text.presets.name",
+      "settings": {
+        "layout": "image-left",
+        "mobile_order": "image",
+        "image": "shopify://shop_images/3_e7de24e3-57d5-4745-92c2-33efca7115b4.png",
+        "image_width": 50,
+        "image_ratio": "adapt",
+        "image_fit": "cover",
+        "image_radius": 4,
+        "heading": "3D Stylish Pattern",
+        "text": "<p>Soft, Soothing, and Cozy Selection.</p>",
+        "heading_color": "#1a1a1a",
+        "text_color": "#4a4a4a",
+        "heading_size": 3.2,
+        "heading_size_mobile": 2.4,
+        "text_size": 1.6,
+        "text_size_mobile": 1.4,
+        "heading_line_height": 1.2,
+        "text_line_height": 1.6,
+        "text_alignment": "left",
+        "vertical_alignment": "middle",
+        "heading_gap": 16,
+        "heading_gap_mobile": 12,
+        "text_background": "#f6f3ee",
+        "background_color": "#F9F9F9",
+        "section_width": "page",
+        "module_radius": 4,
+        "text_padding": 48,
+        "text_padding_mobile": 24,
+        "anchor_id": "",
+        "padding_top": 20,
+        "padding_bottom": 0
+      }
+    },
+    "product_image_with_text_nMgygr": {
+      "type": "product-image-with-text",
+      "name": "t:sections.product-image-with-text.presets.name",
+      "settings": {
+        "layout": "text-left",
+        "mobile_order": "image",
+        "image": "shopify://shop_images/4_79dd7be7-d4d5-4f9b-88b2-5a31b37f892f.png",
+        "image_width": 50,
+        "image_ratio": "adapt",
+        "image_fit": "cover",
+        "image_radius": 4,
+        "heading": "Enhanced Comfort",
+        "text": "<p>Catering to your pet's well-being. Providing support for joint pain, body aches, and more.&nbsp;</p>",
+        "heading_color": "#1a1a1a",
+        "text_color": "#4a4a4a",
+        "heading_size": 3.2,
+        "heading_size_mobile": 2.4,
+        "text_size": 1.6,
+        "text_size_mobile": 1.4,
+        "heading_line_height": 1.2,
+        "text_line_height": 1.6,
+        "text_alignment": "left",
+        "vertical_alignment": "middle",
+        "heading_gap": 16,
+        "heading_gap_mobile": 12,
+        "text_background": "#f6f3ee",
+        "background_color": "#F9F9F9",
+        "section_width": "page",
+        "module_radius": 4,
+        "text_padding": 48,
+        "text_padding_mobile": 24,
+        "anchor_id": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "product_image_with_text_iCj89y": {
+      "type": "product-image-with-text",
+      "name": "t:sections.product-image-with-text.presets.name",
+      "settings": {
+        "layout": "image-left",
+        "mobile_order": "image",
+        "image": "shopify://shop_images/5_0de080a6-04e1-47d9-a97e-0870d0afe1c2.png",
+        "image_width": 50,
+        "image_ratio": "adapt",
+        "image_fit": "cover",
+        "image_radius": 4,
+        "heading": "Easy Maintenance",
+        "text": "<p>Keeping your pet bed squeaky clean is effortless with removable covers and machine-washine options.</p>",
+        "heading_color": "#1a1a1a",
+        "text_color": "#4a4a4a",
+        "heading_size": 3.2,
+        "heading_size_mobile": 2.4,
+        "text_size": 1.6,
+        "text_size_mobile": 1.4,
+        "heading_line_height": 1.2,
+        "text_line_height": 1.6,
+        "text_alignment": "left",
+        "vertical_alignment": "middle",
+        "heading_gap": 16,
+        "heading_gap_mobile": 12,
+        "text_background": "#f6f3ee",
+        "background_color": "#F9F9F9",
+        "section_width": "page",
+        "module_radius": 4,
+        "text_padding": 48,
+        "text_padding_mobile": 24,
+        "anchor_id": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "product_image_with_text_Jz9cJJ": {
+      "type": "product-image-with-text",
+      "name": "t:sections.product-image-with-text.presets.name",
+      "settings": {
+        "layout": "text-left",
+        "mobile_order": "image",
+        "image": "shopify://shop_images/6_9989caa1-5738-4459-a542-5b7a12ee7f18.png",
+        "image_width": 50,
+        "image_ratio": "adapt",
+        "image_fit": "cover",
+        "image_radius": 4,
+        "heading": "Non-Slip Bottom",
+        "text": "<p>Rubberized dots hold the bed in place, keeping your pet safe and secure.</p>",
+        "heading_color": "#1a1a1a",
+        "text_color": "#4a4a4a",
+        "heading_size": 3.2,
+        "heading_size_mobile": 2.4,
+        "text_size": 1.6,
+        "text_size_mobile": 1.4,
+        "heading_line_height": 1.2,
+        "text_line_height": 1.6,
+        "text_alignment": "left",
+        "vertical_alignment": "middle",
+        "heading_gap": 16,
+        "heading_gap_mobile": 12,
+        "text_background": "#f6f3ee",
+        "background_color": "#F9F9F9",
+        "section_width": "page",
+        "module_radius": 4,
+        "text_padding": 48,
+        "text_padding_mobile": 24,
+        "anchor_id": "",
+        "padding_top": 0,
+        "padding_bottom": 20
+      }
+    },
+    "hero_image_qaRAE7": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_JQaB3B": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/7_79dcfb6f-bc01-4bab-8533-9c359641babd.png",
+            "image_mobile": "shopify://shop_images/3_816ff7b9-126b-4b15-ab12-8fd86c66aadb.png",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_JQaB3B"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/US_A_0629-05_74b462d2-b24a-4ca3-a668-476354d3ae1c.jpg",
+        "image_mobile": "shopify://shop_images/US_A_0622-21_a449847b-d6ff-4caa-bf11-548d78256f7e.jpg",
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5,
+        "anchor_id": ""
+      }
+    },
+    "hero_image_XDXrRe": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_nNmwP8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/A_323___1_6_7569f850-5966-41f0-bc32-aa1ea803ce7b.jpg",
+            "image_mobile": "shopify://shop_images/A_323_-18.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_nNmwP8"
+      ],
+      "disabled": true,
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/US_A_0622-03_1b96e2ff-9b2e-4713-91b2-5ef24ebd6207.jpg",
+        "image_mobile": "shopify://shop_images/US_A_0622-20.jpg",
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5,
+        "anchor_id": ""
+      }
+    },
+    "hero_image_9QtV4t": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_cxYUYD": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/A_323___1_2_d01cb751-93c3-4e11-ada9-0136ef13c805.jpg",
+            "image_mobile": "shopify://shop_images/A_323_-12.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_cxYUYD"
+      ],
+      "disabled": true,
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/US_A_0629-05_74b462d2-b24a-4ca3-a668-476354d3ae1c.jpg",
+        "image_mobile": "shopify://shop_images/US_A_0622-21_a449847b-d6ff-4caa-bf11-548d78256f7e.jpg",
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5,
+        "anchor_id": ""
+      }
+    },
+    "hero_image_zWKtMN": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_kAX4Bf": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/A_323_1e5b107e-3d62-4af8-a7d3-3f17ccb6f887.jpg",
+            "image_mobile": "shopify://shop_images/A_323_e7495e3c-7c9a-4dee-9d7e-30da9c3a5818.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "slide_8QB4Kk": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/A_323___1_4_9bec22e3-cb53-4526-b558-018650de29f2.jpg",
+            "image_mobile": "shopify://shop_images/A_323_-14.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_kAX4Bf",
+        "slide_8QB4Kk"
+      ],
+      "disabled": true,
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5,
+        "anchor_id": ""
+      }
+    },
+    "features_table_yyErzP": {
+      "type": "features-table",
+      "blocks": {
+        "table_row_LRJ4iq": {
+          "type": "_table_row",
+          "settings": {
+            "row_text_color": "",
+            "row_bg_color": "",
+            "enable_row_hover": false
+          },
+          "blocks": {
+            "table_cell_hifB6t": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Size",
+                "text_size": "h4",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_CLwN3K": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "XS",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_XgL6c9": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "S",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_MbTL34": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "S Plus",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_VGLUmp": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "M",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_CP6Xmd": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "M Plus",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_Xxf3ji": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "L",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_iXdcFp": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "XL",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "table_cell_hifB6t",
+            "table_cell_CLwN3K",
+            "table_cell_XgL6c9",
+            "table_cell_MbTL34",
+            "table_cell_VGLUmp",
+            "table_cell_CP6Xmd",
+            "table_cell_Xxf3ji",
+            "table_cell_iXdcFp"
+          ]
+        },
+        "table_row_b3WWFD": {
+          "type": "_table_row",
+          "settings": {
+            "row_text_color": "",
+            "row_bg_color": "",
+            "enable_row_hover": true
+          },
+          "blocks": {
+            "table_cell_KYWGQr": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Dimensions（inch）",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_PBFpyC": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "20×20×6",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_gtXGaX": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "23×23×7",
+                "text_size": "body-small",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_eDhiUj": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "27×27×8",
+                "text_size": "body-small",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_zGtizn": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "30×30×8",
+                "text_size": "body-small",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_iPqHzw": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "33×33×8",
+                "text_size": "body-small",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_Cf8CXV": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "36×36×8",
+                "text_size": "body-small",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_KwNgyi": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "42×42×9",
+                "text_size": "body-small",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "table_cell_KYWGQr",
+            "table_cell_PBFpyC",
+            "table_cell_gtXGaX",
+            "table_cell_eDhiUj",
+            "table_cell_zGtizn",
+            "table_cell_iPqHzw",
+            "table_cell_Cf8CXV",
+            "table_cell_KwNgyi"
+          ]
+        },
+        "table_row_PbjG9w": {
+          "type": "_table_row",
+          "settings": {
+            "row_text_color": "",
+            "row_bg_color": "",
+            "enable_row_hover": true
+          },
+          "blocks": {
+            "table_cell_M4mMFt": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Sleeping Area（inch）",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_i3p894": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "10×10",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_6TtQ3N": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "11×11",
+                "text_size": "body-small",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_RxT43y": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "13×13",
+                "text_size": "body-normal",
+                "type_icon": "cross",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_zncJet": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "15×15",
+                "text_size": "body-normal",
+                "type_icon": "cross",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_HM9HrM": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "19×19",
+                "text_size": "body-normal",
+                "type_icon": "cross",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_cQgbqm": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "13×13",
+                "text_size": "body-normal",
+                "type_icon": "cross",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_TbzANL": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "13×13",
+                "text_size": "body-normal",
+                "type_icon": "cross",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "table_cell_M4mMFt",
+            "table_cell_i3p894",
+            "table_cell_6TtQ3N",
+            "table_cell_RxT43y",
+            "table_cell_zncJet",
+            "table_cell_HM9HrM",
+            "table_cell_cQgbqm",
+            "table_cell_TbzANL"
+          ]
+        },
+        "table_row_DgXxpd": {
+          "type": "_table_row",
+          "name": "Row",
+          "settings": {
+            "row_text_color": "",
+            "row_bg_color": "",
+            "enable_row_hover": true
+          },
+          "blocks": {
+            "table_cell_hpPPzU": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Max Weight(lbs)",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_epjNbt": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "15",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_em7Mjx": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "25",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_XpNbKg": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "35",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_JNfTGX": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "45",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_U6MHmd": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "60",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_m9QzhP": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "100",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_HHCk9J": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "110",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "table_cell_hpPPzU",
+            "table_cell_epjNbt",
+            "table_cell_em7Mjx",
+            "table_cell_XpNbKg",
+            "table_cell_JNfTGX",
+            "table_cell_U6MHmd",
+            "table_cell_m9QzhP",
+            "table_cell_HHCk9J"
+          ]
+        },
+        "table_row_GhLEty": {
+          "type": "_table_row",
+          "name": "Row",
+          "settings": {
+            "row_text_color": "",
+            "row_bg_color": "",
+            "enable_row_hover": true
+          },
+          "blocks": {
+            "table_cell_YTaPdx": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Breeds",
+                "text_size": "h5",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_TREHJp": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Cat, Chihuahua, yorkie...",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_Lcprrr": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Pug, Shin tzu, Toy poodle...",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_DAi9mJ": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Corgi, French Bulldog, Schnauzer...",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_LGgXfg": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Dachshund, Boston Terrier Beagle...",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_FJNyyN": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Border Collie, Australian Shepherd,...",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_CJj6bV": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Bulldog, Husky...",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            },
+            "table_cell_LyKPkV": {
+              "type": "_table_cell",
+              "settings": {
+                "type": "text",
+                "cell_text": "Labrador Retriever, Golden Retriever...",
+                "text_size": "body-normal",
+                "type_icon": "check",
+                "cell_content_alignment": "center"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "table_cell_YTaPdx",
+            "table_cell_TREHJp",
+            "table_cell_Lcprrr",
+            "table_cell_DAi9mJ",
+            "table_cell_LGgXfg",
+            "table_cell_FJNyyN",
+            "table_cell_CJj6bV",
+            "table_cell_LyKPkV"
+          ]
+        }
+      },
+      "block_order": [
+        "table_row_LRJ4iq",
+        "table_row_b3WWFD",
+        "table_row_PbjG9w",
+        "table_row_DgXxpd",
+        "table_row_GhLEty"
+      ],
+      "name": "t:sections.features-table.name",
+      "settings": {
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "top_border": true,
+        "bottom_border": true,
+        "animate_section_header_on_scroll": true,
+        "heading": "Size Guide",
+        "heading_size": "h3",
+        "heading_level": "h3",
+        "description": "If your pet's weight falls between sizes, size up.",
+        "text_align": "center",
+        "enable_table_border": true,
+        "enable_column_highlight": true,
+        "column_index": 2,
+        "column_bg_color": "",
+        "padding_top": "xl",
+        "padding_bottom": "xl",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent",
+        "anchor_id": "Specs"
+      }
+    },
+    "collapsible_content_QWr3Hx": {
+      "type": "collapsible-content",
+      "blocks": {
+        "accordion_j47PCH": {
+          "type": "accordion",
+          "settings": {
+            "question": "Is there a weight limit for Lesure litter box?",
+            "answer": "<p>Must be used with cats weighing at least 3.3 lbs (1.5 kg) and taller than 6 inches.<br/><br/></p>",
+            "opened": true
+          }
+        },
+        "accordion_8Qax64": {
+          "type": "accordion",
+          "settings": {
+            "question": "How does it keep my cat safe?",
+            "answer": "<p>Equipped with 6 sweeping infrared sensors for instant safety, day or night. The Pinch-Free Rotation System keeps gear movement within a safe angle, preventing pinching for a worry-free cat experience.</p>",
+            "opened": false
+          }
+        },
+        "accordion_W9TKJ8": {
+          "type": "accordion",
+          "settings": {
+            "question": "What types of cat litter should I use for Lesure litter box?",
+            "answer": "<p>Comes with two litter sifters: Vertical Strip Mesh for tofu/mixed litter, Butterfly Mesh for mineral/bentonite litter.</p>",
+            "opened": false
+          }
+        },
+        "accordion_J8WUh9": {
+          "type": "accordion",
+          "settings": {
+            "question": "How do I train my cat to use Lesure litter box?",
+            "answer": "<p>Most cats adapt easily, but some may need time to get used to the new litter box. Follow these tips to help your cat transition smoothly:</p><ol><li><strong>Place Side by Side: </strong>Keep the new litter box next to the old one. Allow your cat to use both for at least a week (longer if needed, depending on temperament).</li><li><strong>Mix in Familiar Litter: </strong>Add a small amount of old litter to the new box to create a familiar scent.</li><li><strong>Adjust Cleaning Frequency: </strong>Reduce cleaning of the old litter box, since cats prefer clean litter.</li><li><strong>Remove the Old Box: </strong>Once your cat consistently uses the new box, remove the old one.<br/><br/></li></ol>",
+            "opened": false
+          }
+        }
+      },
+      "block_order": [
+        "accordion_j47PCH",
+        "accordion_8Qax64",
+        "accordion_W9TKJ8",
+        "accordion_J8WUh9"
+      ],
+      "name": "t:sections.collapsible-content.name",
+      "settings": {
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "show_border_top": false,
+        "show_border_bottom": false,
+        "content_align": "center",
+        "animate_section_header_on_scroll": true,
+        "heading": "Frequently Asked Questions",
+        "heading_level": "h3",
+        "heading_size": "h3",
+        "description": "",
+        "question_size": "h6",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent",
+        "anchor_id": "FAQ"
+      }
+    },
+    "collections_list_dbR3nV": {
+      "type": "collections-list",
+      "blocks": {
+        "collection_item_xbX7y8": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "card_url": "",
+            "image": "shopify://shop_images/1_96b8b7b7-eac2-4406-8872-1e05367825b1.png",
+            "image_position": "center",
+            "button_label": "SHOP BEDS"
+          }
+        },
+        "collection_item_wr8ALD": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "card_url": "",
+            "image": "shopify://shop_images/2_199329b2-06ef-4b72-b1f8-c80e1c774b2f.png",
+            "image_position": "center",
+            "button_label": "SHOP SMART DEVICE"
+          }
+        },
+        "collection_item_f9M3Vh": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "card_url": "",
+            "image": "shopify://shop_images/3_339b8eb2-6280-427a-b238-3c1c9947602a.png",
+            "image_position": "center",
+            "button_label": "SHOP TRAVEL GEAR"
+          }
+        },
+        "collection_item_XAFmb7": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "card_url": "",
+            "image": "shopify://shop_images/4_72d95597-df8f-46a9-8699-c105cfd81916.png",
+            "image_position": "center",
+            "button_label": "SHOP HYGIENE ESSENTIALS"
+          }
+        }
+      },
+      "block_order": [
+        "collection_item_xbX7y8",
+        "collection_item_wr8ALD",
+        "collection_item_f9M3Vh",
+        "collection_item_XAFmb7"
+      ],
+      "name": "t:sections.collections-list.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "animate_section_header_on_scroll": true,
+        "heading": "Human Inspired. Pet Perfected.",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "description": "",
+        "text_align": "center",
+        "heading_color": "#111111",
+        "heading_font_size": 32,
+        "heading_font_size_mobile": 24,
+        "heading_gap": 36,
+        "heading_gap_mobile": 20,
+        "background_color": "#ffffff",
+        "button_color": "#f5d400",
+        "button_text_color": "#171717",
+        "card_radius": 4,
+        "card_gap": 20,
+        "card_gap_mobile": 12,
+        "collections_column_count": "4",
+        "card_color_scheme": "",
+        "card_type": "primary",
+        "aspect_ratio": "portrait",
+        "object_fit": "cover",
+        "collections_titles_size": "h4",
+        "padding_top_desktop": 64,
+        "padding_bottom_desktop": 64,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32,
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "social-media": {
+      "type": "social-media",
+      "blocks": {
+        "block_1": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_2": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_3": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_4": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ],
+      "disabled": true,
+      "settings": {
+        "show_border_top": true,
+        "show_border_bottom": true,
+        "color_scheme": "",
+        "layout": "socials-right",
+        "media_block_color_scheme": "",
+        "show_social_media": true,
+        "socials_img_size": "big",
+        "image_blocks_border_radius": "pill",
+        "socials_img_align": "center",
+        "main_text": "Follow Us",
+        "main_text_font": "heading",
+        "main_text_size": "h3",
+        "text_align": "center",
+        "show_text_underline": true,
+        "enable_text_animation": true,
+        "text_underline_color": "#fedc2d",
+        "padding_top": "no-indent",
+        "padding_bottom": "no-indent",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent",
+        "anchor_id": "social"
+      }
+    }
+  },
+  "order": [
+    "main-product",
+    "sticky_add_to_cart_qmPgiz",
+    "product_anchor_nav",
+    "hero_image_ebGrpw",
+    "hero_image_KBQk8F",
+    "product_image_with_text_MNGgCa",
+    "product_image_with_text_nMgygr",
+    "product_image_with_text_iCj89y",
+    "product_image_with_text_Jz9cJJ",
+    "hero_image_qaRAE7",
+    "hero_image_XDXrRe",
+    "hero_image_9QtV4t",
+    "hero_image_zWKtMN",
+    "features_table_yyErzP",
+    "collapsible_content_QWr3Hx",
+    "collections_list_dbR3nV",
+    "social-media"
+  ]
+}
