@@ -1,0 +1,236 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h1",
+            "heading_size": "h3"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_tax_info": true
+          }
+        },
+        "description_aM9wGk": {
+          "type": "description",
+          "settings": {
+            "description": ""
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "pills",
+            "swatch_type": "variant_image",
+            "variant_image_size": "square",
+            "unavailable_options_clickable": false,
+            "enable_linked_products": false,
+            "linked_products_label": "Style"
+          }
+        },
+        "you_may_also_like_tbUQAp": {
+          "type": "you_may_also_like",
+          "settings": {
+            "heading": "You May Also Like",
+            "products": []
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_quantity": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "inventory_N84rJV": {
+          "type": "inventory",
+          "settings": {
+            "show_inventory_amount": true,
+            "limited_stock": 4
+          }
+        }
+      },
+      "block_order": [
+        "text",
+        "title",
+        "price",
+        "description_aM9wGk",
+        "variant_picker",
+        "you_may_also_like_tbUQAp",
+        "buy_buttons",
+        "inventory_N84rJV"
+      ],
+      "settings": {
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "badge_sale_show": true,
+        "badge_sale_type": "percentage",
+        "badge_soldout_show": true,
+        "badge_new_show": false,
+        "badge_custom_show": true,
+        "desktop_alignment": "left",
+        "mobile_alignment": "before",
+        "aspect_ratio": "square",
+        "image_fit": "cover",
+        "thumbs_direction": "vertical",
+        "thumbs_aspect_ratio": "square",
+        "thumbs_image_fit": "cover",
+        "enable_video_looping": false,
+        "enable_video_autoplay": false,
+        "enable_image_zoom_mobile": false,
+        "enable_image_zoom_desktop": true,
+        "show_arrows_desktop": true,
+        "show_arrows_mobile": false,
+        "arrow_color_scheme": "",
+        "padding_top": "xs",
+        "padding_bottom": "l",
+        "anchor_id": "overview"
+      }
+    },
+    "sticky_add_to_cart_qmPgiz": {
+      "type": "sticky-add-to-cart",
+      "name": "t:sections.sticky-add-to-cart.presets.name",
+      "settings": {
+        "enabled": true,
+        "card_background": "#ffffff",
+        "card_text": "#000000",
+        "button_background": "#101828",
+        "button_text": "#ffffff",
+        "card_radius": 4,
+        "desktop_bottom": 35,
+        "desktop_right": 35,
+        "mobile_bottom": 0
+      }
+    },
+    "product_anchor_nav": {
+      "type": "product-anchor-nav",
+      "blocks": {
+        "overview": {
+          "type": "link",
+          "settings": {
+            "label": "Overview",
+            "anchor_id": "overview"
+          }
+        },
+        "specs": {
+          "type": "link",
+          "settings": {
+            "label": "Specs",
+            "anchor_id": "specs"
+          }
+        },
+        "faq": {
+          "type": "link",
+          "settings": {
+            "label": "FAQ",
+            "anchor_id": "faq"
+          }
+        },
+        "reviews": {
+          "type": "link",
+          "settings": {
+            "label": "Reviews",
+            "anchor_id": "reviews"
+          }
+        }
+      },
+      "block_order": [
+        "overview",
+        "specs",
+        "faq",
+        "reviews"
+      ],
+      "settings": {
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7"
+      }
+    },
+    "social-media": {
+      "type": "social-media",
+      "blocks": {
+        "block_1": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_2": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_3": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_4": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ],
+      "settings": {
+        "show_border_top": true,
+        "show_border_bottom": true,
+        "color_scheme": "",
+        "layout": "socials-right",
+        "media_block_color_scheme": "",
+        "show_social_media": true,
+        "socials_img_size": "big",
+        "image_blocks_border_radius": "pill",
+        "socials_img_align": "center",
+        "main_text": "Follow Us",
+        "main_text_font": "heading",
+        "main_text_size": "h3",
+        "text_align": "center",
+        "show_text_underline": true,
+        "enable_text_animation": true,
+        "text_underline_color": "#fedc2d",
+        "padding_top": "no-indent",
+        "padding_bottom": "no-indent",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent",
+        "anchor_id": "social"
+      }
+    }
+  },
+  "order": [
+    "main-product",
+    "sticky_add_to_cart_qmPgiz",
+    "product_anchor_nav",
+    "social-media"
+  ]
+}
