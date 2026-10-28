@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "color_modal_overlay": "#F9F9F9",
+    "color_modal_overlay": "#FFFFFF",
     "type_header_font": "poppins_n7",
     "heading_h0_scale": 120,
     "heading_h3_scale": 110,
@@ -43,7 +43,7 @@
     "type_popups_text_font": "figtree_n4",
     "type_announcement_font": "poppins_n4",
     "favicon": "shopify://shop_images/20261028-161110.png",
-    "card_color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+    "card_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
     "badge_sale_type": "percentage",
     "quickview_button_style": "secondary",
     "show_shipping": true,
