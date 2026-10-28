@@ -1,0 +1,866 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h1",
+            "heading_size": "h3"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_tax_info": true
+          }
+        },
+        "description_aM9wGk": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "description": ""
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "pills",
+            "swatch_type": "variant_image",
+            "variant_image_size": "square",
+            "unavailable_options_clickable": false,
+            "enable_linked_products": false,
+            "linked_products_label": "Style"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_quantity": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "dropdown_information_kn4a3k": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "Spacious Open-Top Design",
+            "heading_tag": "h3",
+            "description": "<p>Safety and comfort go hand in hand. For active protection, built-in infrared sensors and an anti-pinch design continuously monitor for contact, automatically pausing operation if a cat is inside or touching the unit, ensuring complete peace of mind. The open-top layout meets your cat's instincts with clear visibility and multiple exit points, creating a more open space where cats feel safer and more in control, ideal for large breeds transitioning from traditional boxes.</p>",
+            "default_open": true
+          }
+        },
+        "dropdown_information_kgUQkG": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "Multi-Cat Friendly",
+            "heading_tag": "h3",
+            "description": "<p>Supports cats 3.3–18 lbs and multi-cat households (not suitable for kittens under 6 months). Automatic cleaning after each use keeps the litter box hygienic and convenient.</p>",
+            "default_open": false
+          }
+        },
+        "dropdown_information_fN8k8c": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "Large Capacity and Filtered Waste",
+            "heading_tag": "h3",
+            "description": "<p>Includes two mesh filters and works with all clumping litter types (clay, tofu and mixed). The built-in 8.9 L sealed waste bin stores multiple cleanings and locks in odors. Single-cat households can go 7–10 days between emptying, reducing frequent litter disposal.</p>",
+            "default_open": false
+          }
+        },
+        "dropdown_information_wbgYrB": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "Smart App Control",
+            "heading_tag": "h3",
+            "description": "<p>Track the past 7 days of litter box activity and adjust settings remotely via the app (2.4GHz Wi-Fi only). Supports auto, manual, scheduled, and empty modes, plus “Do Not Disturb.” Easy smartphone setup—no complex buttons. Monitor your cat’s habits over time to notice changes.</p>",
+            "default_open": false
+          }
+        },
+        "dropdown_information_tYfaye": {
+          "type": "dropdown_information",
+          "settings": {
+            "heading": "What's in the Box?",
+            "heading_tag": "h3",
+            "description": "<p>Main Unit X1 comes with butterfly-shaped mesh holes (suitable for mineral or bentonite litter and includes a high-performance anti-stick internal liner (pre-instta), along with a waste bin, four support legs, 15 garbage bags (one roll), one litter sifter with vertical strip mesh holes (for tofu or mixed litter), one adapter, two deodorizing boxes, and one user manual.</p>",
+            "default_open": false
+          }
+        },
+        "you_may_also_like_tbUQAp": {
+          "type": "you_may_also_like",
+          "settings": {
+            "heading": "You May Also Like",
+            "products": [
+              "lesure-2-in-1-cat-tunnel-bed",
+              "lesure-waterproof-puppy-blanket-for-dog-cat"
+            ]
+          }
+        },
+        "inventory_N84rJV": {
+          "type": "inventory",
+          "disabled": true,
+          "settings": {
+            "show_inventory_amount": true,
+            "limited_stock": 4
+          }
+        }
+      },
+      "block_order": [
+        "text",
+        "title",
+        "price",
+        "description_aM9wGk",
+        "variant_picker",
+        "buy_buttons",
+        "dropdown_information_kn4a3k",
+        "dropdown_information_kgUQkG",
+        "dropdown_information_fN8k8c",
+        "dropdown_information_wbgYrB",
+        "dropdown_information_tYfaye",
+        "you_may_also_like_tbUQAp",
+        "inventory_N84rJV"
+      ],
+      "settings": {
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "badge_sale_show": true,
+        "badge_sale_type": "percentage",
+        "badge_soldout_show": true,
+        "badge_new_show": false,
+        "badge_custom_show": true,
+        "desktop_alignment": "left",
+        "mobile_alignment": "before",
+        "aspect_ratio": "square",
+        "image_fit": "cover",
+        "thumbs_direction": "vertical",
+        "thumbs_aspect_ratio": "square",
+        "thumbs_image_fit": "cover",
+        "enable_video_looping": false,
+        "enable_video_autoplay": false,
+        "enable_image_zoom_mobile": false,
+        "enable_image_zoom_desktop": true,
+        "show_arrows_desktop": true,
+        "show_arrows_mobile": false,
+        "arrow_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
+        "padding_top": "xs",
+        "padding_bottom": "l",
+        "anchor_id": "overview"
+      }
+    },
+    "sticky_add_to_cart_qmPgiz": {
+      "type": "sticky-add-to-cart",
+      "name": "t:sections.sticky-add-to-cart.presets.name",
+      "settings": {
+        "enabled": true,
+        "card_background": "#ffffff",
+        "card_text": "#000000",
+        "button_background": "#101828",
+        "button_text": "#ffffff",
+        "card_radius": 4,
+        "desktop_bottom": 35,
+        "desktop_right": 35,
+        "mobile_bottom": 0
+      }
+    },
+    "product_anchor_nav": {
+      "type": "product-anchor-nav",
+      "blocks": {
+        "overview": {
+          "type": "link",
+          "settings": {
+            "label": "Overview",
+            "anchor_id": "overview"
+          }
+        },
+        "specs": {
+          "type": "link",
+          "disabled": true,
+          "settings": {
+            "label": "Specs",
+            "anchor_id": "specs"
+          }
+        },
+        "faq": {
+          "type": "link",
+          "settings": {
+            "label": "FAQ",
+            "anchor_id": "faq"
+          }
+        },
+        "reviews": {
+          "type": "link",
+          "settings": {
+            "label": "Reviews",
+            "anchor_id": "reviews"
+          }
+        }
+      },
+      "block_order": [
+        "overview",
+        "specs",
+        "faq",
+        "reviews"
+      ],
+      "settings": {
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7"
+      }
+    },
+    "hero_image_ebGrpw": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_knW96X": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/A_323___1_5827c9fb-da1d-44f7-a10d-d44e3ca89abf.jpg",
+            "image_mobile": "shopify://shop_images/A_323_-10.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_knW96X"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "hero_image_KBQk8F": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_VRqjkK": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/image_20261028-055838.png",
+            "image_mobile": "shopify://shop_images/A_323_-11_a1cb8501-8519-4b04-af49-972643f8a62e.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_VRqjkK"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "hero_image_qaRAE7": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_JQaB3B": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/842f848b8a07765d52c049e7c623d79e.png",
+            "image_mobile": "shopify://shop_images/A_323_-15.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_JQaB3B"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/US_A_0629-05_74b462d2-b24a-4ca3-a668-476354d3ae1c.jpg",
+        "image_mobile": "shopify://shop_images/US_A_0622-21_a449847b-d6ff-4caa-bf11-548d78256f7e.jpg",
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "hero_image_xGhEVE": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_gdfx87": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/A_323_-08_edeb07bb-f0f7-4633-bab0-72fb15941318.jpg",
+            "image_mobile": "shopify://shop_images/A_323_-16.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_gdfx87"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/US_A_0629.jpg",
+        "image_mobile": "shopify://shop_images/US_A_06291.jpg",
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "hero_image_XkpjBX": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_4xY3Ta": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/A_323_-09_36149ae8-867b-45d5-af91-431d25eaf659.jpg",
+            "image_mobile": "shopify://shop_images/A_323_-23.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_4xY3Ta"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/US_A_0629-05_74b462d2-b24a-4ca3-a668-476354d3ae1c.jpg",
+        "image_mobile": "shopify://shop_images/US_A_0622-21_a449847b-d6ff-4caa-bf11-548d78256f7e.jpg",
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "hero_image_XDXrRe": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_nNmwP8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/A_323___1_6_7569f850-5966-41f0-bc32-aa1ea803ce7b.jpg",
+            "image_mobile": "shopify://shop_images/A_323_-18.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_nNmwP8"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/US_A_0622-03_1b96e2ff-9b2e-4713-91b2-5ef24ebd6207.jpg",
+        "image_mobile": "shopify://shop_images/US_A_0622-20.jpg",
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "hero_image_9QtV4t": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_cxYUYD": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/A_323___1_2_d01cb751-93c3-4e11-ada9-0136ef13c805.jpg",
+            "image_mobile": "shopify://shop_images/A_323_-12.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_cxYUYD"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/US_A_0629-05_74b462d2-b24a-4ca3-a668-476354d3ae1c.jpg",
+        "image_mobile": "shopify://shop_images/US_A_0622-21_a449847b-d6ff-4caa-bf11-548d78256f7e.jpg",
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "hero_image_zWKtMN": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_kAX4Bf": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/A_323_1e5b107e-3d62-4af8-a7d3-3f17ccb6f887.jpg",
+            "image_mobile": "shopify://shop_images/A_323_e7495e3c-7c9a-4dee-9d7e-30da9c3a5818.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "slide_8QB4Kk": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/A_323___1_4_9bec22e3-cb53-4526-b558-018650de29f2.jpg",
+            "image_mobile": "shopify://shop_images/A_323_-14.jpg",
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_kAX4Bf",
+        "slide_8QB4Kk"
+      ],
+      "name": "t:sections.hero-image.presets.name",
+      "settings": {
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "collapsible_content_QWr3Hx": {
+      "type": "collapsible-content",
+      "blocks": {
+        "accordion_j47PCH": {
+          "type": "accordion",
+          "settings": {
+            "question": "Is there a weight limit for Lesure litter box?",
+            "answer": "<p>Must be used with cats weighing at least 3.3 lbs (1.5 kg) and taller than 6 inches.<br/><br/></p>",
+            "opened": true
+          }
+        },
+        "accordion_8Qax64": {
+          "type": "accordion",
+          "settings": {
+            "question": "How does it keep my cat safe?",
+            "answer": "<p>Equipped with 6 sweeping infrared sensors for instant safety, day or night. The Pinch-Free Rotation System keeps gear movement within a safe angle, preventing pinching for a worry-free cat experience.</p>",
+            "opened": false
+          }
+        },
+        "accordion_W9TKJ8": {
+          "type": "accordion",
+          "settings": {
+            "question": "What types of cat litter should I use for Lesure litter box?",
+            "answer": "<p>Comes with two litter sifters: Vertical Strip Mesh for tofu/mixed litter, Butterfly Mesh for mineral/bentonite litter.</p>",
+            "opened": false
+          }
+        },
+        "accordion_J8WUh9": {
+          "type": "accordion",
+          "settings": {
+            "question": "How do I train my cat to use Lesure litter box?",
+            "answer": "<p>Most cats adapt easily, but some may need time to get used to the new litter box. Follow these tips to help your cat transition smoothly:</p><ol><li><strong>Place Side by Side: </strong>Keep the new litter box next to the old one. Allow your cat to use both for at least a week (longer if needed, depending on temperament).</li><li><strong>Mix in Familiar Litter: </strong>Add a small amount of old litter to the new box to create a familiar scent.</li><li><strong>Adjust Cleaning Frequency: </strong>Reduce cleaning of the old litter box, since cats prefer clean litter.</li><li><strong>Remove the Old Box: </strong>Once your cat consistently uses the new box, remove the old one.<br/><br/></li></ol>",
+            "opened": false
+          }
+        }
+      },
+      "block_order": [
+        "accordion_j47PCH",
+        "accordion_8Qax64",
+        "accordion_W9TKJ8",
+        "accordion_J8WUh9"
+      ],
+      "name": "t:sections.collapsible-content.name",
+      "settings": {
+        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "show_border_top": false,
+        "show_border_bottom": false,
+        "content_align": "center",
+        "animate_section_header_on_scroll": true,
+        "heading": "Frequently Asked Questions",
+        "heading_level": "h3",
+        "heading_size": "h3",
+        "description": "",
+        "question_size": "h6",
+        "padding_top": "l",
+        "padding_bottom": "l",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent",
+        "anchor_id": ""
+      }
+    },
+    "collections_list_dbR3nV": {
+      "type": "collections-list",
+      "blocks": {
+        "collection_item_xbX7y8": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "card_url": "",
+            "image": "shopify://shop_images/1_96b8b7b7-eac2-4406-8872-1e05367825b1.png",
+            "image_position": "center",
+            "button_label": "SHOP BEDS"
+          }
+        },
+        "collection_item_wr8ALD": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "card_url": "",
+            "image": "shopify://shop_images/2_199329b2-06ef-4b72-b1f8-c80e1c774b2f.png",
+            "image_position": "center",
+            "button_label": "SHOP SMART DEVICE"
+          }
+        },
+        "collection_item_f9M3Vh": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "card_url": "",
+            "image": "shopify://shop_images/3_339b8eb2-6280-427a-b238-3c1c9947602a.png",
+            "image_position": "center",
+            "button_label": "SHOP TRAVEL GEAR"
+          }
+        },
+        "collection_item_XAFmb7": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "card_url": "",
+            "image": "shopify://shop_images/4_72d95597-df8f-46a9-8699-c105cfd81916.png",
+            "image_position": "center",
+            "button_label": "SHOP HYGIENE ESSENTIALS"
+          }
+        }
+      },
+      "block_order": [
+        "collection_item_xbX7y8",
+        "collection_item_wr8ALD",
+        "collection_item_f9M3Vh",
+        "collection_item_XAFmb7"
+      ],
+      "name": "t:sections.collections-list.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "animate_section_header_on_scroll": true,
+        "heading": "Human Inspired. Pet Perfected.",
+        "heading_size": "h2",
+        "heading_level": "h2",
+        "description": "",
+        "text_align": "center",
+        "heading_color": "#111111",
+        "heading_font_size": 32,
+        "heading_font_size_mobile": 24,
+        "heading_gap": 36,
+        "heading_gap_mobile": 20,
+        "background_color": "#ffffff",
+        "button_color": "#f5d400",
+        "button_text_color": "#171717",
+        "card_radius": 4,
+        "card_gap": 20,
+        "card_gap_mobile": 12,
+        "collections_column_count": "4",
+        "card_color_scheme": "",
+        "card_type": "primary",
+        "aspect_ratio": "portrait",
+        "object_fit": "cover",
+        "collections_titles_size": "h4",
+        "padding_top_desktop": 64,
+        "padding_bottom_desktop": 64,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32,
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "social-media": {
+      "type": "social-media",
+      "blocks": {
+        "block_1": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_2": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_3": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        },
+        "block_4": {
+          "type": "image",
+          "settings": {
+            "image_link": "",
+            "image_border_radius": "pill"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ],
+      "disabled": true,
+      "settings": {
+        "show_border_top": true,
+        "show_border_bottom": true,
+        "color_scheme": "",
+        "layout": "socials-right",
+        "media_block_color_scheme": "",
+        "show_social_media": true,
+        "socials_img_size": "big",
+        "image_blocks_border_radius": "pill",
+        "socials_img_align": "center",
+        "main_text": "Follow Us",
+        "main_text_font": "heading",
+        "main_text_size": "h3",
+        "text_align": "center",
+        "show_text_underline": true,
+        "enable_text_animation": true,
+        "text_underline_color": "#fedc2d",
+        "padding_top": "no-indent",
+        "padding_bottom": "no-indent",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent",
+        "anchor_id": "social"
+      }
+    }
+  },
+  "order": [
+    "main-product",
+    "sticky_add_to_cart_qmPgiz",
+    "product_anchor_nav",
+    "hero_image_ebGrpw",
+    "hero_image_KBQk8F",
+    "hero_image_qaRAE7",
+    "hero_image_xGhEVE",
+    "hero_image_XkpjBX",
+    "hero_image_XDXrRe",
+    "hero_image_9QtV4t",
+    "hero_image_zWKtMN",
+    "collapsible_content_QWr3Hx",
+    "collections_list_dbR3nV",
+    "social-media"
+  ]
+}
