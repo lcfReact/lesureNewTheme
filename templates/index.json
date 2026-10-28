@@ -309,7 +309,7 @@
       ],
       "name": "t:sections.product-markers.name",
       "settings": {
-        "main_color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "main_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "layout": "split",
         "image_position_desktop": "image-left",
         "image_position_mobile": "image-bottom",
@@ -727,7 +727,7 @@
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
+        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "full_width": true,
         "alignment": "center",
         "padding_top": "l",
@@ -779,7 +779,7 @@
         "image": "shopify://shop_images/8-explore_your_blog.png",
         "image_position": "center",
         "color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
-        "background_color": "#f9f9f9",
+        "background_color": "#FFFFFF",
         "active_color": "#ddd4f2",
         "show_border_top": false,
         "show_border_bottom": false,
