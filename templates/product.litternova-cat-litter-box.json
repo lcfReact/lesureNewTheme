@@ -276,7 +276,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/image_20261028-055838.png",
-            "image_mobile": "shopify://shop_images/d1bbce2af183e6437d09f8202895184b.png",
+            "image_mobile": "shopify://shop_images/A_323_-11_a1cb8501-8519-4b04-af49-972643f8a62e.jpg",
             "heading": "",
             "text": "",
             "button_label": "",
@@ -325,7 +325,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/842f848b8a07765d52c049e7c623d79e.png",
-            "image_mobile": "shopify://shop_images/54aed39a9a2c60657358a831de4c7b07.png",
+            "image_mobile": "shopify://shop_images/A_323_-15.jpg",
             "heading": "",
             "text": "",
             "button_label": "",
@@ -426,8 +426,8 @@
         "slide_4xY3Ta": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/US_A_0622-07_351c71f1-2747-4b0f-be90-a226709487ba.jpg",
-            "image_mobile": "shopify://shop_images/US_A_0622-25_a9e6caab-d3d3-4222-bfe5-0d309b31f251.jpg",
+            "image": "shopify://shop_images/A_323_-09_36149ae8-867b-45d5-af91-431d25eaf659.jpg",
+            "image_mobile": "shopify://shop_images/A_323_-23.jpg",
             "heading": "",
             "text": "",
             "button_label": "",
@@ -477,8 +477,8 @@
         "slide_nNmwP8": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/US_A_0622-03_1b96e2ff-9b2e-4713-91b2-5ef24ebd6207.jpg",
-            "image_mobile": "shopify://shop_images/US_A_0622-20.jpg",
+            "image": "shopify://shop_images/A_323___1_6_7569f850-5966-41f0-bc32-aa1ea803ce7b.jpg",
+            "image_mobile": "shopify://shop_images/A_323_-18.jpg",
             "heading": "",
             "text": "",
             "button_label": "",
@@ -522,86 +522,55 @@
         "autoplay_speed": 5
       }
     },
-    "media_banner_slider_dNaazB": {
-      "type": "media-banner-slider",
+    "hero_image_9QtV4t": {
+      "type": "hero-image",
       "blocks": {
-        "slide_xqLeyn": {
+        "slide_cxYUYD": {
           "type": "slide",
           "settings": {
-            "show_background_media": true,
-            "image": "shopify://shop_images/US_A_0622-04_fcdb4340-b807-4744-b127-317bc37d9b40.jpg",
-            "mobile_image": "shopify://shop_images/US_A_0622-22_abef96d4-ffe2-43cb-9862-30349e796b40.jpg",
-            "overlay_opacity": 0,
-            "show_video": false,
+            "image": "shopify://shop_images/A_323___1_2_d01cb751-93c3-4e11-ada9-0136ef13c805.jpg",
+            "image_mobile": "shopify://shop_images/A_323_-12.jpg",
             "heading": "",
-            "heading_tag": "h2",
-            "heading_size": "h2",
-            "description": "",
-            "show_label": false,
-            "label_border_radius": "pill",
-            "label_text": "",
-            "label_count": 5,
-            "show_button": false,
-            "button_style": "primary",
+            "text": "",
             "button_label": "",
-            "button_link": ""
-          }
-        },
-        "slide_7Hihzi": {
-          "type": "slide",
-          "settings": {
-            "show_background_media": true,
-            "image": "shopify://shop_images/US_A_0622-34_749be34e-3a02-4436-835d-b89230ba9a41.jpg",
-            "mobile_image": "shopify://shop_images/US_A_0622-26.jpg",
-            "overlay_opacity": 0,
-            "show_video": false,
-            "heading": "",
-            "heading_tag": "h2",
-            "heading_size": "h2",
-            "description": "",
-            "show_label": false,
-            "label_border_radius": "pill",
-            "label_text": "",
-            "label_count": 5,
-            "show_button": true,
-            "button_style": "primary",
-            "button_label": "",
-            "button_link": ""
+            "link": ""
           }
         }
       },
       "block_order": [
-        "slide_xqLeyn",
-        "slide_7Hihzi"
+        "slide_cxYUYD"
       ],
-      "name": "t:sections.media-banner-slider.presets.name",
+      "name": "t:sections.hero-image.presets.name",
       "settings": {
-        "full_width": true,
-        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
-        "enable_border_top": false,
-        "enable_border_bottom": false,
-        "slide_image_position": "full_width_image",
-        "image_ratio_desktop": "adapt",
-        "image_ratio_mobile": "adapt",
-        "vertical_align_content": "top",
-        "rotating_text": "",
-        "color_scheme_rotating_text": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
-        "rotating_text_vertical_align": "top",
-        "rotating_text_letter_spacing": 10.8,
-        "slide_color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
-        "enable_loop": true,
-        "enable_parallax": false,
-        "enable_pagination": true,
-        "show_nav_buttons": false,
-        "enable_autoplay": false,
-        "slider_stop_on_hover": false,
-        "slide_duration": 5,
-        "animation_type": "slide",
-        "controls_position": "center",
-        "padding_top": "no-indent",
-        "padding_bottom": "no-indent",
-        "margin_top": "no-indent",
-        "margin_bottom": "no-indent"
+        "image": "shopify://shop_images/US_A_0629-05_74b462d2-b24a-4ca3-a668-476354d3ae1c.jpg",
+        "image_mobile": "shopify://shop_images/US_A_0622-21_a449847b-d6ff-4caa-bf11-548d78256f7e.jpg",
+        "background_color": "#f9f9f9",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
+        "overlay_opacity": 0,
+        "heading": "A softer place\nto land",
+        "heading_color": "#ffffff",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#ffffff",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
+        "button_label": "",
+        "link": "",
+        "button_background": "#f5d400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5
       }
     },
     "hero_image_zWKtMN": {
@@ -610,8 +579,8 @@
         "slide_kAX4Bf": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/US_A_0622-11_9337e82c-e50e-4606-aa22-02cfd66df451.jpg",
-            "image_mobile": "shopify://shop_images/US_A_0622-28.jpg",
+            "image": "shopify://shop_images/A_323_1e5b107e-3d62-4af8-a7d3-3f17ccb6f887.jpg",
+            "image_mobile": "shopify://shop_images/A_323_e7495e3c-7c9a-4dee-9d7e-30da9c3a5818.jpg",
             "heading": "",
             "text": "",
             "button_label": "",
@@ -621,30 +590,8 @@
         "slide_8QB4Kk": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/US_A_0629-10_8f4cf5a3-8cb1-4fd1-9dd3-abc50ebe20f0.jpg",
-            "image_mobile": "shopify://shop_images/US_A_0629-18.jpg",
-            "heading": "",
-            "text": "",
-            "button_label": "",
-            "link": ""
-          }
-        },
-        "slide_9z8VwK": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/US_A_0622-12_dbfe8f2f-b5ca-4c71-aca8-399bfcedd14b.jpg",
-            "image_mobile": "shopify://shop_images/US_A_0622-29.jpg",
-            "heading": "",
-            "text": "",
-            "button_label": "",
-            "link": ""
-          }
-        },
-        "slide_ijPJRk": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/US_A_0622-17_ad380dd0-a5e0-4bb0-b483-5a337bc21c35.jpg",
-            "image_mobile": "shopify://shop_images/US_A_0622-30.jpg",
+            "image": "shopify://shop_images/A_323___1_4_9bec22e3-cb53-4526-b558-018650de29f2.jpg",
+            "image_mobile": "shopify://shop_images/A_323_-14.jpg",
             "heading": "",
             "text": "",
             "button_label": "",
@@ -654,9 +601,7 @@
       },
       "block_order": [
         "slide_kAX4Bf",
-        "slide_8QB4Kk",
-        "slide_9z8VwK",
-        "slide_ijPJRk"
+        "slide_8QB4Kk"
       ],
       "name": "t:sections.hero-image.presets.name",
       "settings": {
@@ -851,7 +796,7 @@
     "hero_image_xGhEVE",
     "hero_image_XkpjBX",
     "hero_image_XDXrRe",
-    "media_banner_slider_dNaazB",
+    "hero_image_9QtV4t",
     "hero_image_zWKtMN",
     "collections_list_dbR3nV",
     "social-media"
