@@ -40,7 +40,8 @@
         "button_background": "#f5d400",
         "button_text_color": "#171717",
         "enable_autoplay": true,
-        "autoplay_speed": 5
+        "autoplay_speed": 5,
+        "anchor_id": ""
       }
     },
     "logo_list_fd4Fz6": {
@@ -283,7 +284,8 @@
         "button_background": "#f5d400",
         "button_text_color": "#171717",
         "enable_autoplay": true,
-        "autoplay_speed": 5
+        "autoplay_speed": 5,
+        "anchor_id": ""
       }
     },
     "product_markers_tWmkHa": {
@@ -648,6 +650,15 @@
             "video": "shopify://files/videos/Video for Lesure Pet Tunnel bed.mov"
           }
         },
+        "slide_kVaRAt": {
+          "type": "slide",
+          "settings": {
+            "show_product": true,
+            "product": "lesure-cat-litter-box",
+            "image": "shopify://shop_images/4393.jpg",
+            "video": "shopify://files/videos/VID_20260330_094026_176_0b10725e-0a8f-4f4a-8e8e-bc972f415679.mp4"
+          }
+        },
         "slide_9yK4GF": {
           "type": "slide",
           "settings": {
@@ -663,6 +674,7 @@
         "slide_UxRJnb",
         "slide_qgbxPh",
         "slide_V4QWaG",
+        "slide_kVaRAt",
         "slide_9yK4GF"
       ],
       "name": "t:sections.social-feed.presets.name",
@@ -755,7 +767,8 @@
         "button_background": "#f5d400",
         "button_text_color": "#171717",
         "enable_autoplay": true,
-        "autoplay_speed": 5
+        "autoplay_speed": 5,
+        "anchor_id": ""
       }
     },
     "blog_posts_zgkxzL": {
@@ -1448,7 +1461,8 @@
         "button_background": "#f5d400",
         "button_text_color": "#171717",
         "enable_autoplay": true,
-        "autoplay_speed": 5
+        "autoplay_speed": 5,
+        "anchor_id": ""
       }
     },
     "multicolumn_KKdrjn": {
