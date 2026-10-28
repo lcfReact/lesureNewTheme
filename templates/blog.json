@@ -47,34 +47,6 @@
     },
     "main": {
       "type": "main-blog",
-      "blocks": {
-        "slide_Un4RMw": {
-          "type": "slide",
-          "settings": {
-            "featured_post": "",
-            "heading_tag": "h2"
-          }
-        },
-        "slide_3iFckq": {
-          "type": "slide",
-          "settings": {
-            "featured_post": "",
-            "heading_tag": "h2"
-          }
-        },
-        "slide_yPK3c4": {
-          "type": "slide",
-          "settings": {
-            "featured_post": "",
-            "heading_tag": "h2"
-          }
-        }
-      },
-      "block_order": [
-        "slide_Un4RMw",
-        "slide_3iFckq",
-        "slide_yPK3c4"
-      ],
       "settings": {
         "slider_color_scheme": "scheme-652738e3-68fe-40cb-9a16-cda6bb5e2cc7",
         "slider_heading": "Featured posts",

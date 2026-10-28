@@ -52,6 +52,7 @@
       "lesure-cat-litter-box"
     ],
     "pagination_type": "load_more",
+    "button_style": "primary",
     "currency_code_enabled": false,
     "blocks_border_radius": 4,
     "small_blocks_border_radius": 4,
