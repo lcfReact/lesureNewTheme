@@ -250,7 +250,7 @@
           "card_regular_price_color": "#6a44ce",
           "card_sale_price_color": "#ffd73c",
           "color_border": "#000000",
-          "colors_background_overlay": "#ffffff",
+          "colors_background_overlay": "#6A44CE",
           "color_success": "#2e870d",
           "color_error": "#eb0000"
         }
