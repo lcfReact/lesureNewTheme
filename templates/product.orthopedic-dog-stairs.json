@@ -60,45 +60,45 @@
         "dropdown_information_kn4a3k": {
           "type": "dropdown_information",
           "settings": {
-            "heading": "VERSATILE 2-IN-1 COMFORT",
+            "heading": "JOINT-FRIENDLY RAMP DESIGN",
             "heading_tag": "h3",
-            "description": "<p>Lesure's Cat Tunnel Bed combines a playful tunnel with a cozy nap spot, perfect for cats up to 15 lbs and small pets. Ideal for homes with multiple pets, it offers a hidden play area and a tranquil sleeping space.</p>",
+            "description": "<p>The gentle slope of this ramp offers an ideal mobility solution for dogs up to 50 lbs. The wide and deep steps help reduce strain on your pet's joints, preventing injuries from constant jumping on and off furniture in your living room or bedroom, promoting overall pet well-being. Perfect for puppies, short-legged breeds, injured dogs, dogs with limited mobility, and older pets. Experience better pet care with this supportive solution for your furry friend.</p>",
             "default_open": true
           }
         },
         "dropdown_information_fN8k8c": {
           "type": "dropdown_information",
           "settings": {
-            "heading": "LUXURIOUS & DURABLE MATERIALS",
+            "heading": "DURABLE & STURDY",
             "heading_tag": "h3",
-            "description": "<p>Crafted with plush jacquard shaggy sherpa, this tunnel bed provides unmatched softness and warmth. High-quality materials ensure durability, while a soft inner cushion offers ultimate comfort for your pet.</p>",
+            "description": "<p>These pet ramp stairs feature strong and reliable 33D high-density, lightweight foam, ensuring a robust build that's easy to move while providing stable support for cats and small/medium-sized dogs. The non-slip corduroy pet stair cover adds extra stability, ensuring your pet's safety and preventing any mishaps as they navigate up and down.</p>",
             "default_open": false
           }
         },
         "dropdown_information_kgUQkG": {
           "type": "dropdown_information",
           "settings": {
-            "heading": "INTERACTIVE FUN ",
+            "heading": "PET SAFE MATERIAL",
             "heading_tag": "h3",
-            "description": "<p>The tunnel can be shaped into a circle, S-shape, or semi-circle, keeping your cat entertained. Includes two interactive toy balls for endless fun, making it perfect for multi-cat play.</p>",
+            "description": "<p>Pet Safe Material: This pet ramp is made with CertiPUR-US certified foam, ensuring maximum safety for your furry friends and providing a safe and healthy environment for your pet at their favorite spots in your home.</p>",
             "default_open": false
           }
         },
         "dropdown_information_wbgYrB": {
           "type": "dropdown_information",
           "settings": {
-            "heading": "STYLISH PET OASIS",
+            "heading": "CONVENIENT & EASY TO USE",
             "heading_tag": "h3",
-            "description": "<p>Available in fashionable patterns, this cat tunnel bed enhances your home decor while providing a chic retreat for your pet. It's a stylish addition to your space and a thoughtful gift for your furry friend.</p>",
+            "description": "<p>Thoughtfully designed with your furry friend's needs in mind. A non-slip bottom featuring rubber dots ensures secure footing, while the handy built-in handle allows you to effortlessly move the ramp as needed. Note: the ramp arrives vacuum-compressed and requires no assembly. Simply give it 24-72 hours to fully expand and offer the utmost comfort for your pets.</p>",
             "default_open": false
           }
         },
         "dropdown_information_tYfaye": {
           "type": "dropdown_information",
           "settings": {
-            "heading": "HASSLE-FREE MAINTENANCE ",
+            "heading": "EASY TO CLEAN",
             "heading_tag": "h3",
-            "description": "<p>Easy to assemble and store, the cat tunnel bed features a removable, machine-washable inner bed for simple cleaning. The non-slip, studded bottom keeps it securely in place for stability.</p>",
+            "description": "<p>Keeping these pet stairs for dogs fresh and tidy is a breeze. Simply remove the foam core and machine wash the outer cover separately in cold water on a delicate cycle. Please note, the foam core should not be machine washed or dried to ensure long-lasting use and comfort for your pets.</p>",
             "default_open": false
           }
         },
@@ -107,8 +107,8 @@
           "settings": {
             "heading": "You May Also Like",
             "products": [
-              "lesure-cat-litter-box",
-              "high-back-pet-sofa"
+              "realortho™",
+              "lesure-waterproof-puppy-blanket-for-dog-cat"
             ]
           }
         },
