@@ -52,7 +52,10 @@
           "type": "you_may_also_like",
           "settings": {
             "heading": "You May Also Like",
-            "products": []
+            "products": [
+              "lesure-disposable-male-dog-diapers-50-count",
+              "lesure-calming-donut-bed-for-dog-cat-cozy-clouds-blue"
+            ]
           }
         },
         "buy_buttons": {
@@ -114,6 +117,7 @@
         "enabled": true,
         "card_background": "#ffffff",
         "card_text": "#000000",
+        "title_color": "#000000",
         "button_background": "#101828",
         "button_text": "#ffffff",
         "card_radius": 4,
