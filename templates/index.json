@@ -202,7 +202,7 @@
         "product_3yQat3": {
           "type": "product",
           "settings": {
-            "product": "realortho™"
+            "product": "realortho"
           }
         },
         "product_KnpqzC": {
@@ -294,7 +294,7 @@
         "product_markers_item_ACMNWx": {
           "type": "product_markers_item",
           "settings": {
-            "product_id": "realortho™",
+            "product_id": "realortho",
             "overwrite_desc": "Scientifically balanced 3-layer foam that takes pressure off joints. Designed for senior, arthritic, and large dogs.",
             "position_x": 1,
             "position_y": 1,
