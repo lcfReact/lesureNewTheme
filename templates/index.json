@@ -387,7 +387,7 @@
             "collection": "sleep-rest",
             "title": "",
             "card_url": "",
-            "image": "shopify://shop_images/a1b30e076c1a4c529dc97f1d8a26060a.png",
+            "image": "shopify://shop_images/2_19ba6ac3-8db6-421f-8640-c4323d82e9e0.jpg",
             "image_position": "center",
             "button_label": "SLEEP & REST"
           }
@@ -398,7 +398,7 @@
             "collection": "cat",
             "title": "",
             "card_url": "",
-            "image": "shopify://shop_images/e73c829687df021848935d1e4f43fc5e.png",
+            "image": "shopify://shop_images/3_585d430a-e830-4134-a9d6-aaa5a4d9333e.jpg",
             "image_position": "center",
             "button_label": "SMART CARE"
           }
@@ -409,7 +409,7 @@
             "collection": "outdoors",
             "title": "",
             "card_url": "",
-            "image": "shopify://shop_images/6232ded497ce4fd346cabc9ad55e05af.png",
+            "image": "shopify://shop_images/4_068284ad-3c7d-4688-8ac3-df1263961463.jpg",
             "image_position": "center",
             "button_label": "TRAVEL"
           }
@@ -420,7 +420,7 @@
             "collection": "essentials",
             "title": "",
             "card_url": "",
-            "image": "shopify://shop_images/b29e88593d5ffa4403fb86e3436607ff.png",
+            "image": "shopify://shop_images/5_5e1ac89c-b871-4dde-9a96-9b7212e362ce.jpg",
             "image_position": "center",
             "button_label": "DAILY CARE"
           }
@@ -453,10 +453,10 @@
         "card_gap": 20,
         "card_gap_mobile": 12,
         "collections_column_count": "4",
-        "card_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
-        "card_type": "primary",
-        "aspect_ratio": "adapt",
-        "object_fit": "contain",
+        "card_color_scheme": "scheme-458eb5b2-4655-4569-8e6d-4014255ce06b",
+        "card_type": "secondary",
+        "aspect_ratio": "square",
+        "object_fit": "cover",
         "collections_titles_size": "h4",
         "padding_top_desktop": 64,
         "padding_bottom_desktop": 64,
