@@ -197,7 +197,7 @@
           "type": "heading",
           "settings": {
             "heading": "Best Sellers",
-            "heading_tag": "h3",
+            "heading_tag": "h4",
             "heading_size": "h3"
           }
         }
@@ -209,7 +209,7 @@
       "settings": {
         "color_scheme": "scheme-7ddb7b8a-ad46-48db-b445-c234e65e7229",
         "full_width": true,
-        "alignment": "center",
+        "alignment": "left",
         "padding_top": "l",
         "padding_bottom": "no-indent",
         "margin_top": "no-indent",
@@ -265,7 +265,7 @@
         "subheading": "",
         "heading": "",
         "heading_size": "h3",
-        "heading_level": "h3",
+        "heading_level": "h4",
         "description": "",
         "text_align": "center",
         "product_list": [],
@@ -276,10 +276,10 @@
         "enable_loop": false,
         "centered_slides": false,
         "products_to_show": 4,
-        "image_ratio": "square",
-        "image_fit": "cover",
+        "image_ratio": "landscape",
+        "image_fit": "contain",
         "show_vendor": false,
-        "show_desc": true,
+        "show_desc": false,
         "button_show": false,
         "button_label": "View all",
         "button_style": "primary",
@@ -292,6 +292,7 @@
     },
     "hero_image_6NiNkW": {
       "type": "hero-image",
+      "disabled": true,
       "name": "t:sections.hero-image.presets.name",
       "settings": {
         "image": "shopify://shop_images/4-_banner.png",
@@ -345,6 +346,7 @@
       "block_order": [
         "product_markers_item_ACMNWx"
       ],
+      "disabled": true,
       "name": "t:sections.product-markers.name",
       "settings": {
         "main_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
@@ -382,12 +384,12 @@
         "collection_item_afHftx": {
           "type": "collection_item",
           "settings": {
-            "collection": "cat",
+            "collection": "sleep-rest",
             "title": "",
             "card_url": "",
-            "image": "shopify://shop_images/1_96b8b7b7-eac2-4406-8872-1e05367825b1.png",
+            "image": "shopify://shop_images/a1b30e076c1a4c529dc97f1d8a26060a.png",
             "image_position": "center",
-            "button_label": "Shop Beds"
+            "button_label": "SLEEP & REST"
           }
         },
         "collection_item_y6wXML": {
@@ -396,9 +398,9 @@
             "collection": "cat",
             "title": "",
             "card_url": "",
-            "image": "shopify://shop_images/2_199329b2-06ef-4b72-b1f8-c80e1c774b2f.png",
+            "image": "shopify://shop_images/e73c829687df021848935d1e4f43fc5e.png",
             "image_position": "center",
-            "button_label": "SHOP SMART DEVICES"
+            "button_label": "SMART CARE"
           }
         },
         "collection_item_jjie3n": {
@@ -407,9 +409,9 @@
             "collection": "outdoors",
             "title": "",
             "card_url": "",
-            "image": "shopify://shop_images/3_339b8eb2-6280-427a-b238-3c1c9947602a.png",
+            "image": "shopify://shop_images/6232ded497ce4fd346cabc9ad55e05af.png",
             "image_position": "center",
-            "button_label": "SHOP TRAVEL GEAR"
+            "button_label": "TRAVEL"
           }
         },
         "collection_item_yiYr7W": {
@@ -418,9 +420,9 @@
             "collection": "essentials",
             "title": "",
             "card_url": "",
-            "image": "shopify://shop_images/4_72d95597-df8f-46a9-8699-c105cfd81916.png",
+            "image": "shopify://shop_images/b29e88593d5ffa4403fb86e3436607ff.png",
             "image_position": "center",
-            "button_label": "SHOP HYGIENE ESSENTIALS"
+            "button_label": "DAILY CARE"
           }
         }
       },
@@ -434,11 +436,11 @@
       "settings": {
         "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "animate_section_header_on_scroll": true,
-        "heading": "Human Inspired. Pet Perfected.",
+        "heading": "Human Inspires. Pet Perfected",
         "heading_size": "h2",
-        "heading_level": "h2",
+        "heading_level": "h4",
         "description": "",
-        "text_align": "center",
+        "text_align": "left",
         "heading_color": "#111111",
         "heading_font_size": 32,
         "heading_font_size_mobile": 24,
@@ -453,8 +455,8 @@
         "collections_column_count": "4",
         "card_color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "card_type": "primary",
-        "aspect_ratio": "portrait",
-        "object_fit": "cover",
+        "aspect_ratio": "adapt",
+        "object_fit": "contain",
         "collections_titles_size": "h4",
         "padding_top_desktop": 64,
         "padding_bottom_desktop": 64,
