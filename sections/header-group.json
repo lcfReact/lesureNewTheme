@@ -17,14 +17,14 @@
         "announcement_PxRghF": {
           "type": "announcement",
           "settings": {
-            "text": "&nbsp;🎃 No Tricks, Just Treats! Enjoy 20% Off This Halloween.&nbsp;",
+            "text": "&nbsp;🎁 Black Friday Spend & Save • Discounts Apply Automatically at Checkout →&nbsp;",
             "link": "shopify://collections/weekly-sale"
           }
         },
         "announcement_promo": {
           "type": "announcement",
           "settings": {
-            "text": "&nbsp;Free Shipping on Orders $69+&nbsp;",
+            "text": "&nbsp;FREE SHIPPING ON ALL ORDERS!",
             "link": "shopify://collections/all"
           }
         }
