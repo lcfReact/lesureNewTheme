@@ -197,7 +197,7 @@
           "type": "heading",
           "settings": {
             "heading": "Best Sellers",
-            "heading_tag": "h2",
+            "heading_tag": "h3",
             "heading_size": "h3"
           }
         }
@@ -265,7 +265,7 @@
         "subheading": "",
         "heading": "",
         "heading_size": "h3",
-        "heading_level": "h2",
+        "heading_level": "h3",
         "description": "",
         "text_align": "center",
         "product_list": [],
