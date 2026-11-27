@@ -437,7 +437,7 @@
         "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
         "animate_section_header_on_scroll": true,
         "heading": "Human Inspires. Pet Perfected",
-        "heading_size": "h2",
+        "heading_size": "h4",
         "heading_level": "h4",
         "description": "",
         "text_align": "left",
@@ -743,74 +743,6 @@
         "margin_bottom": "no-indent"
       }
     },
-    "rich_text_ihJXKf": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_QkDMEr": {
-          "type": "heading",
-          "settings": {
-            "heading": "&nbsp;Care Made Simple&nbsp;",
-            "heading_tag": "h2",
-            "heading_size": "h3"
-          }
-        },
-        "text_4LTJb8": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Everyday pet questions, helpful answers, and tips worth keeping handy.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading_QkDMEr",
-        "text_4LTJb8"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "color_scheme": "scheme-f7a6a688-0dfe-4af7-9043-ca3701954195",
-        "full_width": true,
-        "alignment": "center",
-        "padding_top": "l",
-        "padding_bottom": "xs",
-        "margin_top": "no-indent",
-        "margin_bottom": "no-indent"
-      }
-    },
-    "hero_image_T8Ata7": {
-      "type": "hero-image",
-      "name": "t:sections.hero-image.presets.name",
-      "settings": {
-        "image": "shopify://shop_images/7-care_made_simple.png",
-        "background_color": "#f9f9f9",
-        "desktop_height": "adapt",
-        "mobile_height": "adapt",
-        "image_fit": "contain",
-        "image_position": "center",
-        "image_position_mobile": "center",
-        "overlay_opacity": 0,
-        "heading": "",
-        "heading_color": "#ffffff",
-        "heading_size": 5.6,
-        "heading_size_mobile": 2.8,
-        "text": "",
-        "text_color": "#ffffff",
-        "text_size": 1.8,
-        "text_size_mobile": 1.4,
-        "text_gap": 16,
-        "text_gap_mobile": 12,
-        "desktop_vertical": "middle",
-        "desktop_horizontal": "center",
-        "mobile_vertical": "middle",
-        "mobile_horizontal": "center",
-        "button_label": "EXPLORE TIPS & GUIDES",
-        "link": "shopify://blogs/blog",
-        "button_background": "#f5d400",
-        "button_text_color": "#171717",
-        "enable_autoplay": true,
-        "autoplay_speed": 5,
-        "anchor_id": ""
-      }
-    },
     "blog_posts_zgkxzL": {
       "type": "blog-posts",
       "name": "t:sections.blog-posts.presets.name",
@@ -825,8 +757,8 @@
         "show_border_bottom": false,
         "animate_section_header_on_scroll": true,
         "heading": "Explore Our Blog",
-        "heading_level": "h2",
-        "heading_size": "h2",
+        "heading_level": "h4",
+        "heading_size": "h4",
         "show_button": true,
         "button_label": "View More",
         "button_link": "shopify://blogs/news",
@@ -1612,8 +1544,6 @@
     "logo_list_JPQRMh",
     "image_carousel_m3qWLW",
     "social_feed_pkHX6Y",
-    "rich_text_ihJXKf",
-    "hero_image_T8Ata7",
     "blog_posts_zgkxzL",
     "ticker-banner",
     "testimonials_TAeUrm",
