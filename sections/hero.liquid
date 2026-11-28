@@ -374,7 +374,31 @@
     {% endif %}
   </div>
 </div>
+{% if section.settings.banner_link != blank %}
+  {% style %}
+    #shopify-section-{{ section.id }} {
+      position: relative;
+    }
 
+    #shopify-section-{{ section.id }} > .hero-banner-link {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} > .hero-banner-link:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: -4px;
+    }
+  {% endstyle %}
+
+  <a
+    class="hero-banner-link"
+    href="{{ section.settings.banner_link | escape }}"
+    aria-label="Open banner link"
+  ></a>
+{% endif %}
 {% schema %}
 {
   "name": "t:sections.hero.name",
@@ -384,6 +408,11 @@
     "templates": ["*"]
   },
   "settings": [
+  {
+  "type": "url",
+  "id": "banner_link",
+  "label": "Banner link"
+  },
     {
       "type": "color_scheme",
       "id": "color_scheme",
