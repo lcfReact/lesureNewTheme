@@ -9,72 +9,65 @@
  */
 {
   "sections": {
-    "hero_fANYzE": {
-      "type": "hero",
-      "name": "t:sections.hero.name",
+    "hero_image_pdWq7b": {
+      "type": "hero-image",
+      "blocks": {
+        "slide_phXjrk": {
+          "type": "slide",
+          "settings": {
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "slide_BzHbTM": {
+          "type": "slide",
+          "settings": {
+            "heading": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_phXjrk",
+        "slide_BzHbTM"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 750px) {.hero-image-full-width {width: 100%; max-width: none; padding-inline: 0; margin-inline: 0; box-sizing: border-box; }}"
+      ],
+      "name": "t:sections.hero-image.presets.name",
       "settings": {
-        "banner_link": "shopify://products/lesure-calming-modern-plush-orthopedic-donut-human-dog-bed",
-        "color_scheme": "",
-        "show_background_media": true,
-        "background_image": "shopify://shop_images/25b378250a0b1fcc002408ec90da4237.png",
-        "image_ratio_desktop": "adapt",
-        "mobile_background_image": "shopify://shop_images/banner_b2bdea0b-2af0-4c76-bfec-1ea2992dc2ac.png",
-        "image_ratio_mobile": "adapt",
+        "background_color": "",
+        "desktop_height": "adapt",
+        "mobile_height": "adapt",
+        "image_fit": "contain",
+        "image_position": "center",
+        "image_position_mobile": "center",
         "overlay_opacity": 0,
-        "overlay_as_gradient": false,
-        "section_heading": "",
-        "heading_tag": "h2",
-        "section_heading_size": "h2",
-        "hero_description": "",
-        "content_align": "left",
-        "enable_content_animation": true,
-        "show_logo": false,
-        "logo_width": 580,
-        "hero_text": "",
-        "hero_text_font_weight": "600",
-        "hero_text_line_height": 0.7,
-        "hero_text_align": "center",
-        "content_order": "column",
-        "show_button": true,
-        "button_style": "primary",
+        "heading": "A softer place\nto land",
+        "heading_color": "#FFFFFF",
+        "heading_size": 5.6,
+        "heading_size_mobile": 2.8,
+        "text": "Room to stretch, support that stays, and a spot your pet will actually use.",
+        "text_color": "#FFFFFF",
+        "text_size": 1.8,
+        "text_size_mobile": 1.4,
+        "text_gap": 16,
+        "text_gap_mobile": 12,
+        "desktop_vertical": "middle",
+        "desktop_horizontal": "center",
+        "mobile_vertical": "middle",
+        "mobile_horizontal": "center",
         "button_label": "",
-        "button_link": "",
-        "margin_top": "no-indent",
-        "margin_bottom": "no-indent"
-      }
-    },
-    "hero_dXdBRt": {
-      "type": "hero",
-      "name": "t:sections.hero.name",
-      "settings": {
-        "banner_link": "",
-        "color_scheme": "",
-        "show_background_media": true,
-        "background_image": "shopify://shop_images/Frame_60782.png",
-        "image_ratio_desktop": "adapt",
-        "mobile_background_image": "shopify://shop_images/Frame_60780_e80a71fc-44a6-4f23-8665-dab39428ebdd.png",
-        "image_ratio_mobile": "adapt",
-        "overlay_opacity": 0,
-        "overlay_as_gradient": false,
-        "section_heading": "",
-        "heading_tag": "h2",
-        "section_heading_size": "h2",
-        "hero_description": "",
-        "content_align": "left",
-        "enable_content_animation": true,
-        "show_logo": false,
-        "logo_width": 580,
-        "hero_text": "",
-        "hero_text_font_weight": "600",
-        "hero_text_line_height": 0.7,
-        "hero_text_align": "center",
-        "content_order": "column",
-        "show_button": false,
-        "button_style": "primary",
-        "button_label": "Shop Now",
-        "button_link": "",
-        "margin_top": "no-indent",
-        "margin_bottom": "no-indent"
+        "link": "",
+        "button_background": "#F5D400",
+        "button_text_color": "#171717",
+        "enable_autoplay": true,
+        "autoplay_speed": 5,
+        "anchor_id": ""
       }
     },
     "logo_list_fd4Fz6": {
@@ -1529,8 +1522,7 @@
     }
   },
   "order": [
-    "hero_fANYzE",
-    "hero_dXdBRt",
+    "hero_image_pdWq7b",
     "logo_list_fd4Fz6",
     "rich_text_RVm8PC",
     "popular-products",
