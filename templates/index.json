@@ -252,88 +252,6 @@
         "margin_bottom": "no-indent"
       }
     },
-    "multicolumn_pCCiiC": {
-      "type": "multicolumn",
-      "blocks": {
-        "column_bgBGaq": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/7_9e8ec9a8-e0ec-4df9-a81a-e51eb5682f98.jpg",
-            "link": "",
-            "title": "2026 Pet Innovation Awards"
-          }
-        },
-        "column_T9HqxA": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/8_d8e225aa-23ac-4cb5-86f2-b3bb214c4a91.jpg",
-            "link": "",
-            "title": "2026 WIRED Recommends"
-          }
-        },
-        "column_w8eAJB": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/9_283fc188-07a7-4c9b-b8f2-96642dfca189.jpg",
-            "link": "",
-            "title": "2026 Parade Pets Best in Show Awards"
-          }
-        },
-        "column_jGqixy": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/10_c0eb2be5-d466-49a8-895f-eb7f7a434a83.jpg",
-            "link": "",
-            "title": "2026 Good Housekeeping Travel Awards"
-          }
-        },
-        "column_JMVcUM": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/11_7643eca3-4905-459a-87a0-9cdda2445740.jpg",
-            "link": "",
-            "title": "2026 Apartment Therapy Best in Home Awards"
-          }
-        }
-      },
-      "block_order": [
-        "column_bgBGaq",
-        "column_T9HqxA",
-        "column_w8eAJB",
-        "column_jGqixy",
-        "column_JMVcUM"
-      ],
-      "name": "t:sections.multicolumn.presets.name",
-      "settings": {
-        "title": "Recognized for Better Pet Living",
-        "subtitle": "Thoughtful details make a difference in everyday life with pets — and they haven't gone unnoticed.",
-        "heading_alignment": "left",
-        "heading_color": "#1A1A1A",
-        "subtitle_color": "#1A1A1A",
-        "heading_font_size": 3.2,
-        "heading_font_size_mobile": 2.4,
-        "subtitle_size": 1.5,
-        "subtitle_size_mobile": 1.3,
-        "heading_gap": 12,
-        "heading_gap_mobile": 8,
-        "header_gap": 32,
-        "header_gap_mobile": 24,
-        "columns_desktop": 5,
-        "image_ratio": "award",
-        "column_gap": 16,
-        "column_gap_mobile": 12,
-        "caption_color": "#6E6E6E",
-        "caption_size": 1.4,
-        "caption_size_mobile": 1.2,
-        "caption_gap": 12,
-        "caption_gap_mobile": 12,
-        "arrow_color": "#F5C518",
-        "background_color": "#FFFFFF",
-        "section_width": "page",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "popular-products": {
       "type": "popular-products",
       "blocks": {
@@ -582,6 +500,88 @@
         "padding_bottom_mobile": 32,
         "margin_top": "no-indent",
         "margin_bottom": "no-indent"
+      }
+    },
+    "multicolumn_pCCiiC": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_bgBGaq": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/7_9e8ec9a8-e0ec-4df9-a81a-e51eb5682f98.jpg",
+            "link": "",
+            "title": "2026 Pet Innovation Awards"
+          }
+        },
+        "column_T9HqxA": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/8_d8e225aa-23ac-4cb5-86f2-b3bb214c4a91.jpg",
+            "link": "",
+            "title": "2026 WIRED Recommends"
+          }
+        },
+        "column_w8eAJB": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/9_283fc188-07a7-4c9b-b8f2-96642dfca189.jpg",
+            "link": "",
+            "title": "2026 Parade Pets Best in Show Awards"
+          }
+        },
+        "column_jGqixy": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/10_c0eb2be5-d466-49a8-895f-eb7f7a434a83.jpg",
+            "link": "",
+            "title": "2026 Good Housekeeping Travel Awards"
+          }
+        },
+        "column_JMVcUM": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/11_7643eca3-4905-459a-87a0-9cdda2445740.jpg",
+            "link": "",
+            "title": "2026 Apartment Therapy Best in Home Awards"
+          }
+        }
+      },
+      "block_order": [
+        "column_bgBGaq",
+        "column_T9HqxA",
+        "column_w8eAJB",
+        "column_jGqixy",
+        "column_JMVcUM"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Recognized for Better Pet Living",
+        "subtitle": "Thoughtful details make a difference in everyday life with pets — and they haven't gone unnoticed.",
+        "heading_alignment": "left",
+        "heading_color": "#1A1A1A",
+        "subtitle_color": "#1A1A1A",
+        "heading_font_size": 3.2,
+        "heading_font_size_mobile": 2.4,
+        "subtitle_size": 1.5,
+        "subtitle_size_mobile": 1.3,
+        "heading_gap": 12,
+        "heading_gap_mobile": 8,
+        "header_gap": 32,
+        "header_gap_mobile": 24,
+        "columns_desktop": 5,
+        "image_ratio": "award",
+        "column_gap": 16,
+        "column_gap_mobile": 12,
+        "caption_color": "#6E6E6E",
+        "caption_size": 1.4,
+        "caption_size_mobile": 1.2,
+        "caption_gap": 12,
+        "caption_gap_mobile": 12,
+        "arrow_color": "#F5C518",
+        "background_color": "#FFFFFF",
+        "section_width": "page",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "logo_list_JPQRMh": {
@@ -1644,11 +1644,11 @@
     "logo_list_fd4Fz6",
     "rich_text_RVm8PC",
     "rich_text_8CLTGB",
-    "multicolumn_pCCiiC",
     "popular-products",
     "hero_image_6NiNkW",
     "product_markers_tWmkHa",
     "collections_list_nQjr7U",
+    "multicolumn_pCCiiC",
     "logo_list_JPQRMh",
     "image_carousel_m3qWLW",
     "social_feed_pkHX6Y",
