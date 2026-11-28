@@ -13,6 +13,7 @@
       "type": "hero",
       "name": "t:sections.hero.name",
       "settings": {
+        "banner_link": "shopify://collections/all",
         "color_scheme": "",
         "show_background_media": true,
         "background_image": "shopify://shop_images/25b378250a0b1fcc002408ec90da4237.png",
@@ -46,6 +47,7 @@
       "type": "hero",
       "name": "t:sections.hero.name",
       "settings": {
+        "banner_link": "",
         "color_scheme": "",
         "show_background_media": true,
         "background_image": "shopify://shop_images/Frame_60782.png",
